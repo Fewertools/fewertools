@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Philosophy — Uncluttered</title>
+  <meta name="description" content="The best tool stack is the smallest one that gets the job done. Everything else is noise.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uncluttered.com/philosophy/">
+  <meta property="og:title" content="Philosophy — Uncluttered">
+  <meta property="og:description" content="The best tool stack is the smallest one that gets the job done. Everything else is noise.">
+  <meta property="og:image" content="https://uncluttered.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://uncluttered.com/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #111; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #0D9488; --accent-hover: #0F766E; --border: rgba(0, 0, 0, 0.08);
+      --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; }
+    h1 { font-size: clamp(44px, 7vw, 64px); } h2 { font-size: clamp(28px, 4vw, 36px); }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 0; background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 700; font-size: 20px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+    .logo-mark::before { content: ''; width: 14px; height: 14px; background: var(--accent); border-radius: 3px; }
+    nav { display: flex; align-items: center; gap: 40px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+
+    .page-hero { padding: 160px 0 80px; }
+    .page-hero h1 { margin-bottom: 24px; }
+    .page-hero .lead { font-size: 24px; color: var(--text-secondary); max-width: 700px; line-height: 1.5; }
+
+    .content { max-width: 720px; padding-bottom: 100px; }
+    .content h2 { margin: 64px 0 24px; }
+    .content p { margin-bottom: 24px; font-size: 18px; color: var(--text-secondary); }
+    .content p:first-of-type { font-size: 20px; }
+    
+    .principle { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; margin: 32px 0; border-left: 4px solid var(--accent); }
+    .principle h3 { font-size: 20px; margin-bottom: 12px; }
+    .principle p { margin-bottom: 0; font-size: 16px; }
+
+    .quote { font-size: 28px; font-family: var(--font-display); font-weight: 500; color: var(--text); margin: 48px 0; padding-left: 24px; border-left: 3px solid var(--accent); line-height: 1.4; }
+
+    footer { padding: 64px 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../" class="logo"><div class="logo-mark"></div><span>uncluttered</span></a>
+      <nav>
+        <a href="../stages/">Stages</a>
+        <a href="../stacks/">Stacks</a>
+        <a href="../tools/">Tools</a>
+        <a href="./">Philosophy</a>
+        <a href="../#stages" class="nav-cta">Find your stack</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Philosophy</h1>
+      <p class="lead">The best tool stack is the smallest one that gets the job done. Everything else is noise.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="content">
+        <p>We've all been there. You find a new tool, get excited about what it could do, and add it to your stack. Then another. And another. Before you know it, you're spending more time managing tools than doing actual work.</p>
+        
+        <p>Uncluttered exists because we believe there's a better way.</p>
+
+        <h2>The Core Beliefs</h2>
+
+        <div class="principle">
+          <h3>Tools should serve your stage</h3>
+          <p>A solo founder validating an idea doesn't need enterprise monitoring. A scaling startup doesn't need another note-taking app. The right tools depend entirely on where you are right now.</p>
+        </div>
+
+        <div class="principle">
+          <h3>Every tool has a cost</h3>
+          <p>Not just money — attention, context-switching, learning curves, maintenance, integration headaches. That "free" tool costs you time every single day.</p>
+        </div>
+
+        <div class="principle">
+          <h3>Fewer tools, deeper mastery</h3>
+          <p>You'll get more from truly knowing 5 tools than surface-level familiarity with 25. Depth beats breadth.</p>
+        </div>
+
+        <div class="principle">
+          <h3>The best tool is the one you'll actually use</h3>
+          <p>A simpler tool you use daily beats a powerful tool you forget about. Consistency compounds.</p>
+        </div>
+
+        <p class="quote">"Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."</p>
+
+        <h2>What We're Not</h2>
+        
+        <p>We're not anti-tool. Tools are wonderful. The right tool at the right time can transform how you work.</p>
+        
+        <p>We're not minimalist for minimalism's sake. If you genuinely need 10 tools, use 10 tools. The goal isn't the smallest number — it's the right number.</p>
+        
+        <p>We're not saying our recommendations are the only options. They're starting points. If something else works better for you, use that.</p>
+
+        <h2>The Promise</h2>
+        
+        <p>We only recommend tools we'd actually use ourselves. No affiliate deals influencing our picks. No "featured" placements. Just honest opinions about what works.</p>
+        
+        <p>Every tool on this site has earned its place by being genuinely useful at its stage, not by being trendy or well-marketed.</p>
+        
+        <p>That's it. Less tools. More building.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>Simplicity is the ultimate sophistication.</p>
+        <div class="footer-links">
+          <a href="../">Home</a>
+          <a href="../stacks/">Stacks</a>
+          <a href="../stages/">Stages</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
+  </script>
+</body>
+</html>

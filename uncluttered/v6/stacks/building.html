@@ -3,128 +3,1460 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Building Stack — Uncluttered</title>
-  <meta name="description" content="You're making something real. Here's everything you need to ship — and nothing you don't.">
+  <title>Building Stack - Uncluttered</title>
+  <meta name="description" content="The essential tools to go from idea to shipped product. Framework, database, hosting, payments - everything you need, nothing you don't.">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    
+
     :root {
       --bg: #FAFAF8;
       --bg-alt: #F3F3F0;
-      --bg-dark: #111;
+      --bg-dark: #0a0a0a;
       --bg-card: #FFFFFF;
       --text: #1a1a1a;
       --text-secondary: #555;
       --text-muted: #888;
       --text-inverse: #FAFAF8;
-      --accent: #BEFF00;
-      --accent-hover: #A8E600;
-      --accent-subtle: rgba(190, 255, 0, 0.15);
+      --accent: #0D9488;
+      --accent-hover: #0F766E;
+      --accent-subtle: rgba(13, 148, 136, 0.1);
       --border: rgba(0, 0, 0, 0.08);
-      --border-strong: rgba(0, 0, 0, 0.15);
+      --border-strong: rgba(0, 0, 0, 0.12);
       --font-display: 'Space Grotesk', -apple-system, sans-serif;
       --font-body: 'Inter', -apple-system, sans-serif;
       --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px;
-      --space-xl: 40px; --space-2xl: 64px; --space-3xl: 100px;
+      --space-xl: 40px; --space-2xl: 64px; --space-3xl: 100px; --space-4xl: 140px;
       --max-width: 1200px;
       --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-      --duration-fast: 0.2s; --duration-normal: 0.4s; --duration-slow: 0.8s;
     }
-    
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
-    h1 { font-size: clamp(44px, 7vw, 64px); } h2 { font-size: clamp(32px, 5vw, 44px); } h3 { font-size: clamp(24px, 3vw, 28px); }
     a { color: inherit; text-decoration: none; }
     .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-xl); }
-    
-    .reveal { opacity: 0; transform: translateY(40px); transition: all var(--duration-slow) var(--ease-out); }
+    @media (max-width: 600px) { .container { padding: 0 var(--space-lg); } }
+
+    /* Animations */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease-out); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    
-    .btn { display: inline-flex; align-items: center; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); font-family: var(--font-body); font-size: 15px; font-weight: 600; border-radius: var(--radius-md); border: none; cursor: pointer; transition: all var(--duration-fast) ease; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); font-family: var(--font-body); font-size: 15px; font-weight: 600; border-radius: var(--radius-md); border: none; cursor: pointer; transition: all 0.2s ease; }
     .btn-primary { background: var(--bg-dark); color: var(--text-inverse); }
-    .btn-primary:hover { background: #222; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); }
-    .btn-secondary { background: var(--bg-card); color: var(--text); border: 1px solid var(--border-strong); }
-    .btn-secondary:hover { border-color: var(--text); transform: translateY(-2px); }
-    
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--space-lg) 0; background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: border-color var(--duration-fast) ease; }
+    .btn-primary:hover { background: #222; transform: translateY(-2px); }
+    .btn-secondary { background: transparent; color: var(--text); border: 1.5px solid var(--border-strong); }
+    .btn-secondary:hover { border-color: var(--text); }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--space-lg) 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: all 0.2s ease; }
     header.scrolled { border-bottom-color: var(--border); }
     header .container { display: flex; justify-content: space-between; align-items: center; }
     .logo { display: flex; align-items: center; gap: var(--space-sm); font-family: var(--font-display); font-weight: 700; font-size: 20px; }
     .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
     .logo-mark::before { content: ''; width: 14px; height: 14px; background: var(--accent); border-radius: 3px; }
     nav { display: flex; align-items: center; gap: var(--space-xl); }
-    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color var(--duration-fast) ease; }
-    nav a:hover { color: var(--text); }
-    .nav-cta { padding: var(--space-sm) var(--space-md); background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
-    
-    .page-hero { padding: 160px 0 80px; background: var(--bg); }
-    .breadcrumb { display: flex; align-items: center; gap: var(--space-sm); font-size: 13px; color: var(--text-muted); margin-bottom: var(--space-lg); }
-    .breadcrumb a:hover { color: var(--text); }
-    .breadcrumb span { opacity: 0.5; }
-    .hero-header { display: flex; align-items: flex-start; gap: var(--space-lg); margin-bottom: var(--space-lg); }
-    .hero-icon { width: 72px; height: 72px; background: var(--accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; animation: hammer 2s ease-in-out infinite; }
-    @keyframes hammer { 0%, 100% { transform: rotate(0deg); } 20% { transform: rotate(-20deg); } 40% { transform: rotate(0deg); } }
-    .hero-header h1 { margin-bottom: var(--space-sm); }
-    .hero-header p { font-size: 18px; color: var(--text-secondary); }
-    .hero-description { font-size: 20px; color: var(--text-secondary); max-width: 640px; line-height: 1.7; }
-    
-    .stage-signal { background: var(--accent); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-xl) 0; }
-    .stage-signal h3 { font-size: 16px; margin-bottom: var(--space-md); color: var(--bg-dark); }
-    .stage-signal ul { list-style: none; display: grid; gap: var(--space-sm); }
-    .stage-signal li { display: flex; align-items: flex-start; gap: var(--space-sm); font-size: 15px; color: var(--bg-dark); }
-    .stage-signal li::before { content: '✓'; font-weight: 700; flex-shrink: 0; }
-    
-    .stack-section { padding: var(--space-3xl) 0; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease; }
+    nav a:hover, nav a.active { color: var(--text); }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 160px 0 var(--space-3xl);
+      background: linear-gradient(180deg, rgba(13, 148, 136, 0.05) 0%, transparent 100%);
+      position: relative;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+    }
+    .page-hero .container { position: relative; }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: var(--space-lg);
+    }
+    .breadcrumb a { color: var(--text-muted); transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb span { color: var(--text-muted); }
+
+    .page-hero-content { max-width: 700px; }
+    .page-hero-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--accent);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin-bottom: var(--space-lg);
+    }
+    .page-hero h1 {
+      font-size: clamp(40px, 6vw, 56px);
+      margin-bottom: var(--space-md);
+    }
+    .page-hero-subtitle {
+      font-size: 20px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-xl);
+    }
+    .page-hero-meta {
+      display: flex;
+      gap: var(--space-xl);
+      flex-wrap: wrap;
+    }
+    .page-hero-stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .page-hero-stat-value {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .page-hero-stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Inline audience indicators in hero */
+    .page-hero-audience {
+      display: flex;
+      gap: var(--space-xl);
+      margin-top: var(--space-xl);
+      padding-top: var(--space-xl);
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .page-hero-audience-col {
+      flex: 1;
+      min-width: 200px;
+    }
+    .page-hero-audience-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-sm);
+    }
+    .page-hero-audience-label.for { color: #16A34A; }
+    .page-hero-audience-label.not-for { color: #DC2626; }
+    .page-hero-audience-list {
+      list-style: none;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .page-hero-audience-list li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 0;
+    }
+    .page-hero-audience-list li::before {
+      font-size: 10px;
+    }
+    .page-hero-audience-col.for li::before { content: '✓'; color: #16A34A; }
+    .page-hero-audience-col.not-for li::before { content: '✕'; color: #DC2626; }
+
+    @media (max-width: 600px) {
+      .page-hero-audience { flex-direction: column; gap: var(--space-md); }
+    }
+
+    /* Stack Overview */
+    .stack-overview {
+      padding: var(--space-2xl) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .stack-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+    .stack-tool {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .stack-tool:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .stack-tool img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+
+    /* Stack Architecture Diagram - LIGHT */
+    .stack-architecture {
+      padding: var(--space-3xl) 0;
+      background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%);
+      position: relative;
+    }
+    .architecture-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+    .architecture-header h2 {
+      font-size: clamp(24px, 4vw, 32px);
+      margin-bottom: var(--space-sm);
+    }
+    .architecture-header p {
+      color: var(--text-secondary);
+      font-size: 16px;
+    }
+
+    .architecture-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .architecture-row {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-lg);
+      width: 100%;
+      position: relative;
+    }
+
+    .architecture-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      min-width: 140px;
+      transition: all 0.3s var(--ease-out);
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .architecture-node:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(13, 148, 136, 0.12);
+    }
+    .architecture-node.primary {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, var(--bg-card) 100%);
+    }
+    .architecture-node-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .architecture-node-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .architecture-node-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text);
+    }
+    .architecture-node-role {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Connection lines */
+    .architecture-connector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      position: relative;
+    }
+    .architecture-connector::before {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%);
+      border-radius: 1px;
+    }
+    .architecture-connector-arrow {
+      width: 24px;
+      height: 24px;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      z-index: 1;
+    }
+
+    .architecture-row-connector {
+      position: relative;
+      height: 40px;
+      width: 60%;
+      margin: 0 auto;
+    }
+    .architecture-row-connector::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: var(--accent);
+      transform: translateX(-50%);
+    }
+    .architecture-row-connector::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: var(--border);
+    }
+    .architecture-row-connector .line-down {
+      position: absolute;
+      bottom: 0;
+      width: 2px;
+      height: 20px;
+      background: var(--border);
+    }
+    .architecture-row-connector .line-down:nth-child(1) { left: 10%; }
+    .architecture-row-connector .line-down:nth-child(2) { left: 50%; transform: translateX(-50%); }
+    .architecture-row-connector .line-down:nth-child(3) { right: 10%; }
+
+    @media (max-width: 700px) {
+      .stack-architecture { padding: var(--space-2xl) 0; }
+      .architecture-header { margin-bottom: var(--space-xl); }
+      .architecture-diagram { gap: var(--space-sm); }
+      .architecture-row { gap: var(--space-sm); }
+      .architecture-node { 
+        min-width: 90px;
+        padding: var(--space-sm) var(--space-md); 
+      }
+      .architecture-node-icon { width: 28px; height: 28px; }
+      .architecture-node-name { font-size: 11px; }
+      .architecture-node-role { font-size: 9px; }
+      .architecture-row-connector { height: 30px; width: 70%; }
+      .architecture-connector { height: 24px; }
+      .architecture-connector-arrow { width: 18px; height: 18px; font-size: 9px; }
+    }
+
+    /* Quick Start Section - DARK */
+    .quickstart-section {
+      padding: var(--space-3xl) 0 var(--space-4xl);
+      background: var(--bg-dark);
+      color: var(--text-inverse);
+      position: relative;
+    }
+    .quickstart-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+    }
+    .quickstart-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+    .quickstart-header h2 {
+      font-size: clamp(24px, 4vw, 32px);
+      margin-bottom: var(--space-sm);
+    }
+    .quickstart-header p {
+      color: rgba(255,255,255,0.6);
+      font-size: 16px;
+    }
+
+    .quickstart-steps {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .quickstart-step {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .quickstart-step-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .quickstart-step-number {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .quickstart-step-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: #fff;
+    }
+    .quickstart-step-tool {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+    }
+    .quickstart-step-tool img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+
+    .quickstart-code {
+      position: relative;
+      padding: var(--space-md) var(--space-lg);
+      padding-right: 60px;
+      background: var(--bg-dark);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 14px;
+      color: #A5F3FC;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .quickstart-code code {
+      display: block;
+    }
+    .quickstart-code .comment {
+      color: rgba(255,255,255,0.35);
+    }
+
+    .quickstart-copy {
+      position: absolute;
+      top: 50%;
+      right: var(--space-md);
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      border-radius: var(--radius-sm);
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .quickstart-copy:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+    .quickstart-copy.copied {
+      background: var(--accent);
+      color: #fff;
+    }
+    .quickstart-copy svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .quickstart-note {
+      text-align: center;
+      margin-top: var(--space-xl);
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+    .quickstart-note a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .quickstart-step-tool img {
+      filter: brightness(0) invert(1);
+    }
+
+    @media (max-width: 600px) {
+      .quickstart-section { padding: var(--space-2xl) 0; }
+      .quickstart-step-header { padding: var(--space-sm) var(--space-md); flex-wrap: wrap; }
+      .quickstart-step-tool { width: 100%; margin-left: 0; margin-top: var(--space-sm); }
+      .quickstart-code { padding: var(--space-sm) var(--space-md); padding-right: 50px; font-size: 12px; }
+      .quickstart-copy { right: var(--space-sm); width: 32px; height: 32px; }
+    }
+
+    /* Who Is This For Section */
+    .audience-section {
+      padding: var(--space-3xl) 0;
+      background: var(--bg-alt);
+      position: relative;
+    }
+    .audience-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.02;
+      pointer-events: none;
+    }
+
+    .audience-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+    .audience-header h2 {
+      font-size: clamp(24px, 4vw, 32px);
+      margin-bottom: var(--space-sm);
+    }
+    .audience-header p {
+      color: var(--text-secondary);
+      font-size: 16px;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .audience-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.02),
+        0 4px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .audience-card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--border);
+    }
+    .audience-card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .audience-card.for .audience-card-icon {
+      background: rgba(34, 197, 94, 0.1);
+    }
+    .audience-card.not-for .audience-card-icon {
+      background: rgba(239, 68, 68, 0.1);
+    }
+    .audience-card-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .audience-card.for .audience-card-title {
+      color: #16A34A;
+    }
+    .audience-card.not-for .audience-card-title {
+      color: #DC2626;
+    }
+
+    .audience-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .audience-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .audience-list li::before {
+      content: '✓';
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .audience-card.for .audience-list li::before {
+      color: #16A34A;
+    }
+    .audience-card.not-for .audience-list li::before {
+      content: '✕';
+      color: #DC2626;
+    }
+
+    @media (max-width: 600px) {
+      .audience-grid { grid-template-columns: 1fr; gap: var(--space-md); }
+      .audience-card { padding: var(--space-lg); }
+      .audience-card-title { font-size: 16px; }
+      .audience-list li { font-size: 14px; }
+    }
+
+    /* Cost Calculator Section */
+    .calculator-section {
+      padding: var(--space-3xl) 0;
+      position: relative;
+    }
+    .calculator-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.02;
+      pointer-events: none;
+    }
+
+    .calculator-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+    .calculator-header h2 {
+      font-size: clamp(24px, 4vw, 32px);
+      margin-bottom: var(--space-sm);
+    }
+    .calculator-header p {
+      color: var(--text-secondary);
+      font-size: 16px;
+    }
+
+    .calculator-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.02),
+        0 4px 8px rgba(0, 0, 0, 0.02),
+        0 8px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .calculator-slider-section {
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-xl);
+      border-bottom: 1px solid var(--border);
+    }
+    .calculator-slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+    }
+    .calculator-slider-label {
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .calculator-slider-value {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .calculator-slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--bg-alt);
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+    }
+    .calculator-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      border: 4px solid var(--bg-card);
+      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.3);
+      transition: transform 0.15s ease;
+    }
+    .calculator-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+    }
+    .calculator-slider::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      border: 4px solid var(--bg-card);
+      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.3);
+    }
+
+    .calculator-slider-marks {
+      display: flex;
+      justify-content: space-between;
+      margin-top: var(--space-sm);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .calculator-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+    .calculator-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-sm) 0;
+    }
+    .calculator-item-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .calculator-item-icon img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+    .calculator-item-info {
+      flex: 1;
+    }
+    .calculator-item-name {
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .calculator-item-tier {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .calculator-item-cost {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .calculator-item-cost.free {
+      color: #16A34A;
+    }
+
+    .calculator-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-lg);
+      background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(13, 148, 136, 0.02) 100%);
+      border-radius: var(--radius-md);
+    }
+    .calculator-total-label {
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .calculator-total-value {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .calculator-total-value span {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .calculator-note {
+      text-align: center;
+      margin-top: var(--space-lg);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 600px) {
+      .calculator-card { padding: var(--space-lg); }
+      .calculator-slider-value { font-size: 20px; }
+      .calculator-total-value { font-size: 28px; }
+      .calculator-item-icon { width: 28px; height: 28px; }
+      .calculator-item-icon img { width: 20px; height: 20px; }
+    }
+
+    /* Comparison Section */
+    .comparison-section {
+      padding: var(--space-3xl) 0 var(--space-4xl);
+      position: relative;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
+    }
+    .comparison-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.02;
+      pointer-events: none;
+    }
+
     .section-header { margin-bottom: var(--space-2xl); }
-    .section-header h2 { margin-bottom: var(--space-sm); }
-    .section-header p { font-size: 18px; color: var(--text-secondary); }
-    
-    .tool-card { display: grid; grid-template-columns: 300px 1fr; gap: 0; background: var(--bg-card); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: var(--space-lg); border: 1px solid var(--border); transition: all var(--duration-normal) var(--ease-out); }
-    .tool-card:hover { border-color: var(--border-strong); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1); transform: translateY(-4px); }
-    @media (max-width: 800px) { .tool-card { grid-template-columns: 1fr; } }
-    .tool-card-image { background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); min-height: 240px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-    .tool-card-logo { width: 80px; height: 80px; background: var(--bg-card); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-    .tool-card-logo svg { width: 48px; height: 48px; }
-    .tool-card-content { padding: var(--space-xl); display: flex; flex-direction: column; }
-    .tool-card-header { display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md); }
-    .tool-card-name { font-size: 24px; font-weight: 700; }
-    .tool-card-tag { padding: 6px 14px; background: var(--bg-alt); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-    .tool-card-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-lg); flex: 1; }
-    .tool-card-why { background: var(--bg); border-radius: var(--radius-md); padding: var(--space-lg); margin-bottom: var(--space-lg); border-left: 3px solid var(--accent); }
-    .tool-card-why h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: var(--space-sm); }
-    .tool-card-why p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
-    .tool-card-link { display: inline-flex; align-items: center; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); background: var(--bg-dark); color: var(--text-inverse); border-radius: var(--radius-md); font-size: 14px; font-weight: 600; align-self: flex-start; transition: all var(--duration-fast) ease; }
-    .tool-card-link:hover { background: #222; transform: translateX(4px); }
-    .tool-card-link svg { width: 16px; height: 16px; }
-    
-    .skip-section { padding: var(--space-3xl) 0; background: var(--bg-dark); color: var(--text-inverse); }
-    .skip-section h2 { margin-bottom: var(--space-sm); }
-    .skip-section > .container > p { color: var(--text-muted); font-size: 18px; margin-bottom: var(--space-xl); }
-    .skip-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
-    @media (max-width: 600px) { .skip-grid { grid-template-columns: 1fr; } }
-    .skip-item { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); transition: all var(--duration-fast) ease; }
-    .skip-item:hover { background: rgba(255,68,68,0.08); border-color: rgba(255,68,68,0.2); }
-    .skip-x { width: 32px; height: 32px; background: rgba(255,68,68,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff6b6b; font-weight: 700; flex-shrink: 0; }
-    .skip-item span { font-size: 15px; color: var(--text-muted); }
-    
-    .progression-section { padding: var(--space-3xl) 0; background: var(--bg-alt); }
-    .progression-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
-    @media (max-width: 700px) { .progression-grid { grid-template-columns: 1fr; } }
-    .progression-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: var(--space-xl); border: 1px solid var(--border); }
-    .progression-card h3 { font-size: 18px; margin-bottom: var(--space-md); }
-    .progression-card p { font-size: 15px; color: var(--text-secondary); margin-bottom: var(--space-lg); line-height: 1.6; }
-    
+    .section-header h2 { font-size: clamp(28px, 4vw, 36px); margin-bottom: var(--space-sm); }
+    .section-header p { font-size: 17px; color: var(--text-secondary); max-width: 500px; }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: var(--space-lg);
+    }
+    @media (max-width: 768px) {
+      .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+    }
+
+    .comparison-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out);
+      box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.02),
+        0 4px 8px rgba(0, 0, 0, 0.02),
+        0 8px 16px rgba(0, 0, 0, 0.02);
+    }
+    .comparison-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow:
+        0 4px 8px rgba(13, 148, 136, 0.04),
+        0 12px 24px rgba(13, 148, 136, 0.06),
+        0 24px 48px rgba(13, 148, 136, 0.08);
+    }
+
+    /* Staggered reveal animations */
+    .comparison-card .comparison-pick-tags,
+    .comparison-card .comparison-pick-wins,
+    .comparison-card .comparison-pick-integration,
+    .comparison-card .comparison-pick-actions,
+    .comparison-card .comparison-alternatives {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s var(--ease-out);
+    }
+    .comparison-card.visible .comparison-pick-tags { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+    .comparison-card.visible .comparison-pick-desc { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
+    .comparison-card.visible .comparison-pick-wins { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+    .comparison-card.visible .comparison-pick-integration { opacity: 1; transform: translateY(0); transition-delay: 0.25s; }
+    .comparison-card.visible .comparison-pick-actions { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+    .comparison-card.visible .comparison-alternatives { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
+
+    .comparison-pick {
+      padding: var(--space-xl);
+      background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(13, 148, 136, 0.02) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .comparison-pick-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: var(--space-md);
+    }
+    .comparison-pick-label::before {
+      content: '🏆';
+      font-size: 14px;
+    }
+    .comparison-pick-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-sm);
+    }
+    .comparison-pick-logo {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      flex-shrink: 0;
+    }
+    .comparison-pick-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .comparison-pick-info { flex: 1; }
+    .comparison-pick-name {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .comparison-pick-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+    .comparison-pick-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Pricing badge */
+    .comparison-pick-pricing {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #16A34A;
+    }
+    .comparison-pick-pricing.paid {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: rgba(59, 130, 246, 0.2);
+      color: #2563EB;
+    }
+
+    /* Learning curve badge */
+    .comparison-pick-difficulty {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      background: var(--bg-alt);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .comparison-pick-difficulty.easy { background: rgba(34, 197, 94, 0.1); color: #16A34A; }
+    .comparison-pick-difficulty.medium { background: rgba(251, 191, 36, 0.15); color: #B45309; }
+    .comparison-pick-difficulty.advanced { background: rgba(239, 68, 68, 0.1); color: #DC2626; }
+    .comparison-pick-difficulty::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    /* Integration callout */
+    .comparison-pick-integration {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: var(--space-md);
+      padding: 8px 12px;
+      background: rgba(13, 148, 136, 0.06);
+      border: 1px dashed rgba(13, 148, 136, 0.3);
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      color: var(--accent);
+    }
+    .comparison-pick-integration img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+
+    /* Best for tags */
+    .comparison-pick-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .comparison-pick-tag {
+      padding: 4px 10px;
+      background: var(--bg-alt);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    /* Quick wins */
+    .comparison-pick-wins {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+    .comparison-pick-win {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .comparison-pick-win::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    /* Action buttons */
+    .comparison-pick-actions {
+      display: flex;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .comparison-pick-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-inverse);
+      background: var(--bg-dark);
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+    }
+    .comparison-pick-link:hover {
+      background: #222;
+      transform: translateY(-1px);
+    }
+    .comparison-pick-link svg { width: 14px; height: 14px; }
+
+    .comparison-pick-external {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+    }
+    .comparison-pick-external:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .comparison-pick-external svg { width: 14px; height: 14px; }
+
+    .comparison-alternatives {
+      padding: var(--space-lg) var(--space-xl);
+    }
+    .comparison-alt-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: var(--space-md);
+    }
+    .comparison-alt-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .comparison-alt {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .comparison-alt:hover {
+      background: var(--bg-alt);
+    }
+    .comparison-alt-icon {
+      width: 24px;
+      height: 24px;
+      background: rgba(239, 68, 68, 0.1);
+      color: #EF4444;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .comparison-alt-content { flex: 1; }
+    .comparison-alt-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .comparison-alt-name::after {
+      content: '+';
+      font-size: 12px;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+    }
+    .comparison-alt.expanded .comparison-alt-name::after {
+      content: '-';
+    }
+    .comparison-alt-reason {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .comparison-alt-detail {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      line-height: 1.5;
+      display: none;
+    }
+    .comparison-alt.expanded .comparison-alt-detail {
+      display: block;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: var(--space-3xl) 0;
+      background: var(--bg-dark);
+      color: var(--text-inverse);
+      text-align: center;
+      position: relative;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+    }
+    .cta-section .container { position: relative; }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: var(--space-md); }
+    .cta-section p { color: rgba(255,255,255,0.6); font-size: 18px; margin-bottom: var(--space-xl); }
+    .cta-actions { display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap; }
+    .cta-section .btn-primary { background: var(--accent); }
+    .cta-section .btn-primary:hover { background: var(--accent-hover); }
+    .cta-section .btn-secondary { border-color: rgba(255,255,255,0.2); color: var(--text-inverse); }
+    .cta-section .btn-secondary:hover { border-color: rgba(255,255,255,0.4); }
+
+    /* Progress indicator */
+    .progress-nav {
+      position: fixed;
+      right: var(--space-lg);
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      z-index: 100;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(8px);
+      padding: var(--space-sm);
+      border-radius: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      border: 1px solid var(--border);
+    }
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border-strong);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .progress-dot:hover {
+      background: var(--accent);
+      transform: scale(1.3);
+    }
+    .progress-dot.active {
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+    }
+    .progress-dot::before {
+      content: attr(data-label);
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--bg-card);
+      padding: 6px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: 1px solid var(--border);
+    }
+    .progress-dot:hover::before {
+      opacity: 1;
+      transform: translateY(-50%) translateX(-4px);
+    }
+    @media (max-width: 900px) {
+      .progress-nav { display: none; }
+    }
+
+    /* Social proof in CTA */
+    .cta-social-proof {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+    .cta-avatars {
+      display: flex;
+    }
+    .cta-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg-dark);
+      margin-left: -10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .cta-avatar:first-child { margin-left: 0; }
+    .cta-social-text {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+    }
+    .cta-social-text strong {
+      color: #fff;
+    }
+
+    /* Related stacks */
+    .related-stacks {
+      margin-top: var(--space-2xl);
+      padding-top: var(--space-xl);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .related-stacks-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: var(--space-md);
+    }
+    .related-stacks-list {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .related-stack-link {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      transition: all 0.2s ease;
+    }
+    .related-stack-link:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+    .related-stack-link span { font-size: 16px; }
+
+    /* Footer */
     footer { padding: var(--space-2xl) 0; border-top: 1px solid var(--border); }
     .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-lg); }
     .footer-content p { font-size: 14px; color: var(--text-muted); }
     .footer-links { display: flex; gap: var(--space-lg); }
-    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
     .footer-links a:hover { color: var(--text); }
+
+    /* Mobile menu */
+    .menu-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      padding: 8px;
+      z-index: 1001;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 100px var(--space-xl) var(--space-xl);
+        gap: var(--space-lg);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        transition: right 0.3s ease;
+        z-index: 1000;
+      }
+      nav.open { right: 0; }
+      nav a { font-size: 18px; padding: var(--space-sm) 0; }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .page-hero-meta { gap: var(--space-lg); }
+    }
+
+    @media (max-width: 600px) {
+      .page-hero { padding: 100px 0 var(--space-xl); }
+      .page-hero-icon { width: 52px; height: 52px; font-size: 26px; }
+      .page-hero h1 { font-size: 28px; }
+      .page-hero-subtitle { font-size: 15px; }
+      .page-hero-stat-value { font-size: 24px; }
+
+      .stack-overview { padding: var(--space-lg) 0; }
+      .stack-tools { gap: var(--space-sm); }
+      .stack-tool { padding: 6px 12px; font-size: 13px; }
+      .stack-tool img { width: 16px; height: 16px; }
+
+      .comparison-section { padding: var(--space-xl) 0; }
+      .section-header h2 { font-size: 24px; }
+      .section-header p { font-size: 15px; }
+
+      .comparison-pick { padding: var(--space-md); }
+      .comparison-pick-logo { width: 40px; height: 40px; padding: 8px; }
+      .comparison-pick-name { font-size: 18px; }
+      .comparison-pick-meta { gap: 6px; }
+      .comparison-pick-pricing, .comparison-pick-difficulty { font-size: 10px; padding: 2px 6px; }
+      .comparison-pick-tags { gap: 4px; }
+      .comparison-pick-tag { font-size: 10px; padding: 3px 8px; }
+      .comparison-pick-desc { font-size: 14px; }
+      .comparison-pick-wins { gap: 4px; }
+      .comparison-pick-win { font-size: 12px; }
+      .comparison-pick-integration { font-size: 11px; padding: 6px 10px; }
+      .comparison-pick-actions { flex-direction: column; }
+      .comparison-pick-link, .comparison-pick-external {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 16px;
+      }
+
+      .comparison-alternatives { padding: var(--space-md); }
+      .comparison-alt { padding: 8px 10px; }
+      .comparison-alt-name { font-size: 13px; }
+      .comparison-alt-reason { font-size: 11px; }
+      .comparison-expand { font-size: 12px; padding: 10px var(--space-md); }
+      .comparison-alt-reason { font-size: 12px; }
+
+      .cta-section { padding: var(--space-2xl) 0; }
+      .cta-section h2 { font-size: 24px; }
+      .cta-section p { font-size: 16px; }
+      .cta-actions { flex-direction: column; align-items: center; }
+      .cta-actions .btn { width: 100%; max-width: 280px; }
+
+      footer { padding: var(--space-xl) 0; }
+      .footer-content { flex-direction: column; text-align: center; }
+    }
   </style>
 </head>
 <body>
@@ -134,239 +1466,869 @@
         <div class="logo-mark"></div>
         <span>uncluttered</span>
       </a>
-      <nav>
-        <a href="../stages/">Stages</a>
-        <a href="./">Stacks</a>
+      <nav id="nav">
+        <a href="../#stages">Stages</a>
+        <a href="./" class="active">Stacks</a>
         <a href="../tools/">Tools</a>
         <a href="../philosophy/">Philosophy</a>
-        <a href="../#stages" class="nav-cta">Find your stack</a>
       </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
-  <section class="page-hero">
+  <!-- Progress Navigation -->
+  <nav class="progress-nav" id="progressNav">
+    <div class="progress-dot" data-section="hero" data-label="Overview"></div>
+    <div class="progress-dot" data-section="architecture" data-label="Architecture"></div>
+    <div class="progress-dot" data-section="comparison" data-label="Why These Tools"></div>
+    <div class="progress-dot" data-section="quickstart" data-label="Get Started"></div>
+    <div class="progress-dot" data-section="calculator" data-label="Pricing"></div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero" id="hero">
     <div class="container">
-      <div class="breadcrumb reveal">
-        <a href="../">Home</a><span>→</span><a href="./">Stacks</a><span>→</span>Building
+      <div class="breadcrumb">
+        <a href="../">Home</a>
+        <span>/</span>
+        <a href="./">Stacks</a>
+        <span>/</span>
+        <span>Building</span>
       </div>
-      
-      <div class="hero-header reveal">
-        <div class="hero-icon">🔨</div>
-        <div>
-          <h1>Building</h1>
-          <p>For shipping real products</p>
+
+      <div class="page-hero-content reveal">
+        <div class="page-hero-icon">🔨</div>
+        <h1>The Building Stack</h1>
+        <p class="page-hero-subtitle">
+          You know what to build. Now you need the tools to ship it. Framework, database, hosting, payments - everything to go from code to customers. Nothing extra.
+        </p>
+        <div class="page-hero-meta">
+          <div class="page-hero-stat">
+            <span class="page-hero-stat-value">5</span>
+            <span class="page-hero-stat-label">Core tools</span>
+          </div>
+          <div class="page-hero-stat">
+            <span class="page-hero-stat-value">$0</span>
+            <span class="page-hero-stat-label">To start</span>
+          </div>
+          <div class="page-hero-stat">
+            <span class="page-hero-stat-value">1 day</span>
+            <span class="page-hero-stat-label">To deploy</span>
+          </div>
+        </div>
+
+        <div class="page-hero-audience">
+          <div class="page-hero-audience-col for">
+            <div class="page-hero-audience-label for">Perfect for</div>
+            <ul class="page-hero-audience-list">
+              <li>Solo founders & small teams</li>
+              <li>SaaS products & web apps</li>
+              <li>MVPs that need to ship fast</li>
+            </ul>
+          </div>
+          <div class="page-hero-audience-col not-for">
+            <div class="page-hero-audience-label not-for">Not ideal for</div>
+            <ul class="page-hero-audience-list">
+              <li>Enterprise compliance needs</li>
+              <li>Mobile-first or native apps</li>
+              <li>Heavy ML workloads</li>
+            </ul>
+          </div>
         </div>
       </div>
-      
-      <p class="hero-description reveal">
-        You're past the idea phase. You know what to build. Now you need tools that help you ship — not tools that help you plan, dream, or optimize prematurely.
+    </div>
+  </section>
+
+  <!-- Stack Overview -->
+  <section class="stack-overview">
+    <div class="container">
+      <div class="stack-tools reveal">
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js">
+          <span>Next.js</span>
+        </div>
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="Supabase">
+          <span>Supabase</span>
+        </div>
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel">
+          <span>Vercel</span>
+        </div>
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/stripe/635BFF" alt="Stripe">
+          <span>Stripe</span>
+        </div>
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/resend/000000" alt="Resend">
+          <span>Resend</span>
+        </div>
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/cursor/000000" alt="Cursor">
+          <span>Cursor</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack Architecture Diagram -->
+  <section class="stack-architecture" id="architecture">
+    <div class="container">
+      <div class="architecture-header reveal">
+        <h2>How it fits together</h2>
+        <p>One framework, one backend, one host. Simple.</p>
+      </div>
+
+      <div class="architecture-diagram reveal">
+        <!-- Developer Layer -->
+        <div class="architecture-row">
+          <div class="architecture-node">
+            <div class="architecture-node-icon">
+              <img src="https://cdn.simpleicons.org/cursor/000000" alt="Cursor">
+            </div>
+            <span class="architecture-node-name">Cursor</span>
+            <span class="architecture-node-role">You write code</span>
+          </div>
+        </div>
+
+        <div class="architecture-connector">
+          <span class="architecture-connector-arrow">↓</span>
+        </div>
+
+        <!-- User Layer -->
+        <div class="architecture-row">
+          <div class="architecture-node">
+            <div class="architecture-node-icon">👤</div>
+            <span class="architecture-node-name">Users</span>
+            <span class="architecture-node-role">Your customers</span>
+          </div>
+        </div>
+
+        <div class="architecture-connector">
+          <span class="architecture-connector-arrow">↓</span>
+        </div>
+
+        <!-- Hosting Layer -->
+        <div class="architecture-row">
+          <div class="architecture-node primary">
+            <div class="architecture-node-icon">
+              <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel">
+            </div>
+            <span class="architecture-node-name">Vercel</span>
+            <span class="architecture-node-role">Hosting & Edge</span>
+          </div>
+        </div>
+
+        <div class="architecture-connector">
+          <span class="architecture-connector-arrow">↓</span>
+        </div>
+
+        <!-- App Layer -->
+        <div class="architecture-row">
+          <div class="architecture-node primary">
+            <div class="architecture-node-icon">
+              <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js">
+            </div>
+            <span class="architecture-node-name">Next.js</span>
+            <span class="architecture-node-role">Frontend & API</span>
+          </div>
+        </div>
+
+        <div class="architecture-row-connector">
+          <span class="line-down"></span>
+          <span class="line-down"></span>
+          <span class="line-down"></span>
+        </div>
+
+        <!-- Services Layer -->
+        <div class="architecture-row">
+          <div class="architecture-node">
+            <div class="architecture-node-icon">
+              <img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="Supabase">
+            </div>
+            <span class="architecture-node-name">Supabase</span>
+            <span class="architecture-node-role">Database & Auth</span>
+          </div>
+          <div class="architecture-node">
+            <div class="architecture-node-icon">
+              <img src="https://cdn.simpleicons.org/stripe/635BFF" alt="Stripe">
+            </div>
+            <span class="architecture-node-name">Stripe</span>
+            <span class="architecture-node-role">Payments</span>
+          </div>
+          <div class="architecture-node">
+            <div class="architecture-node-icon">
+              <img src="https://cdn.simpleicons.org/resend/000000" alt="Resend">
+            </div>
+            <span class="architecture-node-name">Resend</span>
+            <span class="architecture-node-role">Emails</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section class="comparison-section" id="comparison">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Why these tools?</h2>
+        <p>We picked one tool for each job. Here's why - and what we passed on.</p>
+      </div>
+
+      <div class="comparison-grid">
+        <!-- Framework -->
+        <div class="comparison-card reveal" id="tool-nextjs">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick - Framework</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js">
+              </div>
+              <div class="comparison-pick-info">
+                <span class="comparison-pick-name">Next.js</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free</span>
+                  <span class="comparison-pick-difficulty easy">Easy</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">Full-stack</span>
+              <span class="comparison-pick-tag">Startups</span>
+              <span class="comparison-pick-tag">Production-ready</span>
+            </div>
+            <p class="comparison-pick-desc">Full-stack React with server components, API routes, and the best DX. Deploy anywhere, scale effortlessly.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Server & client components</span>
+              <span class="comparison-pick-win">Built-in API routes</span>
+              <span class="comparison-pick-win">Massive ecosystem</span>
+            </div>
+            <div class="comparison-pick-integration">
+              <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel">
+              Works perfectly with Vercel
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://nextjs.org" target="_blank" class="comparison-pick-link">
+                Try it
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Why not these?</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Remix</span>
+                  <p class="comparison-alt-reason">Great, but smaller ecosystem</p>
+                  <p class="comparison-alt-detail">Remix has excellent data loading patterns and is truly full-stack, but fewer tutorials, components, and deployment options compared to Next.js. Pick if you value web standards purity.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">SvelteKit</span>
+                  <p class="comparison-alt-reason">Lovely DX, smaller talent pool</p>
+                  <p class="comparison-alt-detail">Svelte is genuinely delightful to write and produces smaller bundles. But hiring Svelte devs is harder, and the component ecosystem is 10x smaller than React's.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Nuxt</span>
+                  <p class="comparison-alt-reason">Vue is great, React has more jobs</p>
+                  <p class="comparison-alt-detail">Nuxt 3 is excellent and Vue's composition API is clean. But if you ever hire or get hired, React dominates the job market 3:1.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Database -->
+        <div class="comparison-card reveal reveal-delay-1" id="tool-supabase">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick - Database</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="Supabase">
+              </div>
+              <div class="comparison-pick-info">
+                <span class="comparison-pick-name">Supabase</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free tier</span>
+                  <span class="comparison-pick-difficulty easy">Easy</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">Backend-in-a-box</span>
+              <span class="comparison-pick-tag">Open source</span>
+              <span class="comparison-pick-tag">MVPs</span>
+            </div>
+            <p class="comparison-pick-desc">Postgres + auth + realtime + storage in one. Open source, generous free tier, and you own your data.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Built-in auth & RLS</span>
+              <span class="comparison-pick-win">Realtime subscriptions</span>
+              <span class="comparison-pick-win">500MB free storage</span>
+            </div>
+            <div class="comparison-pick-integration">
+              <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js">
+              First-class Next.js support
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://supabase.com" target="_blank" class="comparison-pick-link">
+                Try it
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Why not these?</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Firebase</span>
+                  <p class="comparison-alt-reason">Vendor lock-in, proprietary</p>
+                  <p class="comparison-alt-detail">Firebase is fast to start but uses a proprietary NoSQL database. Migrating away is painful. Google's pricing can spike unexpectedly. Pick if you're all-in on Google Cloud.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">PlanetScale</span>
+                  <p class="comparison-alt-reason">No built-in auth or realtime</p>
+                  <p class="comparison-alt-detail">Excellent MySQL with branching, but you'll need separate services for auth (Clerk, Auth0) and realtime (Pusher). More pieces to manage. Pick for MySQL-specific needs.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">MongoDB</span>
+                  <p class="comparison-alt-reason">NoSQL adds complexity</p>
+                  <p class="comparison-alt-detail">Document databases feel flexible at first but make relationships and joins painful later. Most apps have relational data. Pick only if you truly have unstructured data.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hosting -->
+        <div class="comparison-card reveal" id="tool-vercel">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick - Hosting</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel">
+              </div>
+              <div class="comparison-pick-info">
+                <span class="comparison-pick-name">Vercel</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free tier</span>
+                  <span class="comparison-pick-difficulty easy">Easy</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">Zero-config</span>
+              <span class="comparison-pick-tag">Edge network</span>
+              <span class="comparison-pick-tag">Next.js native</span>
+            </div>
+            <p class="comparison-pick-desc">Push to deploy. Preview URLs. Edge functions. The best Next.js hosting, made by the same team.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Git push = live site</span>
+              <span class="comparison-pick-win">Preview URLs for PRs</span>
+              <span class="comparison-pick-win">Global edge network</span>
+            </div>
+            <div class="comparison-pick-integration">
+              <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js">
+              Made by the Next.js team
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://vercel.com" target="_blank" class="comparison-pick-link">
+                Try it
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Why not these?</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Netlify</span>
+                  <p class="comparison-alt-reason">Next.js support lags behind</p>
+                  <p class="comparison-alt-detail">Netlify is solid for static sites and has great forms/identity features. But their Next.js runtime is a wrapper around Vercel's, so new features arrive late. Pick for non-Next projects.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Railway</span>
+                  <p class="comparison-alt-reason">Overkill for frontend hosting</p>
+                  <p class="comparison-alt-detail">Railway is excellent for long-running backends, databases, and Docker containers. For static/serverless frontends, it's more complex than needed. Pick for backend-heavy apps.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">AWS Amplify</span>
+                  <p class="comparison-alt-reason">Complex setup, AWS learning curve</p>
+                  <p class="comparison-alt-detail">If you're already deep in AWS, Amplify integrates well. Otherwise, the IAM permissions, CLI setup, and configuration overhead isn't worth it for most projects.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payments -->
+        <div class="comparison-card reveal reveal-delay-1" id="tool-stripe">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick - Payments</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/stripe/635BFF" alt="Stripe">
+              </div>
+              <div class="comparison-pick-info">
+                <span class="comparison-pick-name">Stripe</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing paid">2.9% + 30¢</span>
+                  <span class="comparison-pick-difficulty medium">Medium</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">Industry standard</span>
+              <span class="comparison-pick-tag">SaaS</span>
+              <span class="comparison-pick-tag">E-commerce</span>
+            </div>
+            <p class="comparison-pick-desc">The gold standard. Subscriptions, one-time, invoicing - all with the best docs and developer experience.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Best-in-class docs</span>
+              <span class="comparison-pick-win">Subscriptions built-in</span>
+              <span class="comparison-pick-win">135+ currencies</span>
+            </div>
+            <div class="comparison-pick-integration">
+              <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js">
+              Official Next.js examples
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://stripe.com" target="_blank" class="comparison-pick-link">
+                Try it
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Why not these?</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Paddle</span>
+                  <p class="comparison-alt-reason">Handles tax, but higher fees</p>
+                  <p class="comparison-alt-detail">Paddle is a "merchant of record" - they handle all tax compliance for you. Great for avoiding VAT headaches, but fees are 5%+ and you lose some control over the checkout experience.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">LemonSqueezy</span>
+                  <p class="comparison-alt-reason">Simpler, but limited customization</p>
+                  <p class="comparison-alt-detail">LemonSqueezy is Gumroad-meets-Stripe - very easy to set up digital products. But limited webhook events, less flexible checkout, and smaller feature set. Pick for simple digital sales.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">PayPal</span>
+                  <p class="comparison-alt-reason">Clunky UX, poor DX</p>
+                  <p class="comparison-alt-detail">PayPal has massive brand recognition and some users prefer it. But the developer experience is years behind, the dashboard is confusing, and checkout flows feel dated.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="comparison-card reveal" id="tool-resend">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick - Email</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/resend/000000" alt="Resend">
+              </div>
+              <div class="comparison-pick-info">
+                <span class="comparison-pick-name">Resend</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">3K free/mo</span>
+                  <span class="comparison-pick-difficulty easy">Easy</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">Developer-first</span>
+              <span class="comparison-pick-tag">Transactional</span>
+              <span class="comparison-pick-tag">React Email</span>
+            </div>
+            <p class="comparison-pick-desc">Modern email API built for developers. React Email support, great deliverability, simple pricing.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">React Email components</span>
+              <span class="comparison-pick-win">Simple, clean API</span>
+              <span class="comparison-pick-win">Great deliverability</span>
+            </div>
+            <div class="comparison-pick-integration">
+              <img src="https://cdn.simpleicons.org/react/61DAFB" alt="React">
+              Built for React developers
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://resend.com" target="_blank" class="comparison-pick-link">
+                Try it
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Why not these?</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">SendGrid</span>
+                  <p class="comparison-alt-reason">Bloated, confusing pricing</p>
+                  <p class="comparison-alt-detail">SendGrid (now Twilio) has too many products, confusing tiers, and a dashboard that feels like enterprise software. The API works but the DX isn't enjoyable.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Mailgun</span>
+                  <p class="comparison-alt-reason">Dated dashboard, clunky API</p>
+                  <p class="comparison-alt-detail">Mailgun is reliable and has good deliverability, but the interface feels like 2015. Documentation is harder to navigate than Resend's clean approach.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">AWS SES</span>
+                  <p class="comparison-alt-reason">Cheap but painful setup</p>
+                  <p class="comparison-alt-detail">SES is incredibly cheap at scale ($0.10/1K emails) but requires IAM setup, sandbox mode approval, and manual bounce handling. Only worth it for high-volume senders who know AWS.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Workflow -->
+        <div class="comparison-card reveal" id="tool-cursor">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick — AI Workflow</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/cursor/000000" alt="Cursor">
+              </div>
+              <div class="comparison-pick-info">
+                <span class="comparison-pick-name">Cursor</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free tier</span>
+                  <span class="comparison-pick-difficulty easy">Easy</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">AI Coding</span>
+              <span class="comparison-pick-tag">VS Code Fork</span>
+              <span class="comparison-pick-tag">Multi-model</span>
+            </div>
+            <p class="comparison-pick-desc">The best AI coding experience. Built on VS Code, understands your entire codebase, and has Claude + GPT built in. Use alongside ChatGPT or Claude for brainstorming and planning.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Codebase-aware AI</span>
+              <span class="comparison-pick-win">Tab completion + chat</span>
+              <span class="comparison-pick-win">All your VS Code extensions</span>
+            </div>
+            <div class="comparison-pick-integration">
+              <img src="https://cdn.simpleicons.org/cursor/000000" alt="Cursor">
+              Built on VS Code — feels familiar
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://cursor.com" target="_blank" class="comparison-pick-link">
+                Try it
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Why not these?</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">GitHub Copilot</span>
+                  <p class="comparison-alt-reason">Good, but Cursor's UX is better</p>
+                  <p class="comparison-alt-detail">Copilot was first and works well, but Cursor's chat, codebase understanding, and multi-model support make it the better overall experience. Copilot feels like an add-on; Cursor feels native.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Windsurf</span>
+                  <p class="comparison-alt-reason">Promising but newer</p>
+                  <p class="comparison-alt-detail">Windsurf (by Codeium) has some nice ideas around "Flows" for multi-file edits. But it's newer, less battle-tested, and the ecosystem is smaller. Worth watching.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="event.stopPropagation(); this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">✕</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Claude Code / Aider</span>
+                  <p class="comparison-alt-reason">Powerful but terminal-based</p>
+                  <p class="comparison-alt-detail">CLI-based AI coding tools are powerful for certain workflows, but most developers prefer the visual integration of a full editor. Great as a complement, not a replacement.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Start Section -->
+  <section class="quickstart-section" id="quickstart">
+    <div class="container">
+      <div class="quickstart-header reveal">
+        <h2>Get started in 5 minutes</h2>
+        <p>Copy, paste, ship. No decision fatigue.</p>
+      </div>
+
+      <div class="quickstart-steps reveal">
+        <!-- Step 1 -->
+        <div class="quickstart-step">
+          <div class="quickstart-step-header">
+            <span class="quickstart-step-number">1</span>
+            <span class="quickstart-step-title">Create your Next.js app</span>
+            <span class="quickstart-step-tool">
+              <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js">
+              Next.js
+            </span>
+          </div>
+          <div class="quickstart-code">
+            <code>npx create-next-app@latest my-app --typescript --tailwind --app</code>
+            <button class="quickstart-copy" onclick="copyCode(this, 'npx create-next-app@latest my-app --typescript --tailwind --app')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="quickstart-step">
+          <div class="quickstart-step-header">
+            <span class="quickstart-step-number">2</span>
+            <span class="quickstart-step-title">Add Supabase</span>
+            <span class="quickstart-step-tool">
+              <img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="Supabase">
+              Supabase
+            </span>
+          </div>
+          <div class="quickstart-code">
+            <code>npm install @supabase/supabase-js @supabase/ssr</code>
+            <button class="quickstart-copy" onclick="copyCode(this, 'npm install @supabase/supabase-js @supabase/ssr')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="quickstart-step">
+          <div class="quickstart-step-header">
+            <span class="quickstart-step-number">3</span>
+            <span class="quickstart-step-title">Add Stripe</span>
+            <span class="quickstart-step-tool">
+              <img src="https://cdn.simpleicons.org/stripe/635BFF" alt="Stripe">
+              Stripe
+            </span>
+          </div>
+          <div class="quickstart-code">
+            <code>npm install stripe @stripe/stripe-js</code>
+            <button class="quickstart-copy" onclick="copyCode(this, 'npm install stripe @stripe/stripe-js')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="quickstart-step">
+          <div class="quickstart-step-header">
+            <span class="quickstart-step-number">4</span>
+            <span class="quickstart-step-title">Add Resend for email</span>
+            <span class="quickstart-step-tool">
+              <img src="https://cdn.simpleicons.org/resend/000000" alt="Resend">
+              Resend
+            </span>
+          </div>
+          <div class="quickstart-code">
+            <code>npm install resend</code>
+            <button class="quickstart-copy" onclick="copyCode(this, 'npm install resend')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="quickstart-step">
+          <div class="quickstart-step-header">
+            <span class="quickstart-step-number">5</span>
+            <span class="quickstart-step-title">Deploy to Vercel</span>
+            <span class="quickstart-step-tool">
+              <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel">
+              Vercel
+            </span>
+          </div>
+          <div class="quickstart-code">
+            <code>npx vercel <span class="comment"># or git push if connected</span></code>
+            <button class="quickstart-copy" onclick="copyCode(this, 'npx vercel')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <p class="quickstart-note reveal">
+        Need more details? <a href="#">Read the full setup guide →</a>
       </p>
-      
-      <div class="stage-signal reveal">
-        <h3>You're in the right place if:</h3>
-        <ul>
-          <li>You have a clear idea and you're ready to execute</li>
-          <li>You're writing code (or about to start)</li>
-          <li>You need a database, hosting, and a way to get paid</li>
-          <li>You're not exploring anymore — you're building</li>
-          <li>You want to ship something real, not perfect</li>
-        </ul>
+    </div>
+  </section>
+
+  <!-- Cost Calculator Section -->
+  <section class="calculator-section" id="calculator">
+    <div class="container">
+      <div class="calculator-header reveal">
+        <h2>What will it cost?</h2>
+        <p>Spoiler: You can start for free. Here's how it scales.</p>
+      </div>
+
+      <div class="calculator-card reveal">
+        <div class="calculator-slider-section">
+          <div class="calculator-slider-header">
+            <span class="calculator-slider-label">Monthly active users</span>
+            <span class="calculator-slider-value" id="userCount">1,000</span>
+          </div>
+          <input type="range" class="calculator-slider" id="userSlider" min="0" max="100000" step="1000" value="1000">
+          <div class="calculator-slider-marks">
+            <span>0</span>
+            <span>25K</span>
+            <span>50K</span>
+            <span>75K</span>
+            <span>100K</span>
+          </div>
+        </div>
+
+        <div class="calculator-breakdown" id="costBreakdown">
+          <div class="calculator-item">
+            <div class="calculator-item-icon">
+              <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel">
+            </div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">Vercel</div>
+              <div class="calculator-item-tier" id="vercelTier">Hobby (Free)</div>
+            </div>
+            <div class="calculator-item-cost free" id="vercelCost">$0</div>
+          </div>
+
+          <div class="calculator-item">
+            <div class="calculator-item-icon">
+              <img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="Supabase">
+            </div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">Supabase</div>
+              <div class="calculator-item-tier" id="supabaseTier">Free tier</div>
+            </div>
+            <div class="calculator-item-cost free" id="supabaseCost">$0</div>
+          </div>
+
+          <div class="calculator-item">
+            <div class="calculator-item-icon">
+              <img src="https://cdn.simpleicons.org/stripe/635BFF" alt="Stripe">
+            </div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">Stripe</div>
+              <div class="calculator-item-tier" id="stripeTier">Pay per transaction</div>
+            </div>
+            <div class="calculator-item-cost" id="stripeCost">2.9% + 30¢</div>
+          </div>
+
+          <div class="calculator-item">
+            <div class="calculator-item-icon">
+              <img src="https://cdn.simpleicons.org/resend/000000" alt="Resend">
+            </div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">Resend</div>
+              <div class="calculator-item-tier" id="resendTier">Free (3K emails/mo)</div>
+            </div>
+            <div class="calculator-item-cost free" id="resendCost">$0</div>
+          </div>
+
+          <div class="calculator-item">
+            <div class="calculator-item-icon">
+              <img src="https://cdn.simpleicons.org/cursor/000000" alt="Cursor">
+            </div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">Cursor</div>
+              <div class="calculator-item-tier" id="cursorTier">Free tier</div>
+            </div>
+            <div class="calculator-item-cost free" id="cursorCost">$0</div>
+          </div>
+        </div>
+
+        <div class="calculator-total">
+          <span class="calculator-total-label">Estimated monthly cost</span>
+          <div class="calculator-total-value">$<span id="totalCost">0</span><span>/mo</span></div>
+        </div>
+
+        <p class="calculator-note">
+          * Stripe fees are per transaction, not included in total. Estimates based on typical usage patterns.
+        </p>
       </div>
     </div>
   </section>
 
-  <section class="stack-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>Your Stack</h2>
-        <p>Six tools. Everything you need to go from code to customers.</p>
-      </div>
-      
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);">
-          <div class="tool-card-logo">
-            <svg viewBox="0 0 180 180" fill="none"><mask id="a" width="180" height="180" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><circle cx="90" cy="90" r="90" fill="#000"/></mask><g mask="url(#a)"><circle cx="90" cy="90" r="90" fill="#000"/><path fill="url(#b)" d="M149.508 157.52L69.142 54H54v71.97h12.114V69.384l73.885 95.461a90.304 90.304 0 009.509-7.325z"/><path fill="url(#c)" d="M115 54h12v72h-12z"/></g><defs><linearGradient id="b" x1="109" x2="144.5" y1="116.5" y2="160.5" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="c" x1="121" x2="120.799" y1="54" y2="106.875" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs></svg>
-          </div>
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container reveal">
+      <div class="cta-social-proof">
+        <div class="cta-avatars">
+          <div class="cta-avatar">JM</div>
+          <div class="cta-avatar">SR</div>
+          <div class="cta-avatar">AT</div>
+          <div class="cta-avatar">+</div>
         </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Next.js</span>
-            <span class="tool-card-tag">Foundation</span>
-          </div>
-          <p class="tool-card-desc">
-            Your home base. Pages, APIs, backend logic — everything lives here. One framework that does it all without the configuration hell.
-          </p>
-          <div class="tool-card-why">
-            <h4>Why this, not that</h4>
-            <p>Not Gatsby (too blog-focused). Not raw React (you'll rebuild what Next gives you). Not WordPress (you're building, not configuring). Next.js is the foundation for products.</p>
-          </div>
-          <a href="https://nextjs.org" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <span class="cta-social-text"><strong>2,400+ builders</strong> use this stack</span>
+      </div>
+
+      <h2>Ready to build?</h2>
+      <p>Stop researching. Start shipping.</p>
+      <div class="cta-actions">
+        <a href="#" class="btn btn-primary">Get the full guide →</a>
+        <a href="./" class="btn btn-secondary">View other stacks</a>
+      </div>
+
+      <div class="related-stacks">
+        <div class="related-stacks-label">Explore other stages</div>
+        <div class="related-stacks-list">
+          <a href="./starting.html" class="related-stack-link">
+            <span>💡</span> Starting
           </a>
-        </div>
-      </div>
-
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #1c1c1c 0%, #3ECF8E 100%);">
-          <div class="tool-card-logo">
-            <svg viewBox="0 0 109 113" fill="none"><path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#a1)"/><path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#b1)" fill-opacity=".2"/><path d="M45.317 2.07103C48.1765 -1.53037 53.9745 0.442937 54.0434 5.041L54.4849 72.2922H9.83113C1.64038 72.2922 -2.92775 62.8321 2.1655 56.4175L45.317 2.07103Z" fill="#3ECF8E"/><defs><linearGradient id="a1" x1="53.9738" y1="54.974" x2="94.1635" y2="71.8295" gradientUnits="userSpaceOnUse"><stop stop-color="#249361"/><stop offset="1" stop-color="#3ECF8E"/></linearGradient><linearGradient id="b1" x1="36.1558" y1="30.578" x2="54.4844" y2="65.0806" gradientUnits="userSpaceOnUse"><stop/><stop offset="1" stop-opacity="0"/></linearGradient></defs></svg>
-          </div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Supabase</span>
-            <span class="tool-card-tag">Backend</span>
-          </div>
-          <p class="tool-card-desc">
-            Database, auth, storage, realtime — one dashboard. No DevOps required. It's Postgres that's actually enjoyable to use.
-          </p>
-          <div class="tool-card-why">
-            <h4>Why this, not that</h4>
-            <p>Not Firebase (vendor lock-in, Google complexity). Not separate services for auth + db + storage (too many dashboards to juggle). Supabase is everything in one place.</p>
-          </div>
-          <a href="https://supabase.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <a href="./growing.html" class="related-stack-link">
+            <span>📈</span> Growing
           </a>
-        </div>
-      </div>
-
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #000 0%, #111 100%);">
-          <div class="tool-card-logo">
-            <svg viewBox="0 0 76 65" fill="none"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="#000"/></svg>
-          </div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Vercel</span>
-            <span class="tool-card-tag">Hosting</span>
-          </div>
-          <p class="tool-card-desc">
-            Push to deploy. Preview links for every PR. Built for Next.js. You'll genuinely never need to think about servers.
-          </p>
-          <div class="tool-card-why">
-            <h4>Why this, not that</h4>
-            <p>Not AWS (you're building products, not becoming a cloud engineer). Not Heroku (dated, expensive). Not Netlify (Next.js native support is better on Vercel). It just works.</p>
-          </div>
-          <a href="https://vercel.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <a href="./simplifying.html" class="related-stack-link">
+            <span>✨</span> Simplifying
           </a>
-        </div>
-      </div>
-
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #0A2540 0%, #425466 100%);">
-          <div class="tool-card-logo" style="background: #635BFF;">
-            <svg viewBox="0 0 24 24" fill="#fff" style="width: 32px; height: 32px;"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
-          </div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Stripe</span>
-            <span class="tool-card-tag">Payments</span>
-          </div>
-          <p class="tool-card-desc">
-            When you're ready to charge. Not before. Checkout handles everything — you basically need one link to start making money.
-          </p>
-          <div class="tool-card-why">
-            <h4>Why this, not that</h4>
-            <p>Not PayPal (worse DX, dated feel). Not Paddle (only if you specifically need tax handling). Not Gumroad (not for products). Stripe is the standard for a reason.</p>
-          </div>
-          <a href="https://stripe.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);">
-          <div class="tool-card-logo">
-            <svg viewBox="0 0 24 24" fill="#fff" style="width: 32px; height: 32px;"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm3.519 0L12 11.671 18.481 6H5.52zM20 7.329l-8 7.001-8-7.001V18h16V7.329z"/></svg>
-          </div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Resend</span>
-            <span class="tool-card-tag">Email</span>
-          </div>
-          <p class="tool-card-desc">
-            Transactional emails when you need them. Welcome emails, password resets, receipts. The API is genuinely beautiful to work with.
-          </p>
-          <div class="tool-card-why">
-            <h4>Why this, not that</h4>
-            <p>Not SendGrid (enterprise complexity you don't need). Not Mailchimp (that's for marketing, not transactional). Not Postmark (Resend has better DX). Resend is email for developers.</p>
-          </div>
-          <a href="https://resend.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
-          <div class="tool-card-logo" style="background: #000;">
-            <svg viewBox="0 0 24 24" fill="#fff" style="width: 32px; height: 32px;"><path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v2H8V8zm0 4h8v2H8v-2z"/></svg>
-          </div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Cursor</span>
-            <span class="tool-card-tag">AI Code Editor</span>
-          </div>
-          <p class="tool-card-desc">
-            The AI-native code editor. It understands your entire codebase, writes code with you, and catches bugs before you do. This is how building feels now.
-          </p>
-          <div class="tool-card-why">
-            <h4>Why this, not that</h4>
-            <p>Not GitHub Copilot (autocomplete vs. collaborator — Cursor is the latter). Not VS Code alone (you're leaving speed on the table). Not Claude in browser (Cursor has your codebase context). Cursor is the new standard.</p>
-          </div>
-          <a href="https://cursor.sh" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="skip-section">
-    <div class="container">
-      <h2 class="reveal">What you don't need yet</h2>
-      <p class="reveal">These will slow you down. Build first, optimize later.</p>
-      
-      <div class="skip-grid">
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Analytics beyond Vercel's built-in</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Multiple environments (staging, QA)</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>CI/CD pipelines</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Monitoring and alerting tools</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>A design system</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Documentation tools</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="progression-section">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2>Know when to move</h2>
-        <p>Building is a stage, not forever.</p>
-      </div>
-      
-      <div class="progression-grid">
-        <div class="progression-card reveal">
-          <h3>→ Move to Growing when:</h3>
-          <p>You have users. Real ones, paying or active. You need to understand behavior, not just ship features. Time to scale what works.</p>
-          <a href="./growing.html" class="btn btn-primary">View Growing Stack →</a>
-        </div>
-        <div class="progression-card reveal">
-          <h3>← Go back to Starting if:</h3>
-          <p>You're building but you're not sure what. If the problem isn't clear, more code won't help. Validate before you build more.</p>
-          <a href="./starting.html" class="btn btn-secondary">View Starting Stack</a>
         </div>
       </div>
     </div>
@@ -375,23 +2337,196 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p>That's enough. Go build.</p>
+        <p>© 2024 Uncluttered. Less tools. More building.</p>
         <div class="footer-links">
-          <a href="../">Home</a>
-          <a href="./">All Stacks</a>
           <a href="../philosophy/">Philosophy</a>
+          <a href="../tools/">All Tools</a>
+          <a href="./">Stacks</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
+    // Reveal on scroll
     const reveals = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-    reveals.forEach(el => revealObserver.observe(el));
-    window.addEventListener('scroll', () => { document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Header scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        nav.classList.remove('open');
+      });
+    });
+
+    // Copy code function
+    function copyCode(btn, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+        }, 2000);
+      });
+    }
+
+    // Cost Calculator
+    const slider = document.getElementById('userSlider');
+    const userCount = document.getElementById('userCount');
+    const totalCost = document.getElementById('totalCost');
+
+    // Cost elements
+    const vercelTier = document.getElementById('vercelTier');
+    const vercelCost = document.getElementById('vercelCost');
+    const supabaseTier = document.getElementById('supabaseTier');
+    const supabaseCost = document.getElementById('supabaseCost');
+    const resendTier = document.getElementById('resendTier');
+    const resendCost = document.getElementById('resendCost');
+
+    function formatNumber(num) {
+      if (num >= 1000) return (num / 1000).toFixed(0) + 'K';
+      return num.toString();
+    }
+
+    function updateCosts(users) {
+      let total = 0;
+
+      // Format user count display
+      userCount.textContent = users.toLocaleString();
+
+      // Vercel pricing
+      if (users <= 1000) {
+        vercelTier.textContent = 'Hobby (Free)';
+        vercelCost.textContent = '$0';
+        vercelCost.className = 'calculator-item-cost free';
+      } else if (users <= 10000) {
+        vercelTier.textContent = 'Pro plan';
+        vercelCost.textContent = '$20';
+        vercelCost.className = 'calculator-item-cost';
+        total += 20;
+      } else {
+        vercelTier.textContent = 'Pro plan + usage';
+        const extra = Math.ceil((users - 10000) / 10000) * 10;
+        const cost = 20 + extra;
+        vercelCost.textContent = '$' + cost;
+        vercelCost.className = 'calculator-item-cost';
+        total += cost;
+      }
+
+      // Supabase pricing
+      if (users <= 5000) {
+        supabaseTier.textContent = 'Free tier';
+        supabaseCost.textContent = '$0';
+        supabaseCost.className = 'calculator-item-cost free';
+      } else if (users <= 50000) {
+        supabaseTier.textContent = 'Pro plan';
+        supabaseCost.textContent = '$25';
+        supabaseCost.className = 'calculator-item-cost';
+        total += 25;
+      } else {
+        supabaseTier.textContent = 'Pro + compute';
+        const extra = Math.ceil((users - 50000) / 25000) * 25;
+        const cost = 25 + extra;
+        supabaseCost.textContent = '$' + cost;
+        supabaseCost.className = 'calculator-item-cost';
+        total += cost;
+      }
+
+      // Resend pricing (based on emails, assume 2 emails per user per month)
+      const emails = users * 2;
+      if (emails <= 3000) {
+        resendTier.textContent = 'Free (3K emails/mo)';
+        resendCost.textContent = '$0';
+        resendCost.className = 'calculator-item-cost free';
+      } else if (emails <= 50000) {
+        resendTier.textContent = 'Pro plan';
+        resendCost.textContent = '$20';
+        resendCost.className = 'calculator-item-cost';
+        total += 20;
+      } else {
+        resendTier.textContent = 'Pro + volume';
+        const extra = Math.ceil((emails - 50000) / 50000) * 20;
+        const cost = 20 + extra;
+        resendCost.textContent = '$' + cost;
+        resendCost.className = 'calculator-item-cost';
+        total += cost;
+      }
+
+      // Update total
+      totalCost.textContent = total;
+    }
+
+    slider.addEventListener('input', (e) => {
+      updateCosts(parseInt(e.target.value));
+    });
+
+    // Initial calculation
+    updateCosts(1000);
+
+    // Progress indicator
+    const progressDots = document.querySelectorAll('.progress-dot');
+    const sections = ['hero', 'architecture', 'comparison', 'quickstart', 'calculator'];
+
+    // Click to scroll
+    progressDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const sectionId = dot.dataset.section;
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Update active dot on scroll
+    function updateProgressDots() {
+      const scrollPos = window.scrollY + window.innerHeight / 3;
+
+      sections.forEach((sectionId, index) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const top = section.offsetTop;
+          const bottom = top + section.offsetHeight;
+
+          if (scrollPos >= top && scrollPos < bottom) {
+            progressDots.forEach(d => d.classList.remove('active'));
+            progressDots[index]?.classList.add('active');
+          }
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateProgressDots);
+    updateProgressDots();
+
+    // Comparison card reveal animation on scroll
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    document.querySelectorAll('.comparison-card').forEach(card => {
+      cardObserver.observe(card);
+    });
   </script>
 </body>
 </html>

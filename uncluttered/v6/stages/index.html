@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stages — Uncluttered</title>
+  <meta name="description" content="Where are you right now? Each stage has different needs — and different tools that actually help.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uncluttered.com/stages/">
+  <meta property="og:title" content="Stages — Uncluttered">
+  <meta property="og:description" content="Where are you right now? Each stage has different needs — and different tools that actually help.">
+  <meta property="og:image" content="https://uncluttered.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://uncluttered.com/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #111; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #0D9488; --accent-hover: #0F766E; --border: rgba(0, 0, 0, 0.08);
+      --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    h1 { font-size: clamp(44px, 7vw, 64px); } h2 { font-size: clamp(32px, 5vw, 44px); }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 0; background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 700; font-size: 20px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+    .logo-mark::before { content: ''; width: 14px; height: 14px; background: var(--accent); border-radius: 3px; }
+    nav { display: flex; align-items: center; gap: 40px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+
+    .page-hero { padding: 160px 0 80px; text-align: center; }
+    .page-hero h1 { margin-bottom: 16px; }
+    .page-hero p { font-size: 20px; color: var(--text-secondary); max-width: 600px; margin: 0 auto 48px; }
+
+    .stages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; padding-bottom: 100px; }
+    .stage-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 40px; transition: all 0.3s ease; }
+    .stage-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent); }
+    .stage-icon { font-size: 48px; margin-bottom: 20px; }
+    .stage-card h3 { font-size: 24px; margin-bottom: 12px; }
+    .stage-card p { color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6; }
+    .stage-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--accent); }
+    .stage-link:hover { gap: 12px; }
+
+    footer { padding: 64px 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../" class="logo"><div class="logo-mark"></div><span>uncluttered</span></a>
+      <nav>
+        <a href="./">Stages</a>
+        <a href="../stacks/">Stacks</a>
+        <a href="../tools/">Tools</a>
+        <a href="../philosophy/">Philosophy</a>
+        <a href="../#stages" class="nav-cta">Find your stack</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Stages</h1>
+      <p>Where are you right now? Each stage has different needs — and different tools that actually help.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="stages-grid">
+        <a href="../stacks/starting.html" class="stage-card">
+          <div class="stage-icon">💡</div>
+          <h3>Starting</h3>
+          <p>You have an idea. Maybe several. You need to validate before you build — not collect tools.</p>
+          <span class="stage-link">View stack →</span>
+        </a>
+        <a href="../stacks/building.html" class="stage-card">
+          <div class="stage-icon">🔨</div>
+          <h3>Building</h3>
+          <p>You know what to build. Now you need tools that help you ship — not plan or dream.</p>
+          <span class="stage-link">View stack →</span>
+        </a>
+        <a href="../stacks/growing.html" class="stage-card">
+          <div class="stage-icon">📈</div>
+          <h3>Growing</h3>
+          <p>You have users. Real ones. Time to understand behavior and scale what works.</p>
+          <span class="stage-link">View stack →</span>
+        </a>
+        <a href="../stacks/simplifying.html" class="stage-card">
+          <div class="stage-icon">✨</div>
+          <h3>Simplifying</h3>
+          <p>You've accumulated too much. Time to cut, consolidate, and regain clarity.</p>
+          <span class="stage-link">View stack →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>Less tools. More building.</p>
+        <div class="footer-links">
+          <a href="../">Home</a>
+          <a href="../stacks/">Stacks</a>
+          <a href="../philosophy/">Philosophy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
+  </script>
+</body>
+</html>

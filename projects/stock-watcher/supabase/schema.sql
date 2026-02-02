@@ -74,6 +74,17 @@ CREATE TABLE IF NOT EXISTS public.transactions (
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- Newsletter signups (pre-launch waitlist)
+CREATE TABLE IF NOT EXISTS public.newsletter_signups (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    email TEXT UNIQUE NOT NULL,
+    source TEXT DEFAULT 'landing',
+    ip_address TEXT,
+    subscribed BOOLEAN DEFAULT true,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
 -- Stock cache (to reduce API calls)
 CREATE TABLE IF NOT EXISTS public.stock_cache (
     symbol TEXT PRIMARY KEY,
@@ -113,6 +124,8 @@ CREATE INDEX IF NOT EXISTS idx_alerts_status ON public.alerts(status);
 CREATE INDEX IF NOT EXISTS idx_portfolio_user ON public.portfolio(user_id);
 CREATE INDEX IF NOT EXISTS idx_transactions_user ON public.transactions(user_id);
 CREATE INDEX IF NOT EXISTS idx_stock_cache_updated ON public.stock_cache(updated_at);
+CREATE INDEX IF NOT EXISTS idx_newsletter_signups_email ON public.newsletter_signups(email);
+CREATE INDEX IF NOT EXISTS idx_newsletter_signups_created ON public.newsletter_signups(created_at);
 
 -- Row Level Security (RLS)
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;

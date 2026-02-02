@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1200px;
+      height: 630px;
+      background: linear-gradient(135deg, #FAFAF8 0%, #F3F3F0 100%);
+      font-family: 'Space Grotesk', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Background shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.4;
+      filter: blur(60px);
+    }
+    .shape-1 { width: 400px; height: 400px; background: #0D9488; top: -100px; right: -50px; }
+    .shape-2 { width: 300px; height: 300px; background: #c4b5fd; bottom: -80px; left: -50px; }
+    .shape-3 { width: 200px; height: 200px; background: #fcd34d; top: 50%; left: 30%; }
+    
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .logo-mark {
+      width: 48px;
+      height: 48px;
+      background: #0a0a0a;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-mark::before {
+      content: '';
+      width: 22px;
+      height: 22px;
+      background: #0D9488;
+      border-radius: 4px;
+    }
+    .logo-text {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    
+    h1 {
+      font-size: 72px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    h1 span {
+      color: #0D9488;
+    }
+    
+    p {
+      font-size: 28px;
+      color: #555;
+      font-weight: 500;
+    }
+    
+    .url {
+      position: absolute;
+      bottom: 40px;
+      font-size: 20px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  
+  <div class="content">
+    <div class="logo">
+      <div class="logo-mark"></div>
+      <span class="logo-text">uncluttered</span>
+    </div>
+    <h1>Stop researching.<br><span>Start building.</span></h1>
+    <p>One curated stack for every stage of building.</p>
+  </div>
+  
+  <span class="url">uncluttered.com</span>
+</body>
+</html>

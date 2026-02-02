@@ -5,14 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Starting Stack — Uncluttered</title>
   <meta name="description" content="You have an idea. Here's everything you need to explore it — and nothing that will slow you down.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uncluttered.com/stacks/starting">
+  <meta property="og:title" content="Starting Stack — Uncluttered">
+  <meta property="og:description" content="You have an idea. Here's everything you need to explore it — and nothing that will slow you down.">
+  <meta property="og:image" content="https://uncluttered.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://uncluttered.com/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* ============================================
-       DESIGN SYSTEM (shared)
-       ============================================ */
-    
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     :root {
@@ -20,570 +24,140 @@
       --bg-alt: #F3F3F0;
       --bg-dark: #111;
       --bg-card: #FFFFFF;
-      
       --text: #1a1a1a;
       --text-secondary: #555;
       --text-muted: #888;
       --text-inverse: #FAFAF8;
-      
-      --accent: #BEFF00;
-      --accent-hover: #A8E600;
-      --accent-subtle: rgba(190, 255, 0, 0.15);
-      
+      --accent: #0D9488;
+      --accent-hover: #0F766E;
+      --accent-subtle: rgba(13, 148, 136, 0.1);
       --border: rgba(0, 0, 0, 0.08);
       --border-strong: rgba(0, 0, 0, 0.15);
-      
       --font-display: 'Space Grotesk', -apple-system, sans-serif;
       --font-body: 'Inter', -apple-system, sans-serif;
-      
-      --space-xs: 4px;
-      --space-sm: 8px;
-      --space-md: 16px;
-      --space-lg: 24px;
-      --space-xl: 40px;
-      --space-2xl: 64px;
-      --space-3xl: 100px;
-      
+      --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px;
+      --space-xl: 40px; --space-2xl: 64px; --space-3xl: 100px;
       --max-width: 1200px;
-      --content-width: 800px;
-      
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 20px;
-      --radius-xl: 28px;
-      
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-      --duration-fast: 0.2s;
-      --duration-normal: 0.4s;
-      --duration-slow: 0.8s;
+      --duration-fast: 0.2s; --duration-normal: 0.4s; --duration-slow: 0.8s;
     }
     
     html { scroll-behavior: smooth; }
-    
-    body {
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--text);
-      background: var(--bg);
-      -webkit-font-smoothing: antialiased;
-    }
-    
-    h1, h2, h3, h4 {
-      font-family: var(--font-display);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-    }
-    
-    h1 { font-size: clamp(44px, 7vw, 64px); }
-    h2 { font-size: clamp(32px, 5vw, 44px); }
-    h3 { font-size: clamp(24px, 3vw, 28px); }
-    
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    h1 { font-size: clamp(44px, 7vw, 64px); } h2 { font-size: clamp(32px, 5vw, 44px); } h3 { font-size: clamp(24px, 3vw, 28px); }
     a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-xl); }
     
-    .container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 var(--space-xl);
-    }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all var(--duration-slow) var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
     
-    /* Animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all var(--duration-slow) var(--ease-out);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .btn { display: inline-flex; align-items: center; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); font-family: var(--font-body); font-size: 15px; font-weight: 600; border-radius: var(--radius-md); border: none; cursor: pointer; transition: all var(--duration-fast) ease; }
+    .btn-primary { background: var(--bg-dark); color: var(--text-inverse); }
+    .btn-primary:hover { background: #222; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); }
+    .btn-secondary { background: var(--bg-card); color: var(--text); border: 1px solid var(--border-strong); }
+    .btn-secondary:hover { border-color: var(--text); transform: translateY(-2px); }
     
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-sm);
-      padding: var(--space-md) var(--space-lg);
-      font-family: var(--font-body);
-      font-size: 15px;
-      font-weight: 600;
-      border-radius: var(--radius-md);
-      border: none;
-      cursor: pointer;
-      transition: all var(--duration-fast) ease;
-    }
-    
-    .btn-primary {
-      background: var(--bg-dark);
-      color: var(--text-inverse);
-    }
-    .btn-primary:hover {
-      background: #222;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    }
-    
-    .btn-secondary {
-      background: var(--bg-card);
-      color: var(--text);
-      border: 1px solid var(--border-strong);
-    }
-    .btn-secondary:hover {
-      border-color: var(--text);
-      transform: translateY(-2px);
-    }
-    
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: var(--space-lg) 0;
-      background: rgba(250, 250, 248, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid transparent;
-      transition: border-color var(--duration-fast) ease;
-    }
-    
-    header.scrolled {
-      border-bottom-color: var(--border);
-    }
-    
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 20px;
-    }
-    
-    .logo-mark {
-      width: 32px;
-      height: 32px;
-      background: var(--bg-dark);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .logo-mark::before {
-      content: '';
-      width: 14px;
-      height: 14px;
-      background: var(--accent);
-      border-radius: 3px;
-    }
-    
-    nav {
-      display: flex;
-      align-items: center;
-      gap: var(--space-xl);
-    }
-    
-    nav a {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-muted);
-      transition: color var(--duration-fast) ease;
-    }
-    
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--space-lg) 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: all var(--duration-fast) ease; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: var(--space-sm); font-family: var(--font-display); font-weight: 700; font-size: 20px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+    .logo-mark::before { content: ''; width: 14px; height: 14px; background: var(--accent); border-radius: 3px; }
+    nav { display: flex; align-items: center; gap: var(--space-xl); }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color var(--duration-fast) ease; }
     nav a:hover { color: var(--text); }
+    .nav-cta { padding: var(--space-sm) var(--space-md); background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    .nav-cta:hover { background: #333; }
+    @media (max-width: 768px) { nav { gap: var(--space-md); } nav a:not(.nav-cta) { display: none; } }
     
-    .nav-cta {
-      padding: var(--space-sm) var(--space-md);
-      background: var(--bg-dark);
-      color: var(--text-inverse) !important;
-      border-radius: var(--radius-sm);
-    }
-    
-    /* Page Hero */
-    .page-hero {
-      padding: 160px 0 80px;
-      background: var(--bg);
-    }
-    
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: var(--space-lg);
-    }
-    
+    .page-hero { padding: 140px 0 60px; background: var(--bg); }
+    .breadcrumb { display: flex; align-items: center; gap: var(--space-sm); font-size: 13px; color: var(--text-muted); margin-bottom: var(--space-lg); }
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { opacity: 0.5; }
+    .hero-header { display: flex; align-items: flex-start; gap: var(--space-lg); margin-bottom: var(--space-lg); }
+    .hero-icon { width: 72px; height: 72px; background: var(--accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; }
+    .hero-header h1 { margin-bottom: var(--space-sm); }
+    .hero-header p { font-size: 18px; color: var(--text-secondary); }
+    .hero-description { font-size: 20px; color: var(--text-secondary); max-width: 640px; line-height: 1.7; }
     
-    .hero-header {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-lg);
-      margin-bottom: var(--space-lg);
-    }
+    .stage-signal { background: var(--accent); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-xl) 0; color: white; }
+    .stage-signal h3 { font-size: 14px; margin-bottom: var(--space-md); text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.9; }
+    .stage-signal ul { list-style: none; display: grid; gap: var(--space-sm); }
+    .stage-signal li { display: flex; align-items: flex-start; gap: var(--space-sm); font-size: 15px; }
+    .stage-signal li::before { content: '✓'; font-weight: 700; flex-shrink: 0; }
     
-    .hero-icon {
-      width: 72px;
-      height: 72px;
-      background: var(--accent);
-      border-radius: var(--radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 36px;
-      flex-shrink: 0;
-      animation: pulse 3s ease-in-out infinite;
-    }
+    .stack-section { padding: var(--space-3xl) 0; }
+    .section-header { margin-bottom: var(--space-2xl); }
+    .section-header h2 { margin-bottom: var(--space-sm); }
+    .section-header p { font-size: 18px; color: var(--text-secondary); }
     
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+    .tool-card { background: var(--bg-card); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: var(--space-lg); border: 1px solid var(--border); transition: all var(--duration-normal) var(--ease-out); }
+    .tool-card:hover { border-color: var(--accent); box-shadow: 0 25px 50px rgba(13, 148, 136, 0.1); transform: translateY(-4px); }
+    .tool-card-header { padding: var(--space-xl); display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-lg); border-bottom: 1px solid var(--border); }
+    .tool-card-identity { display: flex; align-items: center; gap: var(--space-md); }
+    .tool-card-icon { width: 56px; height: 56px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+    .tool-card-name { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+    .tool-card-tag { display: inline-block; padding: 4px 12px; background: var(--accent-subtle); color: var(--accent); border-radius: 100px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .tool-card-link { display: inline-flex; align-items: center; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); background: var(--bg-dark); color: var(--text-inverse); border-radius: var(--radius-md); font-size: 14px; font-weight: 600; transition: all var(--duration-fast) ease; white-space: nowrap; }
+    .tool-card-link:hover { background: #333; transform: translateY(-1px); }
+    .tool-card-link svg { width: 16px; height: 16px; }
+    .tool-card-body { padding: var(--space-xl); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+    @media (max-width: 700px) { .tool-card-body { grid-template-columns: 1fr; } }
+    .tool-card-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.7; }
+    .tool-card-why { background: var(--bg); border-radius: var(--radius-md); padding: var(--space-lg); border-left: 3px solid var(--accent); }
+    .tool-card-why h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: var(--space-sm); }
+    .tool-card-why p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .tool-card-footer { padding: var(--space-md) var(--space-xl); background: var(--bg-alt); border-top: 1px solid var(--border); display: flex; align-items: center; gap: var(--space-md); flex-wrap: wrap; }
+    .tool-card-used-by-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .tool-card-companies { display: flex; align-items: center; gap: 6px; }
+    .tool-card-company { font-size: 13px; font-weight: 600; color: var(--text-muted); opacity: 0; transform: translateY(5px); transition: all 0.2s ease; }
+    .tool-card-company:hover { color: var(--text); }
+    .tool-card-company::after { content: '·'; margin-left: 6px; opacity: 0.4; }
+    .tool-card-company:last-child::after { display: none; }
+    .tool-card.reveal.visible .tool-card-company { animation: fadeInUp 0.4s ease forwards; }
+    .tool-card.reveal.visible .tool-card-company:nth-child(1) { animation-delay: 0.1s; }
+    .tool-card.reveal.visible .tool-card-company:nth-child(2) { animation-delay: 0.15s; }
+    .tool-card.reveal.visible .tool-card-company:nth-child(3) { animation-delay: 0.2s; }
+    .tool-card.reveal.visible .tool-card-company:nth-child(4) { animation-delay: 0.25s; }
+    @keyframes fadeInUp { to { opacity: 0.7; transform: translateY(0); } }
     
-    .hero-header h1 {
-      margin-bottom: var(--space-sm);
-    }
+    .tool-notion .tool-card-icon { background: #000; color: #fff; }
+    .tool-figma .tool-card-icon { background: linear-gradient(135deg, #F24E1E, #A259FF, #1ABCFE); color: #fff; }
+    .tool-claude .tool-card-icon { background: #D97757; color: #fff; }
+    .tool-cal .tool-card-icon { background: #292929; color: #fff; }
     
-    .hero-header p {
-      font-size: 18px;
-      color: var(--text-secondary);
-    }
+    .skip-section { padding: var(--space-3xl) 0; background: var(--bg-dark); color: var(--text-inverse); }
+    .skip-section h2 { margin-bottom: var(--space-sm); }
+    .skip-section > .container > p { color: rgba(255,255,255,0.6); font-size: 18px; margin-bottom: var(--space-xl); }
+    .skip-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+    @media (max-width: 600px) { .skip-grid { grid-template-columns: 1fr; } }
+    .skip-item { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); transition: all var(--duration-fast) ease; }
+    .skip-item:hover { background: rgba(255,100,100,0.05); border-color: rgba(255,100,100,0.2); }
+    .skip-x { width: 28px; height: 28px; background: rgba(255,100,100,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff8a8a; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+    .skip-item span { font-size: 15px; color: rgba(255,255,255,0.7); }
     
-    .hero-description {
-      font-size: 20px;
-      color: var(--text-secondary);
-      max-width: 640px;
-      line-height: 1.7;
-    }
+    .progression-section { padding: var(--space-3xl) 0; background: var(--bg-alt); }
+    .progression-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+    @media (max-width: 700px) { .progression-grid { grid-template-columns: 1fr; } }
+    .progression-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: var(--space-xl); border: 1px solid var(--border); transition: all 0.3s ease; }
+    .progression-card:hover { border-color: var(--accent); }
+    .progression-card h3 { font-size: 18px; margin-bottom: var(--space-md); }
+    .progression-card p { font-size: 15px; color: var(--text-secondary); margin-bottom: var(--space-lg); line-height: 1.6; }
     
-    /* Stage Signal */
-    .stage-signal {
-      background: var(--accent);
-      border-radius: var(--radius-lg);
-      padding: var(--space-xl);
-      margin: var(--space-xl) 0;
-    }
-    
-    .stage-signal h3 {
-      font-size: 16px;
-      margin-bottom: var(--space-md);
-      color: var(--bg-dark);
-    }
-    
-    .stage-signal ul {
-      list-style: none;
-      display: grid;
-      gap: var(--space-sm);
-    }
-    
-    .stage-signal li {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-sm);
-      font-size: 15px;
-      color: var(--bg-dark);
-    }
-    
-    .stage-signal li::before {
-      content: '✓';
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    
-    /* Stack Section */
-    .stack-section {
-      padding: var(--space-3xl) 0;
-    }
-    
-    .section-header {
-      margin-bottom: var(--space-2xl);
-    }
-    
-    .section-header h2 {
-      margin-bottom: var(--space-sm);
-    }
-    
-    .section-header p {
-      font-size: 18px;
-      color: var(--text-secondary);
-    }
-    
-    /* Tool Card */
-    .tool-card {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 0;
-      background: var(--bg-card);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      margin-bottom: var(--space-lg);
-      border: 1px solid var(--border);
-      transition: all var(--duration-normal) var(--ease-out);
-    }
-    
-    .tool-card:hover {
-      border-color: var(--border-strong);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
-      transform: translateY(-4px);
-    }
-    
-    @media (max-width: 800px) {
-      .tool-card { grid-template-columns: 1fr; }
-    }
-    
-    .tool-card-image {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-      min-height: 240px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .tool-card-logo {
-      width: 80px;
-      height: 80px;
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 40px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-    
-    .tool-card-content {
-      padding: var(--space-xl);
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .tool-card-header {
-      display: flex;
-      align-items: center;
-      gap: var(--space-md);
-      margin-bottom: var(--space-md);
-    }
-    
-    .tool-card-name {
-      font-size: 24px;
-      font-weight: 700;
-    }
-    
-    .tool-card-tag {
-      padding: 6px 14px;
-      background: var(--bg-alt);
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    
-    .tool-card-desc {
-      font-size: 16px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: var(--space-lg);
-      flex: 1;
-    }
-    
-    .tool-card-why {
-      background: var(--bg);
-      border-radius: var(--radius-md);
-      padding: var(--space-lg);
-      margin-bottom: var(--space-lg);
-      border-left: 3px solid var(--accent);
-    }
-    
-    .tool-card-why h4 {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      margin-bottom: var(--space-sm);
-    }
-    
-    .tool-card-why p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-    
-    .tool-card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-sm);
-      padding: var(--space-md) var(--space-lg);
-      background: var(--bg-dark);
-      color: var(--text-inverse);
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      font-weight: 600;
-      align-self: flex-start;
-      transition: all var(--duration-fast) ease;
-    }
-    
-    .tool-card-link:hover {
-      background: #222;
-      transform: translateX(4px);
-    }
-    
-    .tool-card-link svg {
-      width: 16px;
-      height: 16px;
-    }
-    
-    /* Skip Section */
-    .skip-section {
-      padding: var(--space-3xl) 0;
-      background: var(--bg-dark);
-      color: var(--text-inverse);
-    }
-    
-    .skip-section h2 {
-      margin-bottom: var(--space-sm);
-    }
-    
-    .skip-section > .container > p {
-      color: var(--text-muted);
-      font-size: 18px;
-      margin-bottom: var(--space-xl);
-    }
-    
-    .skip-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-md);
-    }
-    
-    @media (max-width: 600px) {
-      .skip-grid { grid-template-columns: 1fr; }
-    }
-    
-    .skip-item {
-      display: flex;
-      align-items: center;
-      gap: var(--space-md);
-      padding: var(--space-lg);
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius-md);
-      transition: all var(--duration-fast) ease;
-    }
-    
-    .skip-item:hover {
-      background: rgba(255,68,68,0.08);
-      border-color: rgba(255,68,68,0.2);
-    }
-    
-    .skip-x {
-      width: 32px;
-      height: 32px;
-      background: rgba(255,68,68,0.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ff6b6b;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    
-    .skip-item span {
-      font-size: 15px;
-      color: var(--text-muted);
-    }
-    
-    /* Progression Section */
-    .progression-section {
-      padding: var(--space-3xl) 0;
-      background: var(--bg-alt);
-    }
-    
-    .progression-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
-    }
-    
-    @media (max-width: 700px) {
-      .progression-grid { grid-template-columns: 1fr; }
-    }
-    
-    .progression-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      padding: var(--space-xl);
-      border: 1px solid var(--border);
-    }
-    
-    .progression-card h3 {
-      font-size: 18px;
-      margin-bottom: var(--space-md);
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-    }
-    
-    .progression-card p {
-      font-size: 15px;
-      color: var(--text-secondary);
-      margin-bottom: var(--space-lg);
-      line-height: 1.6;
-    }
-    
-    /* Footer */
-    footer {
-      padding: var(--space-2xl) 0;
-      border-top: 1px solid var(--border);
-    }
-    
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--space-lg);
-    }
-    
-    .footer-content p {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-    
-    .footer-links {
-      display: flex;
-      gap: var(--space-lg);
-    }
-    
-    .footer-links a {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-    
+    footer { padding: var(--space-2xl) 0; border-top: 1px solid var(--border); background: var(--bg); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-lg); }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: var(--space-lg); }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
     .footer-links a:hover { color: var(--text); }
   </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <a href="../" class="logo">
-        <div class="logo-mark"></div>
-        <span>uncluttered</span>
-      </a>
+      <a href="../" class="logo"><div class="logo-mark"></div><span>uncluttered</span></a>
       <nav>
         <a href="../stages/">Stages</a>
         <a href="./">Stacks</a>
@@ -596,34 +170,23 @@
 
   <section class="page-hero">
     <div class="container">
-      <div class="breadcrumb reveal">
-        <a href="../">Home</a>
-        <span>→</span>
-        <a href="./">Stacks</a>
-        <span>→</span>
-        Starting
-      </div>
-      
+      <div class="breadcrumb reveal"><a href="../">Home</a><span>→</span><a href="./">Stacks</a><span>→</span>Starting</div>
       <div class="hero-header reveal">
         <div class="hero-icon">💡</div>
         <div>
           <h1>Starting</h1>
-          <p>For exploring and validating</p>
+          <p>For exploring and validating ideas</p>
         </div>
       </div>
-      
-      <p class="hero-description reveal">
-        You have an idea. Maybe several. You're figuring out what's possible, what's viable, what's worth building. You need tools that help you think and share — not tools that help you scale.
-      </p>
-      
+      <p class="hero-description reveal">You have an idea — maybe several. Before you build anything, you need to explore, validate, and think clearly. These tools help you do that without getting in the way.</p>
       <div class="stage-signal reveal">
         <h3>You're in the right place if:</h3>
         <ul>
-          <li>You have an idea but haven't written code yet</li>
-          <li>You're validating whether this is worth building</li>
+          <li>You're exploring an idea but haven't started building</li>
+          <li>You need to organize thoughts and do research</li>
+          <li>You want to validate before you invest time coding</li>
+          <li>You're sketching interfaces and user flows</li>
           <li>You're talking to potential users or customers</li>
-          <li>You're still figuring out the core problem</li>
-          <li>You need to organize thoughts, not organize teams</li>
         </ul>
       </div>
     </div>
@@ -633,121 +196,125 @@
     <div class="container">
       <div class="section-header reveal">
         <h2>Your Stack</h2>
-        <p>Five tools. Everything you need to go from idea to decision.</p>
+        <p>Four tools. Everything you need to think, design, and validate.</p>
       </div>
       
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);">
-          <div class="tool-card-logo">📝</div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Notion</span>
-            <span class="tool-card-tag">Home Base</span>
+      <!-- Notion -->
+      <div class="tool-card tool-notion reveal">
+        <div class="tool-card-header">
+          <div class="tool-card-identity">
+            <div class="tool-card-icon">📝</div>
+            <div>
+              <div class="tool-card-name">Notion</div>
+              <span class="tool-card-tag">Thinking</span>
+            </div>
           </div>
-          <p class="tool-card-desc">
-            Your second brain. Ideas, notes, research, planning — it all lives here. Flexible enough to be whatever you need it to be right now.
-          </p>
+          <a href="https://notion.so" target="_blank" class="tool-card-link">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="tool-card-body">
+          <p class="tool-card-desc">Your second brain for ideas, research, and planning. Flexible enough to be whatever you need — docs, databases, wikis, task lists. Start messy, organize later.</p>
           <div class="tool-card-why">
             <h4>Why this, not that</h4>
-            <p>Not Obsidian (you're not building a knowledge graph). Not Google Docs (too scattered). Not Linear (you don't have a team yet). Notion is malleable — it grows with your thinking.</p>
+            <p>Not Google Docs (too linear). Not Obsidian (overkill for starting). Not a blank notebook (you'll lose it). Notion grows with your thinking.</p>
           </div>
-          <a href="https://notion.so" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+        </div>
+        <div class="tool-card-footer">
+          <span class="tool-card-used-by-label">Used by</span>
+          <div class="tool-card-companies">
+            <span class="tool-card-company">Figma</span>
+            <span class="tool-card-company">Pixar</span>
+            <span class="tool-card-company">Nike</span>
+            <span class="tool-card-company">Headspace</span>
+          </div>
         </div>
       </div>
 
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);">
-          <div class="tool-card-logo">🎨</div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Figma</span>
-            <span class="tool-card-tag">Design</span>
+      <!-- Figma -->
+      <div class="tool-card tool-figma reveal">
+        <div class="tool-card-header">
+          <div class="tool-card-identity">
+            <div class="tool-card-icon">🎨</div>
+            <div>
+              <div class="tool-card-name">Figma</div>
+              <span class="tool-card-tag">Design</span>
+            </div>
           </div>
-          <p class="tool-card-desc">
-            Make your ideas visible. Wireframes, mockups, landing page drafts. Show people what you're thinking instead of explaining it.
-          </p>
+          <a href="https://figma.com" target="_blank" class="tool-card-link">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="tool-card-body">
+          <p class="tool-card-desc">Sketch ideas visually. Wireframes, mockups, user flows — make your idea feel real before writing code. The free tier is generous enough for exploration.</p>
           <div class="tool-card-why">
             <h4>Why this, not that</h4>
-            <p>Not Sketch (Mac-only, less collaborative). Not Adobe XD (dying). Not Canva (too template-heavy for product thinking). Figma is where ideas become real before you write code.</p>
+            <p>Not Sketch (Mac-only, dated). Not Canva (not for product design). Not Adobe XD (Adobe tax). Figma is where design happens now.</p>
           </div>
-          <a href="https://figma.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+        </div>
+        <div class="tool-card-footer">
+          <span class="tool-card-used-by-label">Used by</span>
+          <div class="tool-card-companies">
+            <span class="tool-card-company">Airbnb</span>
+            <span class="tool-card-company">Dropbox</span>
+            <span class="tool-card-company">Twitter</span>
+            <span class="tool-card-company">Uber</span>
+          </div>
         </div>
       </div>
 
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #0f6b3a 0%, #137547 100%);">
-          <div class="tool-card-logo">📊</div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Google Sheets</span>
-            <span class="tool-card-tag">Data</span>
+      <!-- Claude -->
+      <div class="tool-card tool-claude reveal">
+        <div class="tool-card-header">
+          <div class="tool-card-identity">
+            <div class="tool-card-icon">🤖</div>
+            <div>
+              <div class="tool-card-name">Claude</div>
+              <span class="tool-card-tag">AI Assistant</span>
+            </div>
           </div>
-          <p class="tool-card-desc">
-            Track what matters. User research responses, competitor analysis, simple financial models. Free, shareable, surprisingly powerful.
-          </p>
+          <a href="https://claude.ai" target="_blank" class="tool-card-link">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="tool-card-body">
+          <p class="tool-card-desc">Your thought partner. Brainstorm ideas, stress-test assumptions, research markets, draft copy. Like having a smart friend available 24/7.</p>
           <div class="tool-card-why">
             <h4>Why this, not that</h4>
-            <p>Not Airtable (overkill for validation). Not Excel (sharing friction). Not a database (you don't need one yet). Sheets is the right amount of structure for unstructured exploration.</p>
+            <p>Not ChatGPT alone (Claude handles nuance better). Not Gemini (less reliable for reasoning). Use both if you want, but start with Claude for thinking work.</p>
           </div>
-          <a href="https://sheets.google.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+        </div>
+        <div class="tool-card-footer">
+          <span class="tool-card-used-by-label">Used by</span>
+          <div class="tool-card-companies">
+            <span class="tool-card-company">Notion</span>
+            <span class="tool-card-company">DuckDuckGo</span>
+            <span class="tool-card-company">Quora</span>
+            <span class="tool-card-company">Lonely Planet</span>
+          </div>
         </div>
       </div>
 
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #4a154b 0%, #611f69 100%);">
-          <div class="tool-card-logo">💬</div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Slack</span>
-            <span class="tool-card-tag">Communication</span>
+      <!-- Cal.com -->
+      <div class="tool-card tool-cal reveal">
+        <div class="tool-card-header">
+          <div class="tool-card-identity">
+            <div class="tool-card-icon">📅</div>
+            <div>
+              <div class="tool-card-name">Cal.com</div>
+              <span class="tool-card-tag">Scheduling</span>
+            </div>
           </div>
-          <p class="tool-card-desc">
-            Talk to your first users. Create a community channel, gather feedback, build in public. The conversations here will shape what you build.
-          </p>
+          <a href="https://cal.com" target="_blank" class="tool-card-link">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="tool-card-body">
+          <p class="tool-card-desc">Book user interviews and validation calls without the back-and-forth. Open source, free tier is plenty. Get talking to people — that's how ideas become real.</p>
           <div class="tool-card-why">
             <h4>Why this, not that</h4>
-            <p>Not Discord (better for communities, but Slack is better for early product feedback). Not email (too slow, too formal). Slack creates the tight feedback loop you need right now.</p>
+            <p>Not Calendly (expensive, closed). Not manual scheduling (wastes everyone's time). Cal.com is simple, free, and respects your data.</p>
           </div>
-          <a href="https://slack.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
         </div>
-      </div>
-
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);">
-          <div class="tool-card-logo">🧠</div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Claude</span>
-            <span class="tool-card-tag">AI Thinking Partner</span>
+        <div class="tool-card-footer">
+          <span class="tool-card-used-by-label">Used by</span>
+          <div class="tool-card-companies">
+            <span class="tool-card-company">Vercel</span>
+            <span class="tool-card-company">GitHub</span>
+            <span class="tool-card-company">Framer</span>
           </div>
-          <p class="tool-card-desc">
-            Your brainstorming partner. Validate ideas, research competitors, write landing page copy, think through problems. Like having a smart cofounder who's always available.
-          </p>
-          <div class="tool-card-why">
-            <h4>Why this, not that</h4>
-            <p>Not ChatGPT (Claude reasons better on complex decisions). Not Perplexity (great for research, but Claude is better for thinking through problems with you). Claude is for depth, not just answers.</p>
-          </div>
-          <a href="https://claude.ai" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
         </div>
       </div>
     </div>
@@ -756,33 +323,14 @@
   <section class="skip-section">
     <div class="container">
       <h2 class="reveal">What you don't need yet</h2>
-      <p class="reveal">These will feel tempting. Resist them.</p>
-      
+      <p class="reveal">These will distract you. Explore first, build later.</p>
       <div class="skip-grid">
-        <div class="skip-item reveal">
-          <span class="skip-x">×</span>
-          <span>A code repository (you're not coding yet)</span>
-        </div>
-        <div class="skip-item reveal">
-          <span class="skip-x">×</span>
-          <span>A domain name (your idea might pivot)</span>
-        </div>
-        <div class="skip-item reveal">
-          <span class="skip-x">×</span>
-          <span>Project management tools (you don't have a project)</span>
-        </div>
-        <div class="skip-item reveal">
-          <span class="skip-x">×</span>
-          <span>Analytics (there's nothing to measure)</span>
-        </div>
-        <div class="skip-item reveal">
-          <span class="skip-x">×</span>
-          <span>A design system (premature optimization)</span>
-        </div>
-        <div class="skip-item reveal">
-          <span class="skip-x">×</span>
-          <span>Email marketing tools (you don't have users)</span>
-        </div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>A code editor or IDE</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Hosting or domains</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>A database</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Payment processing</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Analytics tools</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Project management software</span></div>
       </div>
     </div>
   </section>
@@ -791,19 +339,18 @@
     <div class="container">
       <div class="section-header reveal">
         <h2>Know when to move</h2>
-        <p>Stages aren't permanent. Here's how to know when you've outgrown this one.</p>
+        <p>Starting is a stage, not forever.</p>
       </div>
-      
       <div class="progression-grid">
         <div class="progression-card reveal">
           <h3>→ Move to Building when:</h3>
-          <p>You've validated the problem. You've talked to real users. You know what to build first. You're ready to write code and ship something real.</p>
+          <p>You've validated the idea. You know what to build and roughly how. You've talked to potential users. Time to ship something real.</p>
           <a href="./building.html" class="btn btn-primary">View Building Stack →</a>
         </div>
         <div class="progression-card reveal">
-          <h3>← Stay in Starting if:</h3>
-          <p>You're still unsure about the core problem. You haven't talked to potential users. You're excited about solutions but haven't validated the pain point.</p>
-          <a href="../philosophy/" class="btn btn-secondary">Read: Why validation matters</a>
+          <h3>⟳ Stay in Starting if:</h3>
+          <p>You're still exploring multiple ideas. The problem isn't clear yet. You haven't talked to potential users. Keep validating — it's cheaper than building wrong.</p>
+          <a href="../philosophy/" class="btn btn-secondary">Read our philosophy</a>
         </div>
       </div>
     </div>
@@ -812,7 +359,7 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p>That's enough. Go validate.</p>
+        <p>Ideas are cheap. Validation is priceless.</p>
         <div class="footer-links">
           <a href="../">Home</a>
           <a href="./">All Stacks</a>
@@ -823,21 +370,12 @@
   </footer>
 
   <script>
-    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-    reveals.forEach(el => revealObserver.observe(el));
-
-    // Header scroll
-    window.addEventListener('scroll', () => {
-      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
-    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
   </script>
 </body>
 </html>

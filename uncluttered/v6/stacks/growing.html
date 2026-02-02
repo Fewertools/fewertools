@@ -4,7 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Growing Stack — Uncluttered</title>
-  <meta name="description" content="People are using your product. Here's how to scale without breaking what works.">
+  <meta name="description" content="You have users. Now it's time to understand them, scale what works, and build systems.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uncluttered.com/stacks/growing">
+  <meta property="og:title" content="Growing Stack — Uncluttered">
+  <meta property="og:description" content="You have users. Now it's time to understand them, scale what works, and build systems.">
+  <meta property="og:image" content="https://uncluttered.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://uncluttered.com/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,9 +28,9 @@
       --text-secondary: #555;
       --text-muted: #888;
       --text-inverse: #FAFAF8;
-      --accent: #BEFF00;
-      --accent-hover: #A8E600;
-      --accent-subtle: rgba(190, 255, 0, 0.15);
+      --accent: #0D9488;
+      --accent-hover: #0F766E;
+      --accent-subtle: rgba(13, 148, 136, 0.1);
       --border: rgba(0, 0, 0, 0.08);
       --border-strong: rgba(0, 0, 0, 0.15);
       --font-display: 'Space Grotesk', -apple-system, sans-serif;
@@ -42,7 +50,7 @@
     a { color: inherit; text-decoration: none; }
     .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-xl); }
     
-    .reveal { opacity: 0; transform: translateY(40px); transition: all var(--duration-slow) var(--ease-out); }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all var(--duration-slow) var(--ease-out); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     
     .btn { display: inline-flex; align-items: center; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); font-family: var(--font-body); font-size: 15px; font-weight: 600; border-radius: var(--radius-md); border: none; cursor: pointer; transition: all var(--duration-fast) ease; }
@@ -51,7 +59,7 @@
     .btn-secondary { background: var(--bg-card); color: var(--text); border: 1px solid var(--border-strong); }
     .btn-secondary:hover { border-color: var(--text); transform: translateY(-2px); }
     
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--space-lg) 0; background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: border-color var(--duration-fast) ease; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--space-lg) 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: all var(--duration-fast) ease; }
     header.scrolled { border-bottom-color: var(--border); }
     header .container { display: flex; justify-content: space-between; align-items: center; }
     .logo { display: flex; align-items: center; gap: var(--space-sm); font-family: var(--font-display); font-weight: 700; font-size: 20px; }
@@ -61,22 +69,23 @@
     nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color var(--duration-fast) ease; }
     nav a:hover { color: var(--text); }
     .nav-cta { padding: var(--space-sm) var(--space-md); background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    .nav-cta:hover { background: #333; }
+    @media (max-width: 768px) { nav { gap: var(--space-md); } nav a:not(.nav-cta) { display: none; } }
     
-    .page-hero { padding: 160px 0 80px; background: var(--bg); }
+    .page-hero { padding: 140px 0 60px; background: var(--bg); }
     .breadcrumb { display: flex; align-items: center; gap: var(--space-sm); font-size: 13px; color: var(--text-muted); margin-bottom: var(--space-lg); }
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { opacity: 0.5; }
     .hero-header { display: flex; align-items: flex-start; gap: var(--space-lg); margin-bottom: var(--space-lg); }
-    .hero-icon { width: 72px; height: 72px; background: var(--accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; animation: grow 2.5s ease-in-out infinite; }
-    @keyframes grow { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.05) translateY(-3px); } }
+    .hero-icon { width: 72px; height: 72px; background: var(--accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; }
     .hero-header h1 { margin-bottom: var(--space-sm); }
     .hero-header p { font-size: 18px; color: var(--text-secondary); }
     .hero-description { font-size: 20px; color: var(--text-secondary); max-width: 640px; line-height: 1.7; }
     
-    .stage-signal { background: var(--accent); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-xl) 0; }
-    .stage-signal h3 { font-size: 16px; margin-bottom: var(--space-md); color: var(--bg-dark); }
+    .stage-signal { background: var(--accent); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-xl) 0; color: white; }
+    .stage-signal h3 { font-size: 14px; margin-bottom: var(--space-md); text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.9; }
     .stage-signal ul { list-style: none; display: grid; gap: var(--space-sm); }
-    .stage-signal li { display: flex; align-items: flex-start; gap: var(--space-sm); font-size: 15px; color: var(--bg-dark); }
+    .stage-signal li { display: flex; align-items: flex-start; gap: var(--space-sm); font-size: 15px; }
     .stage-signal li::before { content: '✓'; font-weight: 700; flex-shrink: 0; }
     
     .stack-section { padding: var(--space-3xl) 0; }
@@ -84,55 +93,71 @@
     .section-header h2 { margin-bottom: var(--space-sm); }
     .section-header p { font-size: 18px; color: var(--text-secondary); }
     
-    .tool-card { display: grid; grid-template-columns: 300px 1fr; gap: 0; background: var(--bg-card); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: var(--space-lg); border: 1px solid var(--border); transition: all var(--duration-normal) var(--ease-out); }
-    .tool-card:hover { border-color: var(--border-strong); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1); transform: translateY(-4px); }
-    @media (max-width: 800px) { .tool-card { grid-template-columns: 1fr; } }
-    .tool-card-image { background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); min-height: 240px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-    .tool-card-logo { width: 80px; height: 80px; background: var(--bg-card); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-    .tool-card-content { padding: var(--space-xl); display: flex; flex-direction: column; }
-    .tool-card-header { display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md); }
-    .tool-card-name { font-size: 24px; font-weight: 700; }
-    .tool-card-tag { padding: 6px 14px; background: var(--bg-alt); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-    .tool-card-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-lg); flex: 1; }
-    .tool-card-why { background: var(--bg); border-radius: var(--radius-md); padding: var(--space-lg); margin-bottom: var(--space-lg); border-left: 3px solid var(--accent); }
+    .tool-card { background: var(--bg-card); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: var(--space-lg); border: 1px solid var(--border); transition: all var(--duration-normal) var(--ease-out); }
+    .tool-card:hover { border-color: var(--accent); box-shadow: 0 25px 50px rgba(13, 148, 136, 0.1); transform: translateY(-4px); }
+    .tool-card-header { padding: var(--space-xl); display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-lg); border-bottom: 1px solid var(--border); }
+    .tool-card-identity { display: flex; align-items: center; gap: var(--space-md); }
+    .tool-card-icon { width: 56px; height: 56px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+    .tool-card-name { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+    .tool-card-tag { display: inline-block; padding: 4px 12px; background: var(--accent-subtle); color: var(--accent); border-radius: 100px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .tool-card-link { display: inline-flex; align-items: center; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); background: var(--bg-dark); color: var(--text-inverse); border-radius: var(--radius-md); font-size: 14px; font-weight: 600; transition: all var(--duration-fast) ease; white-space: nowrap; }
+    .tool-card-link:hover { background: #333; transform: translateY(-1px); }
+    .tool-card-link svg { width: 16px; height: 16px; }
+    .tool-card-body { padding: var(--space-xl); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+    @media (max-width: 700px) { .tool-card-body { grid-template-columns: 1fr; } }
+    .tool-card-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.7; }
+    .tool-card-why { background: var(--bg); border-radius: var(--radius-md); padding: var(--space-lg); border-left: 3px solid var(--accent); }
     .tool-card-why h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: var(--space-sm); }
     .tool-card-why p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
-    .tool-card-link { display: inline-flex; align-items: center; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); background: var(--bg-dark); color: var(--text-inverse); border-radius: var(--radius-md); font-size: 14px; font-weight: 600; align-self: flex-start; transition: all var(--duration-fast) ease; }
-    .tool-card-link:hover { background: #222; transform: translateX(4px); }
-    .tool-card-link svg { width: 16px; height: 16px; }
+    .tool-card-footer { padding: var(--space-md) var(--space-xl); background: var(--bg-alt); border-top: 1px solid var(--border); display: flex; align-items: center; gap: var(--space-md); flex-wrap: wrap; }
+    .tool-card-used-by-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .tool-card-companies { display: flex; align-items: center; gap: 6px; }
+    .tool-card-company { font-size: 13px; font-weight: 600; color: var(--text-muted); opacity: 0; transform: translateY(5px); transition: all 0.2s ease; }
+    .tool-card-company:hover { color: var(--text); }
+    .tool-card-company::after { content: '·'; margin-left: 6px; opacity: 0.4; }
+    .tool-card-company:last-child::after { display: none; }
+    .tool-card.reveal.visible .tool-card-company { animation: fadeInUp 0.4s ease forwards; }
+    .tool-card.reveal.visible .tool-card-company:nth-child(1) { animation-delay: 0.1s; }
+    .tool-card.reveal.visible .tool-card-company:nth-child(2) { animation-delay: 0.15s; }
+    .tool-card.reveal.visible .tool-card-company:nth-child(3) { animation-delay: 0.2s; }
+    .tool-card.reveal.visible .tool-card-company:nth-child(4) { animation-delay: 0.25s; }
+    @keyframes fadeInUp { to { opacity: 0.7; transform: translateY(0); } }
+    
+    .tool-posthog .tool-card-icon { background: #1D4AFF; color: #fff; }
+    .tool-linear .tool-card-icon { background: linear-gradient(135deg, #5E6AD2, #8B5CF6); color: #fff; }
+    .tool-intercom .tool-card-icon { background: #1F8DED; color: #fff; }
+    .tool-sentry .tool-card-icon { background: #362D59; color: #fff; }
     
     .skip-section { padding: var(--space-3xl) 0; background: var(--bg-dark); color: var(--text-inverse); }
     .skip-section h2 { margin-bottom: var(--space-sm); }
-    .skip-section > .container > p { color: var(--text-muted); font-size: 18px; margin-bottom: var(--space-xl); }
+    .skip-section > .container > p { color: rgba(255,255,255,0.6); font-size: 18px; margin-bottom: var(--space-xl); }
     .skip-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
     @media (max-width: 600px) { .skip-grid { grid-template-columns: 1fr; } }
     .skip-item { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); transition: all var(--duration-fast) ease; }
-    .skip-item:hover { background: rgba(255,68,68,0.08); border-color: rgba(255,68,68,0.2); }
-    .skip-x { width: 32px; height: 32px; background: rgba(255,68,68,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff6b6b; font-weight: 700; flex-shrink: 0; }
-    .skip-item span { font-size: 15px; color: var(--text-muted); }
+    .skip-item:hover { background: rgba(255,100,100,0.05); border-color: rgba(255,100,100,0.2); }
+    .skip-x { width: 28px; height: 28px; background: rgba(255,100,100,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff8a8a; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+    .skip-item span { font-size: 15px; color: rgba(255,255,255,0.7); }
     
     .progression-section { padding: var(--space-3xl) 0; background: var(--bg-alt); }
     .progression-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
     @media (max-width: 700px) { .progression-grid { grid-template-columns: 1fr; } }
-    .progression-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: var(--space-xl); border: 1px solid var(--border); }
-    .progression-card h3 { font-size: 18px; margin-bottom: var(--space-md); display: flex; align-items: center; gap: var(--space-sm); }
+    .progression-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: var(--space-xl); border: 1px solid var(--border); transition: all 0.3s ease; }
+    .progression-card:hover { border-color: var(--accent); }
+    .progression-card h3 { font-size: 18px; margin-bottom: var(--space-md); }
     .progression-card p { font-size: 15px; color: var(--text-secondary); margin-bottom: var(--space-lg); line-height: 1.6; }
     
-    footer { padding: var(--space-2xl) 0; border-top: 1px solid var(--border); }
+    footer { padding: var(--space-2xl) 0; border-top: 1px solid var(--border); background: var(--bg); }
     .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-lg); }
     .footer-content p { font-size: 14px; color: var(--text-muted); }
     .footer-links { display: flex; gap: var(--space-lg); }
-    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
     .footer-links a:hover { color: var(--text); }
   </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <a href="../" class="logo">
-        <div class="logo-mark"></div>
-        <span>uncluttered</span>
-      </a>
+      <a href="../" class="logo"><div class="logo-mark"></div><span>uncluttered</span></a>
       <nav>
         <a href="../stages/">Stages</a>
         <a href="./">Stacks</a>
@@ -145,10 +170,7 @@
 
   <section class="page-hero">
     <div class="container">
-      <div class="breadcrumb reveal">
-        <a href="../">Home</a><span>→</span><a href="./">Stacks</a><span>→</span>Growing
-      </div>
-      
+      <div class="breadcrumb reveal"><a href="../">Home</a><span>→</span><a href="./">Stacks</a><span>→</span>Growing</div>
       <div class="hero-header reveal">
         <div class="hero-icon">📈</div>
         <div>
@@ -156,19 +178,15 @@
           <p>For scaling what works</p>
         </div>
       </div>
-      
-      <p class="hero-description reveal">
-        People are using your product. Revenue is coming in. Now you need to understand your users better, communicate at scale, and not break what's already working.
-      </p>
-      
+      <p class="hero-description reveal">You have users. Real ones. Now you need to understand their behavior, catch issues before they do, and build systems that scale. Different problems, different tools.</p>
       <div class="stage-signal reveal">
         <h3>You're in the right place if:</h3>
         <ul>
           <li>You have paying customers or active users</li>
           <li>You need to understand user behavior, not just ship features</li>
-          <li>Support requests are becoming hard to manage manually</li>
-          <li>You're thinking about retention, not just acquisition</li>
-          <li>Your to-do list needs structure beyond a notes app</li>
+          <li>Bug reports are coming in faster than you can fix them</li>
+          <li>You're thinking about team processes and workflows</li>
+          <li>Support requests need a better system</li>
         </ul>
       </div>
     </div>
@@ -178,123 +196,126 @@
     <div class="container">
       <div class="section-header reveal">
         <h2>Your Stack</h2>
-        <p>Five tools to understand, communicate, and scale.</p>
+        <p>Four tools to add. Keep your Building stack, layer these on top.</p>
       </div>
       
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);">
-          <div class="tool-card-logo">📊</div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">PostHog</span>
-            <span class="tool-card-tag">Analytics</span>
+      <!-- PostHog -->
+      <div class="tool-card tool-posthog reveal">
+        <div class="tool-card-header">
+          <div class="tool-card-identity">
+            <div class="tool-card-icon">📊</div>
+            <div>
+              <div class="tool-card-name">PostHog</div>
+              <span class="tool-card-tag">Analytics</span>
+            </div>
           </div>
-          <p class="tool-card-desc">
-            Product analytics that actually tells you what users do. Session recordings, funnels, feature flags. All in one tool, self-hostable if you care about data privacy.
-          </p>
+          <a href="https://posthog.com" target="_blank" class="tool-card-link">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="tool-card-body">
+          <p class="tool-card-desc">Product analytics that actually makes sense. See what users do, where they drop off, and what features matter. Session replay, feature flags, A/B testing — all in one.</p>
           <div class="tool-card-why">
             <h4>Why this, not that</h4>
-            <p>Not Google Analytics (traffic, not product analytics). Not Mixpanel (expensive at scale). Not Amplitude (enterprise complexity). PostHog gives you everything without the vendor lock-in.</p>
+            <p>Not Google Analytics (vanity metrics, privacy nightmare). Not Mixpanel (expensive at scale). Not Amplitude (enterprise complexity). PostHog gives you everything without the enterprise sales process.</p>
           </div>
-          <a href="https://posthog.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+        </div>
+        <div class="tool-card-footer">
+          <span class="tool-card-used-by-label">Used by</span>
+          <div class="tool-card-companies">
+            <span class="tool-card-company">Y Combinator</span>
+            <span class="tool-card-company">Airbus</span>
+            <span class="tool-card-company">Hasura</span>
+            <span class="tool-card-company">Phantom</span>
+          </div>
         </div>
       </div>
 
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);">
-          <div class="tool-card-logo">🔔</div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Loops</span>
-            <span class="tool-card-tag">Email</span>
+      <!-- Linear -->
+      <div class="tool-card tool-linear reveal">
+        <div class="tool-card-header">
+          <div class="tool-card-identity">
+            <div class="tool-card-icon">📋</div>
+            <div>
+              <div class="tool-card-name">Linear</div>
+              <span class="tool-card-tag">Project Management</span>
+            </div>
           </div>
-          <p class="tool-card-desc">
-            Email marketing built for SaaS. Onboarding sequences, product updates, re-engagement campaigns. Simple, beautiful, designed for product teams.
-          </p>
+          <a href="https://linear.app" target="_blank" class="tool-card-link">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="tool-card-body">
+          <p class="tool-card-desc">Issue tracking that doesn't feel like punishment. Fast, keyboard-driven, beautifully designed. Finally, project management you'll actually enjoy using.</p>
           <div class="tool-card-why">
             <h4>Why this, not that</h4>
-            <p>Not Mailchimp (bloated, not product-focused). Not ConvertKit (for creators, not SaaS). Not Customer.io (enterprise pricing). Loops is email for products, not newsletters.</p>
+            <p>Not Jira (soul-crushing). Not Asana (too generic). Not Notion (not built for this). Linear is what software issue tracking should feel like.</p>
           </div>
-          <a href="https://loops.so" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+        </div>
+        <div class="tool-card-footer">
+          <span class="tool-card-used-by-label">Used by</span>
+          <div class="tool-card-companies">
+            <span class="tool-card-company">Vercel</span>
+            <span class="tool-card-company">Ramp</span>
+            <span class="tool-card-company">Retool</span>
+            <span class="tool-card-company">Cash App</span>
+          </div>
         </div>
       </div>
 
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
-          <div class="tool-card-logo">💬</div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Intercom</span>
-            <span class="tool-card-tag">Support</span>
+      <!-- Intercom -->
+      <div class="tool-card tool-intercom reveal">
+        <div class="tool-card-header">
+          <div class="tool-card-identity">
+            <div class="tool-card-icon">💬</div>
+            <div>
+              <div class="tool-card-name">Intercom</div>
+              <span class="tool-card-tag">Support</span>
+            </div>
           </div>
-          <p class="tool-card-desc">
-            Talk to users at scale. Live chat, help center, automated responses. When email threads and Slack DMs stop working, Intercom takes over.
-          </p>
+          <a href="https://intercom.com" target="_blank" class="tool-card-link">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="tool-card-body">
+          <p class="tool-card-desc">Customer messaging that scales. Live chat, help center, automated responses. Talk to customers without drowning in emails. AI features handle the routine stuff.</p>
           <div class="tool-card-why">
             <h4>Why this, not that</h4>
-            <p>Not Zendesk (enterprise complexity). Not Crisp (limited automation). Not plain email (doesn't scale). Intercom is expensive but worth it when support becomes a bottleneck.</p>
+            <p>Not Zendesk (enterprise bloat). Not Crisp (limited features). Not email (doesn't scale). Intercom is the standard for growing products.</p>
           </div>
-          <a href="https://intercom.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+        </div>
+        <div class="tool-card-footer">
+          <span class="tool-card-used-by-label">Used by</span>
+          <div class="tool-card-companies">
+            <span class="tool-card-company">Atlassian</span>
+            <span class="tool-card-company">Amazon</span>
+            <span class="tool-card-company">Notion</span>
+            <span class="tool-card-company">Unity</span>
+          </div>
         </div>
       </div>
 
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #5046e5 0%, #6366f1 100%);">
-          <div class="tool-card-logo">📋</div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Linear</span>
-            <span class="tool-card-tag">Project Management</span>
+      <!-- Sentry -->
+      <div class="tool-card tool-sentry reveal">
+        <div class="tool-card-header">
+          <div class="tool-card-identity">
+            <div class="tool-card-icon">🐛</div>
+            <div>
+              <div class="tool-card-name">Sentry</div>
+              <span class="tool-card-tag">Error Tracking</span>
+            </div>
           </div>
-          <p class="tool-card-desc">
-            Issue tracking that doesn't make you hate issue tracking. Fast, keyboard-driven, opinionated. When your roadmap needs more structure than Notion.
-          </p>
+          <a href="https://sentry.io" target="_blank" class="tool-card-link">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="tool-card-body">
+          <p class="tool-card-desc">Know about errors before your users tell you. Stack traces, user context, release tracking. Debug production issues without guessing.</p>
           <div class="tool-card-why">
             <h4>Why this, not that</h4>
-            <p>Not Jira (soul-crushing). Not Asana (too generic). Not Notion (not built for this). Linear is project management for people who actually build products.</p>
-          </div>
-          <a href="https://linear.app" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #10a37f 0%, #1a7f64 100%);">
-          <div class="tool-card-logo" style="background: #000;">
-            <svg viewBox="0 0 24 24" fill="#10a37f" style="width: 32px; height: 32px;"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364l2.0201-1.1638a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>
+            <p>Not Bugsnag (less ecosystem). Not LogRocket (different focus). Not console.log (obviously). Sentry is the standard for error tracking.</p>
           </div>
         </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">OpenAI API</span>
-            <span class="tool-card-tag">AI Infrastructure</span>
+        <div class="tool-card-footer">
+          <span class="tool-card-used-by-label">Used by</span>
+          <div class="tool-card-companies">
+            <span class="tool-card-company">Microsoft</span>
+            <span class="tool-card-company">Disney</span>
+            <span class="tool-card-company">Cloudflare</span>
+            <span class="tool-card-company">GitHub</span>
           </div>
-          <p class="tool-card-desc">
-            When your users expect AI in your product. Chat interfaces, content generation, embeddings for search, automation. The building block for AI features.
-          </p>
-          <div class="tool-card-why">
-            <h4>Why this, not that</h4>
-            <p>Not Claude API (OpenAI has broader model options and better tooling ecosystem). Not building your own (you're not an AI company). Not no-code AI tools (you need flexibility at scale). OpenAI API is the standard.</p>
-          </div>
-          <a href="https://platform.openai.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
         </div>
       </div>
     </div>
@@ -302,16 +323,15 @@
 
   <section class="skip-section">
     <div class="container">
-      <h2 class="reveal">What you don't need yet</h2>
-      <p class="reveal">Growth isn't about adding more tools. Resist these.</p>
-      
+      <h2 class="reveal">What you might not need yet</h2>
+      <p class="reveal">Tempting but premature. Add complexity only when pain demands it.</p>
       <div class="skip-grid">
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>A/B testing platforms (optimize what works first)</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Data warehousing (PostHog is enough for now)</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Enterprise CRM (you don't have enterprise sales)</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Multiple analytics tools (one source of truth)</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Status page (until you have real uptime requirements)</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Feature announcement tools (email handles this)</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Data warehouse and BI tools</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Custom CRM system</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Enterprise monitoring suite</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Multiple marketing automation tools</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Dedicated status page service</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Complex CI/CD beyond Vercel</span></div>
       </div>
     </div>
   </section>
@@ -320,18 +340,17 @@
     <div class="container">
       <div class="section-header reveal">
         <h2>Know when to move</h2>
-        <p>Growth is a stage, not a destination.</p>
+        <p>Growing eventually leads to complexity.</p>
       </div>
-      
       <div class="progression-grid">
         <div class="progression-card reveal">
-          <h3>→ Move to Simplifying when:</h3>
-          <p>Your stack feels bloated. You're paying for tools you don't use. Context-switching is killing productivity. Time to cut.</p>
+          <h3>→ Consider Simplifying when:</h3>
+          <p>You have too many tools and dashboards. Context-switching is killing productivity. You're paying for things you don't use. Time to cut and consolidate.</p>
           <a href="./simplifying.html" class="btn btn-primary">View Simplifying Stack →</a>
         </div>
         <div class="progression-card reveal">
           <h3>← Go back to Building if:</h3>
-          <p>You're optimizing before you've validated. If core features are still changing weekly, you're not ready to grow — you're still building.</p>
+          <p>You're optimizing before you have users. Analytics without traffic is just sad graphs. Get traction first, then measure.</p>
           <a href="./building.html" class="btn btn-secondary">View Building Stack</a>
         </div>
       </div>
@@ -341,7 +360,7 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p>That's enough. Go grow.</p>
+        <p>Measure what matters. Ignore the rest.</p>
         <div class="footer-links">
           <a href="../">Home</a>
           <a href="./">All Stacks</a>
@@ -353,11 +372,11 @@
 
   <script>
     const reveals = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-    reveals.forEach(el => revealObserver.observe(el));
-    window.addEventListener('scroll', () => { document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
   </script>
 </body>
 </html>
