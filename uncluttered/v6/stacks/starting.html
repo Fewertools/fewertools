@@ -27,9 +27,9 @@
       --text-secondary: #555;
       --text-muted: #888;
       --text-inverse: #FAFAF8;
-      --accent: #8B5CF6;
-      --accent-hover: #7C3AED;
-      --accent-subtle: rgba(139, 92, 246, 0.1);
+      --accent: #0D9488;
+      --accent-hover: #0F766E;
+      --accent-subtle: rgba(13, 148, 136, 0.1);
       --border: rgba(0, 0, 0, 0.08);
       --border-strong: rgba(0, 0, 0, 0.12);
       --font-display: 'Space Grotesk', -apple-system, sans-serif;
@@ -194,6 +194,37 @@
     .cta-section .btn-secondary { border-color: rgba(255,255,255,0.2); color: var(--text-inverse); }
     .cta-section .btn-secondary:hover { border-color: rgba(255,255,255,0.5); }
     
+    /* Quick Start */
+    .quickstart-section { padding: var(--space-3xl) 0; }
+    .quickstart-header { text-align: center; margin-bottom: var(--space-2xl); }
+    .quickstart-header h2 { margin-bottom: var(--space-sm); }
+    .quickstart-header p { color: var(--text-secondary); }
+    .quickstart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); max-width: 900px; margin: 0 auto; }
+    .quickstart-step { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-xl); transition: all 0.3s ease; }
+    .quickstart-step:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .quickstart-step-number { width: 32px; height: 32px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; margin-bottom: var(--space-md); }
+    .quickstart-step h4 { font-size: 16px; margin-bottom: var(--space-sm); }
+    .quickstart-step p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    
+    /* Skip Section */
+    .skip-section { padding: var(--space-3xl) 0; background: var(--bg-dark); color: var(--text-inverse); }
+    .skip-section h2 { margin-bottom: var(--space-sm); }
+    .skip-section > .container > p { color: rgba(255,255,255,0.6); font-size: 18px; margin-bottom: var(--space-xl); }
+    .skip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md); }
+    .skip-item { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); }
+    .skip-item:hover { background: rgba(255,100,100,0.05); border-color: rgba(255,100,100,0.2); }
+    .skip-x { width: 28px; height: 28px; background: rgba(255,100,100,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff8a8a; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+    .skip-item span { font-size: 15px; color: rgba(255,255,255,0.7); }
+    
+    /* Progression Section */
+    .progression-section { padding: var(--space-3xl) 0; background: var(--bg-alt); }
+    .progression-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-xl); max-width: 800px; margin: 0 auto; }
+    @media (max-width: 700px) { .progression-grid { grid-template-columns: 1fr; } }
+    .progression-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-xl); }
+    .progression-card:hover { border-color: var(--accent); }
+    .progression-card h3 { font-size: 18px; margin-bottom: var(--space-md); }
+    .progression-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-lg); }
+    
     /* Footer */
     footer { padding: var(--space-2xl) 0; border-top: 1px solid var(--border); }
     .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-lg); }
@@ -245,7 +276,7 @@
           <span>v0</span>
         </div>
         <div class="stack-tool">
-          <img src="https://cdn.simpleicons.org/midjourney/000000" alt="Midjourney">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Midjourney_Emblem.png" alt="Midjourney">
           <span>Midjourney</span>
         </div>
       </div>
@@ -301,7 +332,7 @@
             <span class="architecture-node-role">Quick UI Mockups</span>
           </div>
           <div class="architecture-node">
-            <div class="architecture-node-icon"><img src="https://cdn.simpleicons.org/midjourney/000000" alt="Midjourney"></div>
+            <div class="architecture-node-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Midjourney_Emblem.png" alt="Midjourney"></div>
             <span class="architecture-node-name">Midjourney</span>
             <span class="architecture-node-role">Visual Concepts</span>
           </div>
@@ -590,7 +621,7 @@
             <div class="comparison-pick-label">Our Pick — Visuals</div>
             <div class="comparison-pick-header">
               <div class="comparison-pick-logo">
-                <img src="https://cdn.simpleicons.org/midjourney/000000" alt="Midjourney">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Midjourney_Emblem.png" alt="Midjourney">
               </div>
               <div>
                 <span class="comparison-pick-name">Midjourney</span>
@@ -690,7 +721,7 @@
             <div class="calculator-item-cost free">$0</div>
           </div>
           <div class="calculator-item">
-            <div class="calculator-item-icon"><img src="https://cdn.simpleicons.org/midjourney/000000" alt="Midjourney"></div>
+            <div class="calculator-item-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Midjourney_Emblem.png" alt="Midjourney"></div>
             <div class="calculator-item-info">
               <div class="calculator-item-name">Midjourney</div>
               <div class="calculator-item-tier">Basic plan</div>
@@ -703,6 +734,88 @@
           <div class="calculator-total-value">$10<span style="font-size:16px;font-weight:400;opacity:0.7">/mo</span></div>
         </div>
         <p class="calculator-note">* Most tools are free. Midjourney is optional — use DALL-E in ChatGPT if you want to stay at $0.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Start -->
+  <section class="quickstart-section">
+    <div class="container">
+      <div class="quickstart-header reveal">
+        <h2>Get started in 10 minutes</h2>
+        <p>Here's your first hour with each tool.</p>
+      </div>
+      <div class="quickstart-grid">
+        <div class="quickstart-step reveal">
+          <div class="quickstart-step-number">1</div>
+          <h4>Set up Notion</h4>
+          <p>Create a workspace. Start a page called "Ideas". Brain dump everything. Don't organize yet — just capture.</p>
+        </div>
+        <div class="quickstart-step reveal">
+          <div class="quickstart-step-number">2</div>
+          <h4>Open Claude</h4>
+          <p>Describe your idea. Ask it to poke holes. Ask "what am I missing?" and "who else has tried this?"</p>
+        </div>
+        <div class="quickstart-step reveal">
+          <div class="quickstart-step-number">3</div>
+          <h4>Research with Perplexity</h4>
+          <p>Search for competitors, market size, and existing solutions. Save the best sources to Notion.</p>
+        </div>
+        <div class="quickstart-step reveal">
+          <div class="quickstart-step-number">4</div>
+          <h4>Sketch in Figma</h4>
+          <p>Open a new file. Draw rough boxes. What's the main screen? What's the flow? Keep it ugly — speed matters more.</p>
+        </div>
+        <div class="quickstart-step reveal">
+          <div class="quickstart-step-number">5</div>
+          <h4>Prototype with v0</h4>
+          <p>Describe your main screen to v0. Get a working UI in minutes. Share it for feedback.</p>
+        </div>
+        <div class="quickstart-step reveal">
+          <div class="quickstart-step-number">6</div>
+          <h4>Explore visuals</h4>
+          <p>Use Midjourney to explore brand directions, hero images, or visual concepts. Save what resonates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you don't need yet -->
+  <section class="skip-section">
+    <div class="container">
+      <h2 class="reveal">What you don't need yet</h2>
+      <p class="reveal">These will distract you. Explore first, build later.</p>
+      <div class="skip-grid">
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>A domain name</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Hosting or servers</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>A code editor</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>A database</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Payment processing</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Analytics tools</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>A logo (yet)</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Social media accounts</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- When to move on -->
+  <section class="progression-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Know when to move</h2>
+        <p>Starting is a stage, not a destination.</p>
+      </div>
+      <div class="progression-grid">
+        <div class="progression-card reveal">
+          <h3>→ Move to Building when:</h3>
+          <p>You've validated the idea with real people. You know what to build and roughly how. Time to ship something real.</p>
+          <a href="./building.html" class="btn btn-primary">View Building Stack →</a>
+        </div>
+        <div class="progression-card reveal">
+          <h3>⟳ Stay in Starting if:</h3>
+          <p>You're still exploring multiple ideas. The problem isn't clear yet. You haven't talked to potential users. Keep validating — it's cheaper than building wrong.</p>
+          <a href="../philosophy/" class="btn btn-secondary">Read our philosophy</a>
+        </div>
       </div>
     </div>
   </section>
