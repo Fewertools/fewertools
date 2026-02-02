@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stacks — Uncluttered</title>
+  <meta name="description" content="One curated stack for every stage. Five tools maximum. Everything you need, nothing you don't.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #111; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #BEFF00; --accent-subtle: rgba(190, 255, 0, 0.15);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.15);
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --space-sm: 8px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 100px;
+      --max-width: 1200px;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --duration-fast: 0.2s; --duration-slow: 0.8s;
+    }
+    
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    h1 { font-size: clamp(44px, 7vw, 64px); } h2 { font-size: clamp(32px, 5vw, 44px); }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-xl); }
+    
+    .reveal { opacity: 0; transform: translateY(40px); transition: all var(--duration-slow) var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--space-lg) 0; background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: var(--space-sm); font-family: var(--font-display); font-weight: 700; font-size: 20px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+    .logo-mark::before { content: ''; width: 14px; height: 14px; background: var(--accent); border-radius: 3px; }
+    nav { display: flex; align-items: center; gap: var(--space-xl); }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color var(--duration-fast) ease; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { padding: var(--space-sm) var(--space-md); background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    
+    .page-hero { padding: 160px 0 80px; }
+    .page-hero h1 { margin-bottom: var(--space-md); }
+    .page-hero p { font-size: 20px; color: var(--text-secondary); max-width: 560px; }
+    
+    .stacks-grid { padding: var(--space-2xl) 0 var(--space-3xl); display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-xl); }
+    @media (max-width: 800px) { .stacks-grid { grid-template-columns: 1fr; } }
+    
+    .stack-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: all 0.5s var(--ease-out);
+    }
+    .stack-card:hover {
+      border-color: var(--border-strong);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.1);
+      transform: translateY(-8px);
+    }
+    
+    .stack-card-header {
+      padding: var(--space-xl);
+      background: var(--bg-dark);
+      color: var(--text-inverse);
+      position: relative;
+      overflow: hidden;
+    }
+    .stack-card-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(190, 255, 0, 0.1) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .stack-card:hover .stack-card-header::before { opacity: 1; }
+    
+    .stack-card-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--accent);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: var(--space-md);
+    }
+    
+    .stack-card-header h3 {
+      font-size: 28px;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .stack-card-header p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+    
+    .stack-card-body { padding: var(--space-xl); }
+    
+    .stack-card-tools {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+    
+    .stack-card-tool {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: var(--bg);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .stack-card-tool-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    
+    .stack-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      background: var(--bg-dark);
+      color: var(--text-inverse);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      transition: all var(--duration-fast) ease;
+    }
+    .stack-card-link:hover { background: #222; transform: translateX(4px); }
+    .stack-card-link svg { width: 16px; height: 16px; }
+    
+    footer { padding: var(--space-2xl) 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-lg); }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: var(--space-lg); }
+    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../" class="logo"><div class="logo-mark"></div><span>uncluttered</span></a>
+      <nav>
+        <a href="../stages/">Stages</a>
+        <a href="./">Stacks</a>
+        <a href="../tools/">Tools</a>
+        <a href="../philosophy/">Philosophy</a>
+        <a href="../#stages" class="nav-cta">Find your stack</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="reveal">Stacks</h1>
+      <p class="reveal">One curated stack for every stage. Five tools maximum. Everything you need, nothing you don't.</p>
+    </div>
+  </section>
+
+  <section class="stacks-grid">
+    <div class="container" style="display: contents;">
+      <div class="stack-card reveal">
+        <div class="stack-card-header">
+          <div class="stack-card-icon">💡</div>
+          <h3>Starting</h3>
+          <p>For exploring and validating</p>
+        </div>
+        <div class="stack-card-body">
+          <div class="stack-card-tools">
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">📝</span> Notion</div>
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">🎨</span> Figma</div>
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">📊</span> Google Sheets</div>
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">💬</span> Slack</div>
+          </div>
+          <a href="./starting.html" class="stack-card-link">
+            View stack
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="stack-card reveal">
+        <div class="stack-card-header">
+          <div class="stack-card-icon">🔨</div>
+          <h3>Building</h3>
+          <p>For shipping real products</p>
+        </div>
+        <div class="stack-card-body">
+          <div class="stack-card-tools">
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">▲</span> Next.js</div>
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">⚡</span> Supabase</div>
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">🚀</span> Vercel</div>
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">💳</span> Stripe</div>
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">📧</span> Resend</div>
+          </div>
+          <a href="./building.html" class="stack-card-link">
+            View stack
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="stack-card reveal">
+        <div class="stack-card-header">
+          <div class="stack-card-icon">📈</div>
+          <h3>Growing</h3>
+          <p>For scaling what works</p>
+        </div>
+        <div class="stack-card-body">
+          <div class="stack-card-tools">
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">📊</span> PostHog</div>
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">🔔</span> Loops</div>
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">💬</span> Intercom</div>
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">📋</span> Linear</div>
+          </div>
+          <a href="./growing.html" class="stack-card-link">
+            View stack
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="stack-card reveal">
+        <div class="stack-card-header">
+          <div class="stack-card-icon">✂️</div>
+          <h3>Simplifying</h3>
+          <p>For cutting what doesn't serve you</p>
+        </div>
+        <div class="stack-card-body">
+          <div class="stack-card-tools">
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">📋</span> Audit your tools</div>
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">🗑️</span> Cut redundancy</div>
+            <div class="stack-card-tool"><span class="stack-card-tool-icon">✅</span> Keep essentials</div>
+          </div>
+          <a href="./simplifying.html" class="stack-card-link">
+            View guide
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>Pick your stage. Get what's enough.</p>
+        <div class="footer-links">
+          <a href="../">Home</a>
+          <a href="../philosophy/">Philosophy</a>
+          <a href="../tools/">Tools</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObserver.observe(el));
+    window.addEventListener('scroll', () => { document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50); });
+  </script>
+</body>
+</html>

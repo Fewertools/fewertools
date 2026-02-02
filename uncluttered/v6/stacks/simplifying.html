@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simplifying Stack — Uncluttered</title>
+  <meta name="description" content="You have too much. Here's how to cut what doesn't serve you anymore.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #FAFAF8;
+      --bg-alt: #F3F3F0;
+      --bg-dark: #111;
+      --bg-card: #FFFFFF;
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --text-inverse: #FAFAF8;
+      --accent: #BEFF00;
+      --accent-hover: #A8E600;
+      --accent-subtle: rgba(190, 255, 0, 0.15);
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.15);
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px;
+      --space-xl: 40px; --space-2xl: 64px; --space-3xl: 100px;
+      --max-width: 1200px;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --duration-fast: 0.2s; --duration-normal: 0.4s; --duration-slow: 0.8s;
+    }
+    
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    h1 { font-size: clamp(44px, 7vw, 64px); } h2 { font-size: clamp(32px, 5vw, 44px); } h3 { font-size: clamp(24px, 3vw, 28px); }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-xl); }
+    
+    .reveal { opacity: 0; transform: translateY(40px); transition: all var(--duration-slow) var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    
+    .btn { display: inline-flex; align-items: center; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); font-family: var(--font-body); font-size: 15px; font-weight: 600; border-radius: var(--radius-md); border: none; cursor: pointer; transition: all var(--duration-fast) ease; }
+    .btn-primary { background: var(--bg-dark); color: var(--text-inverse); }
+    .btn-primary:hover { background: #222; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); }
+    .btn-secondary { background: var(--bg-card); color: var(--text); border: 1px solid var(--border-strong); }
+    .btn-secondary:hover { border-color: var(--text); transform: translateY(-2px); }
+    
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--space-lg) 0; background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: border-color var(--duration-fast) ease; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: var(--space-sm); font-family: var(--font-display); font-weight: 700; font-size: 20px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+    .logo-mark::before { content: ''; width: 14px; height: 14px; background: var(--accent); border-radius: 3px; }
+    nav { display: flex; align-items: center; gap: var(--space-xl); }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color var(--duration-fast) ease; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { padding: var(--space-sm) var(--space-md); background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    
+    .page-hero { padding: 160px 0 80px; background: var(--bg); }
+    .breadcrumb { display: flex; align-items: center; gap: var(--space-sm); font-size: 13px; color: var(--text-muted); margin-bottom: var(--space-lg); }
+    .breadcrumb a:hover { color: var(--text); }
+    .breadcrumb span { opacity: 0.5; }
+    .hero-header { display: flex; align-items: flex-start; gap: var(--space-lg); margin-bottom: var(--space-lg); }
+    .hero-icon { width: 72px; height: 72px; background: var(--accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; animation: snip 2s ease-in-out infinite; }
+    @keyframes snip { 0%, 100% { transform: scale(1); } 25% { transform: scale(0.95); } 50% { transform: scale(1.05); } }
+    .hero-header h1 { margin-bottom: var(--space-sm); }
+    .hero-header p { font-size: 18px; color: var(--text-secondary); }
+    .hero-description { font-size: 20px; color: var(--text-secondary); max-width: 640px; line-height: 1.7; }
+    
+    .stage-signal { background: var(--accent); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-xl) 0; }
+    .stage-signal h3 { font-size: 16px; margin-bottom: var(--space-md); color: var(--bg-dark); }
+    .stage-signal ul { list-style: none; display: grid; gap: var(--space-sm); }
+    .stage-signal li { display: flex; align-items: flex-start; gap: var(--space-sm); font-size: 15px; color: var(--bg-dark); }
+    .stage-signal li::before { content: '✓'; font-weight: 700; flex-shrink: 0; }
+    
+    .guide-section { padding: var(--space-3xl) 0; }
+    .section-header { margin-bottom: var(--space-2xl); }
+    .section-header h2 { margin-bottom: var(--space-sm); }
+    .section-header p { font-size: 18px; color: var(--text-secondary); }
+    
+    /* Audit cards */
+    .audit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+    }
+    @media (max-width: 800px) { .audit-grid { grid-template-columns: 1fr; } }
+    
+    .audit-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      border: 1px solid var(--border);
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+    .audit-card:hover {
+      border-color: var(--border-strong);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
+    }
+    
+    .audit-card-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: var(--space-md);
+    }
+    
+    .audit-card h3 {
+      font-size: 20px;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .audit-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+    }
+    
+    .audit-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    
+    .audit-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    .audit-list li::before {
+      content: '→';
+      color: var(--accent);
+      font-weight: 700;
+    }
+    
+    /* Cut first section */
+    .cut-section {
+      padding: var(--space-3xl) 0;
+      background: var(--bg-dark);
+      color: var(--text-inverse);
+    }
+    
+    .cut-section h2 { margin-bottom: var(--space-sm); }
+    .cut-section > .container > p { color: var(--text-muted); font-size: 18px; margin-bottom: var(--space-xl); }
+    
+    .cut-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+    @media (max-width: 600px) { .cut-grid { grid-template-columns: 1fr; } }
+    
+    .cut-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-lg);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+    }
+    
+    .cut-item-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,68,68,0.15);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    
+    .cut-item h4 {
+      font-size: 16px;
+      margin-bottom: 4px;
+      color: var(--text-inverse);
+    }
+    
+    .cut-item p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    
+    /* Keep section */
+    .keep-section {
+      padding: var(--space-3xl) 0;
+    }
+    
+    .keep-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
+    @media (max-width: 700px) { .keep-grid { grid-template-columns: 1fr; } }
+    
+    .keep-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      border: 2px solid var(--accent);
+    }
+    
+    .keep-card h3 {
+      font-size: 18px;
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    
+    .keep-card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    /* Progression */
+    .progression-section { padding: var(--space-3xl) 0; background: var(--bg-alt); }
+    .progression-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+    @media (max-width: 700px) { .progression-grid { grid-template-columns: 1fr; } }
+    .progression-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: var(--space-xl); border: 1px solid var(--border); }
+    .progression-card h3 { font-size: 18px; margin-bottom: var(--space-md); }
+    .progression-card p { font-size: 15px; color: var(--text-secondary); margin-bottom: var(--space-lg); line-height: 1.6; }
+    
+    footer { padding: var(--space-2xl) 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-lg); }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: var(--space-lg); }
+    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../" class="logo">
+        <div class="logo-mark"></div>
+        <span>uncluttered</span>
+      </a>
+      <nav>
+        <a href="../stages/">Stages</a>
+        <a href="./">Stacks</a>
+        <a href="../tools/">Tools</a>
+        <a href="../philosophy/">Philosophy</a>
+        <a href="../#stages" class="nav-cta">Find your stack</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb reveal">
+        <a href="../">Home</a><span>→</span><a href="./">Stacks</a><span>→</span>Simplifying
+      </div>
+      
+      <div class="hero-header reveal">
+        <div class="hero-icon">✂️</div>
+        <div>
+          <h1>Simplifying</h1>
+          <p>For cutting what doesn't serve you</p>
+        </div>
+      </div>
+      
+      <p class="hero-description reveal">
+        You have too many tools. Too many subscriptions. Too much complexity. This isn't about adding something new — it's about removing what no longer belongs.
+      </p>
+      
+      <div class="stage-signal reveal">
+        <h3>You're in the right place if:</h3>
+        <ul>
+          <li>You're paying for tools you barely use</li>
+          <li>Context-switching between apps is killing your focus</li>
+          <li>You can't remember what tool does what anymore</li>
+          <li>Onboarding new team members takes forever</li>
+          <li>Your monthly SaaS bill makes you uncomfortable</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="guide-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>The Audit</h2>
+        <p>Before you cut, understand what you have and why.</p>
+      </div>
+      
+      <div class="audit-grid">
+        <div class="audit-card reveal">
+          <div class="audit-card-icon">📋</div>
+          <h3>List Everything</h3>
+          <p>Every tool, every subscription, every integration. You can't simplify what you can't see.</p>
+          <ul class="audit-list">
+            <li>Check your credit card statements</li>
+            <li>Review team app usage</li>
+            <li>Document integrations</li>
+          </ul>
+        </div>
+        
+        <div class="audit-card reveal">
+          <div class="audit-card-icon">🔍</div>
+          <h3>Track Usage</h3>
+          <p>For two weeks, note which tools you actually use daily vs. which just sit there.</p>
+          <ul class="audit-list">
+            <li>Daily active use?</li>
+            <li>Weekly? Monthly?</li>
+            <li>Last login date</li>
+          </ul>
+        </div>
+        
+        <div class="audit-card reveal">
+          <div class="audit-card-icon">🎯</div>
+          <h3>Find Overlaps</h3>
+          <p>Multiple tools doing the same job? That's where complexity hides.</p>
+          <ul class="audit-list">
+            <li>Two note-taking apps?</li>
+            <li>Multiple analytics tools?</li>
+            <li>Redundant communication</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cut-section">
+    <div class="container">
+      <h2 class="reveal">Cut These First</h2>
+      <p class="reveal">Start here. These categories are almost always overbuilt.</p>
+      
+      <div class="cut-grid">
+        <div class="cut-item reveal">
+          <div class="cut-item-icon">🗑️</div>
+          <div>
+            <h4>Secondary analytics</h4>
+            <p>If you have more than one analytics tool, pick the one you actually open.</p>
+          </div>
+        </div>
+        <div class="cut-item reveal">
+          <div class="cut-item-icon">🗑️</div>
+          <div>
+            <h4>Unused integrations</h4>
+            <p>Zapier workflows that ran once. Disconnect them.</p>
+          </div>
+        </div>
+        <div class="cut-item reveal">
+          <div class="cut-item-icon">🗑️</div>
+          <div>
+            <h4>"Just in case" tools</h4>
+            <p>If you haven't used it in 90 days, you don't need it.</p>
+          </div>
+        </div>
+        <div class="cut-item reveal">
+          <div class="cut-item-icon">🗑️</div>
+          <div>
+            <h4>Premium tiers you don't use</h4>
+            <p>Downgrade before you cancel. Often the free tier is enough.</p>
+          </div>
+        </div>
+        <div class="cut-item reveal">
+          <div class="cut-item-icon">🗑️</div>
+          <div>
+            <h4>Notification tools</h4>
+            <p>If it just tells you about things that happen elsewhere, cut it.</p>
+          </div>
+        </div>
+        <div class="cut-item reveal">
+          <div class="cut-item-icon">🗑️</div>
+          <div>
+            <h4>Optimization tools</h4>
+            <p>A/B testing, heatmaps — if you're not actively using data, stop collecting it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="keep-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>What to Keep</h2>
+        <p>After the cuts, these categories should remain. One tool each.</p>
+      </div>
+      
+      <div class="keep-grid">
+        <div class="keep-card reveal">
+          <h3>✓ One place for docs</h3>
+          <p>Notion, Google Docs, or Coda. Pick one. Everything lives there.</p>
+        </div>
+        <div class="keep-card reveal">
+          <h3>✓ One place for tasks</h3>
+          <p>Linear, Todoist, or things. Not three task apps "for different contexts."</p>
+        </div>
+        <div class="keep-card reveal">
+          <h3>✓ One communication tool</h3>
+          <p>Slack or email. Not both for the same conversations.</p>
+        </div>
+        <div class="keep-card reveal">
+          <h3>✓ One analytics tool</h3>
+          <p>PostHog, Mixpanel, or Amplitude. One source of truth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="progression-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>After Simplifying</h2>
+        <p>Where you go next depends on what you're building.</p>
+      </div>
+      
+      <div class="progression-grid">
+        <div class="progression-card reveal">
+          <h3>→ Back to Building</h3>
+          <p>Simplified stack, clear head. Now you can build without the noise. Return with intention.</p>
+          <a href="./building.html" class="btn btn-primary">View Building Stack →</a>
+        </div>
+        <div class="progression-card reveal">
+          <h3>→ Back to Growing</h3>
+          <p>If growth stalled because of complexity, a leaner stack will accelerate you.</p>
+          <a href="./growing.html" class="btn btn-secondary">View Growing Stack</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>Less is the whole point. Go cut.</p>
+        <div class="footer-links">
+          <a href="../">Home</a>
+          <a href="./">All Stacks</a>
+          <a href="../philosophy/">Philosophy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObserver.observe(el));
+    window.addEventListener('scroll', () => { document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50); });
+  </script>
+</body>
+</html>

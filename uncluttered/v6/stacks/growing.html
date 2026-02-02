@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Building Stack — Uncluttered</title>
-  <meta name="description" content="You're making something real. Here's everything you need to ship — and nothing you don't.">
+  <title>Growing Stack — Uncluttered</title>
+  <meta name="description" content="People are using your product. Here's how to scale without breaking what works.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -67,8 +67,8 @@
     .breadcrumb a:hover { color: var(--text); }
     .breadcrumb span { opacity: 0.5; }
     .hero-header { display: flex; align-items: flex-start; gap: var(--space-lg); margin-bottom: var(--space-lg); }
-    .hero-icon { width: 72px; height: 72px; background: var(--accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; animation: hammer 2s ease-in-out infinite; }
-    @keyframes hammer { 0%, 100% { transform: rotate(0deg); } 20% { transform: rotate(-20deg); } 40% { transform: rotate(0deg); } }
+    .hero-icon { width: 72px; height: 72px; background: var(--accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; animation: grow 2.5s ease-in-out infinite; }
+    @keyframes grow { 0%, 100% { transform: scale(1) translateY(0); } 50% { transform: scale(1.05) translateY(-3px); } }
     .hero-header h1 { margin-bottom: var(--space-sm); }
     .hero-header p { font-size: 18px; color: var(--text-secondary); }
     .hero-description { font-size: 20px; color: var(--text-secondary); max-width: 640px; line-height: 1.7; }
@@ -88,8 +88,7 @@
     .tool-card:hover { border-color: var(--border-strong); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1); transform: translateY(-4px); }
     @media (max-width: 800px) { .tool-card { grid-template-columns: 1fr; } }
     .tool-card-image { background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%); min-height: 240px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-    .tool-card-logo { width: 80px; height: 80px; background: var(--bg-card); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-    .tool-card-logo svg { width: 48px; height: 48px; }
+    .tool-card-logo { width: 80px; height: 80px; background: var(--bg-card); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
     .tool-card-content { padding: var(--space-xl); display: flex; flex-direction: column; }
     .tool-card-header { display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md); }
     .tool-card-name { font-size: 24px; font-weight: 700; }
@@ -116,7 +115,7 @@
     .progression-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
     @media (max-width: 700px) { .progression-grid { grid-template-columns: 1fr; } }
     .progression-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: var(--space-xl); border: 1px solid var(--border); }
-    .progression-card h3 { font-size: 18px; margin-bottom: var(--space-md); }
+    .progression-card h3 { font-size: 18px; margin-bottom: var(--space-md); display: flex; align-items: center; gap: var(--space-sm); }
     .progression-card p { font-size: 15px; color: var(--text-secondary); margin-bottom: var(--space-lg); line-height: 1.6; }
     
     footer { padding: var(--space-2xl) 0; border-top: 1px solid var(--border); }
@@ -147,29 +146,29 @@
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb reveal">
-        <a href="../">Home</a><span>→</span><a href="./">Stacks</a><span>→</span>Building
+        <a href="../">Home</a><span>→</span><a href="./">Stacks</a><span>→</span>Growing
       </div>
       
       <div class="hero-header reveal">
-        <div class="hero-icon">🔨</div>
+        <div class="hero-icon">📈</div>
         <div>
-          <h1>Building</h1>
-          <p>For shipping real products</p>
+          <h1>Growing</h1>
+          <p>For scaling what works</p>
         </div>
       </div>
       
       <p class="hero-description reveal">
-        You're past the idea phase. You know what to build. Now you need tools that help you ship — not tools that help you plan, dream, or optimize prematurely.
+        People are using your product. Revenue is coming in. Now you need to understand your users better, communicate at scale, and not break what's already working.
       </p>
       
       <div class="stage-signal reveal">
         <h3>You're in the right place if:</h3>
         <ul>
-          <li>You have a clear idea and you're ready to execute</li>
-          <li>You're writing code (or about to start)</li>
-          <li>You need a database, hosting, and a way to get paid</li>
-          <li>You're not exploring anymore — you're building</li>
-          <li>You want to ship something real, not perfect</li>
+          <li>You have paying customers or active users</li>
+          <li>You need to understand user behavior, not just ship features</li>
+          <li>Support requests are becoming hard to manage manually</li>
+          <li>You're thinking about retention, not just acquisition</li>
+          <li>Your to-do list needs structure beyond a notes app</li>
         </ul>
       </div>
     </div>
@@ -179,28 +178,26 @@
     <div class="container">
       <div class="section-header reveal">
         <h2>Your Stack</h2>
-        <p>Five tools. Everything you need to go from code to customers.</p>
+        <p>Four tools to understand, communicate, and scale.</p>
       </div>
       
       <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);">
-          <div class="tool-card-logo">
-            <svg viewBox="0 0 180 180" fill="none"><mask id="a" width="180" height="180" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><circle cx="90" cy="90" r="90" fill="#000"/></mask><g mask="url(#a)"><circle cx="90" cy="90" r="90" fill="#000"/><path fill="url(#b)" d="M149.508 157.52L69.142 54H54v71.97h12.114V69.384l73.885 95.461a90.304 90.304 0 009.509-7.325z"/><path fill="url(#c)" d="M115 54h12v72h-12z"/></g><defs><linearGradient id="b" x1="109" x2="144.5" y1="116.5" y2="160.5" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="c" x1="121" x2="120.799" y1="54" y2="106.875" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs></svg>
-          </div>
+        <div class="tool-card-image" style="background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);">
+          <div class="tool-card-logo">📊</div>
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <span class="tool-card-name">Next.js</span>
-            <span class="tool-card-tag">Foundation</span>
+            <span class="tool-card-name">PostHog</span>
+            <span class="tool-card-tag">Analytics</span>
           </div>
           <p class="tool-card-desc">
-            Your home base. Pages, APIs, backend logic — everything lives here. One framework that does it all without the configuration hell.
+            Product analytics that actually tells you what users do. Session recordings, funnels, feature flags. All in one tool, self-hostable if you care about data privacy.
           </p>
           <div class="tool-card-why">
             <h4>Why this, not that</h4>
-            <p>Not Gatsby (too blog-focused). Not raw React (you'll rebuild what Next gives you). Not WordPress (you're building, not configuring). Next.js is the foundation for products.</p>
+            <p>Not Google Analytics (traffic, not product analytics). Not Mixpanel (expensive at scale). Not Amplitude (enterprise complexity). PostHog gives you everything without the vendor lock-in.</p>
           </div>
-          <a href="https://nextjs.org" target="_blank" class="tool-card-link">
+          <a href="https://posthog.com" target="_blank" class="tool-card-link">
             Get started
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
@@ -208,99 +205,68 @@
       </div>
 
       <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #1c1c1c 0%, #3ECF8E 100%);">
-          <div class="tool-card-logo">
-            <svg viewBox="0 0 109 113" fill="none"><path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#a1)"/><path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#b1)" fill-opacity=".2"/><path d="M45.317 2.07103C48.1765 -1.53037 53.9745 0.442937 54.0434 5.041L54.4849 72.2922H9.83113C1.64038 72.2922 -2.92775 62.8321 2.1655 56.4175L45.317 2.07103Z" fill="#3ECF8E"/><defs><linearGradient id="a1" x1="53.9738" y1="54.974" x2="94.1635" y2="71.8295" gradientUnits="userSpaceOnUse"><stop stop-color="#249361"/><stop offset="1" stop-color="#3ECF8E"/></linearGradient><linearGradient id="b1" x1="36.1558" y1="30.578" x2="54.4844" y2="65.0806" gradientUnits="userSpaceOnUse"><stop/><stop offset="1" stop-opacity="0"/></linearGradient></defs></svg>
-          </div>
+        <div class="tool-card-image" style="background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);">
+          <div class="tool-card-logo">🔔</div>
         </div>
         <div class="tool-card-content">
           <div class="tool-card-header">
-            <span class="tool-card-name">Supabase</span>
-            <span class="tool-card-tag">Backend</span>
-          </div>
-          <p class="tool-card-desc">
-            Database, auth, storage, realtime — one dashboard. No DevOps required. It's Postgres that's actually enjoyable to use.
-          </p>
-          <div class="tool-card-why">
-            <h4>Why this, not that</h4>
-            <p>Not Firebase (vendor lock-in, Google complexity). Not separate services for auth + db + storage (too many dashboards to juggle). Supabase is everything in one place.</p>
-          </div>
-          <a href="https://supabase.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #000 0%, #111 100%);">
-          <div class="tool-card-logo">
-            <svg viewBox="0 0 76 65" fill="none"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="#000"/></svg>
-          </div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Vercel</span>
-            <span class="tool-card-tag">Hosting</span>
-          </div>
-          <p class="tool-card-desc">
-            Push to deploy. Preview links for every PR. Built for Next.js. You'll genuinely never need to think about servers.
-          </p>
-          <div class="tool-card-why">
-            <h4>Why this, not that</h4>
-            <p>Not AWS (you're building products, not becoming a cloud engineer). Not Heroku (dated, expensive). Not Netlify (Next.js native support is better on Vercel). It just works.</p>
-          </div>
-          <a href="https://vercel.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #0A2540 0%, #425466 100%);">
-          <div class="tool-card-logo" style="background: #635BFF;">
-            <svg viewBox="0 0 24 24" fill="#fff" style="width: 32px; height: 32px;"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
-          </div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Stripe</span>
-            <span class="tool-card-tag">Payments</span>
-          </div>
-          <p class="tool-card-desc">
-            When you're ready to charge. Not before. Checkout handles everything — you basically need one link to start making money.
-          </p>
-          <div class="tool-card-why">
-            <h4>Why this, not that</h4>
-            <p>Not PayPal (worse DX, dated feel). Not Paddle (only if you specifically need tax handling). Not Gumroad (not for products). Stripe is the standard for a reason.</p>
-          </div>
-          <a href="https://stripe.com" target="_blank" class="tool-card-link">
-            Get started
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="tool-card reveal">
-        <div class="tool-card-image" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);">
-          <div class="tool-card-logo">
-            <svg viewBox="0 0 24 24" fill="#fff" style="width: 32px; height: 32px;"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6zm3.519 0L12 11.671 18.481 6H5.52zM20 7.329l-8 7.001-8-7.001V18h16V7.329z"/></svg>
-          </div>
-        </div>
-        <div class="tool-card-content">
-          <div class="tool-card-header">
-            <span class="tool-card-name">Resend</span>
+            <span class="tool-card-name">Loops</span>
             <span class="tool-card-tag">Email</span>
           </div>
           <p class="tool-card-desc">
-            Transactional emails when you need them. Welcome emails, password resets, receipts. The API is genuinely beautiful to work with.
+            Email marketing built for SaaS. Onboarding sequences, product updates, re-engagement campaigns. Simple, beautiful, designed for product teams.
           </p>
           <div class="tool-card-why">
             <h4>Why this, not that</h4>
-            <p>Not SendGrid (enterprise complexity you don't need). Not Mailchimp (that's for marketing, not transactional). Not Postmark (Resend has better DX). Resend is email for developers.</p>
+            <p>Not Mailchimp (bloated, not product-focused). Not ConvertKit (for creators, not SaaS). Not Customer.io (enterprise pricing). Loops is email for products, not newsletters.</p>
           </div>
-          <a href="https://resend.com" target="_blank" class="tool-card-link">
+          <a href="https://loops.so" target="_blank" class="tool-card-link">
+            Get started
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="tool-card reveal">
+        <div class="tool-card-image" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+          <div class="tool-card-logo">💬</div>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <span class="tool-card-name">Intercom</span>
+            <span class="tool-card-tag">Support</span>
+          </div>
+          <p class="tool-card-desc">
+            Talk to users at scale. Live chat, help center, automated responses. When email threads and Slack DMs stop working, Intercom takes over.
+          </p>
+          <div class="tool-card-why">
+            <h4>Why this, not that</h4>
+            <p>Not Zendesk (enterprise complexity). Not Crisp (limited automation). Not plain email (doesn't scale). Intercom is expensive but worth it when support becomes a bottleneck.</p>
+          </div>
+          <a href="https://intercom.com" target="_blank" class="tool-card-link">
+            Get started
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="tool-card reveal">
+        <div class="tool-card-image" style="background: linear-gradient(135deg, #5046e5 0%, #6366f1 100%);">
+          <div class="tool-card-logo">📋</div>
+        </div>
+        <div class="tool-card-content">
+          <div class="tool-card-header">
+            <span class="tool-card-name">Linear</span>
+            <span class="tool-card-tag">Project Management</span>
+          </div>
+          <p class="tool-card-desc">
+            Issue tracking that doesn't make you hate issue tracking. Fast, keyboard-driven, opinionated. When your roadmap needs more structure than Notion.
+          </p>
+          <div class="tool-card-why">
+            <h4>Why this, not that</h4>
+            <p>Not Jira (soul-crushing). Not Asana (too generic). Not Notion (not built for this). Linear is project management for people who actually build products.</p>
+          </div>
+          <a href="https://linear.app" target="_blank" class="tool-card-link">
             Get started
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
@@ -312,15 +278,15 @@
   <section class="skip-section">
     <div class="container">
       <h2 class="reveal">What you don't need yet</h2>
-      <p class="reveal">These will slow you down. Build first, optimize later.</p>
+      <p class="reveal">Growth isn't about adding more tools. Resist these.</p>
       
       <div class="skip-grid">
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Analytics beyond Vercel's built-in</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Multiple environments (staging, QA)</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>CI/CD pipelines</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Monitoring and alerting tools</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>A design system</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Documentation tools</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>A/B testing platforms (optimize what works first)</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Data warehousing (PostHog is enough for now)</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Enterprise CRM (you don't have enterprise sales)</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Multiple analytics tools (one source of truth)</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Status page (until you have real uptime requirements)</span></div>
+        <div class="skip-item reveal"><span class="skip-x">×</span><span>Feature announcement tools (email handles this)</span></div>
       </div>
     </div>
   </section>
@@ -329,19 +295,19 @@
     <div class="container">
       <div class="section-header reveal">
         <h2>Know when to move</h2>
-        <p>Building is a stage, not forever.</p>
+        <p>Growth is a stage, not a destination.</p>
       </div>
       
       <div class="progression-grid">
         <div class="progression-card reveal">
-          <h3>→ Move to Growing when:</h3>
-          <p>You have users. Real ones, paying or active. You need to understand behavior, not just ship features. Time to scale what works.</p>
-          <a href="./growing.html" class="btn btn-primary">View Growing Stack →</a>
+          <h3>→ Move to Simplifying when:</h3>
+          <p>Your stack feels bloated. You're paying for tools you don't use. Context-switching is killing productivity. Time to cut.</p>
+          <a href="./simplifying.html" class="btn btn-primary">View Simplifying Stack →</a>
         </div>
         <div class="progression-card reveal">
-          <h3>← Go back to Starting if:</h3>
-          <p>You're building but you're not sure what. If the problem isn't clear, more code won't help. Validate before you build more.</p>
-          <a href="./starting.html" class="btn btn-secondary">View Starting Stack</a>
+          <h3>← Go back to Building if:</h3>
+          <p>You're optimizing before you've validated. If core features are still changing weekly, you're not ready to grow — you're still building.</p>
+          <a href="./building.html" class="btn btn-secondary">View Building Stack</a>
         </div>
       </div>
     </div>
@@ -350,7 +316,7 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p>That's enough. Go build.</p>
+        <p>That's enough. Go grow.</p>
         <div class="footer-links">
           <a href="../">Home</a>
           <a href="./">All Stacks</a>
