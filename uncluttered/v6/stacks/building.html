@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Building Stack - Uncluttered</title>
+  <title>Building Stack — Fewer Tools</title>
   <meta name="description" content="The essential tools to go from idea to shipped product. Framework, database, hosting, payments - everything you need, nothing you don't.">
 
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -62,8 +62,8 @@
     header.scrolled { border-bottom-color: var(--border); }
     header .container { display: flex; justify-content: space-between; align-items: center; }
     .logo { display: flex; align-items: center; gap: var(--space-sm); font-family: var(--font-display); font-weight: 700; font-size: 20px; }
-    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
-    .logo-mark::before { content: ''; width: 14px; height: 14px; background: var(--accent); border-radius: 3px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .logo-mark svg { width: 20px; height: 20px; }
     nav { display: flex; align-items: center; gap: var(--space-xl); }
     nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease; }
     nav a:hover, nav a.active { color: var(--text); }
@@ -1463,11 +1463,11 @@
   <header>
     <div class="container">
       <a href="../" class="logo">
-        <div class="logo-mark"></div>
-        <span>uncluttered</span>
+        <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2.5" stroke-linecap="round"><path d="M4 6L12 12"/><path d="M4 12L12 12"/><path d="M4 18L12 12"/><path d="M12 12L20 12" stroke-width="3"/></svg></div>
+        <span>Fewer Tools</span>
       </a>
       <nav id="nav">
-        <a href="../#stages">Stages</a>
+        <a href="../stages/">Stages</a>
         <a href="./" class="active">Stacks</a>
         <a href="../tools/">Tools</a>
         <a href="../philosophy/">Philosophy</a>
@@ -2199,7 +2199,7 @@
       </div>
 
       <p class="quickstart-note reveal">
-        Need more details? <a href="#">Read the full setup guide →</a>
+        Need more details? <a href="./building-guide.html">Read the full setup guide →</a>
       </p>
     </div>
   </section>
@@ -2313,7 +2313,7 @@
       <h2>Ready to build?</h2>
       <p>Stop researching. Start shipping.</p>
       <div class="cta-actions">
-        <a href="#" class="btn btn-primary">Get the full guide →</a>
+        <a href="./building-guide.html" class="btn btn-primary">Get the full guide →</a>
         <a href="./" class="btn btn-secondary">View other stacks</a>
       </div>
 
@@ -2337,7 +2337,7 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p>© 2024 Uncluttered. Less tools. More building.</p>
+        <p>© 2026 Fewer Tools. Less tools. More building.</p>
         <div class="footer-links">
           <a href="../philosophy/">Philosophy</a>
           <a href="../tools/">All Tools</a>

@@ -1,0 +1,9 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fewer Tools Logo: Abstract mark showing reduction/convergence -->
+  <!-- Three lines converging into one point - representing "many tools becoming fewer" -->
+  <rect width="40" height="40" rx="10" fill="#0a0a0a"/>
+  <path d="M10 12L20 20" stroke="#0D9488" stroke-width="3" stroke-linecap="round"/>
+  <path d="M10 20L20 20" stroke="#0D9488" stroke-width="3" stroke-linecap="round"/>
+  <path d="M10 28L20 20" stroke="#0D9488" stroke-width="3" stroke-linecap="round"/>
+  <path d="M20 20L30 20" stroke="#0D9488" stroke-width="4" stroke-linecap="round"/>
+</svg>

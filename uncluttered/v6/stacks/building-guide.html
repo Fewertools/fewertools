@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building Stack Setup Guide — Fewer Tools</title>
+  <meta name="description" content="Complete step-by-step guide to setting up your Building stack with Next.js, Supabase, Vercel, Stripe, and Resend.">
+  
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #FAFAF8;
+      --bg-alt: #F3F3F0;
+      --bg-dark: #0a0a0a;
+      --bg-card: #FFFFFF;
+      --bg-code: #1a1a2e;
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --text-inverse: #FAFAF8;
+      --accent: #0D9488;
+      --accent-hover: #0F766E;
+      --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.12);
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px;
+      --space-xl: 40px; --space-2xl: 64px; --space-3xl: 100px;
+      --max-width: 800px;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
+    }
+    
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); font-size: 17px; line-height: 1.7; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; }
+    h1 { font-size: clamp(32px, 5vw, 42px); margin-bottom: var(--space-lg); }
+    h2 { font-size: clamp(24px, 4vw, 32px); margin: var(--space-2xl) 0 var(--space-lg); padding-top: var(--space-lg); border-top: 1px solid var(--border); }
+    h3 { font-size: 20px; margin: var(--space-xl) 0 var(--space-md); }
+    h4 { font-size: 17px; margin: var(--space-lg) 0 var(--space-sm); }
+    p { margin-bottom: var(--space-md); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-xl); }
+    @media (max-width: 600px) { .container { padding: 0 var(--space-lg); } }
+    
+    /* Header */
+    header { padding: var(--space-lg) 0; border-bottom: 1px solid var(--border); margin-bottom: var(--space-xl); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); flex-wrap: wrap; }
+    .logo { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: var(--space-sm); }
+    .logo:hover { text-decoration: none; }
+    .logo-mark { width: 28px; height: 28px; background: var(--accent); border-radius: 8px; }
+    .back-link { color: var(--text-secondary); font-size: 14px; display: flex; align-items: center; gap: var(--space-xs); }
+    .back-link:hover { color: var(--text); }
+    .back-link svg { width: 16px; height: 16px; }
+    
+    /* Hero */
+    .hero { margin-bottom: var(--space-2xl); }
+    .hero-badge { display: inline-flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm) var(--space-md); background: var(--accent-subtle); border-radius: 50px; font-size: 14px; font-weight: 500; color: var(--accent); margin-bottom: var(--space-lg); }
+    .hero-badge img { width: 20px; height: 20px; border-radius: 4px; }
+    .hero p { font-size: 19px; color: var(--text-secondary); max-width: 600px; }
+    
+    /* Table of contents */
+    .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-lg); margin-bottom: var(--space-2xl); }
+    .toc h4 { margin: 0 0 var(--space-md); font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+    .toc ol { list-style: none; counter-reset: toc; }
+    .toc li { counter-increment: toc; margin-bottom: var(--space-sm); }
+    .toc a { color: var(--text); display: flex; align-items: center; gap: var(--space-sm); }
+    .toc a::before { content: counter(toc); display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--bg-alt); border-radius: 6px; font-size: 12px; font-weight: 600; color: var(--text-muted); }
+    .toc a:hover { color: var(--accent); text-decoration: none; }
+    .toc a:hover::before { background: var(--accent-subtle); color: var(--accent); }
+    
+    /* Content */
+    .content { margin-bottom: var(--space-3xl); }
+    
+    /* Prerequisites */
+    .prereq { background: var(--bg-alt); border-radius: var(--radius-md); padding: var(--space-lg); margin-bottom: var(--space-xl); }
+    .prereq h4 { margin: 0 0 var(--space-md); }
+    .prereq ul { list-style: none; }
+    .prereq li { display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm); }
+    .prereq li::before { content: "✓"; color: var(--accent); font-weight: 600; }
+    
+    /* Step sections */
+    .step { margin-bottom: var(--space-2xl); }
+    .step-header { display: flex; align-items: flex-start; gap: var(--space-md); margin-bottom: var(--space-lg); }
+    .step-number { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--bg-dark); color: var(--text-inverse); border-radius: 12px; font-family: var(--font-display); font-weight: 700; font-size: 18px; flex-shrink: 0; }
+    .step-meta { flex: 1; }
+    .step-meta h3 { margin: 0 0 var(--space-xs); display: flex; align-items: center; gap: var(--space-sm); }
+    .step-meta h3 img { width: 24px; height: 24px; border-radius: 6px; }
+    .step-time { font-size: 13px; color: var(--text-muted); }
+    
+    /* Code blocks */
+    .code-block { background: var(--bg-code); border-radius: var(--radius-md); margin: var(--space-lg) 0; overflow: hidden; }
+    .code-header { display: flex; align-items: center; justify-content: space-between; padding: var(--space-sm) var(--space-md); background: rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .code-filename { font-family: var(--font-mono); font-size: 13px; color: rgba(255,255,255,0.6); }
+    .code-copy { background: transparent; border: none; color: rgba(255,255,255,0.6); cursor: pointer; padding: var(--space-xs) var(--space-sm); border-radius: 4px; font-size: 12px; }
+    .code-copy:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .code-content { padding: var(--space-md); overflow-x: auto; }
+    .code-content pre { margin: 0; font-family: var(--font-mono); font-size: 14px; line-height: 1.6; color: #e4e4e7; }
+    .code-content code { font-family: inherit; }
+    
+    /* Inline code */
+    code:not(pre code) { background: var(--bg-alt); padding: 2px 6px; border-radius: 4px; font-family: var(--font-mono); font-size: 0.9em; }
+    
+    /* Tips */
+    .tip { background: var(--accent-subtle); border-left: 3px solid var(--accent); padding: var(--space-md) var(--space-lg); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: var(--space-lg) 0; }
+    .tip strong { color: var(--accent); }
+    
+    /* Warning */
+    .warning { background: #FEF3C7; border-left: 3px solid #F59E0B; padding: var(--space-md) var(--space-lg); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: var(--space-lg) 0; }
+    .warning strong { color: #B45309; }
+    
+    /* File tree */
+    .file-tree { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-lg); margin: var(--space-lg) 0; font-family: var(--font-mono); font-size: 14px; }
+    .file-tree ul { list-style: none; margin: 0; padding-left: var(--space-lg); }
+    .file-tree > ul { padding-left: 0; }
+    .file-tree li { position: relative; padding: 2px 0; }
+    .file-tree li::before { content: ""; position: absolute; left: -16px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+    .file-tree li::after { content: ""; position: absolute; left: -16px; top: 12px; width: 12px; height: 1px; background: var(--border); }
+    .file-tree > ul > li::before, .file-tree > ul > li::after { display: none; }
+    .folder { color: var(--accent); }
+    .file { color: var(--text-secondary); }
+    
+    /* Checklist */
+    .checklist { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-lg); margin: var(--space-lg) 0; }
+    .checklist h4 { margin: 0 0 var(--space-md); font-size: 15px; }
+    .checklist ul { list-style: none; }
+    .checklist li { display: flex; align-items: flex-start; gap: var(--space-sm); margin-bottom: var(--space-sm); }
+    .checklist li::before { content: "☐"; color: var(--text-muted); }
+    
+    /* Next steps */
+    .next-steps { background: var(--bg-dark); color: var(--text-inverse); border-radius: var(--radius-lg); padding: var(--space-xl); margin-top: var(--space-2xl); }
+    .next-steps h3 { margin: 0 0 var(--space-md); }
+    .next-steps p { color: rgba(255,255,255,0.7); margin-bottom: var(--space-lg); }
+    .next-steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md); }
+    .next-step-card { background: rgba(255,255,255,0.1); border-radius: var(--radius-md); padding: var(--space-lg); text-decoration: none; color: var(--text-inverse); transition: all 0.2s ease; }
+    .next-step-card:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); text-decoration: none; }
+    .next-step-card h4 { margin: 0 0 var(--space-xs); font-size: 16px; }
+    .next-step-card p { margin: 0; font-size: 14px; color: rgba(255,255,255,0.6); }
+    
+    /* Footer */
+    footer { padding: var(--space-xl) 0; border-top: 1px solid var(--border); margin-top: var(--space-2xl); }
+    .footer-content { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md); }
+    .footer-content p { color: var(--text-muted); font-size: 14px; margin: 0; }
+    .footer-links { display: flex; gap: var(--space-lg); }
+    .footer-links a { color: var(--text-secondary); font-size: 14px; }
+    
+    @media (max-width: 600px) {
+      .step-header { flex-direction: column; }
+      .next-steps-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a href="../" class="logo">
+          <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2.5" stroke-linecap="round"><path d="M4 6L12 12"/><path d="M4 12L12 12"/><path d="M4 18L12 12"/><path d="M12 12L20 12" stroke-width="3"/></svg></div>
+          <span>Fewer Tools</span>
+        </a>
+        <a href="./building.html" class="back-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back to Building Stack
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-badge">
+        <span>🔨</span>
+        Complete Setup Guide
+      </div>
+      <h1>Build your first app with the Building Stack</h1>
+      <p>A step-by-step guide to setting up Next.js, Supabase, Vercel, Stripe, and Resend. From zero to deployed in under an hour.</p>
+    </section>
+
+    <nav class="toc">
+      <h4>In this guide</h4>
+      <ol>
+        <li><a href="#nextjs">Set up Next.js with TypeScript & Tailwind</a></li>
+        <li><a href="#supabase">Configure Supabase (Database & Auth)</a></li>
+        <li><a href="#auth">Implement Authentication</a></li>
+        <li><a href="#stripe">Add Stripe Payments</a></li>
+        <li><a href="#resend">Set up Resend for Emails</a></li>
+        <li><a href="#deploy">Deploy to Vercel</a></li>
+      </ol>
+    </nav>
+
+    <div class="prereq">
+      <h4>Before you start</h4>
+      <ul>
+        <li>Node.js 18+ installed (<code>node -v</code> to check)</li>
+        <li>A code editor (we recommend <a href="https://cursor.com">Cursor</a>)</li>
+        <li>A GitHub account for deployment</li>
+        <li>About 45-60 minutes</li>
+      </ul>
+    </div>
+
+    <div class="content">
+      
+      <!-- Step 1: Next.js -->
+      <section id="nextjs" class="step">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <div class="step-meta">
+            <h3>
+              <img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js">
+              Set up Next.js
+            </h3>
+            <span class="step-time">~5 minutes</span>
+          </div>
+        </div>
+
+        <p>Create a new Next.js project with TypeScript, Tailwind CSS, and the App Router. This is the foundation of your app.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">Terminal</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>npx create-next-app@latest my-app --typescript --tailwind --eslint --app --src-dir --import-alias "@/*"</code></pre>
+          </div>
+        </div>
+
+        <p>When prompted, accept the defaults. Then navigate into your project:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">Terminal</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>cd my-app
+npm run dev</code></pre>
+          </div>
+        </div>
+
+        <p>Open <a href="http://localhost:3000">http://localhost:3000</a> — you should see the Next.js welcome page.</p>
+
+        <div class="file-tree">
+          <strong>Your project structure:</strong>
+          <ul>
+            <li><span class="folder">src/</span>
+              <ul>
+                <li><span class="folder">app/</span>
+                  <ul>
+                    <li><span class="file">layout.tsx</span> — Root layout</li>
+                    <li><span class="file">page.tsx</span> — Home page</li>
+                    <li><span class="file">globals.css</span> — Global styles</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><span class="file">tailwind.config.ts</span></li>
+            <li><span class="file">next.config.js</span></li>
+            <li><span class="file">package.json</span></li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>💡 Tip:</strong> Add <code>"scripts": { "dev": "next dev --turbo" }</code> to your package.json for faster development builds with Turbopack.
+        </div>
+      </section>
+
+      <!-- Step 2: Supabase -->
+      <section id="supabase" class="step">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <div class="step-meta">
+            <h3>
+              <img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="Supabase">
+              Configure Supabase
+            </h3>
+            <span class="step-time">~10 minutes</span>
+          </div>
+        </div>
+
+        <p>Supabase gives you a Postgres database, authentication, and realtime subscriptions. All in one.</p>
+
+        <h4>Create a Supabase project</h4>
+        <ol>
+          <li>Go to <a href="https://supabase.com/dashboard" target="_blank">supabase.com/dashboard</a></li>
+          <li>Click "New Project"</li>
+          <li>Choose a name and strong database password (save this!)</li>
+          <li>Select a region close to your users</li>
+          <li>Wait ~2 minutes for provisioning</li>
+        </ol>
+
+        <h4>Install the Supabase packages</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">Terminal</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>npm install @supabase/supabase-js @supabase/ssr</code></pre>
+          </div>
+        </div>
+
+        <h4>Add environment variables</h4>
+        <p>Get your project URL and anon key from Supabase Dashboard → Settings → API.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">.env.local</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key</code></pre>
+          </div>
+        </div>
+
+        <h4>Create the Supabase client</h4>
+        
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">src/lib/supabase/client.ts</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>import { createBrowserClient } from '@supabase/ssr'
+
+export function createClient() {
+  return createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">src/lib/supabase/server.ts</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
+
+export async function createClient() {
+  const cookieStore = await cookies()
+
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll()
+        },
+        setAll(cookiesToSet) {
+          try {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            )
+          } catch {
+            // Handle server component context
+          }
+        },
+      },
+    }
+  )
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="warning">
+          <strong>⚠️ Important:</strong> Never expose your <code>service_role</code> key in client-side code. The anon key is safe for browsers.
+        </div>
+      </section>
+
+      <!-- Step 3: Auth -->
+      <section id="auth" class="step">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <div class="step-meta">
+            <h3>
+              <img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="Supabase">
+              Implement Authentication
+            </h3>
+            <span class="step-time">~15 minutes</span>
+          </div>
+        </div>
+
+        <p>Supabase Auth supports email/password, magic links, and OAuth providers. We'll set up email authentication.</p>
+
+        <h4>Create a middleware for auth</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">src/middleware.ts</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>import { createServerClient } from '@supabase/ssr'
+import { NextResponse, type NextRequest } from 'next/server'
+
+export async function middleware(request: NextRequest) {
+  let supabaseResponse = NextResponse.next({ request })
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll()
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => 
+            request.cookies.set(name, value)
+          )
+          supabaseResponse = NextResponse.next({ request })
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, options)
+          )
+        },
+      },
+    }
+  )
+
+  // Refresh session if expired
+  await supabase.auth.getUser()
+
+  return supabaseResponse
+}
+
+export const config = {
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+}</code></pre>
+          </div>
+        </div>
+
+        <h4>Create a simple login page</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">src/app/login/page.tsx</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>'use client'
+
+import { createClient } from '@/lib/supabase/client'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+
+export default function LoginPage() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const router = useRouter()
+  const supabase = createClient()
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (error) {
+      alert(error.message)
+    } else {
+      router.push('/dashboard')
+      router.refresh()
+    }
+    setLoading(false)
+  }
+
+  const handleSignUp = async () => {
+    setLoading(true)
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+    })
+
+    if (error) {
+      alert(error.message)
+    } else {
+      alert('Check your email for the confirmation link!')
+    }
+    setLoading(false)
+  }
+
+  return (
+    &lt;div className="min-h-screen flex items-center justify-center"&gt;
+      &lt;form onSubmit={handleLogin} className="w-full max-w-sm space-y-4"&gt;
+        &lt;h1 className="text-2xl font-bold"&gt;Login&lt;/h1&gt;
+        &lt;input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) =&gt; setEmail(e.target.value)}
+          className="w-full p-3 border rounded"
+          required
+        /&gt;
+        &lt;input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) =&gt; setPassword(e.target.value)}
+          className="w-full p-3 border rounded"
+          required
+        /&gt;
+        &lt;button
+          type="submit"
+          disabled={loading}
+          className="w-full p-3 bg-black text-white rounded"
+        &gt;
+          {loading ? 'Loading...' : 'Login'}
+        &lt;/button&gt;
+        &lt;button
+          type="button"
+          onClick={handleSignUp}
+          disabled={loading}
+          className="w-full p-3 border rounded"
+        &gt;
+          Create Account
+        &lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  )
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="tip">
+          <strong>💡 Tip:</strong> Enable email confirmations in Supabase Dashboard → Authentication → Settings for production apps.
+        </div>
+      </section>
+
+      <!-- Step 4: Stripe -->
+      <section id="stripe" class="step">
+        <div class="step-header">
+          <div class="step-number">4</div>
+          <div class="step-meta">
+            <h3>
+              <img src="https://cdn.simpleicons.org/stripe/635BFF" alt="Stripe">
+              Add Stripe Payments
+            </h3>
+            <span class="step-time">~10 minutes</span>
+          </div>
+        </div>
+
+        <p>Stripe handles payments, subscriptions, and invoicing. We'll set up a basic checkout flow.</p>
+
+        <h4>Install Stripe</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">Terminal</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>npm install stripe @stripe/stripe-js</code></pre>
+          </div>
+        </div>
+
+        <h4>Add your Stripe keys</h4>
+        <p>Get your keys from <a href="https://dashboard.stripe.com/apikeys" target="_blank">Stripe Dashboard → Developers → API keys</a>.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">.env.local (add to existing)</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>STRIPE_SECRET_KEY=sk_test_...
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...</code></pre>
+          </div>
+        </div>
+
+        <h4>Create a checkout API route</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">src/app/api/checkout/route.ts</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>import { NextResponse } from 'next/server'
+import Stripe from 'stripe'
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+
+export async function POST(request: Request) {
+  const { priceId } = await request.json()
+
+  try {
+    const session = await stripe.checkout.sessions.create({
+      mode: 'subscription', // or 'payment' for one-time
+      payment_method_types: ['card'],
+      line_items: [{ price: priceId, quantity: 1 }],
+      success_url: `${request.headers.get('origin')}/success`,
+      cancel_url: `${request.headers.get('origin')}/pricing`,
+    })
+
+    return NextResponse.json({ url: session.url })
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <h4>Create a pricing button</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">src/components/CheckoutButton.tsx</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>'use client'
+
+export function CheckoutButton({ priceId }: { priceId: string }) {
+  const handleCheckout = async () => {
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ priceId }),
+    })
+    const { url } = await res.json()
+    window.location.href = url
+  }
+
+  return (
+    &lt;button onClick={handleCheckout} className="bg-black text-white px-6 py-3 rounded"&gt;
+      Subscribe
+    &lt;/button&gt;
+  )
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="tip">
+          <strong>💡 Tip:</strong> Create your products and prices in Stripe Dashboard → Products before using priceId.
+        </div>
+      </section>
+
+      <!-- Step 5: Resend -->
+      <section id="resend" class="step">
+        <div class="step-header">
+          <div class="step-number">5</div>
+          <div class="step-meta">
+            <h3>
+              <img src="https://cdn.simpleicons.org/resend/000000" alt="Resend">
+              Set up Resend for Emails
+            </h3>
+            <span class="step-time">~5 minutes</span>
+          </div>
+        </div>
+
+        <p>Resend is a modern email API. Great for transactional emails like welcome messages and receipts.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">Terminal</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>npm install resend</code></pre>
+          </div>
+        </div>
+
+        <p>Get your API key from <a href="https://resend.com/api-keys" target="_blank">resend.com/api-keys</a>.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">.env.local (add to existing)</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>RESEND_API_KEY=re_...</code></pre>
+          </div>
+        </div>
+
+        <h4>Create an email API route</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">src/app/api/email/route.ts</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>import { Resend } from 'resend'
+import { NextResponse } from 'next/server'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
+
+export async function POST(request: Request) {
+  const { to, subject, html } = await request.json()
+
+  try {
+    const data = await resend.emails.send({
+      from: 'Your App &lt;hello@yourdomain.com&gt;',
+      to,
+      subject,
+      html,
+    })
+
+    return NextResponse.json(data)
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="warning">
+          <strong>⚠️ Note:</strong> You'll need to verify a domain in Resend to send from a custom address. Use <code>onboarding@resend.dev</code> for testing.
+        </div>
+      </section>
+
+      <!-- Step 6: Deploy -->
+      <section id="deploy" class="step">
+        <div class="step-header">
+          <div class="step-number">6</div>
+          <div class="step-meta">
+            <h3>
+              <img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel">
+              Deploy to Vercel
+            </h3>
+            <span class="step-time">~5 minutes</span>
+          </div>
+        </div>
+
+        <p>Vercel makes deployment trivial. Push to GitHub, connect to Vercel, done.</p>
+
+        <h4>Push to GitHub</h4>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">Terminal</span>
+            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+          </div>
+          <div class="code-content">
+<pre><code>git init
+git add .
+git commit -m "Initial commit"
+gh repo create my-app --public --source=. --push</code></pre>
+          </div>
+        </div>
+
+        <h4>Connect to Vercel</h4>
+        <ol>
+          <li>Go to <a href="https://vercel.com/new" target="_blank">vercel.com/new</a></li>
+          <li>Import your GitHub repository</li>
+          <li>Add your environment variables (copy from .env.local)</li>
+          <li>Click Deploy</li>
+        </ol>
+
+        <p>Your app will be live at <code>your-app.vercel.app</code> in about 60 seconds.</p>
+
+        <div class="tip">
+          <strong>💡 Tip:</strong> Enable "Automatically expose System Environment Variables" in Vercel project settings for cleaner config.
+        </div>
+
+        <div class="checklist">
+          <h4>Final checklist</h4>
+          <ul>
+            <li>All environment variables added to Vercel</li>
+            <li>Supabase URL added to allowed redirect URLs (Auth settings)</li>
+            <li>Stripe webhook endpoint configured for production</li>
+            <li>Resend domain verified for production emails</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="next-steps">
+        <h3>🎉 You're live! What's next?</h3>
+        <p>Your Building Stack is deployed. Here are some next steps:</p>
+        <div class="next-steps-grid">
+          <a href="./growing.html" class="next-step-card">
+            <h4>📈 Growing Stack</h4>
+            <p>Add analytics, monitoring, and email marketing</p>
+          </a>
+          <a href="https://supabase.com/docs" class="next-step-card" target="_blank">
+            <h4>📚 Supabase Docs</h4>
+            <p>Learn about RLS, realtime, and edge functions</p>
+          </a>
+          <a href="https://stripe.com/docs/billing" class="next-step-card" target="_blank">
+            <h4>💳 Stripe Billing</h4>
+            <p>Set up subscriptions and customer portals</p>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2026 Fewer Tools. Less tools. More building.</p>
+        <div class="footer-links">
+          <a href="../">Home</a>
+          <a href="./building.html">Building Stack</a>
+          <a href="../philosophy/">Philosophy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function copyCode(btn) {
+      const code = btn.closest('.code-block').querySelector('pre code').innerText
+      navigator.clipboard.writeText(code)
+      btn.textContent = 'Copied!'
+      setTimeout(() => { btn.textContent = 'Copy' }, 2000)
+    }
+  </script>
+</body>
+</html>

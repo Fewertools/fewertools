@@ -3,136 +3,411 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Philosophy — Uncluttered</title>
+  <title>Philosophy — Fewer Tools</title>
   <meta name="description" content="The best tool stack is the smallest one that gets the job done. Everything else is noise.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://uncluttered.com/philosophy/">
-  <meta property="og:title" content="Philosophy — Uncluttered">
-  <meta property="og:description" content="The best tool stack is the smallest one that gets the job done. Everything else is noise.">
-  <meta property="og:image" content="https://uncluttered.com/og-image.png">
+  <meta property="og:url" content="https://fewertools.com/philosophy/">
+  <meta property="og:title" content="Philosophy — Fewer Tools">
+  <meta property="og:description" content="The best tool stack is the smallest one that gets the job done.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://uncluttered.com/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #111; --bg-card: #FFFFFF;
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
       --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
-      --accent: #0D9488; --accent-hover: #0F766E; --border: rgba(0, 0, 0, 0.08);
+      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12);
+      --red: #EF4444; --red-subtle: rgba(239, 68, 68, 0.1);
       --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
       --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.7; }
-    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; }
-    h1 { font-size: clamp(44px, 7vw, 64px); } h2 { font-size: clamp(28px, 4vw, 36px); }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.7; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; }
     a { color: inherit; text-decoration: none; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-    
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 0; background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; }
+    @media (max-width: 600px) { .container { padding: 0 24px; } }
+
+    /* Animations */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 0; background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: all 0.2s ease; }
     header.scrolled { border-bottom-color: var(--border); }
     header .container { display: flex; justify-content: space-between; align-items: center; }
     .logo { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 700; font-size: 20px; }
-    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
-    .logo-mark::before { content: ''; width: 14px; height: 14px; background: var(--accent); border-radius: 3px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .logo-mark svg { width: 20px; height: 20px; }
     nav { display: flex; align-items: center; gap: 40px; }
     nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
     nav a:hover { color: var(--text); }
     .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    .menu-toggle { display: none; }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .menu-toggle { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+      .menu-toggle span { width: 24px; height: 2px; background: var(--text); transition: all 0.3s; }
+    }
 
-    .page-hero { padding: 160px 0 80px; }
-    .page-hero h1 { margin-bottom: 24px; }
-    .page-hero .lead { font-size: 24px; color: var(--text-secondary); max-width: 700px; line-height: 1.5; }
+    /* Hero */
+    .hero { padding: 180px 0 100px; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; }
+    .hero-shape { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; }
+    .hero-shape-1 { width: 600px; height: 600px; background: var(--accent); top: -200px; right: -100px; opacity: 0.15; }
+    .hero-shape-2 { width: 400px; height: 400px; background: #8B5CF6; bottom: -100px; left: -100px; opacity: 0.1; }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 50px; font-size: 14px; font-weight: 500; margin-bottom: 24px; }
+    .hero-badge span { font-size: 18px; }
+    .hero h1 { font-size: clamp(48px, 8vw, 72px); margin-bottom: 24px; }
+    .hero h1 .highlight { color: var(--accent); }
+    .hero .lead { font-size: clamp(18px, 3vw, 24px); color: var(--text-secondary); max-width: 600px; line-height: 1.6; }
 
-    .content { max-width: 720px; padding-bottom: 100px; }
-    .content h2 { margin: 64px 0 24px; }
-    .content p { margin-bottom: 24px; font-size: 18px; color: var(--text-secondary); }
-    .content p:first-of-type { font-size: 20px; }
-    
-    .principle { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; margin: 32px 0; border-left: 4px solid var(--accent); }
-    .principle h3 { font-size: 20px; margin-bottom: 12px; }
-    .principle p { margin-bottom: 0; font-size: 16px; }
+    /* Manifesto */
+    .manifesto { padding: 100px 0; background: var(--bg-dark); color: var(--text-inverse); position: relative; overflow: hidden; }
+    .manifesto-bg { position: absolute; inset: 0; opacity: 0.5; }
+    .manifesto-bg span { position: absolute; font-size: 200px; opacity: 0.03; font-family: var(--font-display); font-weight: 700; }
+    .manifesto-bg span:nth-child(1) { top: -50px; left: -50px; }
+    .manifesto-bg span:nth-child(2) { bottom: -50px; right: -50px; }
+    .manifesto-content { position: relative; z-index: 1; }
+    .manifesto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    @media (max-width: 900px) { .manifesto-grid { grid-template-columns: 1fr; gap: 48px; } }
+    .manifesto-text h2 { font-size: clamp(32px, 5vw, 48px); margin-bottom: 24px; }
+    .manifesto-text p { font-size: 18px; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
+    .manifesto-visual { display: flex; flex-direction: column; gap: 16px; }
+    .manifesto-stat { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 24px 32px; display: flex; align-items: center; gap: 20px; }
+    .manifesto-stat-icon { width: 56px; height: 56px; background: var(--accent); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .manifesto-stat-number { font-family: var(--font-display); font-size: 36px; font-weight: 700; }
+    .manifesto-stat-label { font-size: 14px; color: rgba(255,255,255,0.6); }
 
-    .quote { font-size: 28px; font-family: var(--font-display); font-weight: 500; color: var(--text); margin: 48px 0; padding-left: 24px; border-left: 3px solid var(--accent); line-height: 1.4; }
+    /* Comparison */
+    .comparison { padding: 100px 0; }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-header h2 { font-size: clamp(32px, 5vw, 44px); margin-bottom: 16px; }
+    .section-header p { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    @media (max-width: 768px) { .comparison-grid { grid-template-columns: 1fr; } }
+    .comparison-card { border-radius: var(--radius-xl); padding: 40px; position: relative; overflow: hidden; }
+    .comparison-card.bad { background: var(--red-subtle); border: 2px solid rgba(239, 68, 68, 0.2); }
+    .comparison-card.good { background: var(--accent-subtle); border: 2px solid rgba(13, 148, 136, 0.2); }
+    .comparison-card h3 { font-size: 24px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+    .comparison-card.bad h3 { color: var(--red); }
+    .comparison-card.good h3 { color: var(--accent); }
+    .comparison-card .subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+    .comparison-list { list-style: none; }
+    .comparison-list li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 15px; }
+    .comparison-list li::before { content: ''; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+    .comparison-card.bad .comparison-list li::before { content: '✕'; background: rgba(239, 68, 68, 0.15); color: var(--red); }
+    .comparison-card.good .comparison-list li::before { content: '✓'; background: rgba(13, 148, 136, 0.15); color: var(--accent); }
+    .comparison-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .comparison-tool { display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--bg-card); border-radius: 50px; font-size: 13px; font-weight: 500; }
+    .comparison-tool img { width: 16px; height: 16px; border-radius: 3px; }
 
+    /* Principles */
+    .principles { padding: 100px 0; background: var(--bg-alt); }
+    .principles-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    @media (max-width: 768px) { .principles-grid { grid-template-columns: 1fr; } }
+    .principle-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 40px; transition: all 0.3s var(--ease-out); }
+    .principle-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(13, 148, 136, 0.1); }
+    .principle-icon { width: 64px; height: 64px; background: var(--accent-subtle); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 24px; }
+    .principle-card h3 { font-size: 22px; margin-bottom: 12px; }
+    .principle-card p { color: var(--text-secondary); font-size: 16px; line-height: 1.7; }
+
+    /* Quote */
+    .quote-section { padding: 100px 0; text-align: center; position: relative; }
+    .quote-section::before { content: '"'; position: absolute; top: 60px; left: 50%; transform: translateX(-50%); font-size: 200px; font-family: Georgia, serif; color: var(--accent); opacity: 0.1; line-height: 1; }
+    .quote-text { font-family: var(--font-display); font-size: clamp(24px, 4vw, 36px); font-weight: 500; max-width: 800px; margin: 0 auto 24px; line-height: 1.4; position: relative; z-index: 1; }
+    .quote-author { display: flex; align-items: center; justify-content: center; gap: 16px; }
+    .quote-author-avatar { width: 48px; height: 48px; background: var(--bg-alt); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .quote-author-info { text-align: left; }
+    .quote-author-name { font-weight: 600; font-size: 15px; }
+    .quote-author-title { font-size: 14px; color: var(--text-muted); }
+
+    /* Promise */
+    .promise { padding: 100px 0; }
+    .promise-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+    @media (max-width: 900px) { .promise-grid { grid-template-columns: 1fr; gap: 48px; } }
+    .promise-content h2 { font-size: clamp(32px, 5vw, 44px); margin-bottom: 24px; }
+    .promise-content p { font-size: 18px; color: var(--text-secondary); margin-bottom: 16px; }
+    .promise-list { list-style: none; margin-top: 32px; }
+    .promise-list li { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 16px; }
+    .promise-list li:last-child { border-bottom: none; }
+    .promise-list-icon { width: 40px; height: 40px; background: var(--accent-subtle); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 18px; flex-shrink: 0; }
+    .promise-visual { position: relative; }
+    .promise-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 32px; }
+    .promise-card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .promise-card-avatar { width: 56px; height: 56px; background: var(--bg-dark); color: var(--text-inverse); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 20px; }
+    .promise-card-info h4 { font-size: 18px; margin-bottom: 4px; }
+    .promise-card-info span { font-size: 14px; color: var(--text-muted); }
+    .promise-card-content p { font-size: 16px; color: var(--text-secondary); margin-bottom: 24px; }
+    .promise-card-values { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .promise-value { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; }
+    .promise-value::before { content: '✓'; color: var(--accent); }
+
+    /* CTA */
+    .cta { padding: 100px 0; background: var(--bg-dark); color: var(--text-inverse); text-align: center; }
+    .cta h2 { font-size: clamp(32px, 5vw, 48px); margin-bottom: 16px; }
+    .cta p { font-size: 18px; color: rgba(255,255,255,0.7); margin-bottom: 32px; }
+    .cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 32px; font-family: var(--font-body); font-size: 16px; font-weight: 600; border-radius: var(--radius-md); border: none; cursor: pointer; transition: all 0.2s ease; text-decoration: none; }
+    .btn-primary { background: var(--text-inverse); color: var(--bg-dark); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.2); }
+    .btn-secondary { background: transparent; color: var(--text-inverse); border: 1.5px solid rgba(255,255,255,0.3); }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.6); }
+
+    /* Footer */
     footer { padding: 64px 0; border-top: 1px solid var(--border); }
-    .footer-content { display: flex; justify-content: space-between; align-items: center; }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-content p { font-size: 14px; color: var(--text-muted); }
     .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
     .footer-links a:hover { color: var(--text); }
   </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <a href="../" class="logo"><div class="logo-mark"></div><span>uncluttered</span></a>
+      <a href="../" class="logo"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2.5" stroke-linecap="round"><path d="M4 6L12 12"/><path d="M4 12L12 12"/><path d="M4 18L12 12"/><path d="M12 12L20 12" stroke-width="3"/></svg></div><span>Fewer Tools</span></a>
       <nav>
         <a href="../stages/">Stages</a>
         <a href="../stacks/">Stacks</a>
         <a href="../tools/">Tools</a>
         <a href="./">Philosophy</a>
-        <a href="../#stages" class="nav-cta">Find your stack</a>
+        <a href="../stages/" class="nav-cta">Find your stack</a>
       </nav>
+      <button class="menu-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
-  <section class="page-hero">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-shape hero-shape-1"></div>
+      <div class="hero-shape hero-shape-2"></div>
+    </div>
     <div class="container">
-      <h1>Philosophy</h1>
-      <p class="lead">The best tool stack is the smallest one that gets the job done. Everything else is noise.</p>
+      <div class="hero-content reveal">
+        <div class="hero-badge">
+          <span>🧘</span>
+          Our Philosophy
+        </div>
+        <h1>Less is <span class="highlight">more</span>.<br>Seriously.</h1>
+        <p class="lead">The best tool stack is the smallest one that gets the job done. Everything else is noise that steals your time, attention, and momentum.</p>
+      </div>
     </div>
   </section>
 
-  <section>
+  <!-- Manifesto -->
+  <section class="manifesto">
+    <div class="manifesto-bg">
+      <span>LESS</span>
+      <span>MORE</span>
+    </div>
     <div class="container">
-      <div class="content">
-        <p>We've all been there. You find a new tool, get excited about what it could do, and add it to your stack. Then another. And another. Before you know it, you're spending more time managing tools than doing actual work.</p>
-        
-        <p>Uncluttered exists because we believe there's a better way.</p>
+      <div class="manifesto-content">
+        <div class="manifesto-grid">
+          <div class="manifesto-text reveal">
+            <h2>We've all been there.</h2>
+            <p>You find a new tool, get excited about what it could do, and add it to your stack. Then another. And another.</p>
+            <p>Before you know it, you're spending more time managing tools than doing actual work. More time in settings than in flow. More time switching contexts than making progress.</p>
+            <p><strong>Fewer Tools exists because we believe there's a better way.</strong></p>
+          </div>
+          <div class="manifesto-visual reveal reveal-delay-1">
+            <div class="manifesto-stat">
+              <div class="manifesto-stat-icon">⏱️</div>
+              <div>
+                <div class="manifesto-stat-number">23%</div>
+                <div class="manifesto-stat-label">of work time lost to app switching</div>
+              </div>
+            </div>
+            <div class="manifesto-stat">
+              <div class="manifesto-stat-icon">🧠</div>
+              <div>
+                <div class="manifesto-stat-number">9.5 min</div>
+                <div class="manifesto-stat-label">to regain focus after switching</div>
+              </div>
+            </div>
+            <div class="manifesto-stat">
+              <div class="manifesto-stat-icon">📱</div>
+              <div>
+                <div class="manifesto-stat-number">89</div>
+                <div class="manifesto-stat-label">average SaaS apps per company</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <h2>The Core Beliefs</h2>
+  <!-- Comparison -->
+  <section class="comparison">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>The difference is clear</h2>
+        <p>Two approaches to building. One leads to shipping. The other leads to more research.</p>
+      </div>
+      <div class="comparison-grid">
+        <div class="comparison-card bad reveal">
+          <h3>❌ The Cluttered Way</h3>
+          <p class="subtitle">More tools, more problems</p>
+          <ul class="comparison-list">
+            <li>Endless research before every decision</li>
+            <li>New tool for every new problem</li>
+            <li>Subscription creep ($200/mo and climbing)</li>
+            <li>Context-switching between 15+ apps</li>
+            <li>Integration headaches and data silos</li>
+            <li>Analysis paralysis disguised as "due diligence"</li>
+          </ul>
+          <div class="comparison-tools">
+            <span class="comparison-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+            <span class="comparison-tool"><img src="https://cdn.simpleicons.org/coda/000000" alt="">Coda</span>
+            <span class="comparison-tool"><img src="https://cdn.simpleicons.org/airtable/18BFFF" alt="">Airtable</span>
+            <span class="comparison-tool"><img src="https://cdn.simpleicons.org/trello/0052CC" alt="">Trello</span>
+            <span class="comparison-tool"><img src="https://cdn.simpleicons.org/asana/F06A6A" alt="">Asana</span>
+            <span class="comparison-tool">+12 more</span>
+          </div>
+        </div>
+        <div class="comparison-card good reveal reveal-delay-1">
+          <h3>✓ The Fewer Tools Way</h3>
+          <p class="subtitle">Right tools, right time</p>
+          <ul class="comparison-list">
+            <li>One trusted recommendation per job</li>
+            <li>Tools that work together seamlessly</li>
+            <li>Free tiers that actually work ($0 to start)</li>
+            <li>Deep mastery of fewer tools</li>
+            <li>Clear upgrade path when you're ready</li>
+            <li>Ship first, optimize later</li>
+          </ul>
+          <div class="comparison-tools">
+            <span class="comparison-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+            <span class="comparison-tool"><img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="">Next.js</span>
+            <span class="comparison-tool"><img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="">Supabase</span>
+            <span class="comparison-tool"><img src="https://cdn.simpleicons.org/vercel/000000" alt="">Vercel</span>
+            <span class="comparison-tool"><img src="https://cdn.simpleicons.org/stripe/635BFF" alt="">Stripe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="principle">
+  <!-- Principles -->
+  <section class="principles">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Core Beliefs</h2>
+        <p>The principles that guide every recommendation we make.</p>
+      </div>
+      <div class="principles-grid">
+        <div class="principle-card reveal">
+          <div class="principle-icon">🎯</div>
           <h3>Tools should serve your stage</h3>
           <p>A solo founder validating an idea doesn't need enterprise monitoring. A scaling startup doesn't need another note-taking app. The right tools depend entirely on where you are right now.</p>
         </div>
-
-        <div class="principle">
+        <div class="principle-card reveal reveal-delay-1">
+          <div class="principle-icon">💸</div>
           <h3>Every tool has a cost</h3>
-          <p>Not just money — attention, context-switching, learning curves, maintenance, integration headaches. That "free" tool costs you time every single day.</p>
+          <p>Not just money — attention, context-switching, learning curves, maintenance, integration headaches. That "free" tool costs you time every single day. Time you could spend building.</p>
         </div>
-
-        <div class="principle">
+        <div class="principle-card reveal reveal-delay-2">
+          <div class="principle-icon">🏆</div>
           <h3>Fewer tools, deeper mastery</h3>
-          <p>You'll get more from truly knowing 5 tools than surface-level familiarity with 25. Depth beats breadth.</p>
+          <p>You'll get more from truly knowing 5 tools than surface-level familiarity with 25. Depth beats breadth. Mastery compounds. Shortcuts don't.</p>
         </div>
-
-        <div class="principle">
-          <h3>The best tool is the one you'll actually use</h3>
-          <p>A simpler tool you use daily beats a powerful tool you forget about. Consistency compounds.</p>
+        <div class="principle-card reveal reveal-delay-3">
+          <div class="principle-icon">🔄</div>
+          <h3>The best tool is one you'll use</h3>
+          <p>A simpler tool you use daily beats a powerful tool you forget about. Consistency compounds. The fanciest features don't matter if they collect dust.</p>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <p class="quote">"Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."</p>
+  <!-- Quote -->
+  <section class="quote-section">
+    <div class="container reveal">
+      <p class="quote-text">"Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."</p>
+      <div class="quote-author">
+        <div class="quote-author-avatar">✈️</div>
+        <div class="quote-author-info">
+          <div class="quote-author-name">Antoine de Saint-Exupéry</div>
+          <div class="quote-author-title">Author & Aviator</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <h2>What We're Not</h2>
-        
-        <p>We're not anti-tool. Tools are wonderful. The right tool at the right time can transform how you work.</p>
-        
-        <p>We're not minimalist for minimalism's sake. If you genuinely need 10 tools, use 10 tools. The goal isn't the smallest number — it's the right number.</p>
-        
-        <p>We're not saying our recommendations are the only options. They're starting points. If something else works better for you, use that.</p>
+  <!-- Promise -->
+  <section class="promise">
+    <div class="container">
+      <div class="promise-grid">
+        <div class="promise-content reveal">
+          <h2>Our Promise</h2>
+          <p>We only recommend tools we'd actually use ourselves. Affiliate links may exist, but they never influence what makes the list — merit first, always.</p>
+          <p>Every tool on this site has earned its place by being genuinely useful at its stage, not by being trendy or well-marketed.</p>
+          <ul class="promise-list">
+            <li>
+              <span class="promise-list-icon">🎯</span>
+              <span>Opinionated picks — we choose one, not ten</span>
+            </li>
+            <li>
+              <span class="promise-list-icon">✅</span>
+              <span>Honest about affiliates — merit before money</span>
+            </li>
+            <li>
+              <span class="promise-list-icon">🔄</span>
+              <span>Always updated — tools change, so do we</span>
+            </li>
+            <li>
+              <span class="promise-list-icon">💬</span>
+              <span>Open to feedback — we might be wrong</span>
+            </li>
+          </ul>
+        </div>
+        <div class="promise-visual reveal reveal-delay-1">
+          <div class="promise-card">
+            <div class="promise-card-header">
+              <div class="promise-card-avatar">C</div>
+              <div class="promise-card-info">
+                <h4>Clinton</h4>
+                <span>Maker of Fewer Tools</span>
+              </div>
+            </div>
+            <div class="promise-card-content">
+              <p>"I spent way too much time researching tools instead of shipping products. Every 'best tools' list had 50 options. Every comparison led to another comparison. Analysis paralysis was real.</p>
+              <p>So I made the resource I wished existed."</p>
+            </div>
+            <div class="promise-card-values">
+              <span class="promise-value">Builder first</span>
+              <span class="promise-value">No BS</span>
+              <span class="promise-value">Always learning</span>
+              <span class="promise-value">Ships weekly</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <h2>The Promise</h2>
-        
-        <p>We only recommend tools we'd actually use ourselves. No affiliate deals influencing our picks. No "featured" placements. Just honest opinions about what works.</p>
-        
-        <p>Every tool on this site has earned its place by being genuinely useful at its stage, not by being trendy or well-marketed.</p>
-        
-        <p>That's it. Less tools. More building.</p>
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container reveal">
+      <h2>Ready to simplify?</h2>
+      <p>Find the right stack for your stage. Stop researching. Start building.</p>
+      <div class="cta-buttons">
+        <a href="../stacks/" class="btn btn-primary">Browse Stacks →</a>
+        <a href="../tools/" class="btn btn-secondary">View All Tools</a>
       </div>
     </div>
   </section>
@@ -140,7 +415,7 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p>Simplicity is the ultimate sophistication.</p>
+        <p>© 2026 Fewer Tools. Simplicity is the ultimate sophistication.</p>
         <div class="footer-links">
           <a href="../">Home</a>
           <a href="../stacks/">Stacks</a>
@@ -151,7 +426,17 @@
   </footer>
 
   <script>
-    window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Header scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
   </script>
 </body>
 </html>

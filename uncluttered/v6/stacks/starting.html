@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Starting Stack — Uncluttered</title>
+  <title>Starting Stack — Fewer Tools</title>
   <meta name="description" content="You have an idea. Here's everything you need to explore, validate, and think clearly — and nothing that will slow you down.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://uncluttered.com/stacks/starting">
-  <meta property="og:title" content="Starting Stack — Uncluttered">
+  <meta property="og:url" content="https://fewertools.com/stacks/starting">
+  <meta property="og:title" content="Starting Stack — Fewer Tools">
   <meta property="og:description" content="You have an idea. Here's everything you need to explore, validate, and think clearly.">
-  <meta property="og:image" content="https://uncluttered.com/og-image.png">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,8 +62,8 @@
     header.scrolled { border-bottom-color: var(--border); }
     header .container { display: flex; justify-content: space-between; align-items: center; }
     .logo { display: flex; align-items: center; gap: var(--space-sm); font-family: var(--font-display); font-weight: 700; font-size: 20px; }
-    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
-    .logo-mark::before { content: ''; width: 14px; height: 14px; background: var(--accent); border-radius: 3px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .logo-mark svg { width: 20px; height: 20px; }
     nav { display: flex; align-items: center; gap: var(--space-xl); }
     nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease; }
     nav a:hover { color: var(--text); }
@@ -243,7 +243,7 @@
 <body>
   <header>
     <div class="container">
-      <a href="../" class="logo"><div class="logo-mark"></div><span>uncluttered</span></a>
+      <a href="../" class="logo"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2.5" stroke-linecap="round"><path d="M4 6L12 12"/><path d="M4 12L12 12"/><path d="M4 18L12 12"/><path d="M12 12L20 12" stroke-width="3"/></svg></div><span>Fewer Tools</span></a>
       <nav>
         <a href="./">Stacks</a>
         <a href="../tools/">Tools</a>
@@ -873,7 +873,7 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p>© 2024 Uncluttered. Ideas are cheap. Validation is priceless.</p>
+        <p>© 2026 Fewer Tools. Ideas are cheap. Validation is priceless.</p>
         <div class="footer-links">
           <a href="../">Home</a>
           <a href="./">All Stacks</a>

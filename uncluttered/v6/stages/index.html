@@ -3,114 +3,536 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stages — Uncluttered</title>
-  <meta name="description" content="Where are you right now? Each stage has different needs — and different tools that actually help.">
+  <title>Find Your Stage — Fewer Tools</title>
+  <meta name="description" content="Take the quiz to find the right tool stack for where you are right now. Plus, learn when it's time to level up.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://uncluttered.com/stages/">
-  <meta property="og:title" content="Stages — Uncluttered">
-  <meta property="og:description" content="Where are you right now? Each stage has different needs — and different tools that actually help.">
-  <meta property="og:image" content="https://uncluttered.com/og-image.png">
+  <meta property="og:url" content="https://fewertools.com/stages/">
+  <meta property="og:title" content="Find Your Stage — Fewer Tools">
+  <meta property="og:description" content="Take the quiz to find the right tool stack for your stage.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://uncluttered.com/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #111; --bg-card: #FFFFFF;
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
       --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
-      --accent: #0D9488; --accent-hover: #0F766E; --border: rgba(0, 0, 0, 0.08);
+      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12);
+      --purple: #8B5CF6; --purple-subtle: rgba(139, 92, 246, 0.1);
+      --orange: #F59E0B; --orange-subtle: rgba(245, 158, 11, 0.1);
+      --pink: #EC4899; --pink-subtle: rgba(236, 72, 153, 0.1);
       --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
       --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
-    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
-    h1 { font-size: clamp(44px, 7vw, 64px); } h2 { font-size: clamp(32px, 5vw, 44px); }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.6; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; }
     a { color: inherit; text-decoration: none; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-    
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 0; background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    @media (max-width: 600px) { .container { padding: 0 24px; } }
+
+    /* Animations */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(250, 250, 248, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: all 0.2s ease; }
     header.scrolled { border-bottom-color: var(--border); }
     header .container { display: flex; justify-content: space-between; align-items: center; }
     .logo { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 700; font-size: 20px; }
-    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
-    .logo-mark::before { content: ''; width: 14px; height: 14px; background: var(--accent); border-radius: 3px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .logo-mark svg { width: 20px; height: 20px; }
     nav { display: flex; align-items: center; gap: 40px; }
     nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
     nav a:hover { color: var(--text); }
     .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    
+    /* Mobile Menu */
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; }
+    .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--text); transition: all 0.3s ease; }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-card); flex-direction: column; align-items: flex-start; padding: 100px 32px 32px; gap: 0; box-shadow: -4px 0 24px rgba(0,0,0,0.1); transition: right 0.3s var(--ease-out); }
+      nav.open { right: 0; }
+      nav a { padding: 16px 0; width: 100%; border-bottom: 1px solid var(--border); font-size: 16px; }
+      nav .nav-cta { margin-top: 16px; width: 100%; text-align: center; border-bottom: none; }
+    }
 
-    .page-hero { padding: 160px 0 80px; text-align: center; }
-    .page-hero h1 { margin-bottom: 16px; }
-    .page-hero p { font-size: 20px; color: var(--text-secondary); max-width: 600px; margin: 0 auto 48px; }
+    /* Hero */
+    .hero { padding: 140px 0 60px; text-align: center; position: relative; }
+    @media (max-width: 600px) { .hero { padding: 120px 0 40px; } }
+    .hero-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .hero-shape { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.4; }
+    .hero-shape-1 { width: 500px; height: 500px; background: var(--accent); top: -200px; left: 50%; transform: translateX(-50%); opacity: 0.15; }
+    .hero h1 { font-size: clamp(40px, 7vw, 64px); margin-bottom: 20px; position: relative; }
+    .hero .lead { font-size: clamp(18px, 3vw, 22px); color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
 
-    .stages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; padding-bottom: 100px; }
-    .stage-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 40px; transition: all 0.3s ease; }
-    .stage-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent); }
-    .stage-icon { font-size: 48px; margin-bottom: 20px; }
-    .stage-card h3 { font-size: 24px; margin-bottom: 12px; }
-    .stage-card p { color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6; }
-    .stage-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--accent); }
-    .stage-link:hover { gap: 12px; }
+    /* Quiz Section */
+    .quiz-section { padding: 40px 0 100px; }
+    .quiz-container { max-width: 640px; margin: 0 auto; }
+    .quiz-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 48px; box-shadow: 0 4px 24px rgba(0,0,0,0.04); }
+    @media (max-width: 600px) { .quiz-card { padding: 24px; border-radius: var(--radius-lg); } }
+    
+    /* Progress */
+    .quiz-progress { display: flex; gap: 8px; margin-bottom: 40px; }
+    .quiz-progress-bar { flex: 1; height: 4px; background: var(--bg-alt); border-radius: 2px; transition: all 0.3s ease; }
+    .quiz-progress-bar.completed { background: var(--accent); }
+    .quiz-progress-bar.current { background: linear-gradient(90deg, var(--accent) 50%, var(--bg-alt) 50%); background-size: 200% 100%; animation: progress-pulse 1.5s ease-in-out infinite; }
+    @keyframes progress-pulse { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
 
+    /* Questions */
+    .quiz-question { display: none; }
+    .quiz-question.active { display: block; animation: fadeIn 0.4s var(--ease-out); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .quiz-question h2 { font-size: 28px; margin-bottom: 32px; text-align: center; }
+    .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+    .quiz-option { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--bg); border: 2px solid var(--border); border-radius: var(--radius-md); cursor: pointer; transition: all 0.2s ease; }
+    @media (max-width: 600px) { 
+      .quiz-option { padding: 16px; gap: 12px; }
+      .quiz-option-icon { width: 40px; height: 40px; font-size: 22px; }
+      .quiz-option-title { font-size: 15px; }
+      .quiz-option-desc { font-size: 13px; }
+      .quiz-question h2 { font-size: 22px; margin-bottom: 24px; }
+    }
+    .quiz-option:hover { border-color: var(--accent); background: var(--accent-subtle); }
+    .quiz-option.selected { border-color: var(--accent); background: var(--accent-subtle); }
+    .quiz-option-icon { font-size: 28px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(--bg-card); border-radius: var(--radius-sm); }
+    .quiz-option-content { flex: 1; }
+    .quiz-option-title { font-weight: 600; font-size: 16px; margin-bottom: 2px; }
+    .quiz-option-desc { font-size: 14px; color: var(--text-muted); }
+    .quiz-option-check { width: 24px; height: 24px; border: 2px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
+    .quiz-option.selected .quiz-option-check { background: var(--accent); border-color: var(--accent); }
+    .quiz-option.selected .quiz-option-check::after { content: '✓'; color: white; font-size: 14px; }
+
+    /* Navigation */
+    .quiz-nav { display: flex; justify-content: space-between; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .quiz-back { display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: transparent; border: none; color: var(--text-muted); font-size: 15px; font-weight: 500; cursor: pointer; border-radius: var(--radius-sm); transition: all 0.2s ease; }
+    .quiz-back:hover { color: var(--text); background: var(--bg-alt); }
+    .quiz-back svg { width: 18px; height: 18px; }
+    .quiz-back.hidden { visibility: hidden; }
+
+    /* Results */
+    .quiz-result { display: none; text-align: center; }
+    .quiz-result.active { display: block; animation: fadeIn 0.5s var(--ease-out); }
+    .result-icon { font-size: 64px; margin-bottom: 24px; }
+    .result-title { font-size: 32px; margin-bottom: 12px; }
+    .result-stage { display: inline-block; padding: 6px 16px; background: var(--accent-subtle); color: var(--accent); border-radius: 50px; font-size: 14px; font-weight: 600; margin-bottom: 24px; }
+    .result-desc { font-size: 18px; color: var(--text-secondary); max-width: 480px; margin: 0 auto 32px; }
+    .result-tools { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .result-tool { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--bg); border-radius: 50px; font-size: 14px; font-weight: 500; }
+    .result-tool img { width: 20px; height: 20px; border-radius: 4px; }
+    .result-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 16px 28px; font-family: var(--font-body); font-size: 15px; font-weight: 600; border-radius: var(--radius-md); border: none; cursor: pointer; transition: all 0.2s ease; text-decoration: none; }
+    .btn-primary { background: var(--bg-dark); color: var(--text-inverse); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-secondary { background: var(--bg); border: 1.5px solid var(--border-strong); color: var(--text); }
+    .btn-secondary:hover { border-color: var(--text); }
+
+    /* Journey Section */
+    .journey-section { padding: 100px 0; background: var(--bg-alt); }
+    @media (max-width: 600px) { .journey-section { padding: 60px 0; } }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-header h2 { font-size: clamp(32px, 5vw, 44px); margin-bottom: 16px; }
+    .section-header p { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+    /* Timeline */
+    .timeline { position: relative; max-width: 900px; margin: 0 auto; }
+    .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--border-strong); transform: translateX(-50%); }
+    @media (max-width: 768px) { .timeline::before { left: 24px; } }
+    
+    .timeline-item { position: relative; display: flex; align-items: flex-start; margin-bottom: 48px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+    @media (max-width: 768px) { 
+      .timeline-item, .timeline-item:nth-child(odd) { flex-direction: row; padding-left: 60px; }
+    }
+    
+    .timeline-marker { position: absolute; left: 50%; transform: translateX(-50%); width: 48px; height: 48px; background: var(--bg-card); border: 2px solid var(--border-strong); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; z-index: 1; }
+    @media (max-width: 768px) { .timeline-marker { left: 24px; } }
+    
+    .timeline-content { width: calc(50% - 48px); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; }
+    @media (max-width: 768px) { .timeline-content { width: 100%; } }
+    
+    .timeline-content h3 { font-size: 22px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+    .timeline-content h3 span { font-size: 14px; padding: 4px 12px; background: var(--accent-subtle); color: var(--accent); border-radius: 50px; font-weight: 600; }
+    .timeline-content > p { color: var(--text-secondary); margin-bottom: 20px; }
+    
+    .signals { margin-top: 20px; }
+    .signals-title { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 12px; }
+    .signals-list { list-style: none; }
+    .signals-list li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 14px; }
+    .signals-list li::before { content: '→'; color: var(--accent); font-weight: 600; }
+
+    .timeline-arrow { position: absolute; left: 50%; bottom: -36px; transform: translateX(-50%); width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; }
+    @media (max-width: 768px) { .timeline-arrow { left: 24px; } }
+    .timeline-item:last-child .timeline-arrow { display: none; }
+
+    /* Skip Quiz */
+    .skip-section { padding: 80px 0; }
+    .skip-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    @media (max-width: 900px) { .skip-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .skip-grid { grid-template-columns: 1fr; } }
+    .skip-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; text-align: center; transition: all 0.3s var(--ease-out); cursor: pointer; text-decoration: none; color: inherit; }
+    .skip-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(13, 148, 136, 0.1); }
+    .skip-card-icon { font-size: 36px; margin-bottom: 16px; }
+    .skip-card h4 { font-size: 18px; margin-bottom: 8px; }
+    .skip-card p { font-size: 14px; color: var(--text-muted); }
+
+    /* Footer */
     footer { padding: 64px 0; border-top: 1px solid var(--border); }
-    .footer-content { display: flex; justify-content: space-between; align-items: center; }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-content p { font-size: 14px; color: var(--text-muted); }
     .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
     .footer-links a:hover { color: var(--text); }
   </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <a href="../" class="logo"><div class="logo-mark"></div><span>uncluttered</span></a>
-      <nav>
+      <a href="../" class="logo"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="2.5" stroke-linecap="round"><path d="M4 6L12 12"/><path d="M4 12L12 12"/><path d="M4 18L12 12"/><path d="M12 12L20 12" stroke-width="3"/></svg></div><span>Fewer Tools</span></a>
+      <nav id="nav">
         <a href="./">Stages</a>
         <a href="../stacks/">Stacks</a>
         <a href="../tools/">Tools</a>
         <a href="../philosophy/">Philosophy</a>
-        <a href="../#stages" class="nav-cta">Find your stack</a>
+        <a href="../stacks/" class="nav-cta">Browse Stacks</a>
       </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
-  <section class="page-hero">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-shape hero-shape-1"></div>
+    </div>
     <div class="container">
-      <h1>Stages</h1>
-      <p>Where are you right now? Each stage has different needs — and different tools that actually help.</p>
+      <h1>Find your stage</h1>
+      <p class="lead">Answer 3 quick questions to get a personalized tool stack recommendation. Takes 30 seconds.</p>
     </div>
   </section>
 
-  <section>
+  <!-- Quiz -->
+  <section class="quiz-section">
     <div class="container">
-      <div class="stages-grid">
-        <a href="../stacks/starting.html" class="stage-card">
-          <div class="stage-icon">💡</div>
-          <h3>Starting</h3>
-          <p>You have an idea. Maybe several. You need to validate before you build — not collect tools.</p>
-          <span class="stage-link">View stack →</span>
+      <div class="quiz-container">
+        <div class="quiz-card">
+          <div class="quiz-progress">
+            <div class="quiz-progress-bar current" id="prog1"></div>
+            <div class="quiz-progress-bar" id="prog2"></div>
+            <div class="quiz-progress-bar" id="prog3"></div>
+          </div>
+
+          <!-- Question 1 -->
+          <div class="quiz-question active" id="q1">
+            <h2>Have you started building yet?</h2>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectOption(1, this, 'no-code')">
+                <div class="quiz-option-icon">💭</div>
+                <div class="quiz-option-content">
+                  <div class="quiz-option-title">Still exploring</div>
+                  <div class="quiz-option-desc">I have ideas but haven't written code yet</div>
+                </div>
+                <div class="quiz-option-check"></div>
+              </div>
+              <div class="quiz-option" onclick="selectOption(1, this, 'building')">
+                <div class="quiz-option-icon">💻</div>
+                <div class="quiz-option-content">
+                  <div class="quiz-option-title">Actively building</div>
+                  <div class="quiz-option-desc">I'm writing code and making progress</div>
+                </div>
+                <div class="quiz-option-check"></div>
+              </div>
+              <div class="quiz-option" onclick="selectOption(1, this, 'live')">
+                <div class="quiz-option-icon">🚀</div>
+                <div class="quiz-option-content">
+                  <div class="quiz-option-title">Already live</div>
+                  <div class="quiz-option-desc">My product is out in the world</div>
+                </div>
+                <div class="quiz-option-check"></div>
+              </div>
+            </div>
+            <div class="quiz-nav">
+              <button class="quiz-back hidden">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="quiz-question" id="q2">
+            <h2>Do you have users or customers?</h2>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectOption(2, this, 'no-users')">
+                <div class="quiz-option-icon">🌱</div>
+                <div class="quiz-option-content">
+                  <div class="quiz-option-title">Not yet</div>
+                  <div class="quiz-option-desc">Still building, no users signed up</div>
+                </div>
+                <div class="quiz-option-check"></div>
+              </div>
+              <div class="quiz-option" onclick="selectOption(2, this, 'some-users')">
+                <div class="quiz-option-icon">👥</div>
+                <div class="quiz-option-content">
+                  <div class="quiz-option-title">A few testers</div>
+                  <div class="quiz-option-desc">Beta users or friends trying it out</div>
+                </div>
+                <div class="quiz-option-check"></div>
+              </div>
+              <div class="quiz-option" onclick="selectOption(2, this, 'paying')">
+                <div class="quiz-option-icon">💰</div>
+                <div class="quiz-option-content">
+                  <div class="quiz-option-title">Paying customers</div>
+                  <div class="quiz-option-desc">Real revenue coming in</div>
+                </div>
+                <div class="quiz-option-check"></div>
+              </div>
+            </div>
+            <div class="quiz-nav">
+              <button class="quiz-back" onclick="goBack(2)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="quiz-question" id="q3">
+            <h2>How's your current tool situation?</h2>
+            <div class="quiz-options">
+              <div class="quiz-option" onclick="selectOption(3, this, 'no-tools')">
+                <div class="quiz-option-icon">🆕</div>
+                <div class="quiz-option-content">
+                  <div class="quiz-option-title">Starting fresh</div>
+                  <div class="quiz-option-desc">Need guidance on what to use</div>
+                </div>
+                <div class="quiz-option-check"></div>
+              </div>
+              <div class="quiz-option" onclick="selectOption(3, this, 'some-tools')">
+                <div class="quiz-option-icon">🔧</div>
+                <div class="quiz-option-content">
+                  <div class="quiz-option-title">Have some tools</div>
+                  <div class="quiz-option-desc">Looking to fill gaps or upgrade</div>
+                </div>
+                <div class="quiz-option-check"></div>
+              </div>
+              <div class="quiz-option" onclick="selectOption(3, this, 'too-many')">
+                <div class="quiz-option-icon">🤯</div>
+                <div class="quiz-option-content">
+                  <div class="quiz-option-title">Too many tools</div>
+                  <div class="quiz-option-desc">Overwhelmed, need to simplify</div>
+                </div>
+                <div class="quiz-option-check"></div>
+              </div>
+            </div>
+            <div class="quiz-nav">
+              <button class="quiz-back" onclick="goBack(3)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back
+              </button>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="quiz-result" id="resultStarting">
+            <div class="result-icon">💡</div>
+            <div class="result-stage">Exploration Stage</div>
+            <h3 class="result-title">You're Starting</h3>
+            <p class="result-desc">You're in exploration mode — and that's perfect. You need tools to think, validate, and plan. Not to build (yet).</p>
+            <div class="result-tools">
+              <span class="result-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+              <span class="result-tool"><img src="https://cdn.simpleicons.org/figma/F24E1E" alt="">Figma</span>
+              <span class="result-tool"><img src="https://cdn.simpleicons.org/anthropic/191919" alt="">Claude</span>
+              <span class="result-tool">+3 more</span>
+            </div>
+            <div class="result-actions">
+              <a href="../stacks/starting.html" class="btn btn-primary">View Starting Stack →</a>
+              <button class="btn btn-secondary" onclick="resetQuiz()">Retake Quiz</button>
+            </div>
+          </div>
+
+          <div class="quiz-result" id="resultBuilding">
+            <div class="result-icon">🔨</div>
+            <div class="result-stage">Shipping Stage</div>
+            <h3 class="result-title">You're Building</h3>
+            <p class="result-desc">Time to ship. You need a solid foundation — framework, database, hosting, and payments. Everything to go from code to customers.</p>
+            <div class="result-tools">
+              <span class="result-tool"><img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="">Next.js</span>
+              <span class="result-tool"><img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="">Supabase</span>
+              <span class="result-tool"><img src="https://cdn.simpleicons.org/vercel/000000" alt="">Vercel</span>
+              <span class="result-tool">+3 more</span>
+            </div>
+            <div class="result-actions">
+              <a href="../stacks/building.html" class="btn btn-primary">View Building Stack →</a>
+              <button class="btn btn-secondary" onclick="resetQuiz()">Retake Quiz</button>
+            </div>
+          </div>
+
+          <div class="quiz-result" id="resultGrowing">
+            <div class="result-icon">📈</div>
+            <div class="result-stage">Scaling Stage</div>
+            <h3 class="result-title">You're Growing</h3>
+            <p class="result-desc">You have traction! Now you need to understand your users, catch issues early, and scale what's working.</p>
+            <div class="result-tools">
+              <span class="result-tool"><img src="https://cdn.simpleicons.org/posthog/1D4AFF" alt="">PostHog</span>
+              <span class="result-tool"><img src="https://cdn.simpleicons.org/sentry/362D59" alt="">Sentry</span>
+              <span class="result-tool"><img src="https://cdn.simpleicons.org/intercom/6AFDEF" alt="">Intercom</span>
+              <span class="result-tool">+3 more</span>
+            </div>
+            <div class="result-actions">
+              <a href="../stacks/growing.html" class="btn btn-primary">View Growing Stack →</a>
+              <button class="btn btn-secondary" onclick="resetQuiz()">Retake Quiz</button>
+            </div>
+          </div>
+
+          <div class="quiz-result" id="resultSimplifying">
+            <div class="result-icon">✨</div>
+            <div class="result-stage">Clarity Stage</div>
+            <h3 class="result-title">Time to Simplify</h3>
+            <p class="result-desc">Tool overload is real. You need to audit, cut, and consolidate. Less tools, more focus, better results.</p>
+            <div class="result-tools">
+              <span class="result-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+              <span class="result-tool"><img src="https://cdn.simpleicons.org/linear/5E6AD2" alt="">Linear</span>
+              <span class="result-tool"><img src="https://cdn.simpleicons.org/zapier/FF4A00" alt="">Zapier</span>
+              <span class="result-tool">+3 more</span>
+            </div>
+            <div class="result-actions">
+              <a href="../stacks/simplifying.html" class="btn btn-primary">View Simplifying Guide →</a>
+              <button class="btn btn-secondary" onclick="resetQuiz()">Retake Quiz</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journey Section -->
+  <section class="journey-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Know when to level up</h2>
+        <p>Stages aren't permanent. Here's how to recognize when you're ready to move on.</p>
+      </div>
+
+      <div class="timeline">
+        <!-- Starting -->
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">💡</div>
+          <div class="timeline-content">
+            <h3>Starting <span>Exploration</span></h3>
+            <p>You have ideas to validate, problems to understand, and assumptions to test.</p>
+            <div class="signals">
+              <div class="signals-title">Move to Building when:</div>
+              <ul class="signals-list">
+                <li>You've talked to 10+ potential users</li>
+                <li>You can describe the MVP in one sentence</li>
+                <li>You've validated people will pay (or at least sign up)</li>
+                <li>You're itching to code, not research</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-arrow">↓</div>
+        </div>
+
+        <!-- Building -->
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">🔨</div>
+          <div class="timeline-content">
+            <h3>Building <span>Shipping</span></h3>
+            <p>You're turning ideas into reality. Code is being written, features are shipping.</p>
+            <div class="signals">
+              <div class="signals-title">Move to Growing when:</div>
+              <ul class="signals-list">
+                <li>You have real users (not just friends)</li>
+                <li>People are paying or showing strong intent</li>
+                <li>You need to understand user behavior</li>
+                <li>Support requests are becoming a thing</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-arrow">↓</div>
+        </div>
+
+        <!-- Growing -->
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">📈</div>
+          <div class="timeline-content">
+            <h3>Growing <span>Scaling</span></h3>
+            <p>You have traction. Now it's about understanding, optimizing, and scaling.</p>
+            <div class="signals">
+              <div class="signals-title">Consider Simplifying when:</div>
+              <ul class="signals-list">
+                <li>Your tool stack has grown organically (chaos)</li>
+                <li>You're paying for overlapping features</li>
+                <li>Onboarding new team members is painful</li>
+                <li>You spend more time in tools than on work</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-arrow">↓</div>
+        </div>
+
+        <!-- Simplifying -->
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">✨</div>
+          <div class="timeline-content">
+            <h3>Simplifying <span>Clarity</span></h3>
+            <p>Step back, audit everything, cut ruthlessly, and regain focus.</p>
+            <div class="signals">
+              <div class="signals-title">You've succeeded when:</div>
+              <ul class="signals-list">
+                <li>Every tool has a clear, singular purpose</li>
+                <li>New team members can onboard in a day</li>
+                <li>Your monthly SaaS bill makes sense</li>
+                <li>You feel calm, not overwhelmed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skip Section -->
+  <section class="skip-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Already know your stage?</h2>
+        <p>Jump straight to your stack.</p>
+      </div>
+      <div class="skip-grid">
+        <a href="../stacks/starting.html" class="skip-card reveal">
+          <div class="skip-card-icon">💡</div>
+          <h4>Starting</h4>
+          <p>Explore & validate</p>
         </a>
-        <a href="../stacks/building.html" class="stage-card">
-          <div class="stage-icon">🔨</div>
-          <h3>Building</h3>
-          <p>You know what to build. Now you need tools that help you ship — not plan or dream.</p>
-          <span class="stage-link">View stack →</span>
+        <a href="../stacks/building.html" class="skip-card reveal">
+          <div class="skip-card-icon">🔨</div>
+          <h4>Building</h4>
+          <p>Ship your MVP</p>
         </a>
-        <a href="../stacks/growing.html" class="stage-card">
-          <div class="stage-icon">📈</div>
-          <h3>Growing</h3>
-          <p>You have users. Real ones. Time to understand behavior and scale what works.</p>
-          <span class="stage-link">View stack →</span>
+        <a href="../stacks/growing.html" class="skip-card reveal">
+          <div class="skip-card-icon">📈</div>
+          <h4>Growing</h4>
+          <p>Scale what works</p>
         </a>
-        <a href="../stacks/simplifying.html" class="stage-card">
-          <div class="stage-icon">✨</div>
-          <h3>Simplifying</h3>
-          <p>You've accumulated too much. Time to cut, consolidate, and regain clarity.</p>
-          <span class="stage-link">View stack →</span>
+        <a href="../stacks/simplifying.html" class="skip-card reveal">
+          <div class="skip-card-icon">✨</div>
+          <h4>Simplifying</h4>
+          <p>Cut the clutter</p>
         </a>
       </div>
     </div>
@@ -119,7 +541,7 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p>Less tools. More building.</p>
+        <p>© 2026 Fewer Tools. Less tools. More building.</p>
         <div class="footer-links">
           <a href="../">Home</a>
           <a href="../stacks/">Stacks</a>
@@ -130,7 +552,90 @@
   </footer>
 
   <script>
-    window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Header scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        nav.classList.remove('open');
+      });
+    });
+
+    // Quiz functionality
+    let answers = {};
+
+    function selectOption(questionNum, element, value) {
+      // Mark selected
+      element.parentElement.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+      element.classList.add('selected');
+      answers[questionNum] = value;
+
+      // Delay then advance
+      setTimeout(() => {
+        if (questionNum < 3) {
+          document.getElementById('prog' + questionNum).classList.remove('current');
+          document.getElementById('prog' + questionNum).classList.add('completed');
+          document.getElementById('prog' + (questionNum + 1)).classList.add('current');
+          document.getElementById('q' + questionNum).classList.remove('active');
+          document.getElementById('q' + (questionNum + 1)).classList.add('active');
+        } else {
+          document.getElementById('prog3').classList.remove('current');
+          document.getElementById('prog3').classList.add('completed');
+          document.getElementById('q3').classList.remove('active');
+          showResult();
+        }
+      }, 300);
+    }
+
+    function goBack(fromQuestion) {
+      const prevQuestion = fromQuestion - 1;
+      document.getElementById('prog' + fromQuestion).classList.remove('current');
+      document.getElementById('prog' + prevQuestion).classList.remove('completed');
+      document.getElementById('prog' + prevQuestion).classList.add('current');
+      document.getElementById('q' + fromQuestion).classList.remove('active');
+      document.getElementById('q' + prevQuestion).classList.add('active');
+      delete answers[fromQuestion];
+      document.querySelectorAll('#q' + fromQuestion + ' .quiz-option').forEach(o => o.classList.remove('selected'));
+    }
+
+    function showResult() {
+      let result = 'Building';
+      if (answers[3] === 'too-many') {
+        result = 'Simplifying';
+      } else if (answers[1] === 'no-code') {
+        result = 'Starting';
+      } else if (answers[2] === 'paying' || answers[1] === 'live') {
+        result = 'Growing';
+      }
+      document.getElementById('result' + result).classList.add('active');
+    }
+
+    function resetQuiz() {
+      answers = {};
+      document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
+      document.querySelectorAll('.quiz-result').forEach(r => r.classList.remove('active'));
+      document.getElementById('q1').classList.add('active');
+      document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+      document.querySelectorAll('.quiz-progress-bar').forEach(b => b.classList.remove('completed', 'current'));
+      document.getElementById('prog1').classList.add('current');
+    }
   </script>
 </body>
 </html>
