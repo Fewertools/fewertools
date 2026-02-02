@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building Stack — Uncluttered</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #fafafa;
+      --text: #1a1a1a;
+      --text-secondary: #666;
+      --text-tertiary: #999;
+      --accent: #5a6872;
+      --border: #e5e5e5;
+      --card: #fff;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+    }
+    
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.15s; }
+    .delay-3 { animation-delay: 0.2s; }
+    .delay-4 { animation-delay: 0.25s; }
+    .delay-5 { animation-delay: 0.3s; }
+    
+    /* Header */
+    header {
+      padding: 24px 0;
+    }
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+      text-decoration: none;
+    }
+    nav {
+      display: flex;
+      gap: 32px;
+    }
+    nav a {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text); }
+    
+    /* Page Header */
+    .page-header {
+      padding: 80px 0 48px;
+    }
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      margin-bottom: 24px;
+    }
+    .breadcrumb a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { color: var(--text); }
+    .page-header h1 {
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .page-header p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    /* Stage signal */
+    .stage-signal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 48px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .stage-signal strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+    
+    /* Tools */
+    .tools {
+      margin-bottom: 64px;
+    }
+    .tool {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 16px;
+      transition: all 0.2s ease;
+    }
+    .tool:hover {
+      border-color: #ccc;
+    }
+    
+    .tool-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .tool-name {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .tool-category {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--bg);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    
+    .tool-desc {
+      color: var(--text-secondary);
+      font-size: 15px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    
+    .tool-why {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    .tool-why h4 {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 12px;
+    }
+    .tool-why p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .tool-link {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .tool-link:hover {
+      text-decoration: underline;
+    }
+    
+    /* Cut First */
+    .cut-first {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 64px;
+    }
+    .cut-first h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .cut-first p {
+      color: var(--text-secondary);
+      font-size: 15px;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .cut-first ul {
+      list-style: none;
+      padding: 0;
+    }
+    .cut-first li {
+      padding: 8px 0;
+      font-size: 15px;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+    .cut-first li:last-child {
+      border-bottom: none;
+    }
+    
+    /* Stage progression */
+    .progression {
+      text-align: center;
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+    }
+    .progression p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .progression-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+    }
+    .progression-links a {
+      font-size: 14px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .progression-links a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Footer */
+    footer {
+      padding: 48px 0;
+      text-align: center;
+    }
+    footer p {
+      font-size: 14px;
+      color: var(--text-tertiary);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../" class="logo">uncluttered</a>
+      <nav>
+        <a href="../stacks/">Stacks</a>
+        <a href="../philosophy/">Philosophy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-header">
+      <div class="breadcrumb fade-in">
+        <a href="../">Home</a> → Building
+      </div>
+      <h1 class="fade-in delay-1">Building</h1>
+      <p class="fade-in delay-1">You're making something real. Here's what's enough.</p>
+    </div>
+
+    <div class="stage-signal fade-in delay-2">
+      <strong>You're in the right place if:</strong> You have a clear idea and you're ready to build. You're not exploring anymore — you're executing.
+    </div>
+
+    <div class="tools">
+      <div class="tool fade-in delay-2">
+        <div class="tool-header">
+          <span class="tool-name">Next.js</span>
+          <span class="tool-category">Home base</span>
+        </div>
+        <p class="tool-desc">Your foundation. Everything you build lives here — pages, APIs, backend logic. One framework, one place.</p>
+        <div class="tool-why">
+          <h4>Why this, not that</h4>
+          <p>Not Gatsby (too blog-focused). Not raw React (you'll rebuild what Next gives you). Not WordPress (you're building, not configuring). Next.js gives you structure without taking control.</p>
+        </div>
+        <a href="https://nextjs.org" target="_blank" class="tool-link">Visit Next.js →</a>
+      </div>
+
+      <div class="tool fade-in delay-3">
+        <div class="tool-header">
+          <span class="tool-name">Supabase</span>
+          <span class="tool-category">Organization</span>
+        </div>
+        <p class="tool-desc">Your database, authentication, and storage. One dashboard for everything that isn't code. No DevOps required.</p>
+        <div class="tool-why">
+          <h4>Why this, not that</h4>
+          <p>Not Firebase (vendor lock-in, Google complexity). Not separate services for auth + database + storage (too many dashboards). Supabase is Postgres you can actually use.</p>
+        </div>
+        <a href="https://supabase.com" target="_blank" class="tool-link">Visit Supabase →</a>
+      </div>
+
+      <div class="tool fade-in delay-3">
+        <div class="tool-header">
+          <span class="tool-name">Vercel</span>
+          <span class="tool-category">Communication</span>
+        </div>
+        <p class="tool-desc">Your work meets the world here. Push code, it's live. Preview links for every change. No servers to manage.</p>
+        <div class="tool-why">
+          <h4>Why this, not that</h4>
+          <p>Not AWS (you're building, not becoming a cloud engineer). Not Netlify (fine, but Vercel is made for Next.js). Not Heroku (dated, expensive for what you get).</p>
+        </div>
+        <a href="https://vercel.com" target="_blank" class="tool-link">Visit Vercel →</a>
+      </div>
+
+      <div class="tool fade-in delay-4">
+        <div class="tool-header">
+          <span class="tool-name">Stripe</span>
+          <span class="tool-category">Workflow</span>
+        </div>
+        <p class="tool-desc">When you're ready to charge money. Not before. Checkout handles everything — you just need one link.</p>
+        <div class="tool-why">
+          <h4>Why this, not that</h4>
+          <p>Not PayPal (worse DX, less trust). Not Paddle (only if you need tax compliance). Not Gumroad (for creators, not builders). Stripe is the standard because it works.</p>
+        </div>
+        <a href="https://stripe.com" target="_blank" class="tool-link">Visit Stripe →</a>
+      </div>
+
+      <div class="tool fade-in delay-5">
+        <div class="tool-header">
+          <span class="tool-name">Resend</span>
+          <span class="tool-category">Future upgrade</span>
+        </div>
+        <p class="tool-desc">Transactional email when you need it. Welcome emails, password resets, receipts. Beautiful API, simple pricing.</p>
+        <div class="tool-why">
+          <h4>Why this, not that</h4>
+          <p>Not SendGrid (enterprise complexity). Not Mailchimp (for marketing, not transactional). Not building your own SMTP (you have better things to do). Resend is email that developers actually like.</p>
+        </div>
+        <a href="https://resend.com" target="_blank" class="tool-link">Visit Resend →</a>
+      </div>
+    </div>
+
+    <div class="cut-first fade-in">
+      <h3>What you don't need yet</h3>
+      <p>These are common at this stage. They're also unnecessary right now.</p>
+      <ul>
+        <li>Analytics beyond Vercel's built-in metrics</li>
+        <li>Multiple environments (staging, QA, UAT)</li>
+        <li>CI/CD pipelines — Vercel handles this</li>
+        <li>Monitoring and alerting tools</li>
+        <li>A design system — use shadcn/ui components</li>
+        <li>Documentation tools — a README is enough</li>
+      </ul>
+    </div>
+
+    <div class="progression">
+      <p>If this stack feels overwhelming, you might be in <strong>Starting</strong>.<br>If it feels limiting, you might be ready for <strong>Growing</strong>.</p>
+      <div class="progression-links">
+        <a href="starting.html">← Starting</a>
+        <a href="growing.html">Growing →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>That's enough. Go build.</p>
+    </div>
+  </footer>
+</body>
+</html>

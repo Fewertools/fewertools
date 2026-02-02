@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Philosophy — Uncluttered</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #fafafa;
+      --text: #1a1a1a;
+      --text-secondary: #666;
+      --text-tertiary: #999;
+      --accent: #5a6872;
+      --border: #e5e5e5;
+      --card: #fff;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      font-size: 17px;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    
+    /* Header */
+    header {
+      padding: 24px 0;
+    }
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+      text-decoration: none;
+    }
+    nav {
+      display: flex;
+      gap: 32px;
+    }
+    nav a {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text); }
+    
+    /* Content */
+    .content {
+      padding: 80px 0;
+    }
+    .content h1 {
+      font-size: 40px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 48px;
+      line-height: 1.2;
+    }
+    .content h2 {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-top: 64px;
+      margin-bottom: 24px;
+    }
+    .content p {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+    .content p:last-child {
+      margin-bottom: 0;
+    }
+    .content strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+    
+    .pullquote {
+      font-size: 22px;
+      color: var(--text);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+      margin: 48px 0;
+      padding-left: 24px;
+      border-left: 2px solid var(--border);
+    }
+    
+    /* Footer */
+    footer {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    footer a {
+      font-size: 15px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../" class="logo">uncluttered</a>
+      <nav>
+        <a href="../stacks/">Stacks</a>
+        <a href="../philosophy/">Philosophy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="content fade-in">
+      <h1>Why one stack.</h1>
+      
+      <p>Every "best tools" list is the same. Fifty options. Comparison tables. "It depends on your needs." You leave more confused than when you arrived.</p>
+      
+      <p>This site exists because <strong>choice is exhausting</strong>. And because most of those choices don't matter — not yet, not for where you are.</p>
+      
+      <p class="pullquote">The question isn't "what's best?" It's "what's enough for where I am right now?"</p>
+      
+      <h2>Why stages matter</h2>
+      
+      <p>A tool that's perfect for growing a business is overkill for someone just starting. A tool that's essential at scale is a distraction when you're still building.</p>
+      
+      <p>We don't show you everything. We show you what matters for your stage — and nothing else.</p>
+      
+      <h2>Why no alternatives</h2>
+      
+      <p>Alternatives create decisions. Decisions create delay. Delay kills momentum.</p>
+      
+      <p>When you ask "should I use X or Y?", you're not making progress. You're researching. Research feels productive but it isn't building.</p>
+      
+      <p>We pick one. You use it. If it doesn't work, you'll know — and you'll change. But you won't be stuck deciding.</p>
+      
+      <h2>Why less beats more</h2>
+      
+      <p>Every tool you add is a tab to manage, a subscription to track, a login to remember, an integration to maintain.</p>
+      
+      <p>The cost isn't just money. It's attention. And attention is the only resource you can't buy back.</p>
+      
+      <p>Five tools that work together will always beat fifteen tools that each do one thing slightly better.</p>
+      
+      <h2>Why upgrades are delayed</h2>
+      
+      <p>The productivity industry wants you to upgrade constantly. New features, premium tiers, enterprise plans.</p>
+      
+      <p>We tell you to wait. <strong>You don't need to upgrade yet.</strong> What you have is enough until it clearly isn't.</p>
+      
+      <p>Most people upgrade because of marketing, not necessity. We help you tell the difference.</p>
+      
+      <h2>Why calm beats hustle</h2>
+      
+      <p>The internet celebrates complexity. "Look at my setup." "Here's my 47-app workflow." It's a flex, not a strategy.</p>
+      
+      <p>The people actually building things aren't optimizing their tools. They're using what works and focusing on what matters.</p>
+      
+      <p>This site is for them.</p>
+      
+      <p class="pullquote">Calm is a competitive advantage.</p>
+      
+      <h2>The test</h2>
+      
+      <p>If someone asks "Why should I use this instead of just Googling?", the answer should be:</p>
+      
+      <p><strong>Because this tells me what's enough for where I am.</strong></p>
+      
+      <p>If any part of this site doesn't support that answer, it gets removed.</p>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="../">← Back to finding your stack</a>
+    </div>
+  </footer>
+</body>
+</html>

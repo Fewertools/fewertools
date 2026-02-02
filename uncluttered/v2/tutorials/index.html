@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorials — Build Real Projects | Uncluttered</title>
+    <meta name="description" content="Step-by-step tutorials to build real projects. SaaS apps, newsletters, landing pages, and more using the best tools.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.svg" alt="" class="logo-icon" width="24" height="24">
+                uncluttered
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#stages">Stages</a>
+                <a href="../index.html#stacks">Stacks</a>
+                <a href="../tools/index.html">Tools</a>
+                <a href="index.html" class="active">Tutorials</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="tool-hero">
+            <div class="section-container">
+                <div class="section-header" style="text-align: center;">
+                    <span class="section-label">Learn by Building</span>
+                    <h1 style="font-size: clamp(2rem, 5vw, 3rem);">Tutorials</h1>
+                    <p>Step-by-step guides to build real projects with the right tools.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container" style="padding: var(--space-xl) var(--space-lg) var(--space-3xl);">
+            
+            <!-- Featured Tutorial -->
+            <div class="tutorial-featured">
+                <a href="saas-mvp-weekend.html" class="tutorial-card featured">
+                    <div class="tutorial-badge">🔥 Popular</div>
+                    <div class="tutorial-time">~4 hours</div>
+                    <h2>Build a SaaS MVP in a Weekend</h2>
+                    <p>Go from zero to a working SaaS with authentication, database, payments, and deployment. The complete founder stack.</p>
+                    <div class="tutorial-stack">
+                        <span class="tool-tag">Next.js</span>
+                        <span class="tool-tag">Supabase</span>
+                        <span class="tool-tag">Stripe</span>
+                        <span class="tool-tag">Vercel</span>
+                    </div>
+                    <span class="tutorial-cta">Start Tutorial →</span>
+                </a>
+            </div>
+
+            <!-- All Tutorials -->
+            <h2 style="margin: var(--space-2xl) 0 var(--space-md);">All Tutorials</h2>
+            <div class="tutorials-grid">
+                
+                <a href="saas-mvp-weekend.html" class="tutorial-card">
+                    <div class="tutorial-time">~4 hours</div>
+                    <h3>Build a SaaS MVP in a Weekend</h3>
+                    <p>Full-stack SaaS with auth, database, and payments.</p>
+                    <div class="tutorial-stack">
+                        <span class="tool-tag">Next.js</span>
+                        <span class="tool-tag">Supabase</span>
+                        <span class="tool-tag">Stripe</span>
+                    </div>
+                </a>
+
+                <a href="newsletter-scratch.html" class="tutorial-card">
+                    <div class="tutorial-time">~2 hours</div>
+                    <h3>Launch a Newsletter from Scratch</h3>
+                    <p>Set up a newsletter with landing page, email automation, and monetization.</p>
+                    <div class="tutorial-stack">
+                        <span class="tool-tag">ConvertKit</span>
+                        <span class="tool-tag">Carrd</span>
+                        <span class="tool-tag">Stripe</span>
+                    </div>
+                </a>
+
+                <a href="landing-page-30min.html" class="tutorial-card">
+                    <div class="tutorial-time">~30 min</div>
+                    <h3>Landing Page in 30 Minutes</h3>
+                    <p>Create a high-converting landing page without code.</p>
+                    <div class="tutorial-stack">
+                        <span class="tool-tag">Carrd</span>
+                        <span class="tool-tag">Tally</span>
+                        <span class="tool-tag">Plausible</span>
+                    </div>
+                </a>
+
+                <a href="ai-app-api.html" class="tutorial-card">
+                    <div class="tutorial-time">~3 hours</div>
+                    <h3>Build an AI-Powered App</h3>
+                    <p>Create an app with OpenAI integration, from API to deployment.</p>
+                    <div class="tutorial-stack">
+                        <span class="tool-tag">Next.js</span>
+                        <span class="tool-tag">OpenAI</span>
+                        <span class="tool-tag">Vercel</span>
+                    </div>
+                </a>
+
+                <a href="ecommerce-store.html" class="tutorial-card coming-soon">
+                    <div class="tutorial-time">Coming Soon</div>
+                    <h3>E-commerce Store Setup</h3>
+                    <p>Launch an online store with inventory, payments, and shipping.</p>
+                    <div class="tutorial-stack">
+                        <span class="tool-tag">Shopify</span>
+                        <span class="tool-tag">Stripe</span>
+                    </div>
+                </a>
+
+                <a href="mobile-app-expo.html" class="tutorial-card coming-soon">
+                    <div class="tutorial-time">Coming Soon</div>
+                    <h3>Mobile App with Expo</h3>
+                    <p>Build a cross-platform mobile app and publish to app stores.</p>
+                    <div class="tutorial-stack">
+                        <span class="tool-tag">Expo</span>
+                        <span class="tool-tag">Supabase</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>© 2026 Uncluttered. Made with ✦ in Milton Keynes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

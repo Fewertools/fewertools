@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Stage Stack — Uncluttered</title>
+    <meta name="description" content="The exact tools you need to build your MVP. No comparison hell. Just the stack.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../stage.css">
+</head>
+<body>
+    <nav class="nav">
+        <a href="/" class="logo">uncluttered</a>
+        <div class="nav-links">
+            <a href="/#stages">Stages</a>
+            <a href="/#philosophy">Philosophy</a>
+            <a href="/submit" class="nav-cta">Submit a Tool</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="stage-hero">
+            <a href="/" class="back-link">← All stages</a>
+            <div class="stage-badge">Stage 02</div>
+            <h1>Building</h1>
+            <p class="stage-desc">You've validated the idea. Now it's time to build an MVP that actually works. Here's exactly what you need — nothing more.</p>
+        </section>
+
+        <section class="stack-section">
+            <div class="stack-intro">
+                <h2>Your Building Stack</h2>
+                <p>These tools will take you from zero to deployed MVP. Every pick is intentional.</p>
+            </div>
+
+            <div class="stack-grid">
+                
+                <!-- Framework -->
+                <div class="tool-card">
+                    <div class="tool-category">Framework</div>
+                    <div class="tool-header">
+                        <div class="tool-logo">▲</div>
+                        <div>
+                            <h3>Next.js</h3>
+                            <span class="tool-tagline">React, but production-ready</span>
+                        </div>
+                    </div>
+                    <p class="tool-why"><strong>Why this:</strong> Full-stack in one. SSR, API routes, great DX. Deploys to Vercel in seconds. The default choice for a reason.</p>
+                    <p class="tool-ignore"><strong>Ignore:</strong> Remix (great but smaller ecosystem), Nuxt (if you don't already know Vue), raw React (you'll rebuild what Next gives you free).</p>
+                    <a href="https://nextjs.org" target="_blank" class="tool-link">nextjs.org →</a>
+                </div>
+
+                <!-- Database -->
+                <div class="tool-card">
+                    <div class="tool-category">Database + Auth + Storage</div>
+                    <div class="tool-header">
+                        <div class="tool-logo">⚡</div>
+                        <div>
+                            <h3>Supabase</h3>
+                            <span class="tool-tagline">Postgres + Auth + Storage in one</span>
+                        </div>
+                    </div>
+                    <p class="tool-why"><strong>Why this:</strong> Everything you need, one dashboard. Generous free tier. SQL when you need it, simple SDK when you don't. Auth that just works.</p>
+                    <p class="tool-ignore"><strong>Ignore:</strong> Firebase (vendor lock-in, NoSQL headaches), PlanetScale (great but overkill), building auth yourself (don't).</p>
+                    <a href="https://supabase.com" target="_blank" class="tool-link">supabase.com →</a>
+                </div>
+
+                <!-- Hosting -->
+                <div class="tool-card">
+                    <div class="tool-category">Hosting</div>
+                    <div class="tool-header">
+                        <div class="tool-logo">▲</div>
+                        <div>
+                            <h3>Vercel</h3>
+                            <span class="tool-tagline">Deploy with git push</span>
+                        </div>
+                    </div>
+                    <p class="tool-why"><strong>Why this:</strong> Made by the Next.js team. Push to GitHub, it's live. Preview deployments. Custom domains. Free tier covers most MVPs.</p>
+                    <p class="tool-ignore"><strong>Ignore:</strong> AWS (complexity hell), Netlify (good but Vercel + Next is tighter), Railway (better for backends).</p>
+                    <a href="https://vercel.com" target="_blank" class="tool-link">vercel.com →</a>
+                </div>
+
+                <!-- Payments -->
+                <div class="tool-card">
+                    <div class="tool-category">Payments</div>
+                    <div class="tool-header">
+                        <div class="tool-logo">💳</div>
+                        <div>
+                            <h3>Stripe</h3>
+                            <span class="tool-tagline">The only serious choice</span>
+                        </div>
+                    </div>
+                    <p class="tool-why"><strong>Why this:</strong> Industry standard. Great docs. Checkout, subscriptions, invoices — all built in. Test mode is excellent.</p>
+                    <p class="tool-ignore"><strong>Ignore:</strong> Paddle (good for SaaS tax, but Stripe is more flexible), Lemon Squeezy (newer, less proven), PayPal (developer experience is pain).</p>
+                    <a href="https://stripe.com" target="_blank" class="tool-link">stripe.com →</a>
+                </div>
+
+                <!-- UI -->
+                <div class="tool-card">
+                    <div class="tool-category">UI Components</div>
+                    <div class="tool-header">
+                        <div class="tool-logo">🎨</div>
+                        <div>
+                            <h3>shadcn/ui</h3>
+                            <span class="tool-tagline">Copy-paste components, own your code</span>
+                        </div>
+                    </div>
+                    <p class="tool-why"><strong>Why this:</strong> Not a dependency — components live in your codebase. Beautifully designed. Built on Radix + Tailwind. Customize everything.</p>
+                    <p class="tool-ignore"><strong>Ignore:</strong> Material UI (heavy, opinionated), Chakra (good but shadcn has better defaults), Ant Design (enterprise vibes).</p>
+                    <a href="https://ui.shadcn.com" target="_blank" class="tool-link">ui.shadcn.com →</a>
+                </div>
+
+                <!-- Styling -->
+                <div class="tool-card">
+                    <div class="tool-category">Styling</div>
+                    <div class="tool-header">
+                        <div class="tool-logo">💨</div>
+                        <div>
+                            <h3>Tailwind CSS</h3>
+                            <span class="tool-tagline">Style without leaving your HTML</span>
+                        </div>
+                    </div>
+                    <p class="tool-why"><strong>Why this:</strong> Once you go utility-first, you don't go back. Ship faster. Consistent design system built in. Works perfectly with shadcn.</p>
+                    <p class="tool-ignore"><strong>Ignore:</strong> Styled-components (runtime cost), CSS modules (more files), vanilla CSS (slower iteration).</p>
+                    <a href="https://tailwindcss.com" target="_blank" class="tool-link">tailwindcss.com →</a>
+                </div>
+
+                <!-- Email -->
+                <div class="tool-card">
+                    <div class="tool-category">Transactional Email</div>
+                    <div class="tool-header">
+                        <div class="tool-logo">✉️</div>
+                        <div>
+                            <h3>Resend</h3>
+                            <span class="tool-tagline">Email API that doesn't suck</span>
+                        </div>
+                    </div>
+                    <p class="tool-why"><strong>Why this:</strong> Modern DX. Built by devs who hated existing options. React Email for templates. Simple pricing. Great deliverability.</p>
+                    <p class="tool-ignore"><strong>Ignore:</strong> SendGrid (clunky UI), Mailgun (enterprise-focused), SES (too raw for MVP stage).</p>
+                    <a href="https://resend.com" target="_blank" class="tool-link">resend.com →</a>
+                </div>
+
+                <!-- Analytics -->
+                <div class="tool-card">
+                    <div class="tool-category">Analytics</div>
+                    <div class="tool-header">
+                        <div class="tool-logo">📊</div>
+                        <div>
+                            <h3>Plausible</h3>
+                            <span class="tool-tagline">Privacy-first, simple analytics</span>
+                        </div>
+                    </div>
+                    <p class="tool-why"><strong>Why this:</strong> One-line script. No cookie banners needed. See what matters: visitors, sources, pages. €9/mo but worth it.</p>
+                    <p class="tool-ignore"><strong>Ignore:</strong> Google Analytics (overkill, privacy issues), Mixpanel (too complex for MVP), Amplitude (enterprise pricing).</p>
+                    <a href="https://plausible.io" target="_blank" class="tool-link">plausible.io →</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="stack-summary">
+            <h2>The Full Stack</h2>
+            <div class="summary-table">
+                <div class="summary-row">
+                    <span class="summary-cat">Framework</span>
+                    <span class="summary-tool">Next.js</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-cat">Database</span>
+                    <span class="summary-tool">Supabase</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-cat">Auth</span>
+                    <span class="summary-tool">Supabase Auth</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-cat">Hosting</span>
+                    <span class="summary-tool">Vercel</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-cat">Payments</span>
+                    <span class="summary-tool">Stripe</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-cat">UI</span>
+                    <span class="summary-tool">shadcn/ui + Tailwind</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-cat">Email</span>
+                    <span class="summary-tool">Resend</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-cat">Analytics</span>
+                    <span class="summary-tool">Plausible</span>
+                </div>
+            </div>
+            <p class="summary-note">Total cost at MVP scale: ~$20-30/month (most have free tiers)</p>
+        </section>
+
+        <section class="stage-nav">
+            <a href="/stages/idea.html" class="stage-nav-link prev">
+                <span class="stage-nav-label">← Previous</span>
+                <span class="stage-nav-title">Idea Stage</span>
+            </a>
+            <a href="/stages/launching.html" class="stage-nav-link next">
+                <span class="stage-nav-label">Next →</span>
+                <span class="stage-nav-title">Launching Stage</span>
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo">uncluttered</span>
+                <p>One stack per stage.</p>
+            </div>
+            <div class="footer-links">
+                <a href="/about">About</a>
+                <a href="/submit">Submit a Tool</a>
+                <a href="https://twitter.com/Clinton_feyi" target="_blank">Twitter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Uncluttered. Made with clarity in Milton Keynes.</p>
+        </div>
+    </footer>
+</body>
+</html>

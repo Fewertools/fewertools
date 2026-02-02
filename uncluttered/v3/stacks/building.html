@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building Stack — Uncluttered</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    /* Header */
+    header {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+    }
+    nav a {
+      color: #666;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-left: 1.5rem;
+    }
+    nav a:hover { color: #fff; }
+    
+    /* Page */
+    .page-title {
+      padding: 4rem 0 1rem;
+    }
+    .page-title h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .page-title p {
+      color: #666;
+      font-size: 1rem;
+    }
+    
+    /* Tools */
+    .tool {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid #1a1a1a;
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.15s;
+    }
+    .tool:hover { opacity: 0.7; }
+    
+    .tool-left {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .tool-name {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .tool-for {
+      color: #444;
+      font-size: 0.85rem;
+    }
+    .tool-arrow {
+      color: #333;
+      font-size: 0.9rem;
+    }
+    
+    /* Skip section */
+    .skip {
+      padding: 2.5rem 0;
+    }
+    .skip h3 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #444;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .skip p {
+      color: #333;
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+    
+    /* Footer */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid #1a1a1a;
+      margin-top: 2rem;
+    }
+    footer p {
+      color: #333;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: #666;
+      text-decoration: none;
+    }
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../" class="logo">uncluttered</a>
+      <nav>
+        <a href="../stacks/">Stacks</a>
+        <a href="../workflows/">Workflows</a>
+        <a href="../philosophy/">Philosophy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-title">
+      <h1>Building</h1>
+      <p>The complete stack for going from idea to MVP.</p>
+    </div>
+
+    <a href="https://nextjs.org" target="_blank" class="tool">
+      <div class="tool-left">
+        <span class="tool-name">Next.js</span>
+        <span class="tool-for">frontend</span>
+      </div>
+      <span class="tool-arrow">↗</span>
+    </a>
+
+    <a href="https://tailwindcss.com" target="_blank" class="tool">
+      <div class="tool-left">
+        <span class="tool-name">Tailwind</span>
+        <span class="tool-for">styling</span>
+      </div>
+      <span class="tool-arrow">↗</span>
+    </a>
+
+    <a href="https://ui.shadcn.com" target="_blank" class="tool">
+      <div class="tool-left">
+        <span class="tool-name">shadcn/ui</span>
+        <span class="tool-for">components</span>
+      </div>
+      <span class="tool-arrow">↗</span>
+    </a>
+
+    <a href="https://supabase.com" target="_blank" class="tool">
+      <div class="tool-left">
+        <span class="tool-name">Supabase</span>
+        <span class="tool-for">backend + db + auth</span>
+      </div>
+      <span class="tool-arrow">↗</span>
+    </a>
+
+    <a href="https://stripe.com" target="_blank" class="tool">
+      <div class="tool-left">
+        <span class="tool-name">Stripe</span>
+        <span class="tool-for">payments</span>
+      </div>
+      <span class="tool-arrow">↗</span>
+    </a>
+
+    <a href="https://resend.com" target="_blank" class="tool">
+      <div class="tool-left">
+        <span class="tool-name">Resend</span>
+        <span class="tool-for">email</span>
+      </div>
+      <span class="tool-arrow">↗</span>
+    </a>
+
+    <a href="https://vercel.com" target="_blank" class="tool">
+      <div class="tool-left">
+        <span class="tool-name">Vercel</span>
+        <span class="tool-for">hosting</span>
+      </div>
+      <span class="tool-arrow">↗</span>
+    </a>
+
+    <a href="https://plausible.io" target="_blank" class="tool">
+      <div class="tool-left">
+        <span class="tool-name">Plausible</span>
+        <span class="tool-for">analytics</span>
+      </div>
+      <span class="tool-arrow">↗</span>
+    </a>
+
+    <div class="skip">
+      <h3>Skip for now</h3>
+      <p>Kubernetes. Microservices. Custom auth. A/B testing. Enterprise analytics. Complex CI/CD.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>That's it. <a href="../workflows/">Now automate →</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,74 @@
+[
+  {
+    "symbol": "NVDA",
+    "name": "NVIDIA Corporation",
+    "targetPrice": 825,
+    "fairValue": 950,
+    "notes": "AI infrastructure leader, data center momentum",
+    "category": "growth",
+    "alertEnabled": true
+  },
+  {
+    "symbol": "MSFT",
+    "name": "Microsoft Corporation",
+    "targetPrice": 400,
+    "fairValue": 450,
+    "notes": "Azure growth, Copilot monetization",
+    "category": "core",
+    "alertEnabled": true
+  },
+  {
+    "symbol": "GOOGL",
+    "name": "Alphabet Inc.",
+    "targetPrice": 165,
+    "fairValue": 195,
+    "notes": "Cloud acceleration, AI integration",
+    "category": "core",
+    "alertEnabled": true
+  },
+  {
+    "symbol": "AAPL",
+    "name": "Apple Inc.",
+    "targetPrice": 180,
+    "fairValue": 200,
+    "notes": "Services growth, Vision Pro catalyst",
+    "category": "core",
+    "alertEnabled": true
+  },
+  {
+    "symbol": "AMZN",
+    "name": "Amazon.com Inc.",
+    "targetPrice": 185,
+    "fairValue": 210,
+    "notes": "AWS leader, retail margin improvement",
+    "category": "core",
+    "alertEnabled": true
+  },
+  {
+    "symbol": "META",
+    "name": "Meta Platforms Inc.",
+    "targetPrice": 550,
+    "fairValue": 620,
+    "notes": "AI ad targeting, Reels monetization",
+    "category": "growth",
+    "alertEnabled": true
+  },
+  {
+    "symbol": "AMD",
+    "name": "Advanced Micro Devices",
+    "targetPrice": 150,
+    "fairValue": 175,
+    "notes": "AI chip competition, data center gains",
+    "category": "growth",
+    "alertEnabled": true
+  },
+  {
+    "symbol": "PLTR",
+    "name": "Palantir Technologies",
+    "targetPrice": 22,
+    "fairValue": 28,
+    "notes": "AIP platform momentum, government contracts",
+    "category": "speculative",
+    "alertEnabled": true
+  }
+]

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Calculator — Uncluttered</title>
+    <meta name="description" content="Calculate the total cost of your tech stack. Select tools and see monthly pricing with free tier information.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="./" class="logo">
+                <span class="logo-icon">✦</span>
+                uncluttered
+            </a>
+            <div class="nav-links">
+                <a href="./#stages">By Stage</a>
+                <a href="./#stacks">By Type</a>
+                <a href="./#categories">Categories</a>
+                <a href="tools/">Tools</a>
+            </div>
+            <a href="./#stages" class="nav-cta">Get Started</a>
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <main class="calculator-page">
+        <div class="calculator-container">
+            <header class="calculator-header">
+                <span class="section-label">Tool</span>
+                <h1>Stack Pricing Calculator</h1>
+                <p>Select the tools you need and see your monthly stack cost. All prices shown are starting prices for paid tiers.</p>
+            </header>
+
+            <div class="calculator-layout">
+                <div class="calculator-tools" id="calculatorTools">
+                    <!-- Tools will be rendered by JS -->
+                </div>
+
+                <aside class="calculator-summary">
+                    <h3>Your Stack</h3>
+                    <div id="calculatorSummary">
+                        <p class="summary-empty">Select tools to calculate your stack cost</p>
+                    </div>
+                    <div class="summary-total">
+                        <span>Monthly Total</span>
+                        <span id="calculatorTotal">$0</span>
+                    </div>
+                    <p class="summary-note">* Some tools are free at certain usage levels. Check individual tool pages for details.</p>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="./" class="logo">
+                        <span class="logo-icon">✦</span>
+                        uncluttered
+                    </a>
+                    <p>Curated tool stacks for builders.<br>No fluff. Just clarity.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h5>By Stage</h5>
+                        <a href="stages/idea.html">Idea</a>
+                        <a href="stages/building.html">Building</a>
+                        <a href="stages/launching.html">Launching</a>
+                        <a href="stages/growing.html">Growing</a>
+                    </div>
+                    <div class="footer-col">
+                        <h5>By Type</h5>
+                        <a href="stacks/saas.html">SaaS</a>
+                        <a href="stacks/ecommerce.html">E-commerce</a>
+                        <a href="stacks/creator.html">Creator</a>
+                        <a href="stacks/freelancer.html">Freelancer</a>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Resources</h5>
+                        <a href="tools/">All Tools</a>
+                        <a href="calculator.html">Pricing Calculator</a>
+                        <a href="about.html">About</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Uncluttered. Made with ✦ in Milton Keynes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

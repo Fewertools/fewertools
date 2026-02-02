@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build a SaaS MVP in a Weekend — Tutorial | Uncluttered</title>
+    <meta name="description" content="Step-by-step guide to build a complete SaaS MVP with Next.js, Supabase, Stripe, and Vercel. Go from zero to deployed in a weekend.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="../logo.svg" alt="" class="logo-icon" width="24" height="24">
+                uncluttered
+            </a>
+            <div class="nav-links">
+                <a href="index.html">← All Tutorials</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle></svg>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <article class="tutorial-article">
+            <header class="tutorial-header">
+                <div class="section-container">
+                    <a href="index.html" class="back-link">← All Tutorials</a>
+                    <h1>Build a SaaS MVP in a Weekend</h1>
+                    <p class="tutorial-subtitle">Go from zero to a working SaaS with authentication, database, payments, and deployment.</p>
+                    <div class="tutorial-meta">
+                        <span class="meta-item">⏱️ ~4 hours</span>
+                        <span class="meta-item">📊 Intermediate</span>
+                        <span class="meta-item">🔄 Updated Jan 2026</span>
+                    </div>
+                    <div class="tutorial-stack-large">
+                        <a href="../tools/nextjs.html" class="stack-item">
+                            <span class="stack-icon">▲</span>
+                            <span>Next.js</span>
+                        </a>
+                        <a href="../tools/supabase.html" class="stack-item">
+                            <span class="stack-icon">🟢</span>
+                            <span>Supabase</span>
+                        </a>
+                        <a href="../tools/stripe.html" class="stack-item">
+                            <span class="stack-icon">💳</span>
+                            <span>Stripe</span>
+                        </a>
+                        <a href="../tools/vercel.html" class="stack-item">
+                            <span class="stack-icon">▲</span>
+                            <span>Vercel</span>
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="tutorial-content">
+                <div class="section-container">
+                    <div class="tutorial-body">
+                        
+                        <div class="toc">
+                            <h4>In this tutorial</h4>
+                            <ol>
+                                <li><a href="#overview">What we're building</a></li>
+                                <li><a href="#setup">Project setup</a></li>
+                                <li><a href="#auth">Authentication with Supabase</a></li>
+                                <li><a href="#database">Database & API</a></li>
+                                <li><a href="#payments">Stripe payments</a></li>
+                                <li><a href="#deploy">Deploy to Vercel</a></li>
+                            </ol>
+                        </div>
+
+                        <section id="overview">
+                            <h2>What we're building</h2>
+                            <p>By the end of this tutorial, you'll have a fully functional SaaS with:</p>
+                            <ul>
+                                <li>✅ User authentication (sign up, sign in, forgot password)</li>
+                                <li>✅ Protected dashboard</li>
+                                <li>✅ Database for storing user data</li>
+                                <li>✅ Stripe subscription payments</li>
+                                <li>✅ Deployed and live on the internet</li>
+                            </ul>
+                            
+                            <div class="callout">
+                                <strong>💡 Prerequisites</strong>
+                                <p>Basic knowledge of React and JavaScript. You'll need Node.js installed and accounts on Supabase, Stripe, and Vercel (all have free tiers).</p>
+                            </div>
+                        </section>
+
+                        <section id="setup">
+                            <h2>1. Project Setup</h2>
+                            <p>Let's start by creating a new Next.js project with all the tools we need.</p>
+                            
+                            <h3>Create the project</h3>
+                            <p>Open your terminal and run:</p>
+                            
+                            <pre><code>npx create-next-app@latest my-saas --typescript --tailwind --app
+cd my-saas</code></pre>
+                            
+                            <p>Select the default options when prompted. This gives us:</p>
+                            <ul>
+                                <li>Next.js 14 with App Router</li>
+                                <li>TypeScript for type safety</li>
+                                <li>Tailwind CSS for styling</li>
+                            </ul>
+
+                            <h3>Install dependencies</h3>
+                            <pre><code>npm install @supabase/supabase-js @supabase/auth-helpers-nextjs stripe @stripe/stripe-js</code></pre>
+
+                            <h3>Set up environment variables</h3>
+                            <p>Create a <code>.env.local</code> file:</p>
+                            <pre><code># Supabase
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# Stripe
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_webhook_secret</code></pre>
+                        </section>
+
+                        <section id="auth">
+                            <h2>2. Authentication with Supabase</h2>
+                            
+                            <div class="tool-callout">
+                                <div class="tool-callout-header">
+                                    <span class="tool-callout-icon">🟢</span>
+                                    <div>
+                                        <strong>Supabase</strong>
+                                        <p>Open source Firebase alternative with PostgreSQL database and built-in auth.</p>
+                                    </div>
+                                </div>
+                                <a href="https://supabase.com" target="_blank" rel="noopener" class="btn btn-small">Get Started Free →</a>
+                            </div>
+
+                            <h3>Create a Supabase project</h3>
+                            <ol>
+                                <li>Go to <a href="https://supabase.com" target="_blank">supabase.com</a> and create a new project</li>
+                                <li>Wait for the database to be provisioned (~2 minutes)</li>
+                                <li>Go to Settings → API and copy your URL and anon key</li>
+                            </ol>
+
+                            <h3>Create the Supabase client</h3>
+                            <p>Create <code>lib/supabase.ts</code>:</p>
+                            <pre><code>import { createClient } from '@supabase/supabase-js'
+
+export const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)</code></pre>
+
+                            <h3>Build the auth UI</h3>
+                            <p>Create <code>app/login/page.tsx</code>:</p>
+                            <pre><code>'use client'
+import { useState } from 'react'
+import { supabase } from '@/lib/supabase'
+
+export default function Login() {
+  const [email, setEmail] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    
+    const { error } = await supabase.auth.signInWithOtp({ email })
+    
+    if (error) {
+      alert(error.message)
+    } else {
+      alert('Check your email for the login link!')
+    }
+    setLoading(false)
+  }
+
+  return (
+    &lt;form onSubmit={handleLogin}&gt;
+      &lt;input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="you@example.com"
+        required
+      /&gt;
+      &lt;button type="submit" disabled={loading}&gt;
+        {loading ? 'Sending...' : 'Send Magic Link'}
+      &lt;/button&gt;
+    &lt;/form&gt;
+  )
+}</code></pre>
+                        </section>
+
+                        <section id="database">
+                            <h2>3. Database & API</h2>
+                            <p>Supabase gives us a full PostgreSQL database. Let's create a table for our SaaS data.</p>
+                            
+                            <h3>Create the database schema</h3>
+                            <p>In Supabase SQL editor, run:</p>
+                            <pre><code>-- Create profiles table
+create table profiles (
+  id uuid references auth.users primary key,
+  email text,
+  plan text default 'free',
+  created_at timestamp with time zone default now()
+);
+
+-- Enable Row Level Security
+alter table profiles enable row level security;
+
+-- Users can only see their own profile
+create policy "Users can view own profile"
+  on profiles for select
+  using (auth.uid() = id);
+
+-- Trigger to create profile on signup
+create function handle_new_user()
+returns trigger as $$
+begin
+  insert into profiles (id, email)
+  values (new.id, new.email);
+  return new;
+end;
+$$ language plpgsql security definer;
+
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute procedure handle_new_user();</code></pre>
+                        </section>
+
+                        <section id="payments">
+                            <h2>4. Stripe Payments</h2>
+                            
+                            <div class="tool-callout">
+                                <div class="tool-callout-header">
+                                    <span class="tool-callout-icon">💳</span>
+                                    <div>
+                                        <strong>Stripe</strong>
+                                        <p>Payment infrastructure for the internet. Handle subscriptions, invoices, and more.</p>
+                                    </div>
+                                </div>
+                                <a href="https://stripe.com" target="_blank" rel="noopener" class="btn btn-small">Get Started Free →</a>
+                            </div>
+
+                            <h3>Create a Stripe product</h3>
+                            <ol>
+                                <li>Go to <a href="https://dashboard.stripe.com" target="_blank">Stripe Dashboard</a></li>
+                                <li>Create a new Product with a recurring price</li>
+                                <li>Copy the Price ID (starts with <code>price_</code>)</li>
+                            </ol>
+
+                            <h3>Create checkout API route</h3>
+                            <p>Create <code>app/api/checkout/route.ts</code>:</p>
+                            <pre><code>import { NextResponse } from 'next/server'
+import Stripe from 'stripe'
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+
+export async function POST(req: Request) {
+  const { priceId, userId } = await req.json()
+
+  const session = await stripe.checkout.sessions.create({
+    mode: 'subscription',
+    payment_method_types: ['card'],
+    line_items: [{ price: priceId, quantity: 1 }],
+    success_url: `${process.env.NEXT_PUBLIC_URL}/dashboard?success=true`,
+    cancel_url: `${process.env.NEXT_PUBLIC_URL}/pricing`,
+    metadata: { userId }
+  })
+
+  return NextResponse.json({ url: session.url })
+}</code></pre>
+                        </section>
+
+                        <section id="deploy">
+                            <h2>5. Deploy to Vercel</h2>
+                            
+                            <div class="tool-callout">
+                                <div class="tool-callout-header">
+                                    <span class="tool-callout-icon">▲</span>
+                                    <div>
+                                        <strong>Vercel</strong>
+                                        <p>Deploy frontend apps instantly. Zero config, automatic HTTPS, global CDN.</p>
+                                    </div>
+                                </div>
+                                <a href="https://vercel.com" target="_blank" rel="noopener" class="btn btn-small">Deploy Free →</a>
+                            </div>
+
+                            <h3>Push to GitHub</h3>
+                            <pre><code>git init
+git add .
+git commit -m "Initial commit"
+git remote add origin your-repo-url
+git push -u origin main</code></pre>
+
+                            <h3>Deploy on Vercel</h3>
+                            <ol>
+                                <li>Go to <a href="https://vercel.com/new" target="_blank">vercel.com/new</a></li>
+                                <li>Import your GitHub repository</li>
+                                <li>Add your environment variables</li>
+                                <li>Click Deploy</li>
+                            </ol>
+
+                            <p>🎉 <strong>That's it!</strong> Your SaaS is now live.</p>
+                        </section>
+
+                        <section class="next-steps">
+                            <h2>What's next?</h2>
+                            <p>You now have a working SaaS foundation. Here are some ideas to expand:</p>
+                            <ul>
+                                <li>Add more features to your dashboard</li>
+                                <li>Set up Stripe webhooks for subscription events</li>
+                                <li>Add a landing page with pricing</li>
+                                <li>Implement team/organization features</li>
+                            </ul>
+                            
+                            <div class="tutorial-cta-box">
+                                <h3>Need the complete stack?</h3>
+                                <p>Get our curated SaaS founder stack with all the tools you need.</p>
+                                <a href="../stacks/saas.html" class="btn btn-primary">View SaaS Stack →</a>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>© 2026 Uncluttered. Made with ✦ in Milton Keynes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

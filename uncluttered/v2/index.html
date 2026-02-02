@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uncluttered — Curated Tool Stacks for Builders</title>
+    <meta name="description" content="Stop researching. Start building. Curated tool stacks for every type of builder and every stage of your journey.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="logo.svg" alt="" class="logo-icon" width="24" height="24">
+                uncluttered
+            </a>
+            <div class="nav-links">
+                <a href="#stages">By Stage</a>
+                <a href="#stacks">By Type</a>
+                <a href="#categories">Categories</a>
+                <a href="#tools">Tools</a>
+                <a href="tutorials/index.html">Tutorials</a>
+                <a href="calculator.html">Calculator</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <a href="#stages" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg">
+                <div class="gradient-orb orb-1"></div>
+                <div class="gradient-orb orb-2"></div>
+                <div class="gradient-orb orb-3"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-badge animate-fade-up">Curated for builders</div>
+                <h1 class="animate-fade-up delay-1">
+                    Stop researching.<br>
+                    <span class="gradient-text">Start building.</span>
+                </h1>
+                <p class="hero-sub animate-fade-up delay-2">
+                    You don't need 50 options. You need the right stack for your situation.<br>
+                    Curated tools by stage, by project type, and by category.
+                </p>
+                <div class="hero-ctas animate-fade-up delay-3">
+                    <a href="#stages" class="btn btn-primary">Find your stack</a>
+                    <a href="#stacks" class="btn btn-secondary">Browse by type</a>
+                </div>
+            </div>
+            <!-- Stack Finder Search -->
+            <div class="stack-finder animate-fade-up delay-3">
+                <div class="finder-input-wrapper">
+                    <svg class="finder-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="M21 21l-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" id="stackSearch" class="finder-input" placeholder="What are you building? (e.g., 'SaaS app', 'online store', 'newsletter')">
+                    <button class="finder-btn" id="findStack">Find Stack</button>
+                </div>
+                <div class="finder-suggestions">
+                    <span>Try:</span>
+                    <button class="suggestion-tag" data-query="SaaS app with payments">SaaS app</button>
+                    <button class="suggestion-tag" data-query="online store">Online store</button>
+                    <button class="suggestion-tag" data-query="newsletter business">Newsletter</button>
+                    <button class="suggestion-tag" data-query="portfolio website">Portfolio</button>
+                    <button class="suggestion-tag" data-query="mobile app">Mobile app</button>
+                </div>
+            </div>
+
+            <!-- Hero Newsletter -->
+            <div class="hero-newsletter animate-fade-up delay-4">
+                <form class="newsletter-form" action="#" method="POST">
+                    <input type="email" placeholder="Get weekly tool picks" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p class="newsletter-hint">Join 2,000+ builders. No spam, ever.</p>
+            </div>
+
+            <div class="scroll-indicator animate-fade-up delay-4">
+                <span>Scroll to explore</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- Stack Recommendation Modal -->
+        <div class="stack-modal" id="stackModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <button class="modal-close" id="closeModal">×</button>
+                <div class="modal-header">
+                    <span class="modal-label">Recommended Stack</span>
+                    <h3 id="modalTitle">Your Perfect Stack</h3>
+                    <p id="modalDescription">Based on what you're building</p>
+                </div>
+                <div class="modal-stack" id="modalStack">
+                    <!-- Stack items will be injected here -->
+                </div>
+                <div class="modal-footer">
+                    <a href="#" id="modalLink" class="btn btn-primary">View Full Guide</a>
+                    <button class="btn btn-secondary" id="closeModalBtn">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stages Section -->
+        <section class="stages" id="stages">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-label">By Stage</span>
+                    <h2>Where are you in your journey?</h2>
+                    <p>Pick your stage. Get the exact tools you need right now.</p>
+                </div>
+                
+                <div class="stages-grid">
+                    <a href="stages/idea.html" class="stage-card" data-animate>
+                        <div class="stage-header">
+                            <span class="stage-number">01</span>
+                            <span class="stage-arrow">→</span>
+                        </div>
+                        <h3>Idea</h3>
+                        <p>You have a concept. Validate it before writing a single line of code.</p>
+                        <div class="stage-tools">
+                            <span class="tool-tag">Notion</span>
+                            <span class="tool-tag">Figma</span>
+                            <span class="tool-tag">Carrd</span>
+                            <span class="tool-tag">Tally</span>
+                        </div>
+                    </a>
+
+                    <a href="stages/building.html" class="stage-card" data-animate>
+                        <div class="stage-header">
+                            <span class="stage-number">02</span>
+                            <span class="stage-arrow">→</span>
+                        </div>
+                        <h3>Building</h3>
+                        <p>Validation done. Time to ship an MVP that actually works.</p>
+                        <div class="stage-tools">
+                            <span class="tool-tag">Next.js</span>
+                            <span class="tool-tag">Supabase</span>
+                            <span class="tool-tag">Vercel</span>
+                            <span class="tool-tag">Stripe</span>
+                        </div>
+                    </a>
+
+                    <a href="stages/launching.html" class="stage-card" data-animate>
+                        <div class="stage-header">
+                            <span class="stage-number">03</span>
+                            <span class="stage-arrow">→</span>
+                        </div>
+                        <h3>Launching</h3>
+                        <p>MVP ready. Time to get it in front of real people.</p>
+                        <div class="stage-tools">
+                            <span class="tool-tag">Product Hunt</span>
+                            <span class="tool-tag">Twitter/X</span>
+                            <span class="tool-tag">Mailchimp</span>
+                        </div>
+                    </a>
+
+                    <a href="stages/growing.html" class="stage-card" data-animate>
+                        <div class="stage-header">
+                            <span class="stage-number">04</span>
+                            <span class="stage-arrow">→</span>
+                        </div>
+                        <h3>Growing</h3>
+                        <p>You have users. Now retain them and scale up.</p>
+                        <div class="stage-tools">
+                            <span class="tool-tag">Plausible</span>
+                            <span class="tool-tag">Crisp</span>
+                            <span class="tool-tag">ConvertKit</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stacks by Type Section -->
+        <section class="stacks" id="stacks">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-label">By Project Type</span>
+                    <h2>What are you building?</h2>
+                    <p>Different projects need different tools. Find your stack.</p>
+                </div>
+
+                <div class="stacks-grid">
+                    <a href="stacks/saas.html" class="stack-card" data-animate>
+                        <div class="stack-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                <path d="M8 21h8"/>
+                                <path d="M12 17v4"/>
+                            </svg>
+                        </div>
+                        <h3>SaaS Founder</h3>
+                        <p>Building a software product? Here's your complete stack from auth to payments.</p>
+                        <span class="stack-count">12 tools</span>
+                    </a>
+
+                    <a href="stacks/ecommerce.html" class="stack-card" data-animate>
+                        <div class="stack-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="9" cy="21" r="1"/>
+                                <circle cx="20" cy="21" r="1"/>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                            </svg>
+                        </div>
+                        <h3>E-commerce</h3>
+                        <p>Selling physical or digital products? From storefront to fulfillment.</p>
+                        <span class="stack-count">10 tools</span>
+                    </a>
+
+                    <a href="stacks/creator.html" class="stack-card" data-animate>
+                        <div class="stack-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                                <path d="M2 2l7.586 7.586"/>
+                                <circle cx="11" cy="11" r="2"/>
+                            </svg>
+                        </div>
+                        <h3>Content Creator</h3>
+                        <p>Newsletters, courses, memberships. Monetize your audience.</p>
+                        <span class="stack-count">8 tools</span>
+                    </a>
+
+                    <a href="stacks/freelancer.html" class="stack-card" data-animate>
+                        <div class="stack-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <h3>Freelancer</h3>
+                        <p>Running a one-person agency? Proposals, invoicing, project management.</p>
+                        <span class="stack-count">9 tools</span>
+                    </a>
+
+                    <a href="stacks/ai-first.html" class="stack-card" data-animate>
+                        <div class="stack-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A1.5 1.5 0 1 0 9 14.5 1.5 1.5 0 0 0 7.5 13m9 0a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5"/>
+                            </svg>
+                        </div>
+                        <h3>AI-First Project</h3>
+                        <p>Building with AI? APIs, vector databases, deployment for ML.</p>
+                        <span class="stack-count">11 tools</span>
+                    </a>
+
+                    <a href="stacks/nocode.html" class="stack-card" data-animate>
+                        <div class="stack-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <path d="M3 9h18"/>
+                                <path d="M9 21V9"/>
+                            </svg>
+                        </div>
+                        <h3>No-Code Builder</h3>
+                        <p>Ship without writing code. Bubble, Webflow, Zapier and friends.</p>
+                        <span class="stack-count">10 tools</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories" id="categories">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-label">By Category</span>
+                    <h2>Browse by tool type</h2>
+                    <p>Looking for something specific? Dive into a category.</p>
+                </div>
+
+                <div class="categories-grid">
+                    <a href="categories/design.html" class="category-card" data-animate>
+                        <span class="category-icon">🎨</span>
+                        <h4>Design & Prototyping</h4>
+                        <span class="category-count">8 tools</span>
+                    </a>
+                    <a href="categories/development.html" class="category-card" data-animate>
+                        <span class="category-icon">⚡</span>
+                        <h4>Development</h4>
+                        <span class="category-count">12 tools</span>
+                    </a>
+                    <a href="categories/database.html" class="category-card" data-animate>
+                        <span class="category-icon">🗄️</span>
+                        <h4>Database & Backend</h4>
+                        <span class="category-count">7 tools</span>
+                    </a>
+                    <a href="categories/payments.html" class="category-card" data-animate>
+                        <span class="category-icon">💳</span>
+                        <h4>Payments</h4>
+                        <span class="category-count">5 tools</span>
+                    </a>
+                    <a href="categories/analytics.html" class="category-card" data-animate>
+                        <span class="category-icon">📊</span>
+                        <h4>Analytics</h4>
+                        <span class="category-count">6 tools</span>
+                    </a>
+                    <a href="categories/email.html" class="category-card" data-animate>
+                        <span class="category-icon">📧</span>
+                        <h4>Email Marketing</h4>
+                        <span class="category-count">5 tools</span>
+                    </a>
+                    <a href="categories/support.html" class="category-card" data-animate>
+                        <span class="category-icon">💬</span>
+                        <h4>Customer Support</h4>
+                        <span class="category-count">4 tools</span>
+                    </a>
+                    <a href="categories/ai.html" class="category-card" data-animate>
+                        <span class="category-icon">🤖</span>
+                        <h4>AI Tools</h4>
+                        <span class="category-count">9 tools</span>
+                    </a>
+                    <a href="categories/hosting.html" class="category-card" data-animate>
+                        <span class="category-icon">☁️</span>
+                        <h4>Hosting & Deploy</h4>
+                        <span class="category-count">6 tools</span>
+                    </a>
+                    <a href="categories/productivity.html" class="category-card" data-animate>
+                        <span class="category-icon">✅</span>
+                        <h4>Productivity</h4>
+                        <span class="category-count">7 tools</span>
+                    </a>
+                    <a href="categories/marketing.html" class="category-card" data-animate>
+                        <span class="category-icon">📢</span>
+                        <h4>Marketing</h4>
+                        <span class="category-count">8 tools</span>
+                    </a>
+                    <a href="categories/legal.html" class="category-card" data-animate>
+                        <span class="category-icon">📋</span>
+                        <h4>Legal & Compliance</h4>
+                        <span class="category-count">4 tools</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Tools Section -->
+        <section class="tools" id="tools">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-label">Featured Tools</span>
+                    <h2>Editor's picks</h2>
+                    <p>The tools we personally use and recommend.</p>
+                </div>
+
+                <div class="tools-showcase">
+                    <a href="tools/notion.html" class="tool-feature" data-animate>
+                        <div class="tool-logo">
+                            <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+                                <path d="M6.017 4.313l55.333-4.087c6.797-.583 8.543-.19 12.817 2.917l17.663 12.443c2.913 2.14 3.883 2.723 3.883 5.053v68.243c0 4.277-1.553 6.807-6.99 7.193L24.467 99.967c-4.08.193-6.023-.39-8.16-3.113L3.3 79.94c-2.333-3.113-3.3-5.443-3.3-8.167V11.113c0-3.497 1.553-6.413 6.017-6.8z" fill="#fff"/>
+                                <path fill-rule="evenodd" d="M61.35.227l-55.333 4.087C1.553 4.7 0 7.617 0 11.113v60.66c0 2.723.967 5.053 3.3 8.167l13.007 16.913c2.137 2.723 4.08 3.307 8.16 3.113l64.257-3.89c5.433-.387 6.99-2.917 6.99-7.193V20.64c0-2.21-.873-2.847-3.443-4.733L74.167 3.143c-4.273-3.107-6.02-3.5-12.817-2.917zM25.92 19.523c-5.247.353-6.437.436-9.417-1.99L8.927 11.507c-.77-.78-.383-1.753 1.557-1.947l53.193-3.887c4.467-.386 6.793.977 8.543 2.333l9.723 6.997c.39.193.97 1.167.193 1.167l-54.933 3.307-.283.047zM19.803 88.3V30.367c0-2.53.777-3.697 3.103-3.893L86 22.78c2.14-.193 3.107 1.167 3.107 3.693v57.547c0 2.53-.39 4.67-3.883 4.863l-60.377 3.5c-3.493.193-5.043-.97-5.043-4.083zm59.6-54.827c.387 1.75 0 3.5-1.75 3.7l-2.91.577v42.773c-2.527 1.36-4.853 2.137-6.797 2.137-3.107 0-3.883-.973-6.21-3.887l-19.03-29.94v28.967l6.02 1.363s0 3.5-4.857 3.5l-13.39.777c-.39-.78 0-2.723 1.357-3.11l3.497-.97v-38.3L30.48 40.667c-.39-1.75.58-4.277 3.3-4.473l14.357-.967 19.8 30.327v-26.83l-5.047-.58c-.39-2.143 1.163-3.7 3.103-3.89l13.41-.78z" fill="#000"/>
+                            </svg>
+                        </div>
+                        <div class="tool-info">
+                            <h4>Notion</h4>
+                            <p>All-in-one workspace. The best tool for organizing your entire business.</p>
+                            <span class="tool-stage">Idea • Building • Growing</span>
+                        </div>
+                        <span class="tool-link-arrow">→</span>
+                    </a>
+
+                    <a href="tools/vercel.html" class="tool-feature" data-animate>
+                        <div class="tool-logo">
+                            <svg width="40" height="40" viewBox="0 0 76 65" fill="currentColor">
+                                <path d="M37.5274 0L75.0548 65H0L37.5274 0Z"/>
+                            </svg>
+                        </div>
+                        <div class="tool-info">
+                            <h4>Vercel</h4>
+                            <p>Deploy your frontend in seconds. Zero config, infinite scale.</p>
+                            <span class="tool-stage">Building • Launching</span>
+                        </div>
+                        <span class="tool-link-arrow">→</span>
+                    </a>
+
+                    <a href="tools/supabase.html" class="tool-feature" data-animate>
+                        <div class="tool-logo">
+                            <svg width="40" height="40" viewBox="0 0 109 113" fill="none">
+                                <path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#paint0_linear)"/>
+                                <path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#paint1_linear)" fill-opacity="0.2"/>
+                                <path d="M45.317 2.07103C48.1765 -1.53037 53.9745 0.442937 54.0434 5.041L54.4849 72.2922H9.83113C1.64038 72.2922 -2.92775 62.8321 2.1655 56.4175L45.317 2.07103Z" fill="#3ECF8E"/>
+                                <defs>
+                                    <linearGradient id="paint0_linear" x1="53.9738" y1="54.974" x2="94.1635" y2="71.8295" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#249361"/>
+                                        <stop offset="1" stop-color="#3ECF8E"/>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear" x1="36.1558" y1="30.578" x2="54.4844" y2="65.0806" gradientUnits="userSpaceOnUse">
+                                        <stop/>
+                                        <stop offset="1" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="tool-info">
+                            <h4>Supabase</h4>
+                            <p>Open source Firebase alternative. Postgres + Auth + Storage + Realtime.</p>
+                            <span class="tool-stage">Building</span>
+                        </div>
+                        <span class="tool-link-arrow">→</span>
+                    </a>
+
+                    <a href="tools/convertkit.html" class="tool-feature" data-animate>
+                        <div class="tool-logo">
+                            <svg width="40" height="40" viewBox="0 0 32 32" fill="#FB6970">
+                                <path d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm5.395 22.617c-1.674 1.597-3.896 2.469-6.26 2.469-2.52 0-4.863-1.01-6.595-2.844-1.732-1.833-2.685-4.267-2.685-6.855 0-2.588.953-5.022 2.685-6.855C10.272 6.698 12.615 5.688 15.135 5.688c2.364 0 4.586.872 6.26 2.469.255.243.255.642 0 .885l-1.53 1.462c-.233.222-.598.222-.831 0-1.142-1.09-2.625-1.69-4.177-1.69-1.648 0-3.192.663-4.346 1.867-1.154 1.204-1.79 2.805-1.79 4.51s.636 3.306 1.79 4.51c1.154 1.204 2.698 1.867 4.346 1.867 1.552 0 3.035-.6 4.177-1.69.233-.222.598-.222.831 0l1.53 1.462c.255.243.255.642 0 .885z"/>
+                            </svg>
+                        </div>
+                        <div class="tool-info">
+                            <h4>ConvertKit</h4>
+                            <p>Email marketing for creators. Build and monetize your audience.</p>
+                            <span class="tool-stage">Launching • Growing</span>
+                        </div>
+                        <span class="tool-link-arrow">→</span>
+                    </a>
+
+                    <a href="tools/stripe.html" class="tool-feature" data-animate>
+                        <div class="tool-logo" style="background: #635BFF; border-radius: 8px; padding: 8px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/>
+                            </svg>
+                        </div>
+                        <div class="tool-info">
+                            <h4>Stripe</h4>
+                            <p>Payment infrastructure for the internet. Accept payments globally.</p>
+                            <span class="tool-stage">Building • Growing</span>
+                        </div>
+                        <span class="tool-link-arrow">→</span>
+                    </a>
+
+                    <a href="tools/plausible.html" class="tool-feature" data-animate>
+                        <div class="tool-logo">
+                            <svg width="40" height="40" viewBox="0 0 74 74" fill="#5850EC">
+                                <circle cx="37" cy="37" r="37"/>
+                                <path d="M25.3 53.6V26.2h11.4c2.8 0 5.2.5 7.1 1.4 1.9 1 3.4 2.3 4.4 4.1 1 1.8 1.5 3.9 1.5 6.3 0 2.4-.5 4.5-1.5 6.3-1 1.8-2.5 3.1-4.4 4.1-1.9 1-4.2 1.4-7.1 1.4h-6.8v3.8h-4.6zm4.6-8.4h6.4c2.5 0 4.4-.6 5.7-1.9 1.3-1.3 2-3.1 2-5.3 0-2.3-.7-4.1-2-5.3-1.3-1.3-3.2-1.9-5.7-1.9h-6.4v14.4z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="tool-info">
+                            <h4>Plausible</h4>
+                            <p>Privacy-first analytics. Simple, lightweight, GDPR compliant.</p>
+                            <span class="tool-stage">Growing</span>
+                        </div>
+                        <span class="tool-link-arrow">→</span>
+                    </a>
+                </div>
+
+                <div class="tools-cta">
+                    <a href="tools/index.html" class="btn btn-secondary">View all tools →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section class="philosophy" id="philosophy">
+            <div class="section-container">
+                <div class="section-header">
+                    <span class="section-label">Our Approach</span>
+                    <h2>The Uncluttered Philosophy</h2>
+                    <p>Why we exist and how we think.</p>
+                </div>
+
+                <div class="philosophy-grid">
+                    <div class="philosophy-card" data-animate>
+                        <div class="philosophy-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </div>
+                        <h4>No endless lists</h4>
+                        <p>We don't show you 47 database options. We show you the one that works for your stage.</p>
+                    </div>
+
+                    <div class="philosophy-card" data-animate>
+                        <div class="philosophy-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </div>
+                        <h4>No comparison tables</h4>
+                        <p>Comparison is procrastination in disguise. Pick the tool. Learn it. Ship.</p>
+                    </div>
+
+                    <div class="philosophy-card" data-animate>
+                        <div class="philosophy-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </div>
+                        <h4>No sponsor bias</h4>
+                        <p>We recommend what we'd use ourselves. No paid placements. Period.</p>
+                    </div>
+
+                    <div class="philosophy-card highlight" data-animate>
+                        <div class="philosophy-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <h4>Context matters</h4>
+                        <p>A pre-launch founder doesn't need enterprise tools. Your situation drives the recommendation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="section-container">
+                <h3>Stay ahead of the curve</h3>
+                <p>Weekly curated tool recommendations, stack updates, and builder insights. Join the community.</p>
+                <form class="newsletter-form" action="#" method="POST">
+                    <input type="email" placeholder="you@example.com" required>
+                    <button type="submit">Subscribe →</button>
+                </form>
+                <p class="newsletter-hint">Free forever. Unsubscribe anytime.</p>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="final-cta">
+            <div class="section-container">
+                <div class="cta-content" data-animate>
+                    <h2>Ready to <span class="gradient-text">build?</span></h2>
+                    <p>Pick your path. Get your stack. Stop researching.</p>
+                    <div class="cta-buttons">
+                        <a href="#stages" class="btn btn-primary btn-large">By Stage</a>
+                        <a href="#stacks" class="btn btn-secondary btn-large">By Project Type</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Newsletter Bar -->
+    <div class="newsletter-bar">
+        <div class="section-container">
+            <div class="newsletter-bar-content">
+                <span>📧</span>
+                <p>
+                    Get the weekly stack digest
+                    <small>Curated tools & tips for builders</small>
+                </p>
+            </div>
+            <form class="newsletter-form" action="#" method="POST">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <button class="newsletter-bar-close" aria-label="Close">×</button>
+        </div>
+    </div>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="newsletter-content">
+                <h3>Stay in the loop</h3>
+                <p>Weekly tool discoveries, stack updates, and builder tips. No spam.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" class="newsletter-input" placeholder="you@email.com" required>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+                <p class="newsletter-small">Join 2,000+ builders. Unsubscribe anytime.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <img src="logo.svg" alt="" class="logo-icon" width="24" height="24">
+                        uncluttered
+                    </a>
+                    <p>Curated tool stacks for builders.<br>No fluff. Just clarity.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h5>By Stage</h5>
+                        <a href="stages/idea.html">Idea</a>
+                        <a href="stages/building.html">Building</a>
+                        <a href="stages/launching.html">Launching</a>
+                        <a href="stages/growing.html">Growing</a>
+                    </div>
+                    <div class="footer-col">
+                        <h5>By Type</h5>
+                        <a href="stacks/saas.html">SaaS</a>
+                        <a href="stacks/ecommerce.html">E-commerce</a>
+                        <a href="stacks/creator.html">Creator</a>
+                        <a href="stacks/freelancer.html">Freelancer</a>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Connect</h5>
+                        <a href="https://twitter.com/Clinton_feyi" target="_blank">Twitter</a>
+                        <a href="mailto:hello@uncluttered.com">Contact</a>
+                        <a href="about.html">About</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Uncluttered. Made with ✦ in Milton Keynes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

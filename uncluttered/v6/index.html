@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uncluttered — What's enough for where you are</title>
+  <meta name="description" content="Stop researching. Start building. One curated stack for every stage of your journey.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       DESIGN SYSTEM
+       ============================================ */
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      /* Colors */
+      --bg: #FAFAF8;
+      --bg-alt: #F3F3F0;
+      --bg-dark: #111;
+      --bg-card: #FFFFFF;
+      
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --text-inverse: #FAFAF8;
+      
+      --accent: #BEFF00;
+      --accent-hover: #A8E600;
+      --accent-subtle: rgba(190, 255, 0, 0.15);
+      
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.15);
+      
+      /* Typography */
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 40px;
+      --space-2xl: 64px;
+      --space-3xl: 100px;
+      --space-4xl: 140px;
+      
+      /* Sizing */
+      --max-width: 1200px;
+      --content-width: 800px;
+      
+      /* Radius */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      
+      /* Transitions */
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --duration-fast: 0.2s;
+      --duration-normal: 0.4s;
+      --duration-slow: 0.8s;
+    }
+    
+    /* Base */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    
+    h1 { font-size: clamp(44px, 7vw, 72px); }
+    h2 { font-size: clamp(32px, 5vw, 48px); }
+    h3 { font-size: clamp(24px, 3vw, 32px); }
+    h4 { font-size: 20px; }
+    
+    p { line-height: 1.7; }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    /* Utility Classes */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+    
+    @media (max-width: 600px) {
+      .container { padding: 0 var(--space-lg); }
+    }
+    
+    .text-muted { color: var(--text-muted); }
+    .text-secondary { color: var(--text-secondary); }
+    .text-center { text-align: center; }
+    
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: pointer;
+      transition: all var(--duration-fast) ease;
+      text-decoration: none;
+    }
+    
+    .btn-primary {
+      background: var(--bg-dark);
+      color: var(--text-inverse);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transition: left 0.5s ease;
+    }
+    .btn-primary:hover {
+      background: #222;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    .btn-primary:active {
+      transform: translateY(-1px);
+    }
+    
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border-strong);
+      position: relative;
+    }
+    .btn-secondary:hover {
+      border-color: var(--text);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
+    .btn-secondary:active {
+      transform: translateY(0);
+    }
+    
+    .btn-accent {
+      background: var(--accent);
+      color: var(--bg-dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-accent::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    .btn-accent:hover {
+      background: var(--accent-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(190, 255, 0, 0.3);
+    }
+    .btn-accent:hover::before {
+      left: 100%;
+    }
+    .btn-accent:active {
+      transform: translateY(-1px);
+    }
+    
+    .btn-lg {
+      padding: var(--space-lg) var(--space-xl);
+      font-size: 16px;
+      border-radius: var(--radius-lg);
+    }
+    
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      transition: all var(--duration-normal) var(--ease-out);
+      position: relative;
+    }
+    
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(190, 255, 0, 0.05) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .card:hover {
+      border-color: var(--border-strong);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+      transform: translateY(-4px);
+    }
+    
+    .card:hover::after {
+      opacity: 1;
+    }
+    
+    /* Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all var(--duration-slow) var(--ease-out);
+    }
+    
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    
+    /* ============================================
+       HEADER
+       ============================================ */
+    
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: var(--space-lg) 0;
+      background: rgba(250, 250, 248, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid transparent;
+      transition: all var(--duration-fast) ease;
+    }
+    
+    header.scrolled {
+      border-bottom-color: var(--border);
+    }
+    
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--text);
+    }
+    
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--bg-dark);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo-mark::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      background: var(--accent);
+      border-radius: 3px;
+      animation: logoPulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes logoPulse {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      50% { transform: scale(0.85) rotate(90deg); opacity: 0.8; }
+    }
+    
+    nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+    
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--duration-fast) ease;
+    }
+    
+    nav a:hover {
+      color: var(--text);
+    }
+    
+    .nav-cta {
+      padding: var(--space-sm) var(--space-md);
+      background: var(--bg-dark);
+      color: var(--text-inverse) !important;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+    }
+    
+    .nav-cta:hover {
+      background: #333;
+    }
+    
+    /* Mobile nav */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .nav-toggle span {
+      width: 20px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+    }
+    
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .nav-toggle { display: flex; }
+    }
+    
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    
+    .hero {
+      padding: calc(var(--space-4xl) + 60px) 0 var(--space-3xl);
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+    
+    .hero-content {
+      max-width: 720px;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--accent-subtle);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: var(--space-lg);
+    }
+    
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    
+    .hero h1 {
+      margin-bottom: var(--space-lg);
+    }
+    
+    .hero h1 .highlight {
+      color: var(--text);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .hero h1 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      left: -4px;
+      right: -4px;
+      height: 0.35em;
+      background: var(--accent);
+      z-index: -1;
+      transform-origin: left;
+      animation: highlightDraw 1s ease-out 0.8s forwards;
+      transform: scaleX(0);
+    }
+    
+    @keyframes highlightDraw {
+      0% { transform: scaleX(0); }
+      100% { transform: scaleX(1); }
+    }
+    
+    /* Animated text reveal */
+    .hero h1 {
+      overflow: hidden;
+    }
+    
+    .hero h1 .line {
+      display: block;
+      animation: slideUp 0.8s var(--ease-out) forwards;
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    
+    .hero h1 .line:nth-child(1) { animation-delay: 0.2s; }
+    .hero h1 .line:nth-child(2) { animation-delay: 0.35s; }
+    
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(100%); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-xl);
+      max-width: 540px;
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    
+    /* Hero Search */
+    .hero-search {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-xl);
+      border-top: 1px solid var(--border);
+    }
+    
+    .hero-search-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: var(--space-md);
+      display: block;
+    }
+    
+    .search-box {
+      position: relative;
+      max-width: 480px;
+    }
+    
+    .search-box input {
+      width: 100%;
+      padding: var(--space-md) var(--space-lg);
+      padding-left: 48px;
+      font-size: 15px;
+      font-family: var(--font-body);
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      transition: all var(--duration-fast) ease;
+    }
+    
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--text);
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+    }
+    
+    .search-box input::placeholder {
+      color: var(--text-muted);
+    }
+    
+    .search-box-icon {
+      position: absolute;
+      left: var(--space-md);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    
+    .search-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+    
+    .search-suggestion {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--duration-fast) ease;
+    }
+    
+    .search-suggestion:hover {
+      border-color: var(--border-strong);
+      background: var(--bg-alt);
+      transform: translateY(-2px);
+    }
+    
+    /* Staggered search suggestions */
+    .search-suggestions .search-suggestion {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: suggestionIn 0.4s var(--ease-out) forwards;
+    }
+    .search-suggestions .search-suggestion:nth-child(1) { animation-delay: 1s; }
+    .search-suggestions .search-suggestion:nth-child(2) { animation-delay: 1.1s; }
+    .search-suggestions .search-suggestion:nth-child(3) { animation-delay: 1.2s; }
+    .search-suggestions .search-suggestion:nth-child(4) { animation-delay: 1.3s; }
+    .search-suggestions .search-suggestion:nth-child(5) { animation-delay: 1.4s; }
+    
+    @keyframes suggestionIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    .search-suggestion-icon {
+      font-size: 14px;
+    }
+    
+    .search-suggestion-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--bg-alt);
+      padding: 2px 8px;
+      border-radius: 100px;
+      margin-left: 4px;
+    }
+    
+    /* Hero Visual - Floating Stack Cards */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+    
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-visual {
+        order: -1;
+        height: 280px;
+      }
+    }
+    
+    .hero-visual {
+      position: relative;
+      height: 400px;
+      perspective: 1000px;
+    }
+    
+    .hero-stack {
+      position: absolute;
+      width: 200px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.12),
+        0 10px 20px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      transition: all 0.6s var(--ease-out);
+    }
+    
+    .hero-stack::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(190, 255, 0, 0.1) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .hero-stack:hover::before {
+      opacity: 1;
+    }
+    
+    .hero-stack:nth-child(1) {
+      top: 5%;
+      left: 5%;
+      transform: rotate(-6deg);
+      z-index: 3;
+      animation: float1 6s ease-in-out infinite;
+    }
+    
+    .hero-stack:nth-child(2) {
+      top: 20%;
+      left: 40%;
+      transform: rotate(4deg);
+      z-index: 2;
+      animation: float2 7s ease-in-out infinite;
+    }
+    
+    .hero-stack:nth-child(3) {
+      top: 55%;
+      left: 12%;
+      transform: rotate(-3deg);
+      z-index: 1;
+      animation: float3 8s ease-in-out infinite;
+    }
+    
+    @keyframes float1 {
+      0%, 100% { transform: rotate(-6deg) translateY(0) scale(1); }
+      50% { transform: rotate(-4deg) translateY(-18px) scale(1.02); }
+    }
+    
+    @keyframes float2 {
+      0%, 100% { transform: rotate(4deg) translateY(0) scale(1); }
+      50% { transform: rotate(6deg) translateY(-12px) scale(1.01); }
+    }
+    
+    @keyframes float3 {
+      0%, 100% { transform: rotate(-3deg) translateY(0) scale(1); }
+      50% { transform: rotate(-1deg) translateY(-15px) scale(1.015); }
+    }
+    
+    .hero-visual:hover .hero-stack:nth-child(1) {
+      transform: rotate(-10deg) translateX(-15px) translateY(-15px) scale(1.05);
+      box-shadow: 
+        0 35px 70px rgba(0, 0, 0, 0.15),
+        0 15px 30px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+    .hero-visual:hover .hero-stack:nth-child(2) {
+      transform: rotate(8deg) translateX(20px) translateY(-5px) scale(1.03);
+    }
+    .hero-visual:hover .hero-stack:nth-child(3) {
+      transform: rotate(2deg) translateY(15px) translateX(10px) scale(1.02);
+    }
+    
+    .hero-stack-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .hero-stack-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--bg-dark);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    
+    .hero-stack-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    .hero-stack-tools {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .hero-stack-tool {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    .hero-stack-tool span {
+      font-size: 14px;
+    }
+    
+    /* Marquee */
+    .marquee-section {
+      padding: var(--space-xl) 0;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-alt);
+    }
+    
+    .marquee {
+      display: flex;
+      animation: marquee 40s linear infinite;
+    }
+    
+    .marquee-content {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2xl);
+      padding-right: var(--space-2xl);
+      white-space: nowrap;
+    }
+    
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+    
+    .marquee-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    /* Compare CTA */
+    .compare-cta {
+      margin-top: var(--space-xl);
+      padding: var(--space-lg);
+      background: var(--accent-subtle);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+    }
+    
+    .compare-cta-text {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    
+    .compare-cta-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    
+    .compare-cta-text h4 {
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+    
+    .compare-cta-text p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    
+    /* ============================================
+       STAGE SELECTOR
+       ============================================ */
+    
+    .stages-section {
+      padding: var(--space-3xl) 0;
+      background: var(--bg-alt);
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+    
+    .section-header h2 {
+      margin-bottom: var(--space-md);
+    }
+    
+    .section-header p {
+      color: var(--text-secondary);
+      font-size: 18px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .stages-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+    }
+    
+    @media (max-width: 900px) {
+      .stages-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    @media (max-width: 500px) {
+      .stages-grid { grid-template-columns: 1fr; }
+    }
+    
+    .stage-card {
+      padding: var(--space-xl);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stage-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--border);
+      transition: all var(--duration-fast) ease;
+    }
+    
+    .stage-card:hover::before,
+    .stage-card.active::before {
+      background: var(--accent);
+    }
+    
+    .stage-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: var(--space-md);
+      transition: all var(--duration-fast) ease;
+    }
+    
+    .stage-card:hover .stage-icon {
+      background: var(--accent-subtle);
+      transform: scale(1.1);
+    }
+    
+    /* Animated stage icons */
+    .stage-card[data-stage="starting"] .stage-icon {
+      animation: pulse 3s ease-in-out infinite;
+    }
+    .stage-card[data-stage="building"] .stage-icon {
+      animation: hammer 2s ease-in-out infinite;
+    }
+    .stage-card[data-stage="growing"] .stage-icon {
+      animation: grow 2.5s ease-in-out infinite;
+    }
+    .stage-card[data-stage="simplifying"] .stage-icon {
+      animation: snip 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); filter: brightness(1.1); }
+    }
+    
+    @keyframes hammer {
+      0%, 100% { transform: rotate(0deg); }
+      20% { transform: rotate(-20deg); }
+      40% { transform: rotate(0deg); }
+    }
+    
+    @keyframes grow {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.05) translateY(-3px); }
+    }
+    
+    @keyframes snip {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(0.95); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .stage-card:hover .stage-icon {
+      animation-play-state: paused;
+    }
+    
+    .stage-card h4 {
+      margin-bottom: var(--space-sm);
+    }
+    
+    .stage-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    /* ============================================
+       STACK PREVIEW
+       ============================================ */
+    
+    .stacks-section {
+      padding: var(--space-3xl) 0;
+    }
+    
+    .stack-preview {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xl);
+    }
+    
+    @media (max-width: 800px) {
+      .stack-preview { grid-template-columns: 1fr; }
+    }
+    
+    .stack-card {
+      padding: var(--space-xl);
+    }
+    
+    .stack-card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    
+    .stack-card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--bg-dark);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    
+    .stack-card-title h4 {
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+    
+    .stack-card-title span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    
+    .stack-tools {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+    
+    .stack-tool {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: var(--bg);
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .stack-tool-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--bg-card);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      border: 1px solid var(--border);
+    }
+    
+    .stack-card-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    
+    .stack-card-link:hover {
+      gap: var(--space-md);
+    }
+    
+    .stack-card-link svg {
+      width: 16px;
+      height: 16px;
+      transition: transform var(--duration-fast) ease;
+    }
+    
+    .stack-card-link:hover svg {
+      transform: translateX(4px);
+    }
+    
+    /* ============================================
+       HOW IT WORKS
+       ============================================ */
+    
+    .how-section {
+      padding: var(--space-3xl) 0;
+      background: var(--bg-dark);
+      color: var(--text-inverse);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .how-section .cursor-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(190, 255, 0, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .how-section:hover .cursor-glow {
+      opacity: 1;
+    }
+    
+    .how-section .section-header p {
+      color: var(--text-muted);
+    }
+    
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+      margin-top: var(--space-2xl);
+    }
+    
+    @media (max-width: 700px) {
+      .how-steps { grid-template-columns: 1fr; }
+    }
+    
+    .how-step {
+      text-align: center;
+      padding: var(--space-xl);
+    }
+    
+    .how-step-number {
+      width: 56px;
+      height: 56px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 auto var(--space-lg);
+      color: var(--accent);
+    }
+    
+    .how-step h4 {
+      font-size: 20px;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .how-step p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    /* ============================================
+       WHY THIS EXISTS
+       ============================================ */
+    
+    .why-section {
+      padding: var(--space-3xl) 0;
+    }
+    
+    .why-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+    
+    @media (max-width: 800px) {
+      .why-content { grid-template-columns: 1fr; }
+    }
+    
+    .why-text h2 {
+      margin-bottom: var(--space-lg);
+    }
+    
+    .why-text p {
+      color: var(--text-secondary);
+      font-size: 17px;
+      margin-bottom: var(--space-md);
+    }
+    
+    .why-points {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    
+    .why-point {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-lg);
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+    }
+    
+    .why-point-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-subtle);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .why-point h4 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+    
+    .why-point p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    
+    /* ============================================
+       TRUST SECTION
+       ============================================ */
+    
+    .trust-section {
+      padding: var(--space-3xl) 0;
+      background: var(--bg-alt);
+    }
+    
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-2xl);
+    }
+    
+    @media (max-width: 700px) {
+      .trust-grid { grid-template-columns: 1fr; }
+    }
+    
+    .trust-item {
+      padding: var(--space-xl);
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+    }
+    
+    .trust-item h4 {
+      font-size: 17px;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .trust-item p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    
+    /* ============================================
+       CTA SECTION
+       ============================================ */
+    
+    .cta-section {
+      padding: var(--space-3xl) 0;
+    }
+    
+    .cta-box {
+      background: var(--bg-dark);
+      border-radius: var(--radius-xl);
+      padding: var(--space-3xl) var(--space-2xl);
+      text-align: center;
+      color: var(--text-inverse);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(190, 255, 0, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    
+    .cta-box h2 {
+      margin-bottom: var(--space-md);
+      position: relative;
+    }
+    
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 17px;
+      margin-bottom: var(--space-xl);
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+    
+    .cta-form {
+      display: flex;
+      gap: var(--space-sm);
+      max-width: 420px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .cta-form input {
+      flex: 1;
+      padding: var(--space-md) var(--space-lg);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      color: var(--text-inverse);
+      font-size: 15px;
+      font-family: var(--font-body);
+    }
+    
+    .cta-form input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .cta-form input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    
+    .cta-small {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: var(--space-md);
+      position: relative;
+    }
+    
+    /* ============================================
+       FOOTER
+       ============================================ */
+    
+    footer {
+      padding: var(--space-2xl) 0;
+      border-top: 1px solid var(--border);
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: var(--space-xl);
+    }
+    
+    .footer-brand p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: var(--space-sm);
+      max-width: 280px;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: var(--space-3xl);
+    }
+    
+    @media (max-width: 700px) {
+      .footer-links { gap: var(--space-xl); }
+    }
+    
+    .footer-col h5 {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: var(--space-md);
+    }
+    
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    
+    .footer-col a {
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: color var(--duration-fast) ease;
+    }
+    
+    .footer-col a:hover {
+      color: var(--text);
+    }
+    
+    .footer-bottom {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+    
+    .footer-bottom p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    
+    .footer-legal {
+      display: flex;
+      gap: var(--space-lg);
+    }
+    
+    .footer-legal a {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    
+    .footer-legal a:hover {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <a href="/" class="logo">
+        <div class="logo-mark"></div>
+        <span>uncluttered</span>
+      </a>
+      <nav>
+        <a href="/stages/">Stages</a>
+        <a href="/stacks/">Stacks</a>
+        <a href="/tools/">Tools</a>
+        <a href="/philosophy/">Philosophy</a>
+        <a href="#find-stage" class="nav-cta">Find your stack</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-badge reveal">One stack per stage</span>
+          <h1>
+            <span class="line">Stop researching.</span>
+            <span class="line"><span class="highlight">Start building.</span></span>
+          </h1>
+          <p class="hero-subtitle reveal reveal-delay-2">
+            You don't need 50 options. You need the right tools for where you are right now. We pick one stack. You move forward.
+          </p>
+          <div class="hero-actions reveal reveal-delay-3">
+            <a href="#stages" class="btn btn-primary btn-lg">Find your stack →</a>
+            <a href="/philosophy/" class="btn btn-secondary btn-lg">Why one stack?</a>
+          </div>
+          
+          <div class="hero-search reveal reveal-delay-4">
+            <span class="hero-search-label">Or search for a tool or problem</span>
+            <div class="search-box">
+              <svg class="search-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="M21 21l-4.35-4.35"/>
+              </svg>
+              <input type="text" placeholder="Search tools, stages, or problems..." id="hero-search">
+            </div>
+            <div class="search-suggestions">
+              <span class="search-suggestion" data-query="Notion">
+                <span class="search-suggestion-icon">📝</span>
+                Notion
+                <span class="search-suggestion-tag">Starting</span>
+              </span>
+              <span class="search-suggestion" data-query="Next.js">
+                <span class="search-suggestion-icon">▲</span>
+                Next.js
+                <span class="search-suggestion-tag">Building</span>
+              </span>
+              <span class="search-suggestion" data-query="too many tools">
+                <span class="search-suggestion-icon">🤯</span>
+                Too many tools
+              </span>
+              <span class="search-suggestion" data-query="need analytics">
+                <span class="search-suggestion-icon">📊</span>
+                Need analytics
+                <span class="search-suggestion-tag">Growing</span>
+              </span>
+              <span class="search-suggestion" data-query="simplify stack">
+                <span class="search-suggestion-icon">✂️</span>
+                Simplify my stack
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Floating Stack Cards Visual -->
+        <div class="hero-visual reveal reveal-delay-2">
+          <div class="hero-stack">
+            <div class="hero-stack-header">
+              <div class="hero-stack-icon">🔨</div>
+              <span class="hero-stack-title">Building</span>
+            </div>
+            <div class="hero-stack-tools">
+              <div class="hero-stack-tool"><span>▲</span> Next.js</div>
+              <div class="hero-stack-tool"><span>⚡</span> Supabase</div>
+              <div class="hero-stack-tool"><span>🚀</span> Vercel</div>
+            </div>
+          </div>
+          <div class="hero-stack">
+            <div class="hero-stack-header">
+              <div class="hero-stack-icon">💡</div>
+              <span class="hero-stack-title">Starting</span>
+            </div>
+            <div class="hero-stack-tools">
+              <div class="hero-stack-tool"><span>📝</span> Notion</div>
+              <div class="hero-stack-tool"><span>🎨</span> Figma</div>
+              <div class="hero-stack-tool"><span>📊</span> Sheets</div>
+            </div>
+          </div>
+          <div class="hero-stack">
+            <div class="hero-stack-header">
+              <div class="hero-stack-icon">📈</div>
+              <span class="hero-stack-title">Growing</span>
+            </div>
+            <div class="hero-stack-tools">
+              <div class="hero-stack-tool"><span>📊</span> PostHog</div>
+              <div class="hero-stack-tool"><span>💬</span> Intercom</div>
+              <div class="hero-stack-tool"><span>📈</span> Linear</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Marquee -->
+  <section class="marquee-section">
+    <div class="marquee">
+      <div class="marquee-content">
+        <span class="marquee-item">Ship faster</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Less decisions</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">One stack</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Zero bloat</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Start building</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Ignore the rest</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Ship faster</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Less decisions</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">One stack</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Zero bloat</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Start building</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Ignore the rest</span>
+        <span class="marquee-dot"></span>
+      </div>
+      <div class="marquee-content">
+        <span class="marquee-item">Ship faster</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Less decisions</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">One stack</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Zero bloat</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Start building</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Ignore the rest</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Ship faster</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Less decisions</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">One stack</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Zero bloat</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Start building</span>
+        <span class="marquee-dot"></span>
+        <span class="marquee-item">Ignore the rest</span>
+        <span class="marquee-dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stage Selector -->
+  <section class="stages-section" id="stages">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Where are you?</h2>
+        <p>Pick your stage. Get what's enough.</p>
+      </div>
+      <div class="stages-grid">
+        <div class="stage-card card reveal" data-stage="starting">
+          <div class="stage-icon">💡</div>
+          <h4>Starting</h4>
+          <p>You have an idea. You're exploring what's possible. Nothing is built yet.</p>
+        </div>
+        <div class="stage-card card reveal reveal-delay-1" data-stage="building">
+          <div class="stage-icon">🔨</div>
+          <h4>Building</h4>
+          <p>You're making something real. Code is being written. Progress is visible.</p>
+        </div>
+        <div class="stage-card card reveal reveal-delay-2" data-stage="growing">
+          <div class="stage-icon">📈</div>
+          <h4>Growing</h4>
+          <p>People are using it. Time to scale without breaking what works.</p>
+        </div>
+        <div class="stage-card card reveal reveal-delay-3" data-stage="simplifying">
+          <div class="stage-icon">✂️</div>
+          <h4>Simplifying</h4>
+          <p>You have too much. Time to cut what doesn't serve you anymore.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack Preview -->
+  <section class="stacks-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>One stack per stage</h2>
+        <p>Five tools maximum. Everything you need. Nothing you don't.</p>
+      </div>
+      <div class="stack-preview">
+        <div class="stack-card card reveal">
+          <div class="stack-card-header">
+            <div class="stack-card-icon">💡</div>
+            <div class="stack-card-title">
+              <h4>Starting Stack</h4>
+              <span>For exploring and validating</span>
+            </div>
+          </div>
+          <div class="stack-tools">
+            <div class="stack-tool"><span class="stack-tool-icon">📝</span> Notion</div>
+            <div class="stack-tool"><span class="stack-tool-icon">🎨</span> Figma</div>
+            <div class="stack-tool"><span class="stack-tool-icon">📊</span> Google Sheets</div>
+            <div class="stack-tool"><span class="stack-tool-icon">💬</span> Slack</div>
+          </div>
+          <a href="/stacks/starting/" class="stack-card-link">
+            View full stack
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        
+        <div class="stack-card card reveal reveal-delay-1">
+          <div class="stack-card-header">
+            <div class="stack-card-icon">🔨</div>
+            <div class="stack-card-title">
+              <h4>Building Stack</h4>
+              <span>For shipping real products</span>
+            </div>
+          </div>
+          <div class="stack-tools">
+            <div class="stack-tool"><span class="stack-tool-icon">▲</span> Next.js</div>
+            <div class="stack-tool"><span class="stack-tool-icon">⚡</span> Supabase</div>
+            <div class="stack-tool"><span class="stack-tool-icon">🚀</span> Vercel</div>
+            <div class="stack-tool"><span class="stack-tool-icon">💳</span> Stripe</div>
+            <div class="stack-tool"><span class="stack-tool-icon">📧</span> Resend</div>
+          </div>
+          <a href="/stacks/building/" class="stack-card-link">
+            View full stack
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        
+        <div class="stack-card card reveal reveal-delay-2">
+          <div class="stack-card-header">
+            <div class="stack-card-icon">📈</div>
+            <div class="stack-card-title">
+              <h4>Growing Stack</h4>
+              <span>For scaling what works</span>
+            </div>
+          </div>
+          <div class="stack-tools">
+            <div class="stack-tool"><span class="stack-tool-icon">📊</span> PostHog</div>
+            <div class="stack-tool"><span class="stack-tool-icon">🔔</span> Loops</div>
+            <div class="stack-tool"><span class="stack-tool-icon">💬</span> Intercom</div>
+            <div class="stack-tool"><span class="stack-tool-icon">📈</span> Linear</div>
+          </div>
+          <a href="/stacks/growing/" class="stack-card-link">
+            View full stack
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        
+        <div class="stack-card card reveal reveal-delay-3">
+          <div class="stack-card-header">
+            <div class="stack-card-icon">✂️</div>
+            <div class="stack-card-title">
+              <h4>Simplifying Stack</h4>
+              <span>For cutting what doesn't serve you</span>
+            </div>
+          </div>
+          <div class="stack-tools">
+            <div class="stack-tool"><span class="stack-tool-icon">📋</span> What to audit</div>
+            <div class="stack-tool"><span class="stack-tool-icon">🗑️</span> What to cut first</div>
+            <div class="stack-tool"><span class="stack-tool-icon">✅</span> What to keep</div>
+          </div>
+          <a href="/stacks/simplifying/" class="stack-card-link">
+            View full guide
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-section">
+    <div class="cursor-glow"></div>
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>How it works</h2>
+        <p>Three steps. No complexity.</p>
+      </div>
+      <div class="how-steps">
+        <div class="how-step reveal">
+          <div class="how-step-number">1</div>
+          <h4>Choose your stage</h4>
+          <p>Starting, Building, Growing, or Simplifying. Be honest about where you actually are.</p>
+        </div>
+        <div class="how-step reveal reveal-delay-1">
+          <div class="how-step-number">2</div>
+          <h4>Use the stack</h4>
+          <p>Five tools maximum. Each one earns its place. No fluff, no maybes, no "nice to haves."</p>
+        </div>
+        <div class="how-step reveal reveal-delay-2">
+          <div class="how-step-number">3</div>
+          <h4>Ignore the rest</h4>
+          <p>Everything not on your stack doesn't exist yet. Revisit when your stage changes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why This Exists -->
+  <section class="why-section">
+    <div class="container">
+      <div class="why-content">
+        <div class="why-text reveal">
+          <h2>Why this exists</h2>
+          <p>Every "best tools" list gives you 50 options and no answers. You end up researching instead of building. Comparing instead of shipping. Optimizing instead of starting.</p>
+          <p>This site exists to end that loop.</p>
+        </div>
+        <div class="why-points">
+          <div class="why-point reveal reveal-delay-1">
+            <div class="why-point-icon">🎯</div>
+            <div>
+              <h4>Decision removal</h4>
+              <p>We make the choice so you don't have to. One stack. No alternatives.</p>
+            </div>
+          </div>
+          <div class="why-point reveal reveal-delay-2">
+            <div class="why-point-icon">🧘</div>
+            <div>
+              <h4>Calm over chaos</h4>
+              <p>No productivity hacks. No hustle culture. Just clarity about what's enough.</p>
+            </div>
+          </div>
+          <div class="why-point reveal reveal-delay-3">
+            <div class="why-point-icon">🚫</div>
+            <div>
+              <h4>What you don't need</h4>
+              <p>We tell you what to ignore. That's often more valuable than what to use.</p>
+            </div>
+          </div>
+          
+          <!-- Compare CTA -->
+          <div class="compare-cta reveal reveal-delay-4">
+            <div class="compare-cta-text">
+              <div class="compare-cta-icon">⚖️</div>
+              <div>
+                <h4>Already have tools?</h4>
+                <p>Compare your stack and see what to cut.</p>
+              </div>
+            </div>
+            <a href="/compare/" class="btn btn-primary">Compare your stack →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section class="trust-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Built on principles, not opinions</h2>
+        <p>How we decide what makes the cut.</p>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-item reveal">
+          <h4>Stage-appropriate</h4>
+          <p>Every tool is matched to a specific stage. What's right for Growing is overkill for Starting.</p>
+        </div>
+        <div class="trust-item reveal reveal-delay-1">
+          <h4>Actually tested</h4>
+          <p>We've used these tools to build real products. No sponsored placements. No affiliate rankings.</p>
+        </div>
+        <div class="trust-item reveal reveal-delay-2">
+          <h4>Regularly pruned</h4>
+          <p>Stacks are reviewed quarterly. Tools get removed when better options emerge or they lose focus.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box reveal">
+        <h2>Get your stack as a checklist</h2>
+        <p>Enter your email. Pick your stage. Receive a clean list of exactly what you need.</p>
+        <form class="cta-form">
+          <input type="email" placeholder="you@email.com" required>
+          <button type="submit" class="btn btn-accent">Send</button>
+        </form>
+        <p class="cta-small">One email. No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="/" class="logo">
+            <div class="logo-mark"></div>
+            <span>uncluttered</span>
+          </a>
+          <p>What's enough for where you are. Nothing more.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h5>Navigate</h5>
+            <ul>
+              <li><a href="/stages/">Stages</a></li>
+              <li><a href="/stacks/">Stacks</a></li>
+              <li><a href="/tools/">Tools</a></li>
+              <li><a href="/compare/">Compare</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Learn</h5>
+            <ul>
+              <li><a href="/philosophy/">Philosophy</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/updates/">Updates</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Connect</h5>
+            <ul>
+              <li><a href="/newsletter/">Newsletter</a></li>
+              <li><a href="https://twitter.com/uncluttered">Twitter</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Built for people who want less, not more.</p>
+        <div class="footer-legal">
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // Header scroll effect
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Stage card interaction
+    const stageCards = document.querySelectorAll('.stage-card');
+    stageCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const stage = card.dataset.stage;
+        // Store selection
+        localStorage.setItem('uncluttered-stage', stage);
+        // Navigate to stack
+        window.location.href = `/stacks/${stage}/`;
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Search suggestions
+    const searchInput = document.getElementById('hero-search');
+    const suggestions = document.querySelectorAll('.search-suggestion');
+    
+    suggestions.forEach(suggestion => {
+      suggestion.addEventListener('click', () => {
+        const query = suggestion.dataset.query;
+        searchInput.value = query;
+        searchInput.focus();
+        // In production, this would navigate to search results
+        // window.location.href = `/search?q=${encodeURIComponent(query)}`;
+      });
+    });
+
+    // Search form submission
+    searchInput?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.trim();
+        if (query) {
+          window.location.href = `/tools/?search=${encodeURIComponent(query)}`;
+        }
+      }
+    });
+
+    // Cursor glow effect on dark sections
+    const howSection = document.querySelector('.how-section');
+    const cursorGlow = howSection?.querySelector('.cursor-glow');
+    
+    if (howSection && cursorGlow) {
+      howSection.addEventListener('mousemove', (e) => {
+        const rect = howSection.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        cursorGlow.style.left = x + 'px';
+        cursorGlow.style.top = y + 'px';
+      });
+    }
+  </script>
+</body>
+</html>
