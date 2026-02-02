@@ -207,14 +207,20 @@
     .quickstart-step p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
     
     /* Skip Section */
-    .skip-section { padding: var(--space-3xl) 0; background: var(--bg-dark); color: var(--text-inverse); }
-    .skip-section h2 { margin-bottom: var(--space-sm); }
-    .skip-section > .container > p { color: rgba(255,255,255,0.6); font-size: 18px; margin-bottom: var(--space-xl); }
-    .skip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md); }
-    .skip-item { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-md); }
-    .skip-item:hover { background: rgba(255,100,100,0.05); border-color: rgba(255,100,100,0.2); }
-    .skip-x { width: 28px; height: 28px; background: rgba(255,100,100,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ff8a8a; font-size: 14px; font-weight: 700; flex-shrink: 0; }
-    .skip-item span { font-size: 15px; color: rgba(255,255,255,0.7); }
+    .skip-section { padding: var(--space-3xl) 0; background: var(--bg-dark); color: var(--text-inverse); position: relative; overflow: hidden; }
+    .skip-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(13, 148, 136, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.06) 0%, transparent 50%); pointer-events: none; }
+    .skip-section .container { position: relative; z-index: 1; }
+    .skip-section h2 { margin-bottom: var(--space-sm); text-align: center; }
+    .skip-section > .container > p { color: rgba(255,255,255,0.5); font-size: 18px; margin-bottom: var(--space-2xl); text-align: center; }
+    .skip-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); max-width: 900px; margin: 0 auto; }
+    @media (max-width: 800px) { .skip-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .skip-grid { grid-template-columns: 1fr; } }
+    .skip-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-sm); padding: var(--space-lg); background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-lg); transition: all 0.3s ease; }
+    .skip-item:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); transform: translateY(-4px); }
+    .skip-icon { font-size: 28px; margin-bottom: var(--space-xs); opacity: 0.4; transition: opacity 0.3s ease; }
+    .skip-item:hover .skip-icon { opacity: 0.6; }
+    .skip-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.7); text-decoration: line-through; text-decoration-color: rgba(255,100,100,0.5); }
+    .skip-reason { font-size: 11px; color: rgba(255,255,255,0.35); }
     
     /* Progression Section */
     .progression-section { padding: var(--space-3xl) 0; background: var(--bg-alt); }
@@ -786,14 +792,46 @@
       <h2 class="reveal">What you don't need yet</h2>
       <p class="reveal">These will distract you. Explore first, build later.</p>
       <div class="skip-grid">
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>A domain name</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Hosting or servers</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>A code editor</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>A database</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Payment processing</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Analytics tools</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>A logo (yet)</span></div>
-        <div class="skip-item reveal"><span class="skip-x">×</span><span>Social media accounts</span></div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">🌐</span>
+          <span class="skip-name">A domain name</span>
+          <span class="skip-reason">Ideas change</span>
+        </div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">☁️</span>
+          <span class="skip-name">Hosting</span>
+          <span class="skip-reason">Nothing to host</span>
+        </div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">💻</span>
+          <span class="skip-name">Code editor</span>
+          <span class="skip-reason">Not building yet</span>
+        </div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">🗄️</span>
+          <span class="skip-name">Database</span>
+          <span class="skip-reason">No data yet</span>
+        </div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">💳</span>
+          <span class="skip-name">Payments</span>
+          <span class="skip-reason">No product yet</span>
+        </div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">📊</span>
+          <span class="skip-name">Analytics</span>
+          <span class="skip-reason">No users yet</span>
+        </div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">🎨</span>
+          <span class="skip-name">A logo</span>
+          <span class="skip-reason">Brand comes later</span>
+        </div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">📱</span>
+          <span class="skip-name">Social accounts</span>
+          <span class="skip-reason">Audience comes later</span>
+        </div>
       </div>
     </div>
   </section>
