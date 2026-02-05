@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  @page { size: A4; margin: 0; }
+  
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #2D2D2D;
+    background: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* =================== COVER PAGE =================== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 80px 60px;
+    background: #FAFAF8;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(196,181,253,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .cover-inner {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cover-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 64px;
+  }
+  
+  .cover-logo .mark {
+    width: 32px; height: 32px;
+    background: #0a0a0a;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cover-logo .mark span {
+    width: 12px; height: 2.5px;
+    background: #0D9488;
+    border-radius: 2px;
+    display: block;
+  }
+  
+  .cover-logo .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #1a1a1a;
+    letter-spacing: -0.3px;
+  }
+  
+  .cover-badge {
+    display: inline-block;
+    padding: 10px 24px;
+    background: rgba(13, 148, 136, 0.08);
+    border: 1.5px solid rgba(13, 148, 136, 0.3);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #0D9488;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 36px;
+  }
+  
+  .cover h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: #0a0a0a;
+    margin-bottom: 20px;
+  }
+  
+  .cover .subtitle {
+    font-size: 20px;
+    font-weight: 300;
+    color: #666;
+    max-width: 460px;
+    line-height: 1.6;
+    margin: 0 auto 80px;
+  }
+  
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  
+  .cover-meta-item {
+    text-align: center;
+  }
+  
+  .cover-meta-item .label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999;
+    margin-bottom: 4px;
+  }
+  
+  .cover-meta-item .value {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  /* =================== TABLE OF CONTENTS =================== */
+  .toc {
+    padding: 80px 70px;
+    page-break-after: always;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .toc h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #0a0a0a;
+    margin-bottom: 48px;
+  }
+  
+  .toc-item {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #F0F0EE;
+    gap: 20px;
+  }
+  
+  .toc-number {
+    width: 40px;
+    height: 40px;
+    background: #0D9488;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .toc-text h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+  
+  .toc-text p {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  /* =================== CONTENT PAGES =================== */
+  .content-page {
+    padding: 70px;
+    page-break-before: always;
+  }
+  
+  /* Section header */
+  .section-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #0D9488;
+  }
+  
+  .section-header .section-number {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #0D9488;
+    border-radius: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: white;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+  
+  .section-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #0a0a0a;
+    margin-bottom: 8px;
+  }
+  
+  .section-header .section-desc {
+    font-size: 14px;
+    color: #777;
+    font-weight: 300;
+  }
+  
+  /* Subsections */
+  h3, .h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 32px 0 12px 0;
+    page-break-after: avoid;
+  }
+  
+  h4, .h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin: 20px 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  
+  p { margin: 8px 0; color: #444; }
+  
+  /* =================== COMPONENTS =================== */
+  
+  /* Tip / Callout boxes */
+  .callout {
+    background: #F8FFFE;
+    border: 1px solid rgba(13, 148, 136, 0.15);
+    border-left: 4px solid #0D9488;
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  
+  .callout-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #0D9488;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  
+  .callout p { color: #555; font-size: 12px; margin: 0; }
+  
+  .callout-warning {
+    background: #FFFBF5;
+    border-color: rgba(245, 158, 11, 0.15);
+    border-left-color: #F59E0B;
+  }
+  
+  .callout-warning .callout-title { color: #D97706; }
+  
+  /* Score box */
+  .score-box {
+    background: #F8FFFE;
+    border: 1.5px solid rgba(13, 148, 136, 0.2);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin: 20px 0;
+  }
+  
+  .score-box .score-item {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 6px 0;
+    font-size: 12px;
+  }
+  
+  .score-box .score-label {
+    font-weight: 600;
+    color: #0D9488;
+    min-width: 100px;
+  }
+  
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 16px 0;
+    font-size: 11px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #E8E8E6;
+    page-break-inside: avoid;
+  }
+  
+  thead th {
+    background: #1a1a1a;
+    color: white;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  
+  tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #F3F3F0;
+    vertical-align: top;
+    color: #444;
+  }
+  
+  tbody tr:nth-child(even) { background: #FAFAF8; }
+  tbody tr:last-child td { border-bottom: none; }
+  
+  /* Checkboxes */
+  .check-list { margin: 12px 0; }
+  
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F5F5F3;
+  }
+  
+  .check-item:last-child { border-bottom: none; }
+  
+  .check-box {
+    width: 18px; height: 18px;
+    border: 2px solid #D4D4D4;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  
+  .check-box.checked {
+    background: #0D9488;
+    border-color: #0D9488;
+    position: relative;
+  }
+  
+  .check-box.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .check-text {
+    font-size: 12px;
+    color: #333;
+    flex: 1;
+  }
+  
+  /* Numbered lists */
+  .numbered-list { margin: 12px 0; counter-reset: item; }
+  
+  .numbered-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid #F5F5F3;
+  }
+  
+  .numbered-item:last-child { border-bottom: none; }
+  
+  .num-circle {
+    width: 24px; height: 24px;
+    background: #F3F3F0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    color: #555;
+    flex-shrink: 0;
+  }
+  
+  .numbered-item .num-text {
+    flex: 1;
+    font-size: 12px;
+    color: #333;
+    padding-top: 2px;
+  }
+  
+  /* Priority cards */
+  .priority-card {
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 12px 0;
+  }
+  
+  .priority-card.must-have {
+    background: #FEF2F2;
+    border: 1px solid rgba(239, 68, 68, 0.15);
+  }
+  
+  .priority-card.must-have .priority-label { color: #DC2626; }
+  
+  .priority-card.should-have {
+    background: #FFFBEB;
+    border: 1px solid rgba(245, 158, 11, 0.15);
+  }
+  
+  .priority-card.should-have .priority-label { color: #D97706; }
+  
+  .priority-card.nice-have {
+    background: #F0FDF4;
+    border: 1px solid rgba(34, 197, 94, 0.15);
+  }
+  
+  .priority-card.nice-have .priority-label { color: #16A34A; }
+  
+  .priority-card.wont-build {
+    background: #F8F8F8;
+    border: 1px solid #E5E5E5;
+  }
+  
+  .priority-card.wont-build .priority-label { color: #888; }
+  
+  .priority-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .priority-card .fill-line {
+    height: 1px;
+    border-bottom: 1px dashed #ccc;
+    margin: 10px 0;
+  }
+  
+  /* Fill-in lines */
+  .fill-line {
+    border-bottom: 1px dashed #D4D4D4;
+    margin: 10px 0;
+    min-height: 24px;
+  }
+  
+  .fill-block {
+    background: #FAFAF8;
+    border: 1px dashed #D4D4D4;
+    border-radius: 8px;
+    min-height: 60px;
+    margin: 10px 0;
+    padding: 12px;
+  }
+  
+  /* Code blocks */
+  pre {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    padding: 24px;
+    border-radius: 12px;
+    margin: 16px 0;
+    font-size: 11px;
+    line-height: 1.6;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    overflow-x: auto;
+  }
+  
+  code {
+    background: #F3F3F0;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: #0D9488;
+  }
+  
+  pre code { background: none; padding: 0; color: inherit; }
+  
+  /* Tool recommendation cards */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  
+  .tool-card {
+    background: #FAFAF8;
+    border: 1px solid #E8E8E6;
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  
+  .tool-card .tool-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+  
+  .tool-card .tool-purpose {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #0D9488;
+    margin-bottom: 6px;
+  }
+  
+  .tool-card .tool-desc {
+    font-size: 11px;
+    color: #777;
+    line-height: 1.5;
+  }
+  
+  /* Back page */
+  .back-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px;
+    background: #0a0a0a;
+    color: white;
+    page-break-before: always;
+  }
+  
+  .back-page h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  
+  .back-page p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+  }
+  
+  .back-page .url {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #0D9488;
+  }
+  
+  /* Blockquote */
+  blockquote {
+    border-left: 3px solid #0D9488;
+    padding: 16px 24px;
+    margin: 16px 0;
+    background: #F8FFFE;
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    color: #555;
+    font-size: 13px;
+  }
+  
+  /* Utility */
+  .spacer { height: 24px; }
+  .spacer-lg { height: 48px; }
+  .text-muted { color: #999; }
+  .text-small { font-size: 10px; }
+  .text-accent { color: #0D9488; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .bold { font-weight: 600; }
+  
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .content-page { page-break-before: always; }
+    table, .callout, .score-box, .priority-card { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="cover-logo">
+        <div class="mark"><span></span></div>
+        <span class="name">fewertools</span>
+      </div>
+      <div class="cover-badge">📈 Growing Stage</div>
+      <h1>The Growth<br>Dashboard</h1>
+      <p class="subtitle">Measure what matters. Ignore the rest. Scale with clarity.</p>
+      <div class="cover-meta">
+        
+    <div class="cover-meta-item">
+      <div class="value">PostHog</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Intercom</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Sentry</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Metabase</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Loops</div>
+    </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toc">
+    <h2>What's Inside</h2>
+    
+    <div class="toc-item">
+      <div class="toc-number">1</div>
+      <div class="toc-text">
+        <h3>KPI Tracker</h3>
+        <p>North Star metric, weekly dashboards, revenue breakdowns</p>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-number">2</div>
+      <div class="toc-text">
+        <h3>User Feedback Log</h3>
+        <p>Centralized inbox with categorization and sentiment</p>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-number">3</div>
+      <div class="toc-text">
+        <h3>Funnel Metrics (AARRR)</h3>
+        <p>Track every stage of your user journey</p>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-number">4</div>
+      <div class="toc-text">
+        <h3>Experiment Tracker</h3>
+        <p>Hypothesis-driven A/B testing with result logging</p>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-number">5</div>
+      <div class="toc-text">
+        <h3>Customer Health Scorecard</h3>
+        <p>Spot churn before it happens</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 01</div>
+      <h2>KPI Tracker</h2>
+      <div class="section-desc">Define your North Star. Track what actually moves the needle.</div>
+    </div>
+    <h3>North Star Metric</h3><table><thead><tr><th>Field</th><th>Your Answer</th></tr></thead><tbody><tr><td>Metric</td><td></td></tr>
+<tr><td>Current Value</td><td></td></tr>
+<tr><td>Target (30 days)</td><td></td></tr>
+<tr><td>Target (90 days)</td><td></td></tr>
+<tr><td>How it's measured</td><td></td></tr>
+<tr><td>Why this metric</td><td></td></tr></tbody></table><h3>Weekly Dashboard</h3><table><thead><tr><th>Metric</th><th>This Week</th><th>Last Week</th><th>Δ Change</th><th>Target</th><th>Status</th></tr></thead><tbody><tr><td><strong>Revenue (MRR)</strong></td><td></td><td></td><td></td><td></td><td>🟢 🟡 🔴</td></tr>
+<tr><td>New Signups</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Active Users (WAU)</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Churn Rate</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Activation Rate</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>NPS Score</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Support Tickets</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Avg. Response Time</td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Monthly Revenue</h3><table><thead><tr><th>Month</th><th>MRR</th><th>New MRR</th><th>Churned MRR</th><th>Net New</th><th>Customers</th><th>ARPU</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Cohort Retention</h3><table><thead><tr><th>Cohort</th><th>Week 0</th><th>Week 1</th><th>Week 2</th><th>Week 4</th><th>Week 8</th><th>Week 12</th></tr></thead><tbody><tr><td></td><td>100%</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td>100%</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td>100%</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td>100%</td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><div class="callout"><div class="callout-title">📊 Focus</div><p>If you can only track one number, track <strong>Net Revenue Retention</strong>. It tells you if your existing customers are getting more value over time.</p></div>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 02</div>
+      <h2>User Feedback Log</h2>
+      <div class="section-desc">Never lose a user insight. Centralize everything here.</div>
+    </div>
+    <h3>Feedback Inbox</h3><table><thead><tr><th>#</th><th>Date</th><th>User</th><th>Channel</th><th>Feedback</th><th>Category</th><th>Sentiment</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td></td><td></td><td>Email</td><td></td><td>Feature Request</td><td>😀</td><td>Open</td></tr>
+<tr><td>2</td><td></td><td></td><td>Chat</td><td></td><td>Bug</td><td>😐</td><td>Open</td></tr>
+<tr><td>3</td><td></td><td></td><td>Twitter</td><td></td><td>Praise</td><td>😀</td><td>Open</td></tr>
+<tr><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Top Requested Features</h3><table><thead><tr><th>Feature</th><th># Requests</th><th>Revenue Impact</th><th>Effort</th><th>Decision</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td>Build / Defer / Decline</td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>User Quotes Worth Remembering</h3>
+    <blockquote>"<em>[Exact quote from user]</em>" — Name, Date</blockquote>
+    <div class="fill-block"></div>
+    <div class="fill-block"></div><div class="callout"><div class="callout-title">💡 Tip</div><p>Review this log weekly. Patterns emerge after 10+ entries. One complaint is an anecdote — five complaints about the same thing is a feature.</p></div>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 03</div>
+      <h2>Funnel Metrics (AARRR)</h2>
+      <div class="section-desc">Track every stage of your user journey.</div>
+    </div>
+    <h3>Acquisition — How do users find you?</h3><table><thead><tr><th>Channel</th><th>Visitors</th><th>Signups</th><th>Conversion</th><th>CAC</th><th>Notes</th></tr></thead><tbody><tr><td>Organic Search</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Twitter/X</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Product Hunt</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Referral</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Direct</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>Paid Ads</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><strong>Total</strong></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Activation — Do they have an "aha" moment?</h3><table><thead><tr><th>Step</th><th>Users</th><th>Drop-off %</th><th>Notes</th></tr></thead><tbody><tr><td>Signed up</td><td></td><td>—</td><td></td></tr>
+<tr><td>Completed onboarding</td><td></td><td></td><td></td></tr>
+<tr><td>Performed core action</td><td></td><td></td><td></td></tr>
+<tr><td>Invited teammate</td><td></td><td></td><td></td></tr>
+<tr><td><strong>Activation rate</strong></td><td></td><td></td><td>Target: 40%+</td></tr></tbody></table><h3>Retention — Do they come back?</h3><table><thead><tr><th>Timeframe</th><th>Retention Rate</th><th>Target</th><th>Status</th></tr></thead><tbody><tr><td>Day 1</td><td></td><td>60%</td><td></td></tr>
+<tr><td>Day 7</td><td></td><td>30%</td><td></td></tr>
+<tr><td>Day 30</td><td></td><td>15%</td><td></td></tr>
+<tr><td>Day 90</td><td></td><td>10%</td><td></td></tr></tbody></table><h3>Revenue — Do they pay?</h3><table><thead><tr><th>Metric</th><th>Value</th><th>Target</th></tr></thead><tbody><tr><td>Trial → Paid conversion</td><td></td><td>5–10%</td></tr>
+<tr><td>Free → Paid conversion</td><td></td><td>2–5%</td></tr>
+<tr><td>Average Revenue Per User</td><td></td><td></td></tr>
+<tr><td>Lifetime Value (LTV)</td><td></td><td></td></tr>
+<tr><td>LTV:CAC Ratio</td><td></td><td>>3:1</td></tr></tbody></table><h3>Referral — Do they tell others?</h3><table><thead><tr><th>Metric</th><th>Value</th><th>Target</th></tr></thead><tbody><tr><td>Referral rate</td><td></td><td>10%+</td></tr>
+<tr><td>Viral coefficient (K)</td><td></td><td>>0.5</td></tr>
+<tr><td>Avg. referrals per user</td><td></td><td></td></tr></tbody></table>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 04</div>
+      <h2>Experiment Tracker</h2>
+      <div class="section-desc">Test hypotheses, not hunches. Run experiments properly.</div>
+    </div>
+    <h3>Active Experiments</h3><table><thead><tr><th>ID</th><th>Name</th><th>Hypothesis</th><th>Primary Metric</th><th>Start</th><th>End</th><th>Result</th></tr></thead><tbody><tr><td>EXP-001</td><td></td><td>If we [change], then [metric] will [improve] because [reason]</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>EXP-002</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>EXP-003</td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Experiment Template</h3><table><thead><tr><th>Field</th><th>Details</th></tr></thead><tbody><tr><td>Hypothesis</td><td>If we [do X], then [metric Y] will [change Z] because [reason]</td></tr>
+<tr><td>Primary Metric</td><td></td></tr>
+<tr><td>Secondary Metrics</td><td></td></tr>
+<tr><td>Traffic Split</td><td>50/50</td></tr>
+<tr><td>Min. Sample Size</td><td></td></tr>
+<tr><td>Duration</td><td></td></tr>
+<tr><td>Confidence Level</td><td>95%</td></tr></tbody></table><h3>Results Log</h3><table><thead><tr><th>Metric</th><th>Control</th><th>Variant</th><th>Δ</th><th>Confidence</th><th>Winner</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Experiment Backlog</h3><table><thead><tr><th>Priority</th><th>Experiment</th><th>Expected Impact</th><th>Effort</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td></td><td></td><td></td><td>Queued</td></tr>
+<tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>4</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>5</td><td></td><td></td><td></td><td></td></tr></tbody></table><div class="callout"><div class="callout-title">🧪 Rule of Thumb</div><p>Run one experiment at a time. Minimum 2 weeks per test. If you can't reach statistical significance, the difference probably doesn't matter.</p></div>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 05</div>
+      <h2>Customer Health Scorecard</h2>
+      <div class="section-desc">Spot churn before it happens. Rescue at-risk customers.</div>
+    </div>
+    <h3>Health Score Components</h3><table><thead><tr><th>Factor</th><th>Weight</th><th>Scoring (1–10)</th></tr></thead><tbody><tr><td><strong>Usage Frequency</strong></td><td>30%</td><td>Daily=10, Weekly=7, Monthly=4, Rare=1</td></tr>
+<tr><td><strong>Feature Adoption</strong></td><td>20%</td><td>80%+ features=10, 50%+=7, Core only=4, Minimal=1</td></tr>
+<tr><td><strong>Support Interactions</strong></td><td>15%</td><td>Positive=10, Neutral=5, Frequent complaints=2</td></tr>
+<tr><td><strong>Growth Signal</strong></td><td>15%</td><td>Added seats=10, Upgraded=8, Static=5, Downgraded=2</td></tr>
+<tr><td><strong>Engagement Trend</strong></td><td>10%</td><td>Increasing=10, Stable=6, Declining=2</td></tr>
+<tr><td><strong>Payment Health</strong></td><td>10%</td><td>On time=10, Late once=5, Multiple failures=1</td></tr></tbody></table><h3>Customer Dashboard</h3><table><thead><tr><th>Customer</th><th>Plan</th><th>MRR</th><th>Score</th><th>Health</th></tr></thead><tbody><tr><td></td><td></td><td></td><td>  /100</td><td>🟢 🟡 🔴</td></tr>
+<tr><td></td><td></td><td></td><td>  /100</td><td></td></tr>
+<tr><td></td><td></td><td></td><td>  /100</td><td></td></tr>
+<tr><td></td><td></td><td></td><td>  /100</td><td></td></tr>
+<tr><td></td><td></td><td></td><td>  /100</td><td></td></tr></tbody></table><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px;">
+      <div class="priority-card nice-have"><div class="priority-label">🟢 Healthy (70–100)</div><p style="font-size:11px;color:#666;">Candidate for upsell, case study, referral ask.</p></div>
+      <div class="priority-card should-have"><div class="priority-label">🟡 At Risk (40–69)</div><p style="font-size:11px;color:#666;">Schedule check-in. Investigate usage drop.</p></div>
+      <div class="priority-card must-have"><div class="priority-label">🔴 Critical (0–39)</div><p style="font-size:11px;color:#666;">Immediate outreach. Offer help or discount.</p></div>
+    </div><h3>Churn Risk Signals</h3><div class="check-list">
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Login frequency dropped >50% in last 30 days</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Key feature usage stopped</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Support ticket with negative sentiment</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Downgraded plan</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Payment failed 2+ times</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Competitor mentioned in support conversation</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Asked about data export or cancellation</div>
+    </div></div><div class="spacer"></div>
+    <h3>Recommended Tool Stack</h3><div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-purpose">Product Analytics</div>
+      <div class="tool-name">PostHog</div>
+      <div class="tool-desc">Feature flags, session replays, funnels. All-in-one.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">Customer Messaging</div>
+      <div class="tool-name">Intercom</div>
+      <div class="tool-desc">In-app messages, support, onboarding flows.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">Error Monitoring</div>
+      <div class="tool-name">Sentry</div>
+      <div class="tool-desc">Know about bugs before users report them.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">Business Analytics</div>
+      <div class="tool-name">Metabase</div>
+      <div class="tool-desc">SQL dashboards anyone on the team can read.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">Email Marketing</div>
+      <div class="tool-name">Loops</div>
+      <div class="tool-desc">Event-triggered emails that actually convert.</div>
+    </div></div>
+  </div>
+
+  <div class="back-page">
+    <h2>Build with fewer tools.</h2>
+    <p>Curated stacks for every stage of building.</p>
+    <div class="url">fewertools.com</div>
+  </div>
+</body>
+</html>

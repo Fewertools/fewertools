@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  @page { size: A4; margin: 0; }
+  
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #2D2D2D;
+    background: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* =================== COVER PAGE =================== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 80px 60px;
+    background: #FAFAF8;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(196,181,253,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .cover-inner {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cover-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 64px;
+  }
+  
+  .cover-logo .mark {
+    width: 32px; height: 32px;
+    background: #0a0a0a;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cover-logo .mark span {
+    width: 12px; height: 2.5px;
+    background: #0D9488;
+    border-radius: 2px;
+    display: block;
+  }
+  
+  .cover-logo .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #1a1a1a;
+    letter-spacing: -0.3px;
+  }
+  
+  .cover-badge {
+    display: inline-block;
+    padding: 10px 24px;
+    background: rgba(13, 148, 136, 0.08);
+    border: 1.5px solid rgba(13, 148, 136, 0.3);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #0D9488;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 36px;
+  }
+  
+  .cover h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: #0a0a0a;
+    margin-bottom: 20px;
+  }
+  
+  .cover .subtitle {
+    font-size: 20px;
+    font-weight: 300;
+    color: #666;
+    max-width: 460px;
+    line-height: 1.6;
+    margin: 0 auto 80px;
+  }
+  
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  
+  .cover-meta-item {
+    text-align: center;
+  }
+  
+  .cover-meta-item .label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999;
+    margin-bottom: 4px;
+  }
+  
+  .cover-meta-item .value {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  /* =================== TABLE OF CONTENTS =================== */
+  .toc {
+    padding: 80px 70px;
+    page-break-after: always;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .toc h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #0a0a0a;
+    margin-bottom: 48px;
+  }
+  
+  .toc-item {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #F0F0EE;
+    gap: 20px;
+  }
+  
+  .toc-number {
+    width: 40px;
+    height: 40px;
+    background: #0D9488;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .toc-text h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+  
+  .toc-text p {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  /* =================== CONTENT PAGES =================== */
+  .content-page {
+    padding: 70px;
+    page-break-before: always;
+  }
+  
+  /* Section header */
+  .section-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #0D9488;
+  }
+  
+  .section-header .section-number {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #0D9488;
+    border-radius: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: white;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+  
+  .section-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #0a0a0a;
+    margin-bottom: 8px;
+  }
+  
+  .section-header .section-desc {
+    font-size: 14px;
+    color: #777;
+    font-weight: 300;
+  }
+  
+  /* Subsections */
+  h3, .h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 32px 0 12px 0;
+    page-break-after: avoid;
+  }
+  
+  h4, .h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin: 20px 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  
+  p { margin: 8px 0; color: #444; }
+  
+  /* =================== COMPONENTS =================== */
+  
+  /* Tip / Callout boxes */
+  .callout {
+    background: #F8FFFE;
+    border: 1px solid rgba(13, 148, 136, 0.15);
+    border-left: 4px solid #0D9488;
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  
+  .callout-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #0D9488;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  
+  .callout p { color: #555; font-size: 12px; margin: 0; }
+  
+  .callout-warning {
+    background: #FFFBF5;
+    border-color: rgba(245, 158, 11, 0.15);
+    border-left-color: #F59E0B;
+  }
+  
+  .callout-warning .callout-title { color: #D97706; }
+  
+  /* Score box */
+  .score-box {
+    background: #F8FFFE;
+    border: 1.5px solid rgba(13, 148, 136, 0.2);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin: 20px 0;
+  }
+  
+  .score-box .score-item {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 6px 0;
+    font-size: 12px;
+  }
+  
+  .score-box .score-label {
+    font-weight: 600;
+    color: #0D9488;
+    min-width: 100px;
+  }
+  
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 16px 0;
+    font-size: 11px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #E8E8E6;
+    page-break-inside: avoid;
+  }
+  
+  thead th {
+    background: #1a1a1a;
+    color: white;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  
+  tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #F3F3F0;
+    vertical-align: top;
+    color: #444;
+  }
+  
+  tbody tr:nth-child(even) { background: #FAFAF8; }
+  tbody tr:last-child td { border-bottom: none; }
+  
+  /* Checkboxes */
+  .check-list { margin: 12px 0; }
+  
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F5F5F3;
+  }
+  
+  .check-item:last-child { border-bottom: none; }
+  
+  .check-box {
+    width: 18px; height: 18px;
+    border: 2px solid #D4D4D4;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  
+  .check-box.checked {
+    background: #0D9488;
+    border-color: #0D9488;
+    position: relative;
+  }
+  
+  .check-box.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .check-text {
+    font-size: 12px;
+    color: #333;
+    flex: 1;
+  }
+  
+  /* Numbered lists */
+  .numbered-list { margin: 12px 0; counter-reset: item; }
+  
+  .numbered-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid #F5F5F3;
+  }
+  
+  .numbered-item:last-child { border-bottom: none; }
+  
+  .num-circle {
+    width: 24px; height: 24px;
+    background: #F3F3F0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    color: #555;
+    flex-shrink: 0;
+  }
+  
+  .numbered-item .num-text {
+    flex: 1;
+    font-size: 12px;
+    color: #333;
+    padding-top: 2px;
+  }
+  
+  /* Priority cards */
+  .priority-card {
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 12px 0;
+  }
+  
+  .priority-card.must-have {
+    background: #FEF2F2;
+    border: 1px solid rgba(239, 68, 68, 0.15);
+  }
+  
+  .priority-card.must-have .priority-label { color: #DC2626; }
+  
+  .priority-card.should-have {
+    background: #FFFBEB;
+    border: 1px solid rgba(245, 158, 11, 0.15);
+  }
+  
+  .priority-card.should-have .priority-label { color: #D97706; }
+  
+  .priority-card.nice-have {
+    background: #F0FDF4;
+    border: 1px solid rgba(34, 197, 94, 0.15);
+  }
+  
+  .priority-card.nice-have .priority-label { color: #16A34A; }
+  
+  .priority-card.wont-build {
+    background: #F8F8F8;
+    border: 1px solid #E5E5E5;
+  }
+  
+  .priority-card.wont-build .priority-label { color: #888; }
+  
+  .priority-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .priority-card .fill-line {
+    height: 1px;
+    border-bottom: 1px dashed #ccc;
+    margin: 10px 0;
+  }
+  
+  /* Fill-in lines */
+  .fill-line {
+    border-bottom: 1px dashed #D4D4D4;
+    margin: 10px 0;
+    min-height: 24px;
+  }
+  
+  .fill-block {
+    background: #FAFAF8;
+    border: 1px dashed #D4D4D4;
+    border-radius: 8px;
+    min-height: 60px;
+    margin: 10px 0;
+    padding: 12px;
+  }
+  
+  /* Code blocks */
+  pre {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    padding: 24px;
+    border-radius: 12px;
+    margin: 16px 0;
+    font-size: 11px;
+    line-height: 1.6;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    overflow-x: auto;
+  }
+  
+  code {
+    background: #F3F3F0;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: #0D9488;
+  }
+  
+  pre code { background: none; padding: 0; color: inherit; }
+  
+  /* Tool recommendation cards */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  
+  .tool-card {
+    background: #FAFAF8;
+    border: 1px solid #E8E8E6;
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  
+  .tool-card .tool-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+  
+  .tool-card .tool-purpose {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #0D9488;
+    margin-bottom: 6px;
+  }
+  
+  .tool-card .tool-desc {
+    font-size: 11px;
+    color: #777;
+    line-height: 1.5;
+  }
+  
+  /* Back page */
+  .back-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px;
+    background: #0a0a0a;
+    color: white;
+    page-break-before: always;
+  }
+  
+  .back-page h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  
+  .back-page p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+  }
+  
+  .back-page .url {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #0D9488;
+  }
+  
+  /* Blockquote */
+  blockquote {
+    border-left: 3px solid #0D9488;
+    padding: 16px 24px;
+    margin: 16px 0;
+    background: #F8FFFE;
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    color: #555;
+    font-size: 13px;
+  }
+  
+  /* Utility */
+  .spacer { height: 24px; }
+  .spacer-lg { height: 48px; }
+  .text-muted { color: #999; }
+  .text-small { font-size: 10px; }
+  .text-accent { color: #0D9488; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .bold { font-weight: 600; }
+  
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .content-page { page-break-before: always; }
+    table, .callout, .score-box, .priority-card { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="cover-logo">
+        <div class="mark"><span></span></div>
+        <span class="name">fewertools</span>
+      </div>
+      <div class="cover-badge">💡 Starting Stage</div>
+      <h1>The Starter's<br>Playbook</h1>
+      <p class="subtitle">From idea to validated concept. Stop guessing, start knowing.</p>
+      <div class="cover-meta">
+        
+    <div class="cover-meta-item">
+      <div class="value">Notion</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Figma</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Claude</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Perplexity</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Midjourney</div>
+    </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toc">
+    <h2>What's Inside</h2>
+    
+    <div class="toc-item">
+      <div class="toc-number">1</div>
+      <div class="toc-text">
+        <h3>Idea Validation Checklist</h3>
+        <p>20+ questions to score your idea before building</p>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-number">2</div>
+      <div class="toc-text">
+        <h3>Market Research Template</h3>
+        <p>Customer profiling, discovery questions, interview tracking</p>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-number">3</div>
+      <div class="toc-text">
+        <h3>Competitor Analysis Grid</h3>
+        <p>Map competitors, find gaps, define your edge</p>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-number">4</div>
+      <div class="toc-text">
+        <h3>MVP Feature Prioritizer</h3>
+        <p>Impact/effort scoring to decide what to build first</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 01</div>
+      <h2>Idea Validation Checklist</h2>
+      <div class="section-desc">Use this before writing a single line of code. Score your idea across 4 dimensions.</div>
+    </div>
+    <h3>The Problem</h3><div class="check-list">
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">I can describe the problem in <strong>one sentence</strong></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">I've experienced this problem personally (or deeply understand someone who has)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">The problem is <strong>recurring</strong> (not a one-time annoyance)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">People are currently <strong>paying</strong> to solve this problem (even with bad solutions)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">I can name <strong>5 specific people</strong> who have this problem</div>
+    </div></div><h3>The Solution</h3><div class="check-list">
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">My solution is fundamentally different from what exists (not just "better UI")</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">I can explain the value prop in <strong>under 10 seconds</strong></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">A non-technical person would understand what it does</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">It solves a <strong>core</strong> problem, not a nice-to-have</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">I can build a usable v1 in <strong>under 4 weeks</strong></div>
+    </div></div><h3>The Market</h3><div class="check-list">
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">The target market has at least <strong>10,000 potential users</strong></div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">People in this market are already spending money on tools</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">I can reach these people through 2-3 clear channels</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">The market is <strong>growing</strong> (not shrinking or stagnant)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">There's a clear "hair on fire" segment who need this <strong>NOW</strong></div>
+    </div></div><h3>Personal Fit</h3><div class="check-list">
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">I'd use this product myself</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">I can commit <strong>6+ months</strong> to this</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">I have (or can quickly build) the skills needed for v1</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">This aligns with where I want my career/life to go</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">I'm excited about the <strong>problem</strong>, not just the solution</div>
+    </div></div><div class="spacer"></div><div class="score-box">
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;margin-bottom:12px;">📊 Your Score</div>
+      <div class="score-item"><span class="score-label">20+ checks</span> Strong signal. Move to market research.</div>
+      <div class="score-item"><span class="score-label">15–19 checks</span> Promising. Dig deeper on weak areas.</div>
+      <div class="score-item"><span class="score-label">10–14 checks</span> Needs work. Validate assumptions first.</div>
+      <div class="score-item"><span class="score-label">Under 10</span> Reconsider or pivot the idea.</div>
+    </div>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 02</div>
+      <h2>Market Research Template</h2>
+      <div class="section-desc">Understand your market before you build for it.</div>
+    </div>
+    <h3>Overview</h3><table><thead><tr><th>Field</th><th>Your Answer</th></tr></thead><tbody><tr><td>Market Name</td><td></td></tr>
+<tr><td>Date Researched</td><td></td></tr>
+<tr><td>Market Size (TAM)</td><td></td></tr>
+<tr><td>Growth Rate</td><td></td></tr>
+<tr><td>Key Trends</td><td></td></tr></tbody></table><h3>Target Customer Profile</h3><table><thead><tr><th>Attribute</th><th>Description</th></tr></thead><tbody><tr><td>Who are they?</td><td></td></tr>
+<tr><td>Job title / role</td><td></td></tr>
+<tr><td>Company size</td><td></td></tr>
+<tr><td>Budget range</td><td></td></tr>
+<tr><td>Where they hang out online</td><td></td></tr>
+<tr><td>What they read</td><td></td></tr>
+<tr><td>Pain points (top 3)</td><td></td></tr>
+<tr><td>Current solutions they use</td><td></td></tr>
+<tr><td>What they wish existed</td><td></td></tr></tbody></table><h3>Customer Discovery Questions</h3>
+    <p>Use these in interviews. Aim for 10–20 conversations.</p><div class="numbered-list">
+    <div class="numbered-item">
+      <div class="num-circle">1</div>
+      <div class="num-text">Tell me about the <strong>last time</strong> you experienced [problem]. What happened?</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">2</div>
+      <div class="num-text">How are you <strong>currently solving</strong> this? Walk me through your process.</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">3</div>
+      <div class="num-text">What's the most <strong>frustrating part</strong> of your current approach?</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">4</div>
+      <div class="num-text">If you could wave a magic wand and fix <strong>one thing</strong>, what would it be?</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">5</div>
+      <div class="num-text">How much <strong>time</strong> do you spend on this per week?</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">6</div>
+      <div class="num-text">Have you tried other solutions? What did you <strong>like/dislike</strong>?</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">7</div>
+      <div class="num-text">Would you pay <strong>$X/month</strong> for something that [your value prop]?</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">8</div>
+      <div class="num-text">Who else on your team is <strong>affected</strong> by this problem?</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">9</div>
+      <div class="num-text">What would need to be true for you to <strong>switch</strong> from your current solution?</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">10</div>
+      <div class="num-text">Can I show you something I'm working on and get your <strong>honest feedback</strong>?</div>
+    </div></div><h3>Interview Notes Log</h3><table><thead><tr><th>#</th><th>Name</th><th>Date</th><th>Key Insights</th><th>Willingness to Pay</th><th>Follow-up?</th></tr></thead><tbody><tr><td>1</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>2</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>4</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>5</td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><div class="callout"><div class="callout-title">💡 Tip</div><p>The best insights come from questions 1–3. Let people tell stories — don't pitch your solution until the very end.</p></div>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 03</div>
+      <h2>Competitor Analysis Grid</h2>
+      <div class="section-desc">Know the landscape. Find the gaps. Own your position.</div>
+    </div>
+    <h3>Direct Competitors</h3><table><thead><tr><th>Competitor</th><th>URL</th><th>Pricing</th><th>Strengths</th><th>Weaknesses</th><th>Market Position</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Indirect Competitors &amp; Alternatives</h3><table><thead><tr><th>Alternative</th><th>How People Use It</th><th>Why It Falls Short</th></tr></thead><tbody><tr><td>Manual process (spreadsheets)</td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr></tbody></table><h3>Your Differentiation</h3><table><thead><tr><th>Dimension</th><th>Them</th><th>You</th></tr></thead><tbody><tr><td>Speed</td><td></td><td></td></tr>
+<tr><td>Price</td><td></td><td></td></tr>
+<tr><td>Simplicity</td><td></td><td></td></tr>
+<tr><td>Integration</td><td></td><td></td></tr>
+<tr><td>Support</td><td></td><td></td></tr>
+<tr><td>Unique angle</td><td></td><td></td></tr></tbody></table><div class="callout"><div class="callout-title">🎯 Key Question</div><p>What is the <strong>one thing</strong> you can do better than everyone else? That's your wedge. Everything else is noise.</p></div>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 04</div>
+      <h2>MVP Feature Prioritizer</h2>
+      <div class="section-desc">Build the right things in the right order.</div>
+    </div>
+    <h3>Feature Brainstorm</h3>
+    <p>List every feature, then score each one honestly.</p><table><thead><tr><th>Feature</th><th>User Impact (1–5)</th><th>Build Effort (1–5)</th><th>Score (Impact ÷ Effort)</th><th>Priority</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Priority Buckets</h3><div class="priority-card must-have"><div class="priority-label">🔴 Must Have (MVP) — Ship doesn't sail without these</div><div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div></div><div class="priority-card should-have"><div class="priority-label">🟡 Should Have (v1.1) — Important but not launch-blocking</div><div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div></div><div class="priority-card nice-have"><div class="priority-label">🟢 Nice to Have (v2+) — Delighters, not essentials</div><div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div></div><div class="priority-card wont-build"><div class="priority-label">⚪ Won't Build — Explicitly out of scope (for now)</div><div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div></div><h3>MVP Definition</h3><table><thead><tr><th>Field</th><th>Your Answer</th></tr></thead><tbody><tr><td>Core user flow</td><td></td></tr>
+<tr><td>Success metric</td><td></td></tr>
+<tr><td>Target launch date</td><td></td></tr>
+<tr><td>Maximum build time</td><td>4 weeks</td></tr>
+<tr><td>Must support</td><td>Web / Mobile / Both</td></tr></tbody></table><div class="spacer"></div>
+    <h3>Recommended Tool Stack</h3><div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-purpose">Knowledge Base</div>
+      <div class="tool-name">Notion</div>
+      <div class="tool-desc">Everything in one place. Notes, docs, research, planning.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">Design</div>
+      <div class="tool-name">Figma</div>
+      <div class="tool-desc">Validate ideas visually before building. Share with users.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">AI Partner</div>
+      <div class="tool-name">Claude</div>
+      <div class="tool-desc">Brainstorm, analyze, write copy, plan strategy.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">Research</div>
+      <div class="tool-name">Perplexity</div>
+      <div class="tool-desc">Fast, sourced research without drowning in tabs.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">Visual Assets</div>
+      <div class="tool-name">Midjourney</div>
+      <div class="tool-desc">Landing page visuals, social content, pitch deck imagery.</div>
+    </div></div>
+  </div>
+
+  <div class="back-page">
+    <h2>Build with fewer tools.</h2>
+    <p>Curated stacks for every stage of building.</p>
+    <div class="url">fewertools.com</div>
+  </div>
+</body>
+</html>

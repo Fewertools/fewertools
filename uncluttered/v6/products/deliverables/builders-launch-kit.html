@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  @page { size: A4; margin: 0; }
+  
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #2D2D2D;
+    background: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* =================== COVER PAGE =================== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 80px 60px;
+    background: #FAFAF8;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(196,181,253,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .cover-inner {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cover-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 64px;
+  }
+  
+  .cover-logo .mark {
+    width: 32px; height: 32px;
+    background: #0a0a0a;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cover-logo .mark span {
+    width: 12px; height: 2.5px;
+    background: #0D9488;
+    border-radius: 2px;
+    display: block;
+  }
+  
+  .cover-logo .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #1a1a1a;
+    letter-spacing: -0.3px;
+  }
+  
+  .cover-badge {
+    display: inline-block;
+    padding: 10px 24px;
+    background: rgba(13, 148, 136, 0.08);
+    border: 1.5px solid rgba(13, 148, 136, 0.3);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #0D9488;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 36px;
+  }
+  
+  .cover h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: #0a0a0a;
+    margin-bottom: 20px;
+  }
+  
+  .cover .subtitle {
+    font-size: 20px;
+    font-weight: 300;
+    color: #666;
+    max-width: 460px;
+    line-height: 1.6;
+    margin: 0 auto 80px;
+  }
+  
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  
+  .cover-meta-item {
+    text-align: center;
+  }
+  
+  .cover-meta-item .label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999;
+    margin-bottom: 4px;
+  }
+  
+  .cover-meta-item .value {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  /* =================== TABLE OF CONTENTS =================== */
+  .toc {
+    padding: 80px 70px;
+    page-break-after: always;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .toc h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #0a0a0a;
+    margin-bottom: 48px;
+  }
+  
+  .toc-item {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #F0F0EE;
+    gap: 20px;
+  }
+  
+  .toc-number {
+    width: 40px;
+    height: 40px;
+    background: #0D9488;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .toc-text h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+  
+  .toc-text p {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  /* =================== CONTENT PAGES =================== */
+  .content-page {
+    padding: 70px;
+    page-break-before: always;
+  }
+  
+  /* Section header */
+  .section-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #0D9488;
+  }
+  
+  .section-header .section-number {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #0D9488;
+    border-radius: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: white;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+  
+  .section-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #0a0a0a;
+    margin-bottom: 8px;
+  }
+  
+  .section-header .section-desc {
+    font-size: 14px;
+    color: #777;
+    font-weight: 300;
+  }
+  
+  /* Subsections */
+  h3, .h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 32px 0 12px 0;
+    page-break-after: avoid;
+  }
+  
+  h4, .h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin: 20px 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  
+  p { margin: 8px 0; color: #444; }
+  
+  /* =================== COMPONENTS =================== */
+  
+  /* Tip / Callout boxes */
+  .callout {
+    background: #F8FFFE;
+    border: 1px solid rgba(13, 148, 136, 0.15);
+    border-left: 4px solid #0D9488;
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  
+  .callout-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #0D9488;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  
+  .callout p { color: #555; font-size: 12px; margin: 0; }
+  
+  .callout-warning {
+    background: #FFFBF5;
+    border-color: rgba(245, 158, 11, 0.15);
+    border-left-color: #F59E0B;
+  }
+  
+  .callout-warning .callout-title { color: #D97706; }
+  
+  /* Score box */
+  .score-box {
+    background: #F8FFFE;
+    border: 1.5px solid rgba(13, 148, 136, 0.2);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin: 20px 0;
+  }
+  
+  .score-box .score-item {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 6px 0;
+    font-size: 12px;
+  }
+  
+  .score-box .score-label {
+    font-weight: 600;
+    color: #0D9488;
+    min-width: 100px;
+  }
+  
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 16px 0;
+    font-size: 11px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #E8E8E6;
+    page-break-inside: avoid;
+  }
+  
+  thead th {
+    background: #1a1a1a;
+    color: white;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  
+  tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #F3F3F0;
+    vertical-align: top;
+    color: #444;
+  }
+  
+  tbody tr:nth-child(even) { background: #FAFAF8; }
+  tbody tr:last-child td { border-bottom: none; }
+  
+  /* Checkboxes */
+  .check-list { margin: 12px 0; }
+  
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F5F5F3;
+  }
+  
+  .check-item:last-child { border-bottom: none; }
+  
+  .check-box {
+    width: 18px; height: 18px;
+    border: 2px solid #D4D4D4;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  
+  .check-box.checked {
+    background: #0D9488;
+    border-color: #0D9488;
+    position: relative;
+  }
+  
+  .check-box.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .check-text {
+    font-size: 12px;
+    color: #333;
+    flex: 1;
+  }
+  
+  /* Numbered lists */
+  .numbered-list { margin: 12px 0; counter-reset: item; }
+  
+  .numbered-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid #F5F5F3;
+  }
+  
+  .numbered-item:last-child { border-bottom: none; }
+  
+  .num-circle {
+    width: 24px; height: 24px;
+    background: #F3F3F0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    color: #555;
+    flex-shrink: 0;
+  }
+  
+  .numbered-item .num-text {
+    flex: 1;
+    font-size: 12px;
+    color: #333;
+    padding-top: 2px;
+  }
+  
+  /* Priority cards */
+  .priority-card {
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 12px 0;
+  }
+  
+  .priority-card.must-have {
+    background: #FEF2F2;
+    border: 1px solid rgba(239, 68, 68, 0.15);
+  }
+  
+  .priority-card.must-have .priority-label { color: #DC2626; }
+  
+  .priority-card.should-have {
+    background: #FFFBEB;
+    border: 1px solid rgba(245, 158, 11, 0.15);
+  }
+  
+  .priority-card.should-have .priority-label { color: #D97706; }
+  
+  .priority-card.nice-have {
+    background: #F0FDF4;
+    border: 1px solid rgba(34, 197, 94, 0.15);
+  }
+  
+  .priority-card.nice-have .priority-label { color: #16A34A; }
+  
+  .priority-card.wont-build {
+    background: #F8F8F8;
+    border: 1px solid #E5E5E5;
+  }
+  
+  .priority-card.wont-build .priority-label { color: #888; }
+  
+  .priority-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .priority-card .fill-line {
+    height: 1px;
+    border-bottom: 1px dashed #ccc;
+    margin: 10px 0;
+  }
+  
+  /* Fill-in lines */
+  .fill-line {
+    border-bottom: 1px dashed #D4D4D4;
+    margin: 10px 0;
+    min-height: 24px;
+  }
+  
+  .fill-block {
+    background: #FAFAF8;
+    border: 1px dashed #D4D4D4;
+    border-radius: 8px;
+    min-height: 60px;
+    margin: 10px 0;
+    padding: 12px;
+  }
+  
+  /* Code blocks */
+  pre {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    padding: 24px;
+    border-radius: 12px;
+    margin: 16px 0;
+    font-size: 11px;
+    line-height: 1.6;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    overflow-x: auto;
+  }
+  
+  code {
+    background: #F3F3F0;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: #0D9488;
+  }
+  
+  pre code { background: none; padding: 0; color: inherit; }
+  
+  /* Tool recommendation cards */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  
+  .tool-card {
+    background: #FAFAF8;
+    border: 1px solid #E8E8E6;
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  
+  .tool-card .tool-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+  
+  .tool-card .tool-purpose {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #0D9488;
+    margin-bottom: 6px;
+  }
+  
+  .tool-card .tool-desc {
+    font-size: 11px;
+    color: #777;
+    line-height: 1.5;
+  }
+  
+  /* Back page */
+  .back-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px;
+    background: #0a0a0a;
+    color: white;
+    page-break-before: always;
+  }
+  
+  .back-page h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  
+  .back-page p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+  }
+  
+  .back-page .url {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #0D9488;
+  }
+  
+  /* Blockquote */
+  blockquote {
+    border-left: 3px solid #0D9488;
+    padding: 16px 24px;
+    margin: 16px 0;
+    background: #F8FFFE;
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    color: #555;
+    font-size: 13px;
+  }
+  
+  /* Utility */
+  .spacer { height: 24px; }
+  .spacer-lg { height: 48px; }
+  .text-muted { color: #999; }
+  .text-small { font-size: 10px; }
+  .text-accent { color: #0D9488; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .bold { font-weight: 600; }
+  
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .content-page { page-break-before: always; }
+    table, .callout, .score-box, .priority-card { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="cover-logo">
+        <div class="mark"><span></span></div>
+        <span class="name">fewertools</span>
+      </div>
+      <div class="cover-badge">🔨 Building Stage</div>
+      <h1>The Builder's<br>Launch Kit</h1>
+      <p class="subtitle">From code to customers. Ship fast, ship right, ship once.</p>
+      <div class="cover-meta">
+        
+    <div class="cover-meta-item">
+      <div class="value">Next.js</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Vercel</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Supabase</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Stripe</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Cursor</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="value">Resend</div>
+    </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toc">
+    <h2>What's Inside</h2>
+    
+    <div class="toc-item">
+      <div class="toc-number">1</div>
+      <div class="toc-text">
+        <h3>Sprint Planning Board</h3>
+        <p>Organize work into focused sprints with velocity tracking</p>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-number">2</div>
+      <div class="toc-text">
+        <h3>Deployment Checklist</h3>
+        <p>Never miss a step when shipping to production</p>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-number">3</div>
+      <div class="toc-text">
+        <h3>Bug Tracker</h3>
+        <p>Severity-based tracking with triage framework</p>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-number">4</div>
+      <div class="toc-text">
+        <h3>Database Schema Planner</h3>
+        <p>Plan your data model before writing migrations</p>
+      </div>
+    </div>
+    <div class="toc-item">
+      <div class="toc-number">5</div>
+      <div class="toc-text">
+        <h3>API Integration Tracker</h3>
+        <p>One source of truth for every service you depend on</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 01</div>
+      <h2>Sprint Planning Board</h2>
+      <div class="section-desc">Organize your work. Move fast without losing track.</div>
+    </div>
+    <h3>Current Sprint</h3><table><thead><tr><th>Field</th><th>Details</th></tr></thead><tbody><tr><td>Sprint #</td><td></td></tr>
+<tr><td>Start Date</td><td></td></tr>
+<tr><td>End Date</td><td></td></tr>
+<tr><td>Sprint Goal</td><td></td></tr>
+<tr><td>Demo Date</td><td></td></tr></tbody></table><h3>Sprint Backlog</h3><table><thead><tr><th>#</th><th>Task</th><th>Type</th><th>Priority</th><th>Est. Hours</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td></td><td>🔨 Feature</td><td>P0</td><td></td><td>⬜ Todo</td></tr>
+<tr><td>2</td><td></td><td>🐛 Bug</td><td>P1</td><td></td><td>⬜ Todo</td></tr>
+<tr><td>3</td><td></td><td>🔧 Chore</td><td>P2</td><td></td><td>⬜ Todo</td></tr>
+<tr><td>4</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>5</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>6</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>7</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>8</td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Sprint Velocity</h3><table><thead><tr><th>Sprint</th><th>Planned Points</th><th>Completed</th><th>Velocity</th><th>Notes</th></tr></thead><tbody><tr><td>1</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3</td><td></td><td></td><td></td><td></td></tr>
+<tr><td>4</td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Sprint Retro</h3><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+      <div class="priority-card nice-have"><div class="priority-label">✅ What went well</div><div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div></div>
+      <div class="priority-card must-have"><div class="priority-label">❌ What didn't</div><div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div></div>
+      <div class="priority-card should-have"><div class="priority-label">🔄 Change next time</div><div class="fill-line"></div><div class="fill-line"></div><div class="fill-line"></div></div>
+    </div>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 02</div>
+      <h2>Deployment Checklist</h2>
+      <div class="section-desc">Ship with confidence. Every time.</div>
+    </div>
+    <h3>Pre-Launch (1 week before)</h3><div class="check-list">
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">All core features working and tested</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Error tracking set up (Sentry)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Analytics installed and firing events</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Environment variables secured (no hardcoded secrets)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Domain configured and SSL active</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">SEO basics: title tags, meta descriptions, OG images</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Favicon and app icons set</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Loading states for all async operations</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">404 page created</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Legal pages: Privacy Policy, Terms of Service</div>
+    </div></div><h3>Performance</h3><div class="check-list">
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Lighthouse score > 90 (Performance)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Lighthouse score > 90 (Accessibility)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Images optimized (WebP, lazy loading)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Fonts preloaded</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Bundle size < 200KB initial JS</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Core Web Vitals passing (LCP < 2.5s, FID < 100ms, CLS < 0.1)</div>
+    </div></div><h3>Security</h3><div class="check-list">
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Authentication working (sign up, login, logout, reset)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">API routes protected (auth middleware)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Rate limiting on auth endpoints</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">CORS configured correctly</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Input validation on all forms</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">SQL injection / XSS protections verified</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Secrets in environment variables (not in code)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Database backups configured</div>
+    </div></div><h3>Payment (if applicable)</h3><div class="check-list">
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Stripe integration tested with test keys</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Webhook handling verified</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Subscription creation flow works</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Cancellation flow works</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Invoice/receipt emails sending</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Switched to live Stripe keys</div>
+    </div></div><h3>Launch Day</h3><div class="check-list">
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">DNS propagated (check with dig)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Monitoring alerts configured</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Error notification channel set up</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Backup plan documented (rollback procedure)</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Launch announcement ready</div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Support channels active</div>
+    </div></div><div class="callout"><div class="callout-title">🚀 Post-Launch</div><p>Monitor error rates for 48 hours. Respond to first user feedback immediately. Fix critical bugs same-day. Then celebrate — you shipped. 🎉</p></div>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 03</div>
+      <h2>Bug Tracker</h2>
+      <div class="section-desc">Know what's critical, what can wait, and what to ignore.</div>
+    </div>
+    <h3>Active Bugs</h3><table><thead><tr><th>ID</th><th>Title</th><th>Severity</th><th>Steps to Reproduce</th><th>Status</th><th>Assigned</th></tr></thead><tbody><tr><td>B-001</td><td></td><td>🔴 Critical</td><td></td><td>Open</td><td></td></tr>
+<tr><td>B-002</td><td></td><td>🟠 High</td><td></td><td>Open</td><td></td></tr>
+<tr><td>B-003</td><td></td><td>🟡 Medium</td><td></td><td>Open</td><td></td></tr>
+<tr><td>B-004</td><td></td><td>🟢 Low</td><td></td><td>Open</td><td></td></tr>
+<tr><td>B-005</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>B-006</td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Severity Guide</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <div class="priority-card must-have"><div class="priority-label">🔴 Critical</div><p style="font-size:11px;color:#666;">App down, data loss, security vulnerability.<br><strong>Fix immediately.</strong></p></div>
+      <div class="priority-card should-have"><div class="priority-label">🟠 High</div><p style="font-size:11px;color:#666;">Core feature broken, many users affected.<br><strong>Fix within 24 hours.</strong></p></div>
+      <div class="priority-card nice-have"><div class="priority-label">🟡 Medium</div><p style="font-size:11px;color:#666;">Feature partially broken, workaround exists.<br><strong>Fix this sprint.</strong></p></div>
+      <div class="priority-card wont-build"><div class="priority-label">🟢 Low</div><p style="font-size:11px;color:#666;">Cosmetic issue, edge case.<br><strong>Fix when convenient.</strong></p></div>
+    </div><h3>Bug Triage Questions</h3><div class="numbered-list">
+    <div class="numbered-item">
+      <div class="num-circle">1</div>
+      <div class="num-text">Can users still accomplish their <strong>core task</strong>?</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">2</div>
+      <div class="num-text">How many users are <strong>affected</strong>?</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">3</div>
+      <div class="num-text">Is there a <strong>workaround</strong>?</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">4</div>
+      <div class="num-text">Is data being <strong>lost or corrupted</strong>?</div>
+    </div>
+    <div class="numbered-item">
+      <div class="num-circle">5</div>
+      <div class="num-text">Is this a <strong>security</strong> issue?</div>
+    </div></div>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 04</div>
+      <h2>Database Schema Planner</h2>
+      <div class="section-desc">Plan your data model before writing migrations.</div>
+    </div>
+    <h3>Users Table</h3><table><thead><tr><th>Column</th><th>Type</th><th>Constraints</th><th>Notes</th></tr></thead><tbody><tr><td>id</td><td>UUID</td><td>PK, auto-generated</td><td></td></tr>
+<tr><td>email</td><td>VARCHAR(255)</td><td>UNIQUE, NOT NULL</td><td></td></tr>
+<tr><td>name</td><td>VARCHAR(255)</td><td></td><td></td></tr>
+<tr><td>avatar_url</td><td>TEXT</td><td></td><td></td></tr>
+<tr><td>plan</td><td>ENUM</td><td>DEFAULT 'free'</td><td>free, pro, team</td></tr>
+<tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT now()</td><td></td></tr>
+<tr><td>updated_at</td><td>TIMESTAMP</td><td></td><td>Auto-update</td></tr></tbody></table><h3>Your Main Entity</h3><table><thead><tr><th>Column</th><th>Type</th><th>Constraints</th><th>Notes</th></tr></thead><tbody><tr><td>id</td><td>UUID</td><td>PK</td><td></td></tr>
+<tr><td>user_id</td><td>UUID</td><td>FK → users.id</td><td></td></tr>
+<tr><td>title</td><td>VARCHAR(255)</td><td>NOT NULL</td><td></td></tr>
+<tr><td>description</td><td>TEXT</td><td></td><td></td></tr>
+<tr><td>status</td><td>ENUM</td><td>DEFAULT 'draft'</td><td></td></tr>
+<tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT now()</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Row-Level Security (Supabase)</h3>
+    <pre><code>-- Users can only see their own data
+CREATE POLICY "Users see own data" ON [table]
+  FOR SELECT USING (auth.uid() = user_id);
+
+-- Users can only insert their own data  
+CREATE POLICY "Users insert own data" ON [table]
+  FOR INSERT WITH CHECK (auth.uid() = user_id);</code></pre><h3>Indexes</h3><table><thead><tr><th>Table</th><th>Column(s)</th><th>Type</th><th>Reason</th></tr></thead><tbody><tr><td>users</td><td>email</td><td>UNIQUE</td><td>Login lookups</td></tr>
+<tr><td>[main]</td><td>user_id</td><td>INDEX</td><td>Dashboard queries</td></tr>
+<tr><td>[main]</td><td>created_at</td><td>INDEX</td><td>Sorting</td></tr>
+<tr><td>[main]</td><td>user_id, status</td><td>COMPOSITE</td><td>Filtered queries</td></tr></tbody></table>
+  </div>
+
+  <div class="content-page">
+    <div class="section-header">
+      <div class="section-number">SECTION 05</div>
+      <h2>API Integration Tracker</h2>
+      <div class="section-desc">One source of truth for every external service.</div>
+    </div>
+    <h3>Services</h3><table><thead><tr><th>Service</th><th>Purpose</th><th>API Key Location</th><th>Rate Limits</th><th>Status</th></tr></thead><tbody><tr><td>Supabase</td><td>Database + Auth</td><td>.env.local</td><td>500MB, 50K MAU (free)</td><td></td></tr>
+<tr><td>Stripe</td><td>Payments</td><td>.env.local</td><td>100 req/s</td><td></td></tr>
+<tr><td>Resend</td><td>Email</td><td>.env.local</td><td>100/day (free)</td><td></td></tr>
+<tr><td>Vercel</td><td>Hosting</td><td>Auto</td><td>100GB bandwidth (free)</td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Webhook Endpoints</h3><table><thead><tr><th>Source</th><th>Endpoint</th><th>Events Handled</th><th>Secret Location</th></tr></thead><tbody><tr><td>Stripe</td><td>/api/webhooks/stripe</td><td>checkout.completed, subscription.updated, subscription.deleted</td><td>STRIPE_WEBHOOK_SECRET</td></tr>
+<tr><td></td><td></td><td></td><td></td></tr></tbody></table><h3>Environment Variables</h3>
+    <pre><code># Database
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+
+# Payments
+STRIPE_SECRET_KEY=
+STRIPE_PUBLISHABLE_KEY=
+STRIPE_WEBHOOK_SECRET=
+
+# Email
+RESEND_API_KEY=
+
+# Analytics
+NEXT_PUBLIC_POSTHOG_KEY=</code></pre><div class="spacer"></div>
+    <h3>Recommended Tool Stack</h3><div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-purpose">Framework</div>
+      <div class="tool-name">Next.js</div>
+      <div class="tool-desc">Full-stack React. API routes, SSR, ISR.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">Hosting</div>
+      <div class="tool-name">Vercel</div>
+      <div class="tool-desc">Zero-config deploys, edge functions, preview URLs.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">Database + Auth</div>
+      <div class="tool-name">Supabase</div>
+      <div class="tool-desc">Postgres + auth + storage + realtime.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">Payments</div>
+      <div class="tool-name">Stripe</div>
+      <div class="tool-desc">The standard. Clean API, handles everything.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">AI Coding</div>
+      <div class="tool-name">Cursor</div>
+      <div class="tool-desc">Write code 3-5x faster. Tab completion that works.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-purpose">Email</div>
+      <div class="tool-name">Resend</div>
+      <div class="tool-desc">Beautiful transactional emails. React templates.</div>
+    </div></div>
+  </div>
+
+  <div class="back-page">
+    <h2>Build with fewer tools.</h2>
+    <p>Curated stacks for every stage of building.</p>
+    <div class="url">fewertools.com</div>
+  </div>
+</body>
+</html>

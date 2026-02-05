@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Fewer Tools</title>
+  <meta name="description" content="Notion templates and toolkits for every stage of building. Validate, ship, grow, and simplify.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fewertools.com/products/">
+  <meta property="og:title" content="Products — Fewer Tools">
+  <meta property="og:description" content="Notion templates and toolkits for every stage of building.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://fewertools.com/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.15);
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    h1 { font-size: clamp(44px, 7vw, 64px); }
+    h2 { font-size: clamp(32px, 5vw, 44px); }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 600px) { .container { padding: 0 24px; } }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: all 0.3s ease; }
+    .logo-text { font-family: 'Outfit', -apple-system, sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; color: var(--text); }
+    .logo-mark .icon-line { width: 12px; height: 2.5px; background: var(--accent); border-radius: 2px; animation: iconGlow 2.5s ease-in-out infinite; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); }
+    @keyframes iconGlow { 0%, 100% { transform: scaleX(1); opacity: 1; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); } 50% { transform: scaleX(0.6); opacity: 0.8; box-shadow: 0 0 12px rgba(13, 148, 136, 0.8); } }
+    nav { display: flex; align-items: center; gap: 40px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    nav a.active { color: var(--text); }
+    .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    .nav-cta:hover { background: #222; }
+    .menu-toggle { display: none; width: 40px; height: 40px; background: none; border: none; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 6px; padding: 8px; z-index: 1001; }
+    .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
+    .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg); flex-direction: column; align-items: flex-start; padding: 100px 40px 40px; gap: 24px; box-shadow: -10px 0 30px rgba(0,0,0,0.1); transition: right 0.3s ease; z-index: 999; }
+      nav.open { right: 0; }
+      nav a { font-size: 18px; }
+    }
+
+    /* Hero */
+    .page-hero { padding: 160px 0 80px; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+    }
+    .page-hero h1 { margin-bottom: 16px; }
+    .page-hero h1 .highlight {
+      position: relative;
+      display: inline-block;
+    }
+    .page-hero h1 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 0.08em;
+      left: -4px;
+      right: -4px;
+      height: 0.3em;
+      background: var(--accent);
+      opacity: 0.25;
+      z-index: -1;
+      border-radius: 4px;
+    }
+    .page-hero p { font-size: 20px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.6; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--accent-subtle); border: 1px solid rgba(13, 148, 136, 0.2); border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 24px; }
+    .hero-eyebrow::before { content: ''; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+    /* Products Grid */
+    .products-section { padding: 0 0 100px; }
+    .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    @media (max-width: 768px) { .products-grid { grid-template-columns: 1fr; } }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      transition: all 0.4s var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.02), 0 8px 16px rgba(0,0,0,0.02);
+    }
+    .product-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-6px);
+      box-shadow: 0 4px 8px rgba(13, 148, 136, 0.04), 0 12px 24px rgba(13, 148, 136, 0.06), 0 24px 48px rgba(13, 148, 136, 0.08);
+    }
+    .product-icon {
+      width: 64px; height: 64px;
+      background: var(--accent-subtle);
+      border: 1px solid rgba(13, 148, 136, 0.15);
+      border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
+    .product-stage {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .product-card h3 {
+      font-size: 26px;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .product-card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      flex: 1;
+      font-size: 15px;
+    }
+    .product-includes {
+      list-style: none;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .product-includes li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .product-includes li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .product-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .product-tool {
+      padding: 5px 12px;
+      background: var(--bg-alt);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .product-price {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .product-price span {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: var(--bg-dark);
+      color: var(--text-inverse);
+    }
+    .btn-primary:hover {
+      background: #222;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .btn-detail {
+      padding: 12px 24px;
+      font-size: 14px;
+    }
+    .btn-accent {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-accent:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(13, 148, 136, 0.3);
+    }
+
+    /* Bundle CTA */
+    .bundle-section {
+      padding: 80px 0;
+    }
+    .bundle-card {
+      background: var(--bg-dark);
+      border-radius: var(--radius-xl);
+      padding: 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      color: var(--text-inverse);
+    }
+    .bundle-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+    }
+    .bundle-card h2 {
+      margin-bottom: 16px;
+      color: var(--text-inverse);
+    }
+    .bundle-card p {
+      font-size: 18px;
+      color: rgba(250, 250, 248, 0.7);
+      max-width: 500px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .bundle-price {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+    .bundle-original {
+      font-size: 16px;
+      color: rgba(250, 250, 248, 0.5);
+      margin-bottom: 32px;
+      text-decoration: line-through;
+    }
+    .btn-bundle {
+      padding: 18px 40px;
+      background: var(--accent);
+      color: white;
+      font-size: 16px;
+    }
+    .btn-bundle:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(13, 148, 136, 0.4);
+    }
+    @media (max-width: 768px) {
+      .bundle-card { padding: 40px 24px; }
+      .bundle-price { font-size: 36px; }
+    }
+
+    /* FAQ */
+    .faq-section { padding: 80px 0; }
+    .faq-section h2 { text-align: center; margin-bottom: 48px; }
+    .faq-grid { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .faq-item { background: var(--bg-card); padding: 28px 32px; }
+    .faq-item h4 { font-size: 17px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.01em; }
+    .faq-item p { color: var(--text-secondary); font-size: 15px; line-height: 1.7; }
+
+    /* Footer */
+    footer { padding: 64px 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    @media (max-width: 600px) {
+      .footer-content { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../" class="logo"><div class="logo-mark"><div class="icon-line"></div></div><span class="logo-text">fewertools</span></a>
+      <nav id="nav">
+        <a href="../stages/">Stages</a>
+        <a href="../stacks/">Stacks</a>
+        <a href="../tools/">Tools</a>
+        <a href="./" class="active">Products</a>
+        <a href="../philosophy/">Philosophy</a>
+        <a href="../stages/" class="nav-cta">Find your stack</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="hero-eyebrow reveal">Notion Templates</div>
+      <h1 class="reveal">Tools to help you<br><span class="highlight">build faster</span></h1>
+      <p class="reveal">Ready-to-use Notion templates for every stage of building. Skip the setup. Start executing.</p>
+    </div>
+  </section>
+
+  <section class="products-section">
+    <div class="container">
+      <div class="products-grid">
+
+        <!-- Starter's Playbook -->
+        <div class="product-card reveal">
+          <div class="product-icon">💡</div>
+          <div class="product-stage">Starting Stage</div>
+          <h3>The Starter's Playbook</h3>
+          <p>Everything you need to go from "I have an idea" to "I know this will work." Validate faster, research smarter, prioritize ruthlessly.</p>
+          <ul class="product-includes">
+            <li>Idea validation checklist</li>
+            <li>Market research template</li>
+            <li>Competitor analysis grid</li>
+            <li>MVP feature prioritizer</li>
+          </ul>
+          <div class="product-tools">
+            <span class="product-tool">Notion</span>
+            <span class="product-tool">Figma</span>
+            <span class="product-tool">Claude</span>
+            <span class="product-tool">Perplexity</span>
+            <span class="product-tool">Midjourney</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">£15 <span>one-time</span></div>
+            <a href="./starters-playbook.html" class="btn btn-detail btn-primary">View Details →</a>
+          </div>
+        </div>
+
+        <!-- Builder's Launch Kit -->
+        <div class="product-card reveal">
+          <div class="product-icon">🔨</div>
+          <div class="product-stage">Building Stage</div>
+          <h3>The Builder's Launch Kit</h3>
+          <p>Sprint planning, deployment checklists, bug tracking, and more. Everything to go from code to shipped product without missing a step.</p>
+          <ul class="product-includes">
+            <li>Sprint planning board</li>
+            <li>Deployment checklist</li>
+            <li>Bug tracker</li>
+            <li>Database schema planner</li>
+            <li>API integration tracker</li>
+          </ul>
+          <div class="product-tools">
+            <span class="product-tool">Next.js</span>
+            <span class="product-tool">Vercel</span>
+            <span class="product-tool">Supabase</span>
+            <span class="product-tool">Stripe</span>
+            <span class="product-tool">Cursor</span>
+            <span class="product-tool">Resend</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">£23 <span>one-time</span></div>
+            <a href="./builders-launch-kit.html" class="btn btn-detail btn-primary">View Details →</a>
+          </div>
+        </div>
+
+        <!-- Growth Dashboard -->
+        <div class="product-card reveal">
+          <div class="product-icon">📈</div>
+          <div class="product-stage">Growing Stage</div>
+          <h3>The Growth Dashboard</h3>
+          <p>Track the metrics that matter. KPIs, user feedback, funnel analysis, A/B testing, and customer health — all in one system.</p>
+          <ul class="product-includes">
+            <li>KPI tracker</li>
+            <li>User feedback log</li>
+            <li>Funnel metrics template</li>
+            <li>Experiment tracker (A/B tests)</li>
+            <li>Customer health scorecard</li>
+          </ul>
+          <div class="product-tools">
+            <span class="product-tool">PostHog</span>
+            <span class="product-tool">Intercom</span>
+            <span class="product-tool">Sentry</span>
+            <span class="product-tool">Metabase</span>
+            <span class="product-tool">Loops</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">£23 <span>one-time</span></div>
+            <a href="./growth-dashboard.html" class="btn btn-detail btn-primary">View Details →</a>
+          </div>
+        </div>
+
+        <!-- Simplifier's Audit -->
+        <div class="product-card reveal">
+          <div class="product-icon">✨</div>
+          <div class="product-stage">Simplifying Stage</div>
+          <h3>The Simplifier's Audit</h3>
+          <p>Cut the bloat. Audit every tool you're paying for, calculate real costs, plan migrations, and decide what stays.</p>
+          <ul class="product-includes">
+            <li>Tool inventory spreadsheet</li>
+            <li>Cost calculator</li>
+            <li>Migration planner</li>
+            <li>Consolidation decision matrix</li>
+          </ul>
+          <div class="product-tools">
+            <span class="product-tool">Notion</span>
+            <span class="product-tool">Linear</span>
+            <span class="product-tool">Zapier</span>
+            <span class="product-tool">Slack</span>
+            <span class="product-tool">1Password</span>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">£15 <span>one-time</span></div>
+            <a href="./simplifiers-audit.html" class="btn btn-detail btn-primary">View Details →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Bundle -->
+  <section class="bundle-section">
+    <div class="container">
+      <div class="bundle-card reveal">
+        <h2>Get All 4 Templates</h2>
+        <p>The complete toolkit for every stage. From first idea to lean, profitable business.</p>
+        <div class="bundle-price">£55</div>
+        <div class="bundle-original">£76 if bought separately — save £21</div>
+        <a href="https://fewertools.lemonsqueezy.com/checkout/buy/52779484-5326-4119-9b60-5ce25eaa48e1" class="btn btn-bundle">Get the Bundle →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="reveal">Frequently Asked</h2>
+      <div class="faq-grid reveal">
+        <div class="faq-item">
+          <h4>What format are these in?</h4>
+          <p>Each template is a clean Notion-compatible markdown file. Duplicate it into your Notion workspace and start using it immediately. No complex setup required.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do I need all the recommended tools?</h4>
+          <p>No. The templates work in Notion alone. The recommended tools are what we suggest for each stage, but the templates are useful regardless of your stack.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I customize the templates?</h4>
+          <p>Absolutely. They're yours. Add columns, remove sections, change the structure — make them fit your workflow.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Is there a refund policy?</h4>
+          <p>Yes. If the templates aren't useful to you within 14 days, email us and we'll refund you. No questions asked.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do I get updates?</h4>
+          <p>Yes. When we improve a template, you get the update for free. Buy once, benefit forever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>The right tools for the right stage.</p>
+        <div class="footer-links">
+          <a href="../">Home</a>
+          <a href="../stacks/">Stacks</a>
+          <a href="../philosophy/">Philosophy</a>
+          <a href="./">Products</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Header scroll
+    window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    if (menuToggle && nav) {
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        nav.classList.toggle('open');
+      });
+    }
+  </script>
+</body>
+</html>

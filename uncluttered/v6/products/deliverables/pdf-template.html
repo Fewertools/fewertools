@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  @page { size: A4; margin: 0; }
+  
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #2D2D2D;
+    background: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* =================== COVER PAGE =================== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 80px 60px;
+    background: #FAFAF8;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -150px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(196,181,253,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .cover-inner {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cover-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 64px;
+  }
+  
+  .cover-logo .mark {
+    width: 32px; height: 32px;
+    background: #0a0a0a;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cover-logo .mark span {
+    width: 12px; height: 2.5px;
+    background: #0D9488;
+    border-radius: 2px;
+    display: block;
+  }
+  
+  .cover-logo .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #1a1a1a;
+    letter-spacing: -0.3px;
+  }
+  
+  .cover-badge {
+    display: inline-block;
+    padding: 10px 24px;
+    background: rgba(13, 148, 136, 0.08);
+    border: 1.5px solid rgba(13, 148, 136, 0.3);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #0D9488;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 36px;
+  }
+  
+  .cover h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: #0a0a0a;
+    margin-bottom: 20px;
+  }
+  
+  .cover .subtitle {
+    font-size: 20px;
+    font-weight: 300;
+    color: #666;
+    max-width: 460px;
+    line-height: 1.6;
+    margin: 0 auto 80px;
+  }
+  
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+  
+  .cover-meta-item {
+    text-align: center;
+  }
+  
+  .cover-meta-item .label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #999;
+    margin-bottom: 4px;
+  }
+  
+  .cover-meta-item .value {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  /* =================== TABLE OF CONTENTS =================== */
+  .toc {
+    padding: 80px 70px;
+    page-break-after: always;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .toc h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #0a0a0a;
+    margin-bottom: 48px;
+  }
+  
+  .toc-item {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #F0F0EE;
+    gap: 20px;
+  }
+  
+  .toc-number {
+    width: 40px;
+    height: 40px;
+    background: #0D9488;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .toc-text h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+  
+  .toc-text p {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  /* =================== CONTENT PAGES =================== */
+  .content-page {
+    padding: 70px;
+    page-break-before: always;
+  }
+  
+  /* Section header */
+  .section-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #0D9488;
+  }
+  
+  .section-header .section-number {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #0D9488;
+    border-radius: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: white;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+  
+  .section-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #0a0a0a;
+    margin-bottom: 8px;
+  }
+  
+  .section-header .section-desc {
+    font-size: 14px;
+    color: #777;
+    font-weight: 300;
+  }
+  
+  /* Subsections */
+  h3, .h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 32px 0 12px 0;
+    page-break-after: avoid;
+  }
+  
+  h4, .h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin: 20px 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  
+  p { margin: 8px 0; color: #444; }
+  
+  /* =================== COMPONENTS =================== */
+  
+  /* Tip / Callout boxes */
+  .callout {
+    background: #F8FFFE;
+    border: 1px solid rgba(13, 148, 136, 0.15);
+    border-left: 4px solid #0D9488;
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  
+  .callout-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #0D9488;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  
+  .callout p { color: #555; font-size: 12px; margin: 0; }
+  
+  .callout-warning {
+    background: #FFFBF5;
+    border-color: rgba(245, 158, 11, 0.15);
+    border-left-color: #F59E0B;
+  }
+  
+  .callout-warning .callout-title { color: #D97706; }
+  
+  /* Score box */
+  .score-box {
+    background: #F8FFFE;
+    border: 1.5px solid rgba(13, 148, 136, 0.2);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin: 20px 0;
+  }
+  
+  .score-box .score-item {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 6px 0;
+    font-size: 12px;
+  }
+  
+  .score-box .score-label {
+    font-weight: 600;
+    color: #0D9488;
+    min-width: 100px;
+  }
+  
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 16px 0;
+    font-size: 11px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #E8E8E6;
+    page-break-inside: avoid;
+  }
+  
+  thead th {
+    background: #1a1a1a;
+    color: white;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  
+  tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #F3F3F0;
+    vertical-align: top;
+    color: #444;
+  }
+  
+  tbody tr:nth-child(even) { background: #FAFAF8; }
+  tbody tr:last-child td { border-bottom: none; }
+  
+  /* Checkboxes */
+  .check-list { margin: 12px 0; }
+  
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #F5F5F3;
+  }
+  
+  .check-item:last-child { border-bottom: none; }
+  
+  .check-box {
+    width: 18px; height: 18px;
+    border: 2px solid #D4D4D4;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  
+  .check-box.checked {
+    background: #0D9488;
+    border-color: #0D9488;
+    position: relative;
+  }
+  
+  .check-box.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .check-text {
+    font-size: 12px;
+    color: #333;
+    flex: 1;
+  }
+  
+  /* Numbered lists */
+  .numbered-list { margin: 12px 0; counter-reset: item; }
+  
+  .numbered-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid #F5F5F3;
+  }
+  
+  .numbered-item:last-child { border-bottom: none; }
+  
+  .num-circle {
+    width: 24px; height: 24px;
+    background: #F3F3F0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    color: #555;
+    flex-shrink: 0;
+  }
+  
+  .numbered-item .num-text {
+    flex: 1;
+    font-size: 12px;
+    color: #333;
+    padding-top: 2px;
+  }
+  
+  /* Priority cards */
+  .priority-card {
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 12px 0;
+  }
+  
+  .priority-card.must-have {
+    background: #FEF2F2;
+    border: 1px solid rgba(239, 68, 68, 0.15);
+  }
+  
+  .priority-card.must-have .priority-label { color: #DC2626; }
+  
+  .priority-card.should-have {
+    background: #FFFBEB;
+    border: 1px solid rgba(245, 158, 11, 0.15);
+  }
+  
+  .priority-card.should-have .priority-label { color: #D97706; }
+  
+  .priority-card.nice-have {
+    background: #F0FDF4;
+    border: 1px solid rgba(34, 197, 94, 0.15);
+  }
+  
+  .priority-card.nice-have .priority-label { color: #16A34A; }
+  
+  .priority-card.wont-build {
+    background: #F8F8F8;
+    border: 1px solid #E5E5E5;
+  }
+  
+  .priority-card.wont-build .priority-label { color: #888; }
+  
+  .priority-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .priority-card .fill-line {
+    height: 1px;
+    border-bottom: 1px dashed #ccc;
+    margin: 10px 0;
+  }
+  
+  /* Fill-in lines */
+  .fill-line {
+    border-bottom: 1px dashed #D4D4D4;
+    margin: 10px 0;
+    min-height: 24px;
+  }
+  
+  .fill-block {
+    background: #FAFAF8;
+    border: 1px dashed #D4D4D4;
+    border-radius: 8px;
+    min-height: 60px;
+    margin: 10px 0;
+    padding: 12px;
+  }
+  
+  /* Code blocks */
+  pre {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    padding: 24px;
+    border-radius: 12px;
+    margin: 16px 0;
+    font-size: 11px;
+    line-height: 1.6;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    overflow-x: auto;
+  }
+  
+  code {
+    background: #F3F3F0;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: #0D9488;
+  }
+  
+  pre code { background: none; padding: 0; color: inherit; }
+  
+  /* Tool recommendation cards */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  
+  .tool-card {
+    background: #FAFAF8;
+    border: 1px solid #E8E8E6;
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  
+  .tool-card .tool-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+  
+  .tool-card .tool-purpose {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #0D9488;
+    margin-bottom: 6px;
+  }
+  
+  .tool-card .tool-desc {
+    font-size: 11px;
+    color: #777;
+    line-height: 1.5;
+  }
+  
+  /* Back page */
+  .back-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px;
+    background: #0a0a0a;
+    color: white;
+    page-break-before: always;
+  }
+  
+  .back-page h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  
+  .back-page p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+  }
+  
+  .back-page .url {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #0D9488;
+  }
+  
+  /* Blockquote */
+  blockquote {
+    border-left: 3px solid #0D9488;
+    padding: 16px 24px;
+    margin: 16px 0;
+    background: #F8FFFE;
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    color: #555;
+    font-size: 13px;
+  }
+  
+  /* Utility */
+  .spacer { height: 24px; }
+  .spacer-lg { height: 48px; }
+  .text-muted { color: #999; }
+  .text-small { font-size: 10px; }
+  .text-accent { color: #0D9488; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .bold { font-weight: 600; }
+  
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .content-page { page-break-before: always; }
+    table, .callout, .score-box, .priority-card { page-break-inside: avoid; }
+    h2, h3 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+<!-- CONTENT_PLACEHOLDER -->
+</body>
+</html>

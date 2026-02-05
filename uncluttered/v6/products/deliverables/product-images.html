@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #E5E5E5; padding: 40px; font-family: 'Inter', sans-serif; }
+  
+  .product-image {
+    width: 1200px;
+    height: 630px;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Starter's Playbook */
+  .img-starter {
+    background: linear-gradient(135deg, #FAFAF8 0%, #F0FDFB 50%, #E8FAF7 100%);
+  }
+  
+  /* Builder's Launch Kit */
+  .img-builder {
+    background: linear-gradient(135deg, #FAFAF8 0%, #F5F3FF 50%, #EDE9FE 100%);
+  }
+  
+  /* Growth Dashboard */
+  .img-growth {
+    background: linear-gradient(135deg, #FAFAF8 0%, #FEF3C7 50%, #FDE68A 100%);
+  }
+  
+  /* Simplifier's Audit */
+  .img-simplify {
+    background: linear-gradient(135deg, #FAFAF8 0%, #FEE2E2 50%, #FECACA 100%);
+  }
+  
+  /* Bundle */
+  .img-bundle {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  }
+  
+  .img-content {
+    position: relative;
+    z-index: 2;
+    padding: 60px 70px;
+    flex: 1;
+  }
+  
+  .img-visual {
+    position: relative;
+    z-index: 2;
+    width: 480px;
+    flex-shrink: 0;
+    padding: 40px 50px 40px 0;
+  }
+  
+  /* Logo */
+  .img-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  
+  .img-logo .mark {
+    width: 28px; height: 28px;
+    background: #0a0a0a;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .img-logo .mark span {
+    width: 10px; height: 2px;
+    background: #0D9488;
+    border-radius: 2px;
+    display: block;
+  }
+  
+  .img-logo .name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #1a1a1a;
+  }
+  
+  .img-bundle .img-logo .mark { background: rgba(255,255,255,0.15); }
+  .img-bundle .img-logo .name { color: rgba(255,255,255,0.8); }
+  
+  .img-badge {
+    display: inline-block;
+    padding: 8px 18px;
+    background: rgba(13, 148, 136, 0.1);
+    border: 1.5px solid rgba(13, 148, 136, 0.25);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #0D9488;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+  
+  .img-bundle .img-badge {
+    background: rgba(13, 148, 136, 0.15);
+    border-color: rgba(13, 148, 136, 0.3);
+  }
+  
+  .img-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    color: #0a0a0a;
+    margin-bottom: 16px;
+  }
+  
+  .img-bundle .img-title { color: white; }
+  
+  .img-subtitle {
+    font-size: 17px;
+    font-weight: 400;
+    color: #666;
+    line-height: 1.5;
+    max-width: 400px;
+  }
+  
+  .img-bundle .img-subtitle { color: rgba(255,255,255,0.5); }
+  
+  .img-price {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0D9488;
+    margin-top: 24px;
+  }
+  
+  /* Visual mockup cards */
+  .mock-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    padding: 24px;
+    margin-bottom: 12px;
+    transform: rotate(-2deg);
+  }
+  
+  .mock-card:nth-child(2) {
+    transform: rotate(1deg) translateX(20px);
+    margin-top: -20px;
+  }
+  
+  .mock-card:nth-child(3) {
+    transform: rotate(-1deg) translateX(-10px);
+    margin-top: -20px;
+  }
+  
+  .mock-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  
+  .mock-icon {
+    width: 32px; height: 32px;
+    background: #0D9488;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  
+  .mock-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #1a1a1a;
+  }
+  
+  .mock-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .mock-line {
+    height: 8px;
+    background: #F3F3F0;
+    border-radius: 4px;
+  }
+  
+  .mock-line.short { width: 60%; }
+  .mock-line.med { width: 80%; }
+  .mock-line.accent { background: rgba(13,148,136,0.15); }
+  
+  .mock-check-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  
+  .mock-checkbox {
+    width: 14px; height: 14px;
+    border: 2px solid #D4D4D4;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  
+  .mock-checkbox.checked {
+    background: #0D9488;
+    border-color: #0D9488;
+  }
+  
+  .mock-check-text {
+    height: 8px;
+    background: #F3F3F0;
+    border-radius: 4px;
+    flex: 1;
+  }
+  
+  /* Table mockup */
+  .mock-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .mock-table th {
+    background: #1a1a1a;
+    height: 10px;
+    padding: 8px;
+  }
+  
+  .mock-table th:first-child { border-radius: 6px 0 0 0; }
+  .mock-table th:last-child { border-radius: 0 6px 0 0; }
+  
+  .mock-table td {
+    padding: 8px;
+    border-bottom: 1px solid #F3F3F0;
+  }
+  
+  .mock-table .cell {
+    height: 6px;
+    background: #F3F3F0;
+    border-radius: 3px;
+  }
+  
+  /* Bundle special */
+  .bundle-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .bundle-mini {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  
+  .bundle-mini .mini-icon {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  
+  .bundle-mini .mini-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: white;
+    margin-bottom: 2px;
+  }
+  
+  .bundle-mini .mini-price {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+  }
+  
+  /* Shape decorations */
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. STARTER'S PLAYBOOK -->
+<div class="product-image img-starter" id="img-starter">
+  <div style="position:absolute;top:-80px;right:-60px;width:400px;height:400px;background:radial-gradient(circle,rgba(13,148,136,0.12),transparent 70%);border-radius:50%;"></div>
+  <div class="img-content">
+    <div class="img-logo"><div class="mark"><span></span></div><span class="name">fewertools</span></div>
+    <div class="img-badge">💡 Starting Stage</div>
+    <div class="img-title">The Starter's<br>Playbook</div>
+    <div class="img-subtitle">Validate your idea before writing a single line of code.</div>
+    <div class="img-price">$19</div>
+  </div>
+  <div class="img-visual">
+    <div class="mock-card">
+      <div class="mock-header"><div class="mock-icon">📋</div><div class="mock-title">Idea Validation</div></div>
+      <div class="mock-check-row"><div class="mock-checkbox checked"></div><div class="mock-check-text" style="width:85%"></div></div>
+      <div class="mock-check-row"><div class="mock-checkbox checked"></div><div class="mock-check-text" style="width:70%"></div></div>
+      <div class="mock-check-row"><div class="mock-checkbox"></div><div class="mock-check-text" style="width:90%"></div></div>
+      <div class="mock-check-row"><div class="mock-checkbox"></div><div class="mock-check-text" style="width:65%"></div></div>
+    </div>
+    <div class="mock-card">
+      <div class="mock-header"><div class="mock-icon">🎯</div><div class="mock-title">MVP Prioritizer</div></div>
+      <div class="mock-lines"><div class="mock-line accent"></div><div class="mock-line med"></div><div class="mock-line short"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. BUILDER'S LAUNCH KIT -->
+<div class="product-image img-builder" id="img-builder">
+  <div style="position:absolute;bottom:-100px;left:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(139,92,246,0.12),transparent 70%);border-radius:50%;"></div>
+  <div class="img-content">
+    <div class="img-logo"><div class="mark"><span></span></div><span class="name">fewertools</span></div>
+    <div class="img-badge">🔨 Building Stage</div>
+    <div class="img-title">The Builder's<br>Launch Kit</div>
+    <div class="img-subtitle">From code to customers. Ship fast, ship right, ship once.</div>
+    <div class="img-price">$29</div>
+  </div>
+  <div class="img-visual">
+    <div class="mock-card">
+      <div class="mock-header"><div class="mock-icon">🚀</div><div class="mock-title">Deploy Checklist</div></div>
+      <div class="mock-check-row"><div class="mock-checkbox checked"></div><div class="mock-check-text" style="width:80%"></div></div>
+      <div class="mock-check-row"><div class="mock-checkbox checked"></div><div class="mock-check-text" style="width:65%"></div></div>
+      <div class="mock-check-row"><div class="mock-checkbox checked"></div><div class="mock-check-text" style="width:90%"></div></div>
+      <div class="mock-check-row"><div class="mock-checkbox"></div><div class="mock-check-text" style="width:75%"></div></div>
+    </div>
+    <div class="mock-card">
+      <div class="mock-header"><div class="mock-icon">🗄</div><div class="mock-title">DB Schema</div></div>
+      <table class="mock-table">
+        <tr><th></th><th></th><th></th></tr>
+        <tr><td><div class="cell" style="width:60%"></div></td><td><div class="cell" style="width:40%"></div></td><td><div class="cell" style="width:70%"></div></td></tr>
+        <tr><td><div class="cell" style="width:50%"></div></td><td><div class="cell" style="width:55%"></div></td><td><div class="cell" style="width:45%"></div></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 3. GROWTH DASHBOARD -->
+<div class="product-image img-growth" id="img-growth">
+  <div style="position:absolute;top:-60px;right:-80px;width:450px;height:450px;background:radial-gradient(circle,rgba(245,158,11,0.1),transparent 70%);border-radius:50%;"></div>
+  <div class="img-content">
+    <div class="img-logo"><div class="mark"><span></span></div><span class="name">fewertools</span></div>
+    <div class="img-badge">📈 Growing Stage</div>
+    <div class="img-title">The Growth<br>Dashboard</div>
+    <div class="img-subtitle">Measure what matters. Ignore the rest. Scale with clarity.</div>
+    <div class="img-price">$29</div>
+  </div>
+  <div class="img-visual">
+    <div class="mock-card">
+      <div class="mock-header"><div class="mock-icon">📊</div><div class="mock-title">KPI Tracker</div></div>
+      <table class="mock-table">
+        <tr><th></th><th></th><th></th><th></th></tr>
+        <tr><td><div class="cell" style="width:70%"></div></td><td><div class="cell" style="width:40%;background:rgba(13,148,136,0.2)"></div></td><td><div class="cell" style="width:35%"></div></td><td><div class="cell" style="width:50%"></div></td></tr>
+        <tr><td><div class="cell" style="width:55%"></div></td><td><div class="cell" style="width:50%;background:rgba(13,148,136,0.2)"></div></td><td><div class="cell" style="width:40%"></div></td><td><div class="cell" style="width:45%"></div></td></tr>
+        <tr><td><div class="cell" style="width:65%"></div></td><td><div class="cell" style="width:35%;background:rgba(239,68,68,0.15)"></div></td><td><div class="cell" style="width:30%"></div></td><td><div class="cell" style="width:55%"></div></td></tr>
+      </table>
+    </div>
+    <div class="mock-card">
+      <div class="mock-header"><div class="mock-icon">🧪</div><div class="mock-title">Experiments</div></div>
+      <div class="mock-lines"><div class="mock-line accent" style="width:70%"></div><div class="mock-line" style="width:50%"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. SIMPLIFIER'S AUDIT -->
+<div class="product-image img-simplify" id="img-simplify">
+  <div style="position:absolute;bottom:-80px;right:-60px;width:380px;height:380px;background:radial-gradient(circle,rgba(239,68,68,0.08),transparent 70%);border-radius:50%;"></div>
+  <div class="img-content">
+    <div class="img-logo"><div class="mark"><span></span></div><span class="name">fewertools</span></div>
+    <div class="img-badge">✂️ Simplifying Stage</div>
+    <div class="img-title">The Simplifier's<br>Audit</div>
+    <div class="img-subtitle">Cut the bloat. Keep what works. Save thousands.</div>
+    <div class="img-price">$19</div>
+  </div>
+  <div class="img-visual">
+    <div class="mock-card">
+      <div class="mock-header"><div class="mock-icon">💰</div><div class="mock-title">Cost Calculator</div></div>
+      <div style="display:flex;justify-content:space-around;text-align:center;padding:8px 0;">
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#DC2626;">$847</div><div style="font-size:9px;color:#999;">CURRENT</div></div>
+        <div style="font-size:20px;color:#ccc;padding-top:4px;">→</div>
+        <div><div style="font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#0D9488;">$312</div><div style="font-size:9px;color:#999;">OPTIMIZED</div></div>
+      </div>
+    </div>
+    <div class="mock-card">
+      <div class="mock-header"><div class="mock-icon">🧭</div><div class="mock-title">Decision Matrix</div></div>
+      <div class="mock-check-row"><div class="mock-checkbox checked"></div><div class="mock-check-text" style="width:75%"></div></div>
+      <div class="mock-check-row"><div class="mock-checkbox"></div><div class="mock-check-text" style="width:85%"></div></div>
+      <div class="mock-check-row"><div class="mock-checkbox"></div><div class="mock-check-text" style="width:60%"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. BUNDLE -->
+<div class="product-image img-bundle" id="img-bundle">
+  <div style="position:absolute;top:-100px;left:50%;width:500px;height:500px;background:radial-gradient(circle,rgba(13,148,136,0.15),transparent 70%);border-radius:50%;transform:translateX(-50%);"></div>
+  <div class="img-content">
+    <div class="img-logo"><div class="mark"><span></span></div><span class="name">fewertools</span></div>
+    <div class="img-badge">📦 All 4 Packs</div>
+    <div class="img-title">The Complete<br>Bundle</div>
+    <div class="img-subtitle">Every stage of building. One download. Save $26.</div>
+    <div style="display:flex;align-items:baseline;gap:12px;margin-top:24px;">
+      <span style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:#0D9488;">$70</span>
+      <span style="font-size:16px;color:rgba(255,255,255,0.3);text-decoration:line-through;">$96</span>
+    </div>
+  </div>
+  <div class="img-visual">
+    <div class="bundle-cards">
+      <div class="bundle-mini"><div class="mini-icon">💡</div><div class="mini-name">Starter's Playbook</div><div class="mini-price">$19</div></div>
+      <div class="bundle-mini"><div class="mini-icon">🔨</div><div class="mini-name">Builder's Launch Kit</div><div class="mini-price">$29</div></div>
+      <div class="bundle-mini"><div class="mini-icon">📈</div><div class="mini-name">Growth Dashboard</div><div class="mini-price">$29</div></div>
+      <div class="bundle-mini"><div class="mini-icon">✂️</div><div class="mini-name">Simplifier's Audit</div><div class="mini-price">$19</div></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
