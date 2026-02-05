@@ -1,0 +1,32 @@
+{
+  "twitter": {
+    "account": "@StockWatcherApp",
+    "credentialsPath": "~/.config/bird/stockwatcher.env"
+  },
+  "automation": {
+    "enabled": false,
+    "autoPost": false,
+    "requireReview": true,
+    "notifyOnGenerate": true
+  },
+  "posting": {
+    "timezone": "Europe/London",
+    "quickTakeTime": "09:00",
+    "threadTime": "12:00",
+    "neverPostBefore": "07:00",
+    "neverPostAfter": "23:00"
+  },
+  "api": {
+    "fmpApiKeyEnv": "FMP_API_KEY"
+  },
+  "content": {
+    "maxTweetsPerDay": 3,
+    "includeLink": true,
+    "link": "https://stockwatcher.app"
+  },
+  "safety": {
+    "dryRun": true,
+    "logAllContent": true,
+    "errorNotification": true
+  }
+}

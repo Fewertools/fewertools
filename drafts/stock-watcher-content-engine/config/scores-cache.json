@@ -1,0 +1,85 @@
+{
+  "lastUpdated": null,
+  "scores": {
+    "NVDA": {
+      "score": 87,
+      "growthMoat": 95,
+      "revenueQuality": 88,
+      "ownerOperator": 85,
+      "valuationWisdom": 78,
+      "updatedAt": "2026-02-02T23:00:00Z"
+    },
+    "MSFT": {
+      "score": 84,
+      "growthMoat": 92,
+      "revenueQuality": 88,
+      "ownerOperator": 78,
+      "valuationWisdom": 78,
+      "updatedAt": "2026-02-02T23:00:00Z"
+    },
+    "AAPL": {
+      "score": 81,
+      "growthMoat": 91,
+      "revenueQuality": 79,
+      "ownerOperator": 75,
+      "valuationWisdom": 78,
+      "updatedAt": "2026-02-02T23:00:00Z"
+    },
+    "GOOG": {
+      "score": 78,
+      "growthMoat": 88,
+      "revenueQuality": 82,
+      "ownerOperator": 72,
+      "valuationWisdom": 71,
+      "updatedAt": "2026-02-02T23:00:00Z"
+    },
+    "AMZN": {
+      "score": 76,
+      "growthMoat": 89,
+      "revenueQuality": 78,
+      "ownerOperator": 68,
+      "valuationWisdom": 72,
+      "updatedAt": "2026-02-02T23:00:00Z"
+    },
+    "META": {
+      "score": 74,
+      "growthMoat": 82,
+      "revenueQuality": 76,
+      "ownerOperator": 72,
+      "valuationWisdom": 68,
+      "updatedAt": "2026-02-02T23:00:00Z"
+    },
+    "TSLA": {
+      "score": 55,
+      "growthMoat": 72,
+      "revenueQuality": 58,
+      "ownerOperator": 48,
+      "valuationWisdom": 42,
+      "updatedAt": "2026-02-02T23:00:00Z"
+    },
+    "NFLX": {
+      "score": 71,
+      "growthMoat": 75,
+      "revenueQuality": 78,
+      "ownerOperator": 72,
+      "valuationWisdom": 62,
+      "updatedAt": "2026-02-02T23:00:00Z"
+    },
+    "CRM": {
+      "score": 73,
+      "growthMoat": 80,
+      "revenueQuality": 82,
+      "ownerOperator": 65,
+      "valuationWisdom": 68,
+      "updatedAt": "2026-02-02T23:00:00Z"
+    },
+    "COST": {
+      "score": 79,
+      "growthMoat": 85,
+      "revenueQuality": 82,
+      "ownerOperator": 78,
+      "valuationWisdom": 71,
+      "updatedAt": "2026-02-02T23:00:00Z"
+    }
+  }
+}

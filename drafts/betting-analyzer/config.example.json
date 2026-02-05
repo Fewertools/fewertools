@@ -1,0 +1,45 @@
+{
+  "api_keys": {
+    "odds_api": "YOUR_ODDS_API_KEY_HERE",
+    "football_data": "YOUR_FOOTBALL_DATA_KEY_HERE"
+  },
+  "preferences": {
+    "leagues": [
+      "soccer_epl",
+      "soccer_spain_la_liga",
+      "soccer_italy_serie_a",
+      "soccer_germany_bundesliga",
+      "soccer_france_ligue_one",
+      "soccer_uefa_champs_league",
+      "soccer_uefa_europa_league"
+    ],
+    "min_edge_percent": 5.0,
+    "kelly_fraction": 0.25,
+    "bankroll": 1000,
+    "unit_percent": 1.0,
+    "max_stake_units": 5,
+    "odds_format": "decimal",
+    "form_window": 5,
+    "form_weight": 0.15,
+    "bookmakers": [
+      "pinnacle",
+      "betfair",
+      "williamhill",
+      "bet365",
+      "unibet",
+      "betway"
+    ]
+  },
+  "football_data_leagues": {
+    "soccer_epl": "PL",
+    "soccer_spain_la_liga": "PD",
+    "soccer_italy_serie_a": "SA",
+    "soccer_germany_bundesliga": "BL1",
+    "soccer_france_ligue_one": "FL1",
+    "soccer_uefa_champs_league": "CL"
+  },
+  "notifications": {
+    "telegram": false,
+    "min_edge_for_alert": 8.0
+  }
+}

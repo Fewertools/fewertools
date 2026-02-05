@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚽ Value Bet Dashboard</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-2: #1a1a25;
+      --border: #2a2a38;
+      --text: #e4e4ef;
+      --text-dim: #6b6b80;
+      --accent: #10b981;
+      --accent-dim: #059669;
+      --red: #ef4444;
+      --orange: #f59e0b;
+      --blue: #3b82f6;
+      --purple: #8b5cf6;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+    h1 span { color: var(--accent); }
+
+    .stats-bar {
+      display: flex;
+      gap: 24px;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .stats-bar .value { color: var(--text); font-weight: 600; }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-dim);
+      margin: 32px 0 16px;
+    }
+
+    /* Summary cards */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .summary-card .label {
+      font-size: 12px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .summary-card .number {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    .summary-card .sub {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    .positive { color: var(--accent); }
+    .negative { color: var(--red); }
+    .neutral { color: var(--orange); }
+
+    /* Value bet cards */
+    .bet-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap: 24px;
+      align-items: center;
+      transition: border-color 0.2s;
+    }
+    .bet-card:hover { border-color: var(--accent); }
+
+    .bet-match { font-weight: 600; font-size: 16px; }
+    .bet-league { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+    .bet-selection {
+      font-size: 13px;
+      padding: 4px 10px;
+      background: var(--surface-2);
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    .bet-edge {
+      text-align: center;
+    }
+    .bet-edge .value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .bet-edge .label { font-size: 11px; color: var(--text-dim); }
+
+    .bet-odds {
+      text-align: center;
+    }
+    .bet-odds .value {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .bet-odds .bookie { font-size: 11px; color: var(--text-dim); }
+
+    .bet-stake {
+      text-align: center;
+      min-width: 80px;
+    }
+    .bet-stake .value {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .bet-stake .label { font-size: 11px; color: var(--text-dim); }
+
+    .confidence-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .confidence-HIGH { background: #10b98120; color: var(--accent); }
+    .confidence-MEDIUM { background: #f59e0b20; color: var(--orange); }
+    .confidence-LOW { background: #3b82f620; color: var(--blue); }
+
+    /* History table */
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .history-table th {
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border);
+    }
+    .history-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .history-table tr:hover { background: var(--surface-2); }
+
+    .result-won { color: var(--accent); font-weight: 600; }
+    .result-lost { color: var(--red); font-weight: 600; }
+    .result-pending { color: var(--text-dim); }
+
+    /* Probability bar */
+    .prob-bar {
+      display: flex;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+    .prob-home { background: var(--blue); }
+    .prob-draw { background: var(--text-dim); }
+    .prob-away { background: var(--purple); }
+
+    .prob-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-dim);
+    }
+    .empty-state .icon { font-size: 48px; margin-bottom: 16px; }
+    .empty-state h3 { color: var(--text); margin-bottom: 8px; }
+    .empty-state code {
+      background: var(--surface-2);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    /* File upload area */
+    .upload-area {
+      background: var(--surface);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 24px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .upload-area:hover { border-color: var(--accent); }
+    .upload-area input { display: none; }
+
+    @media (max-width: 768px) {
+      .bet-card { grid-template-columns: 1fr; gap: 12px; }
+      .bet-edge, .bet-odds, .bet-stake { text-align: left; }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>⚽ Value Bet <span>Dashboard</span></h1>
+      <div class="stats-bar">
+        <span>Last scan: <span class="value" id="lastScan">—</span></span>
+        <span>Bets tracked: <span class="value" id="totalBets">0</span></span>
+      </div>
+    </header>
+
+    <!-- Summary -->
+    <div class="summary-grid" id="summaryGrid">
+      <div class="summary-card">
+        <div class="label">Total P/L</div>
+        <div class="number" id="totalPL">—</div>
+        <div class="sub">units</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Strike Rate</div>
+        <div class="number" id="strikeRate">—</div>
+        <div class="sub">of settled bets</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Avg Edge</div>
+        <div class="number neutral" id="avgEdge">—</div>
+        <div class="sub">on value bets found</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">ROI</div>
+        <div class="number" id="roi">—</div>
+        <div class="sub">return on investment</div>
+      </div>
+    </div>
+
+    <!-- Active value bets -->
+    <div class="section-title">🎯 Active Value Bets</div>
+    <div id="activeBets">
+      <div class="empty-state">
+        <div class="icon">📊</div>
+        <h3>No active bets yet</h3>
+        <p>Run <code>python analyzer.py scan</code> to find value bets<br>
+        or <code>python analyzer.py test</code> for a demo</p>
+      </div>
+    </div>
+
+    <!-- History -->
+    <div class="section-title">📋 Bet History</div>
+    <div id="historySection">
+      <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+        <input type="file" id="fileInput" accept=".json" onchange="loadHistory(event)">
+        <p>📂 Drop or click to load <code>data/bet_history.json</code></p>
+      </div>
+      <table class="history-table" id="historyTable" style="display:none">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Match</th>
+            <th>Selection</th>
+            <th>Edge</th>
+            <th>Odds</th>
+            <th>Stake</th>
+            <th>Result</th>
+            <th>P/L</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Auto-load bet_history.json if served from the project directory
+    async function autoLoad() {
+      try {
+        const resp = await fetch('../data/bet_history.json');
+        if (resp.ok) {
+          const data = await resp.json();
+          renderData(data);
+        }
+      } catch(e) {
+        // Running from file:// — need manual upload
+        console.log('Auto-load failed (file:// protocol). Use upload instead.');
+      }
+    }
+
+    function loadHistory(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target.result);
+          renderData(data);
+        } catch(err) {
+          alert('Invalid JSON file');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function renderData(bets) {
+      if (!Array.isArray(bets)) return;
+
+      // Update stats
+      const settled = bets.filter(b => b.result === 'won' || b.result === 'lost');
+      const pending = bets.filter(b => b.result === 'pending');
+      const wins = settled.filter(b => b.result === 'won').length;
+      const totalPL = settled.reduce((s, b) => s + (b.profit_loss || 0), 0);
+      const totalStaked = settled.reduce((s, b) => s + (b.stake || 0), 0);
+      const avgEdge = bets.length ? (bets.reduce((s, b) => s + (b.edge || 0), 0) / bets.length) : 0;
+
+      document.getElementById('totalBets').textContent = bets.length;
+      
+      const plEl = document.getElementById('totalPL');
+      plEl.textContent = totalPL >= 0 ? `+${totalPL.toFixed(1)}` : totalPL.toFixed(1);
+      plEl.className = `number ${totalPL >= 0 ? 'positive' : 'negative'}`;
+
+      const srEl = document.getElementById('strikeRate');
+      srEl.textContent = settled.length ? `${((wins / settled.length) * 100).toFixed(0)}%` : '—';
+
+      document.getElementById('avgEdge').textContent = `+${avgEdge.toFixed(1)}%`;
+
+      const roiEl = document.getElementById('roi');
+      const roi = totalStaked > 0 ? (totalPL / totalStaked) * 100 : 0;
+      roiEl.textContent = `${roi >= 0 ? '+' : ''}${roi.toFixed(1)}%`;
+      roiEl.className = `number ${roi >= 0 ? 'positive' : 'negative'}`;
+
+      if (bets.length) {
+        const last = bets[bets.length - 1];
+        document.getElementById('lastScan').textContent = last.date || '—';
+      }
+
+      // Render active bets
+      const activeContainer = document.getElementById('activeBets');
+      if (pending.length) {
+        activeContainer.innerHTML = pending.map(bet => `
+          <div class="bet-card">
+            <div>
+              <div class="bet-match">${bet.match}</div>
+              <div class="bet-league">${bet.league || ''} ${bet.date ? '• ' + bet.date : ''}</div>
+              <div class="bet-selection">
+                <span class="confidence-badge confidence-${bet.confidence}">${bet.confidence}</span>
+                ${bet.selection}
+              </div>
+            </div>
+            <div class="bet-edge">
+              <div class="value">+${bet.edge?.toFixed(1)}%</div>
+              <div class="label">Edge</div>
+            </div>
+            <div class="bet-odds">
+              <div class="value">${bet.odds?.toFixed(2)}</div>
+              <div class="bookie">${bet.bookmaker || ''}</div>
+            </div>
+            <div class="bet-stake">
+              <div class="value">${bet.stake?.toFixed(1)}u</div>
+              <div class="label">Stake</div>
+            </div>
+          </div>
+        `).join('');
+      } else {
+        activeContainer.innerHTML = `
+          <div class="empty-state" style="padding: 30px">
+            <p>No pending bets. All settled! 🎯</p>
+          </div>`;
+      }
+
+      // Render history table
+      if (settled.length) {
+        document.getElementById('historyTable').style.display = 'table';
+        const tbody = document.getElementById('historyBody');
+        tbody.innerHTML = [...settled].reverse().map(bet => `
+          <tr>
+            <td>${bet.date || '—'}</td>
+            <td>${(bet.match || '—').substring(0, 30)}</td>
+            <td>${bet.selection || '—'}</td>
+            <td>${bet.edge ? '+' + bet.edge.toFixed(1) + '%' : '—'}</td>
+            <td>${bet.odds?.toFixed(2) || '—'}</td>
+            <td>${bet.stake?.toFixed(1)}u</td>
+            <td class="result-${bet.result}">${bet.result?.toUpperCase()}</td>
+            <td class="${bet.profit_loss >= 0 ? 'positive' : 'negative'}">
+              ${bet.profit_loss >= 0 ? '+' : ''}${bet.profit_loss?.toFixed(1)}u
+            </td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    autoLoad();
+  </script>
+</body>
+</html>

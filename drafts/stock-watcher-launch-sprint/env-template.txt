@@ -1,0 +1,29 @@
+# Stock Watcher Environment Variables
+# Copy this file to ~/clawd/projects/stock-watcher/.env.local
+# Fill in your actual values
+
+# ============================================
+# REQUIRED: Financial Modeling Prep API
+# Get free key: https://financialmodelingprep.com/developer/docs/
+# ============================================
+FMP_API_KEY=
+
+# ============================================
+# REQUIRED FOR FULL MODE: Supabase
+# Get these from: https://supabase.com/dashboard → Your Project → Settings → API
+# ============================================
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_KEY=
+
+# ============================================
+# ADMIN: For viewing newsletter signups
+# Can be any secure string
+# ============================================
+ADMIN_API_KEY=stockwatcher-admin-2026
+
+# ============================================
+# OPTIONAL: Alternative data providers (not needed for v1)
+# ============================================
+# ALPHA_VANTAGE_API_KEY=
+# FINNHUB_API_KEY=

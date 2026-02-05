@@ -254,5 +254,7 @@
     const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
+<script src="/_vercel/insights/script.js" defer></script>
+<script src="/_vercel/speed-insights/script.js" defer></script>
 </body>
 </html>

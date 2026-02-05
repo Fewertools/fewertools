@@ -1,0 +1,63 @@
+{
+  "stocks": [
+    "NVDA",
+    "MSFT",
+    "AAPL",
+    "GOOG",
+    "AMZN",
+    "META",
+    "TSLA",
+    "NFLX",
+    "CRM",
+    "COST"
+  ],
+  "schedule": {
+    "monday": {
+      "type": "quick-take",
+      "stocks": ["NVDA", "MSFT"],
+      "extra": "weekly-roundup"
+    },
+    "tuesday": {
+      "type": "thread",
+      "focus": "rotate"
+    },
+    "wednesday": {
+      "type": "quick-take",
+      "stocks": ["GOOG", "AMZN"]
+    },
+    "thursday": {
+      "type": "educational",
+      "topic": "rotate"
+    },
+    "friday": {
+      "type": "thread",
+      "focus": "rotate"
+    },
+    "saturday": {
+      "type": "engagement",
+      "optional": true
+    },
+    "sunday": {
+      "type": "rest",
+      "optional": true
+    }
+  },
+  "threadRotation": [
+    "NVDA",
+    "AAPL",
+    "META",
+    "TSLA",
+    "CRM",
+    "COST"
+  ],
+  "educationalTopics": [
+    "growth-moat",
+    "revenue-quality",
+    "owner-operator",
+    "valuation-wisdom",
+    "avoiding-value-traps",
+    "moat-erosion-signs"
+  ],
+  "lastThreadIndex": 0,
+  "lastEducationalIndex": 0
+}
