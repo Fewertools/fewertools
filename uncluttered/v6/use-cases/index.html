@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Use Case Stacks — Fewer Tools</title>
+  <meta name="description" content="Find the right tools for your goal. 12 curated stacks for creators, builders, and entrepreneurs — from starting a YouTube channel to launching a SaaS.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fewertools.com/use-cases/">
+  <meta property="og:title" content="Use Case Stacks — Fewer Tools">
+  <meta property="og:description" content="Find the right tools for your goal. 12 curated stacks for creators, builders, and entrepreneurs.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #FAFAF8;
+      --bg-alt: #F3F3F0;
+      --bg-dark: #0a0a0a;
+      --bg-card: #FFFFFF;
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --text-inverse: #FAFAF8;
+      --accent: #0D9488;
+      --accent-hover: #0F766E;
+      --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.12);
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px;
+      --space-xl: 40px; --space-2xl: 64px; --space-3xl: 100px;
+      --max-width: 1200px;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-xl); }
+    @media (max-width: 600px) { .container { padding: 0 var(--space-lg); } }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); font-family: var(--font-body); font-size: 15px; font-weight: 600; border-radius: var(--radius-md); border: none; cursor: pointer; transition: all 0.2s ease; }
+    .btn-primary { background: var(--bg-dark); color: var(--text-inverse); }
+    .btn-primary:hover { background: #222; transform: translateY(-2px); }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--space-lg) 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: all 0.2s ease; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: var(--space-sm); }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; overflow: hidden; transition: all 0.3s ease; }
+    .logo-text { font-family: "Outfit", -apple-system, sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; color: var(--text); }
+    .logo-mark .icon-line { width: 12px; height: 2.5px; background: var(--accent); border-radius: 2px; animation: iconGlow 2.5s ease-in-out infinite; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); }
+    @keyframes iconGlow { 0%, 100% { transform: scaleX(1); opacity: 1; } 50% { transform: scaleX(0.6); opacity: 0.8; } }
+    nav { display: flex; align-items: center; gap: var(--space-xl); }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { padding: var(--space-sm) var(--space-md); background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    @media (max-width: 768px) { nav a:not(.nav-cta) { display: none; } }
+
+    /* Hero */
+    .page-hero { padding: 140px 0 var(--space-2xl); text-align: center; position: relative; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(13, 148, 136, 0.06) 0%, transparent 70%); pointer-events: none; }
+    .breadcrumb { display: flex; align-items: center; justify-content: center; gap: var(--space-sm); font-size: 13px; color: var(--text-muted); margin-bottom: var(--space-lg); }
+    .breadcrumb a:hover { color: var(--text); }
+    .hero-badge { display: inline-flex; align-items: center; gap: var(--space-sm); padding: 8px 16px; background: var(--accent-subtle); border: 1px solid var(--accent); border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: var(--space-lg); }
+    .page-hero h1 { font-size: clamp(40px, 8vw, 64px); margin-bottom: var(--space-md); }
+    .page-hero h1 .highlight { color: var(--accent); }
+    .hero-subtitle { font-size: 20px; color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-xl); line-height: 1.6; }
+
+    /* Search */
+    .search-container { max-width: 500px; margin: 0 auto var(--space-3xl); position: relative; }
+    .search-box { position: relative; }
+    .search-box input { width: 100%; padding: 16px 16px 16px 48px; font-size: 16px; font-family: var(--font-body); background: var(--bg-card); border: 1.5px solid var(--border-strong); border-radius: var(--radius-lg); transition: all 0.2s ease; }
+    .search-box input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-subtle); }
+    .search-box input::placeholder { color: var(--text-muted); }
+    .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: var(--text-muted); pointer-events: none; }
+
+    /* Use Case Grid */
+    .use-cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: var(--space-lg); }
+    @media (max-width: 768px) { .use-cases-grid { grid-template-columns: 1fr; } }
+
+    .use-case-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      transition: all 0.4s var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.02), 0 8px 16px rgba(0,0,0,0.02);
+    }
+    .use-case-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 4px 8px rgba(13,148,136,0.04), 0 12px 24px rgba(13,148,136,0.06), 0 24px 48px rgba(13,148,136,0.08);
+    }
+    .use-case-emoji { font-size: 36px; margin-bottom: var(--space-md); }
+    .use-case-card h3 { font-size: 22px; margin-bottom: var(--space-sm); }
+    .use-case-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-lg); flex: 1; }
+    .use-case-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: var(--space-lg); }
+    .use-case-tool { display: flex; align-items: center; gap: 6px; padding: 5px 12px; background: var(--bg-alt); border-radius: 100px; font-size: 12px; font-weight: 500; color: var(--text-secondary); }
+    .use-case-tool img { width: 14px; height: 14px; object-fit: contain; }
+    .use-case-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--accent); transition: gap 0.2s ease; }
+    .use-case-link:hover { gap: 10px; }
+
+    /* Category Labels */
+    .category-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: var(--space-lg); margin-top: var(--space-2xl); }
+    .category-label:first-of-type { margin-top: 0; }
+
+    /* CTA */
+    .cta-section { padding: var(--space-3xl) 0; background: var(--bg-dark); color: var(--text-inverse); text-align: center; margin-top: var(--space-3xl); }
+    .cta-section h2 { font-size: clamp(28px, 5vw, 40px); margin-bottom: var(--space-md); }
+    .cta-section p { color: rgba(255,255,255,0.6); margin-bottom: var(--space-xl); }
+    .cta-section .btn-primary { background: var(--accent); }
+    .cta-section .btn-primary:hover { background: var(--accent-hover); }
+
+    /* Footer */
+    footer { padding: var(--space-2xl) 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-lg); }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: var(--space-lg); }
+    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../" class="logo"><div class="logo-mark"><div class="icon-line"></div></div><span class="logo-text">fewertools</span></a>
+      <nav>
+        <a href="../stacks/">Stacks</a>
+        <a href="../tools/">Tools</a>
+        <a href="../workflows/">Workflows</a>
+        <a href="../compare/">Compare</a>
+        <a href="../gems/">Hidden Gems 💎</a>
+        <a href="../students/">Students 🎓</a>
+        <a href="../stages/" class="nav-cta">Find your stack</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb reveal"><a href="../">Home</a> <span>→</span> Use Cases</div>
+      <span class="hero-badge reveal">🎯 Goal-based stacks</span>
+      <h1 class="reveal">What do you want to <span class="highlight">build?</span></h1>
+      <p class="hero-subtitle reveal">Pick your goal. Get the exact tools you need — no more, no less. Every stack is tested and curated.</p>
+      
+      <div class="search-container reveal">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="useCaseSearch" placeholder="e.g. start a YouTube channel, build a SaaS...">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="use-cases-section">
+    <div class="container">
+      
+      <div class="category-label reveal">🎬 Content & Media</div>
+      <div class="use-cases-grid" id="useCasesGrid">
+
+        <a href="./start-youtube-channel/" class="use-case-card reveal" data-keywords="youtube video content creator channel filming editing thumbnail">
+          <div class="use-case-emoji">🎬</div>
+          <h3>Start a YouTube Channel</h3>
+          <p>Everything to plan, film, edit, and grow a YouTube channel from zero. Research, thumbnails, SEO — sorted.</p>
+          <div class="use-case-tools">
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=tubebuddy.com&sz=128" alt="">TubeBuddy</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=descript.com&sz=128" alt="">Descript</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="">Canva</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=riverside.fm&sz=128" alt="">Riverside</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=vidiq.com&sz=128" alt="">VidIQ</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+          </div>
+          <span class="use-case-link">View stack →</span>
+        </a>
+
+        <a href="./launch-podcast/" class="use-case-card reveal" data-keywords="podcast audio recording hosting interview episodes spotify apple">
+          <div class="use-case-emoji">🎙️</div>
+          <h3>Launch a Podcast</h3>
+          <p>Record, edit, host, and distribute your podcast. Remote interviews, show notes, and distribution — all covered.</p>
+          <div class="use-case-tools">
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=riverside.fm&sz=128" alt="">Riverside</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=descript.com&sz=128" alt="">Descript</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=buzzsprout.com&sz=128" alt="">Buzzsprout</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="">Canva</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/spotify/1DB954" alt="">Spotify</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+          </div>
+          <span class="use-case-link">View stack →</span>
+        </a>
+
+        <a href="./youtube-automation/" class="use-case-card reveal" data-keywords="youtube automation faceless ai generated voiceover cash cow">
+          <div class="use-case-emoji">🤖</div>
+          <h3>YouTube Automation</h3>
+          <p>Run faceless YouTube channels with AI. Scripting, voiceover, video generation, and SEO — all automated.</p>
+          <div class="use-case-tools">
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=invideo.io&sz=128" alt="">InVideo AI</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/elevenlabs/000000" alt="">ElevenLabs</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/openai/412991" alt="">ChatGPT</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="">Canva</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=tubebuddy.com&sz=128" alt="">TubeBuddy</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=descript.com&sz=128" alt="">Descript</span>
+          </div>
+          <span class="use-case-link">View stack →</span>
+        </a>
+
+        <a href="./content-agency/" class="use-case-card reveal" data-keywords="content agency social media management scheduling clients">
+          <div class="use-case-emoji">📱</div>
+          <h3>Start a Content Agency</h3>
+          <p>Manage multiple clients' social media. Scheduling, design, collaboration, and reporting — at agency scale.</p>
+          <div class="use-case-tools">
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=buffer.com&sz=128" alt="">Buffer</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="">Canva</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=loom.com&sz=128" alt="">Loom</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=capcut.com&sz=128" alt="">CapCut</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/slack/4A154B" alt="">Slack</span>
+          </div>
+          <span class="use-case-link">View stack →</span>
+        </a>
+      </div>
+
+      <div class="category-label reveal">💼 Business & Commerce</div>
+      <div class="use-cases-grid">
+
+        <a href="./start-freelancing/" class="use-case-card reveal" data-keywords="freelance freelancing agency clients invoicing booking proposals">
+          <div class="use-case-emoji">💼</div>
+          <h3>Start Freelancing</h3>
+          <p>Find clients, manage projects, send invoices, and get paid. The lean toolkit for solo freelancers and small agencies.</p>
+          <div class="use-case-tools">
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=contra.com&sz=128" alt="">Contra</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/stripe/635BFF" alt="">Stripe</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=calendly.com&sz=128" alt="">Calendly</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=loom.com&sz=128" alt="">Loom</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=waveapps.com&sz=128" alt="">Wave</span>
+          </div>
+          <span class="use-case-link">View stack →</span>
+        </a>
+
+        <a href="./start-ecommerce/" class="use-case-card reveal" data-keywords="ecommerce e-commerce dropshipping online store shop products selling">
+          <div class="use-case-emoji">🛒</div>
+          <h3>Start an E-commerce Store</h3>
+          <p>Build and launch your online store. Products, payments, email marketing, and inventory — ready to sell.</p>
+          <div class="use-case-tools">
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/shopify/7AB55C" alt="">Shopify</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=dsers.com&sz=128" alt="">DSers</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="">Canva</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=klaviyo.com&sz=128" alt="">Klaviyo</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/stripe/635BFF" alt="">Stripe</span>
+          </div>
+          <span class="use-case-link">View stack →</span>
+        </a>
+
+        <a href="./sell-digital-products/" class="use-case-card reveal" data-keywords="digital products courses online course ebooks templates selling gumroad teachable">
+          <div class="use-case-emoji">📦</div>
+          <h3>Sell Digital Products</h3>
+          <p>Create and sell courses, ebooks, templates, and digital downloads. Payment, delivery, and marketing — handled.</p>
+          <div class="use-case-tools">
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=gumroad.com&sz=128" alt="">Gumroad</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=teachable.com&sz=128" alt="">Teachable</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="">Canva</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=convertkit.com&sz=128" alt="">ConvertKit</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/stripe/635BFF" alt="">Stripe</span>
+          </div>
+          <span class="use-case-link">View stack →</span>
+        </a>
+
+        <a href="./affiliate-marketing/" class="use-case-card reveal" data-keywords="affiliate marketing blog blogging seo content writing passive income">
+          <div class="use-case-emoji">🔗</div>
+          <h3>Start Affiliate Marketing</h3>
+          <p>Build a blog, rank on Google, and earn commissions. SEO, content, email capture, and analytics — the lean way.</p>
+          <div class="use-case-tools">
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/wordpress/21759B" alt="">WordPress</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/ahrefs/FF8C00" alt="">Ahrefs</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=convertkit.com&sz=128" alt="">ConvertKit</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="">Canva</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/googlesearchconsole/458CF5" alt="">GSC</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+          </div>
+          <span class="use-case-link">View stack →</span>
+        </a>
+      </div>
+
+      <div class="category-label reveal">🚀 Tech & Apps</div>
+      <div class="use-cases-grid">
+
+        <a href="./build-saas/" class="use-case-card reveal" data-keywords="saas web app software startup coding development nextjs react">
+          <div class="use-case-emoji">⚡</div>
+          <h3>Build a SaaS / Web App</h3>
+          <p>Ship a production-ready web app. Framework, database, hosting, payments, and support — the modern indie stack.</p>
+          <div class="use-case-tools">
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="">Next.js</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="">Supabase</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/vercel/000000" alt="">Vercel</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/stripe/635BFF" alt="">Stripe</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=resend.com&sz=128" alt="">Resend</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=crisp.chat&sz=128" alt="">Crisp</span>
+          </div>
+          <span class="use-case-link">View stack →</span>
+        </a>
+
+        <a href="./launch-mobile-app/" class="use-case-card reveal" data-keywords="mobile app ios android flutter react native startup">
+          <div class="use-case-emoji">📱</div>
+          <h3>Launch a Mobile App</h3>
+          <p>Build, test, and launch on iOS and Android. Cross-platform framework, backend, monetisation, and design — covered.</p>
+          <div class="use-case-tools">
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/flutter/02569B" alt="">Flutter</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="">Supabase</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=revenuecat.com&sz=128" alt="">RevenueCat</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/figma/F24E1E" alt="">Figma</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/firebase/DD2C00" alt="">Firebase</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+          </div>
+          <span class="use-case-link">View stack →</span>
+        </a>
+      </div>
+
+      <div class="category-label reveal">✍️ Growth & Marketing</div>
+      <div class="use-cases-grid">
+
+        <a href="./start-newsletter/" class="use-case-card reveal" data-keywords="newsletter email list subscriber beehiiv convertkit writing">
+          <div class="use-case-emoji">✉️</div>
+          <h3>Start a Newsletter</h3>
+          <p>Build your audience with email. Writing, design, growth tools, and monetisation — the newsletter starter pack.</p>
+          <div class="use-case-tools">
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=beehiiv.com&sz=128" alt="">Beehiiv</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=convertkit.com&sz=128" alt="">ConvertKit</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="">Canva</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=sparkloop.app&sz=128" alt="">SparkLoop</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=hypefury.com&sz=128" alt="">Hypefury</span>
+          </div>
+          <span class="use-case-link">View stack →</span>
+        </a>
+
+        <a href="./personal-brand/" class="use-case-card reveal" data-keywords="personal brand portfolio website social media presence online">
+          <div class="use-case-emoji">🌟</div>
+          <h3>Build a Personal Brand</h3>
+          <p>Create your online presence. Portfolio site, social scheduling, design, and networking tools — all in one stack.</p>
+          <div class="use-case-tools">
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=framer.com&sz=128" alt="">Framer</span>
+            <span class="use-case-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt="">Notion</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="">Canva</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=buffer.com&sz=128" alt="">Buffer</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=calendly.com&sz=128" alt="">Calendly</span>
+            <span class="use-case-tool"><img src="https://www.google.com/s2/favicons?domain=carrd.co&sz=128" alt="">Carrd</span>
+          </div>
+          <span class="use-case-link">View stack →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container reveal">
+      <h2>Not sure which goal fits?</h2>
+      <p>Take the quiz and we'll match you to the right stack.</p>
+      <a href="../stages/" class="btn btn-primary" style="font-size: 16px; padding: 18px 32px;">Find your stack →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2026 Fewer Tools. Less tools. More building.</p>
+        <div class="footer-links">
+          <a href="../philosophy/">Philosophy</a>
+          <a href="../tools/">All Tools</a>
+          <a href="../stages/">Stages</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Header scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Search / filter use cases
+    const searchInput = document.getElementById('useCaseSearch');
+    const allCards = document.querySelectorAll('.use-case-card');
+    const categoryLabels = document.querySelectorAll('.category-label');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+      let visibleByGrid = new Map();
+
+      allCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const desc = card.querySelector('p').textContent.toLowerCase();
+        const keywords = (card.dataset.keywords || '').toLowerCase();
+        const tools = Array.from(card.querySelectorAll('.use-case-tool')).map(t => t.textContent.toLowerCase()).join(' ');
+        const match = !query || title.includes(query) || desc.includes(query) || keywords.includes(query) || tools.includes(query);
+        card.style.display = match ? '' : 'none';
+
+        // Track which grids have visible cards
+        const grid = card.parentElement;
+        if (match) visibleByGrid.set(grid, true);
+      });
+
+      // Show/hide category labels based on whether their following grid has visible cards
+      categoryLabels.forEach(label => {
+        const nextGrid = label.nextElementSibling;
+        label.style.display = visibleByGrid.has(nextGrid) ? '' : 'none';
+      });
+    });
+  </script>
+  <script src="/_vercel/insights/script.js" defer></script>
+  <script src="/_vercel/speed-insights/script.js" defer></script>
+</body>
+</html>
