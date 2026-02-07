@@ -339,6 +339,69 @@
     .search-tag { padding: 6px 12px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; font-size: 13px; color: var(--text-muted); cursor: pointer; transition: all var(--duration-fast) ease; }
     .search-tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-subtle); }
     
+    /* Search Results Dropdown */
+    .search-results {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+      max-height: 360px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+    }
+    .search-results.active { display: block; }
+    .search-result-section { padding: 8px 16px 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border-bottom: 1px solid var(--border);
+    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover { background: var(--accent-subtle); }
+    .search-result-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--bg-alt);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .search-result-info { flex: 1; min-width: 0; }
+    .search-result-title { font-weight: 600; font-size: 14px; }
+    .search-result-desc { font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .search-result-badge {
+      padding: 3px 8px;
+      background: var(--accent-subtle);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .search-results-footer {
+      padding: 10px 16px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .search-results-footer:hover { background: var(--accent-subtle); }
+    
     /* Hero Visual - Stacked Cards */
     .hero-visual { position: relative; height: 500px; animation: fadeIn 1s var(--ease-out) 0.5s both; }
     @media (max-width: 900px) { .hero-visual { height: 350px; order: -1; } }
@@ -1217,13 +1280,15 @@
           <div class="hero-search">
             <div class="search-box">
               <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-              <input type="text" placeholder="Search tools or problems...">
+              <input type="text" id="heroSearch" placeholder="What do you want to build?" autocomplete="off">
+              <div class="search-results" id="searchResults"></div>
             </div>
             <div class="search-suggestions">
-              <span class="search-tag" data-href="./stacks/building.html">Next.js</span>
-              <span class="search-tag" data-href="./stacks/starting.html">Notion</span>
-              <span class="search-tag" data-href="./stacks/growing.html">Analytics</span>
-              <span class="search-tag" data-href="./stacks/simplifying.html">Too many tools</span>
+              <span class="search-tag" data-href="./use-cases/start-youtube-channel.html">YouTube</span>
+              <span class="search-tag" data-href="./use-cases/build-saas.html">SaaS</span>
+              <span class="search-tag" data-href="./use-cases/start-freelancing.html">Freelancing</span>
+              <span class="search-tag" data-href="./use-cases/start-newsletter.html">Newsletter</span>
+              <span class="search-tag" data-href="./students/">Student</span>
             </div>
           </div>
           
@@ -1530,6 +1595,45 @@
           <p>Too much clutter. Time to cut and refocus.</p>
           <span class="stage-card-link">View stack →</span>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="stages-section" style="background: var(--bg-alt); padding: var(--space-3xl) 0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>What are you building?</h2>
+        <p>Pick your goal. Get the exact tools you need.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-md);">
+        <a href="./use-cases/start-youtube-channel.html" class="stage-card card reveal" style="padding:var(--space-lg);display:flex;flex-direction:column;align-items:center;">
+          <div class="stage-icon" style="background:rgba(255,0,0,0.1);">🎬</div>
+          <h4 style="font-size:16px;">YouTube Channel</h4>
+          <p style="font-size:13px;flex:1;">Record, edit, optimise, and grow your audience.</p>
+          <span class="stage-card-link">View stack →</span>
+        </a>
+        <a href="./use-cases/launch-podcast.html" class="stage-card card reveal reveal-delay-1" style="padding:var(--space-lg);display:flex;flex-direction:column;align-items:center;">
+          <div class="stage-icon" style="background:rgba(139,92,246,0.1);">🎙️</div>
+          <h4 style="font-size:16px;">Podcast</h4>
+          <p style="font-size:13px;flex:1;">Record, edit, distribute, and grow listeners.</p>
+          <span class="stage-card-link">View stack →</span>
+        </a>
+        <a href="./use-cases/build-saas.html" class="stage-card card reveal reveal-delay-2" style="padding:var(--space-lg);display:flex;flex-direction:column;align-items:center;">
+          <div class="stage-icon" style="background:rgba(13,148,136,0.1);">🚀</div>
+          <h4 style="font-size:16px;">SaaS / Web App</h4>
+          <p style="font-size:13px;flex:1;">Framework, database, hosting, payments.</p>
+          <span class="stage-card-link">View stack →</span>
+        </a>
+        <a href="./use-cases/start-ecommerce.html" class="stage-card card reveal reveal-delay-3" style="padding:var(--space-lg);display:flex;flex-direction:column;align-items:center;">
+          <div class="stage-icon" style="background:rgba(245,158,11,0.1);">🛒</div>
+          <h4 style="font-size:16px;">E-commerce</h4>
+          <p style="font-size:13px;flex:1;">Online store, products, shipping, marketing.</p>
+          <span class="stage-card-link">View stack →</span>
+        </a>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:var(--space-xl);">
+        <a href="./use-cases/" class="btn btn-secondary">Browse all 12 use cases →</a>
       </div>
     </div>
   </section>
@@ -1844,6 +1948,88 @@
       document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
     });
     
+    // ========== SMART SEARCH ==========
+    const useCases = [
+      { title: 'Start a YouTube Channel', icon: '🎬', desc: 'TubeBuddy, Descript, Canva, Riverside + more', href: './use-cases/start-youtube-channel.html', keywords: ['youtube', 'video', 'channel', 'creator', 'vlog', 'content creator', 'filming', 'youtuber'] },
+      { title: 'Launch a Podcast', icon: '🎙️', desc: 'Riverside, Descript, Buzzsprout, Canva + more', href: './use-cases/launch-podcast.html', keywords: ['podcast', 'audio', 'interview', 'recording', 'episodes', 'hosting', 'podcasting'] },
+      { title: 'Start Freelancing', icon: '💼', desc: 'Contra, Notion, Stripe, Calendly, Loom + more', href: './use-cases/start-freelancing.html', keywords: ['freelance', 'freelancing', 'agency', 'clients', 'consulting', 'contract', 'remote work', 'self employed'] },
+      { title: 'Build a SaaS / Web App', icon: '🚀', desc: 'Next.js, Supabase, Vercel, Stripe + more', href: './use-cases/build-saas.html', keywords: ['saas', 'web app', 'software', 'startup', 'mvp', 'app', 'platform', 'product', 'code', 'develop'] },
+      { title: 'Start a Newsletter', icon: '📧', desc: 'Beehiiv, ConvertKit, Notion, Canva + more', href: './use-cases/start-newsletter.html', keywords: ['newsletter', 'email', 'subscribers', 'mailing list', 'substack', 'writing', 'audience'] },
+      { title: 'Start E-commerce / Dropshipping', icon: '🛒', desc: 'Shopify, DSers, Canva, Klaviyo + more', href: './use-cases/start-ecommerce.html', keywords: ['ecommerce', 'e-commerce', 'dropshipping', 'online store', 'shop', 'selling', 'products', 'shopify', 'retail'] },
+      { title: 'YouTube Automation (Faceless)', icon: '🤖', desc: 'InVideo AI, ElevenLabs, ChatGPT, TubeBuddy + more', href: './use-cases/youtube-automation.html', keywords: ['youtube automation', 'faceless', 'automated', 'ai video', 'passive income', 'cash cow'] },
+      { title: 'Start Affiliate Marketing / Blog', icon: '✍️', desc: 'WordPress, Ahrefs, ConvertKit, Google Search Console + more', href: './use-cases/affiliate-marketing.html', keywords: ['affiliate', 'blog', 'blogging', 'seo', 'content', 'marketing', 'passive income', 'wordpress', 'writing'] },
+      { title: 'Build a Personal Brand / Portfolio', icon: '🌟', desc: 'Framer, Notion, Buffer, Canva, Calendly + more', href: './use-cases/personal-brand.html', keywords: ['personal brand', 'portfolio', 'website', 'personal site', 'online presence', 'social media', 'branding'] },
+      { title: 'Sell Digital Products / Courses', icon: '📦', desc: 'Gumroad, Teachable, Canva, ConvertKit + more', href: './use-cases/sell-digital-products.html', keywords: ['digital products', 'course', 'online course', 'ebook', 'template', 'gumroad', 'sell', 'info product', 'teaching'] },
+      { title: 'Start a Content / Social Media Agency', icon: '📱', desc: 'Buffer, Canva, Notion, Loom, CapCut + more', href: './use-cases/content-agency.html', keywords: ['content agency', 'social media', 'agency', 'smma', 'marketing agency', 'tiktok', 'instagram', 'management'] },
+      { title: 'Launch a Mobile App', icon: '📲', desc: 'Flutter, Supabase, RevenueCat, Figma + more', href: './use-cases/launch-mobile-app.html', keywords: ['mobile app', 'ios', 'android', 'app', 'flutter', 'react native', 'mobile', 'app store'] },
+    ];
+
+    const existingStacks = [
+      { title: 'Starting Stack', icon: '💡', desc: 'You have an idea. Time to explore and validate.', href: './stacks/starting.html', keywords: ['starting', 'idea', 'validate', 'begin', 'new', 'planning'] },
+      { title: 'Building Stack', icon: '🔨', desc: 'Ship something real. Framework, DB, hosting.', href: './stacks/building.html', keywords: ['building', 'coding', 'ship', 'develop', 'create', 'make'] },
+      { title: 'Growing Stack', icon: '📈', desc: 'Understand users and scale what works.', href: './stacks/growing.html', keywords: ['growing', 'scale', 'users', 'analytics', 'growth', 'marketing'] },
+      { title: 'Simplifying Stack', icon: '✨', desc: 'Cut clutter and refocus.', href: './stacks/simplifying.html', keywords: ['simplify', 'reduce', 'declutter', 'too many', 'overwhelmed', 'organize'] },
+      { title: 'Student Stack', icon: '🎓', desc: 'Free tools and student perks for uni.', href: './students/', keywords: ['student', 'university', 'college', 'study', 'homework', 'essay', 'academic'] },
+    ];
+
+    const heroSearch = document.getElementById('heroSearch');
+    const searchResults = document.getElementById('searchResults');
+
+    heroSearch.addEventListener('input', () => {
+      const q = heroSearch.value.toLowerCase().trim();
+      if (q.length < 2) { searchResults.classList.remove('active'); return; }
+
+      const matchUC = useCases.filter(uc =>
+        uc.title.toLowerCase().includes(q) || uc.keywords.some(k => k.includes(q) || q.includes(k))
+      ).slice(0, 5);
+
+      const matchStacks = existingStacks.filter(s =>
+        s.title.toLowerCase().includes(q) || s.keywords.some(k => k.includes(q) || q.includes(k))
+      ).slice(0, 3);
+
+      if (matchUC.length === 0 && matchStacks.length === 0) {
+        searchResults.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text-muted);font-size:14px;">No matches yet — try "YouTube", "freelancing", or "SaaS"</div>';
+        searchResults.classList.add('active');
+        return;
+      }
+
+      let html = '';
+      if (matchUC.length > 0) {
+        html += '<div class="search-result-section">Use Case Stacks</div>';
+        matchUC.forEach(uc => {
+          html += `<div class="search-result-item" onclick="window.location.href='${uc.href}'">
+            <div class="search-result-icon">${uc.icon}</div>
+            <div class="search-result-info">
+              <div class="search-result-title">${uc.title}</div>
+              <div class="search-result-desc">${uc.desc}</div>
+            </div>
+            <span class="search-result-badge">Use Case</span>
+          </div>`;
+        });
+      }
+      if (matchStacks.length > 0) {
+        html += '<div class="search-result-section">Stage Stacks</div>';
+        matchStacks.forEach(s => {
+          html += `<div class="search-result-item" onclick="window.location.href='${s.href}'">
+            <div class="search-result-icon">${s.icon}</div>
+            <div class="search-result-info">
+              <div class="search-result-title">${s.title}</div>
+              <div class="search-result-desc">${s.desc}</div>
+            </div>
+            <span class="search-result-badge">Stack</span>
+          </div>`;
+        });
+      }
+      html += `<div class="search-results-footer" onclick="window.location.href='./use-cases/'">Browse all use cases →</div>`;
+      searchResults.innerHTML = html;
+      searchResults.classList.add('active');
+    });
+
+    // Close search results on click outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-box')) searchResults.classList.remove('active');
+    });
+
     // Search tags click
     document.querySelectorAll('.search-tag').forEach(tag => {
       tag.addEventListener('click', () => {
