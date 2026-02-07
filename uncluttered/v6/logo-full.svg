@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- fewertools full logo: icon + wordmark for directory submissions -->
+  
+  <!-- Icon mark - centered, upper portion -->
+  <rect x="156" y="80" width="200" height="200" rx="50" fill="#0a0a0a"/>
+  <rect x="218" y="168" width="76" height="14" rx="7" fill="#0D9488"/>
+  
+  <!-- Wordmark -->
+  <text x="256" y="370" text-anchor="middle" font-family="'Outfit', 'SF Pro Display', -apple-system, system-ui, sans-serif" font-weight="600" font-size="64" letter-spacing="-1.5" fill="#0a0a0a">fewertools</text>
+</svg>
