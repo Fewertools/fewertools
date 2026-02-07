@@ -632,6 +632,11 @@
     @media (max-width: 900px) { .stages-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 500px) { .stages-grid { grid-template-columns: 1fr; } }
     
+    /* Use Cases Home Grid */
+    .use-cases-home-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+    @media (max-width: 900px) { .use-cases-home-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .use-cases-home-grid { grid-template-columns: 1fr; } }
+    
     /* Student callout banner */
     .student-callout {
       display: flex;
@@ -1606,7 +1611,7 @@
         <h2>What are you building?</h2>
         <p>Pick your goal. Get the exact tools you need.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-md);">
+      <div class="use-cases-home-grid">
         <a href="./use-cases/start-youtube-channel.html" class="stage-card card reveal" style="padding:var(--space-lg);display:flex;flex-direction:column;align-items:center;">
           <div class="stage-icon" style="background:rgba(255,0,0,0.1);">🎬</div>
           <h4 style="font-size:16px;">YouTube Channel</h4>

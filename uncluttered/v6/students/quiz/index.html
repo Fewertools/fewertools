@@ -519,7 +519,7 @@
     }
 
     // Email
-    function submitEmail() {
+    async function submitEmail() {
       const email = document.getElementById('emailInput').value;
       if (!email || !email.includes('@')) { document.getElementById('emailInput').style.borderColor = '#EF4444'; return; }
       // Send to Beehiiv
@@ -532,12 +532,7 @@
             email,
             utm_source: 'fewertools',
             utm_medium: 'quiz',
-            utm_campaign: `student_quiz_${answers.subject || 'unknown'}_${answers.year || 'unknown'}`,
-            custom_fields: [
-              { name: 'subject', value: answers.subject || '' },
-              { name: 'year', value: answers.year || '' },
-              { name: 'struggle', value: answers.struggle || '' }
-            ]
+            utm_campaign: `student_quiz_${answers.subject || 'unknown'}_${answers.year || 'unknown'}`
           })
         });
       } catch(e) {}
