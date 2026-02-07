@@ -565,9 +565,52 @@
     .section-header h2 { margin-bottom: var(--space-md); }
     .section-header p { font-size: 18px; color: var(--text-secondary); max-width: 500px; margin: 0 auto; }
     
-    .stages-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
-    @media (max-width: 900px) { .stages-grid { grid-template-columns: repeat(2, 1fr); } }
+    .stages-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-lg); }
+    @media (max-width: 1100px) { .stages-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px) { .stages-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 500px) { .stages-grid { grid-template-columns: 1fr; } }
+    
+    /* Student callout banner */
+    .student-callout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      padding: var(--space-md) var(--space-lg);
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(13, 148, 136, 0.08) 100%);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      border-radius: var(--radius-lg);
+      margin-top: var(--space-xl);
+      transition: all 0.3s var(--ease-out);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .student-callout:hover {
+      border-color: rgba(139, 92, 246, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(139, 92, 246, 0.1);
+    }
+    .student-callout-text {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .student-callout-text strong {
+      color: var(--text);
+    }
+    .student-callout-arrow {
+      font-size: 14px;
+      font-weight: 600;
+      color: #8B5CF6;
+      transition: transform 0.2s ease;
+    }
+    .student-callout:hover .student-callout-arrow {
+      transform: translateX(4px);
+    }
+    @media (max-width: 600px) {
+      .student-callout { padding: var(--space-sm) var(--space-md); }
+      .student-callout-text { font-size: 14px; }
+    }
     
     .stage-card { padding: var(--space-xl); text-align: center; cursor: pointer; }
     .stage-icon { width: 64px; height: 64px; background: var(--accent-subtle); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto var(--space-md); transition: all var(--duration-fast) ease; }
@@ -1478,7 +1521,17 @@
           <p>Too much clutter. Time to cut and refocus.</p>
           <span class="stage-card-link">View stack →</span>
         </a>
+        <a href="./students/" class="stage-card card reveal reveal-delay-3">
+          <div class="stage-icon">🎓</div>
+          <h4>Students</h4>
+          <p>Free tools, student perks, and no-budget stacks that actually work.</p>
+          <span class="stage-card-link">View stack →</span>
+        </a>
       </div>
+      <a href="./students/" class="student-callout reveal">
+        <span class="student-callout-text">🎓 <strong>Student?</strong> We built a free stack just for you — no credit card, no fluff.</span>
+        <span class="student-callout-arrow">→</span>
+      </a>
     </div>
   </section>
 
