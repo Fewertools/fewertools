@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workflows — How tools work together | Fewer Tools</title>
+  <meta name="description" content="Stop collecting tools. Start connecting them. Real workflows for solo builders — from idea to shipped product.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fewertools.com/workflows/">
+  <meta property="og:title" content="Workflows — How tools work together | Fewer Tools">
+  <meta property="og:description" content="Real workflows for solo builders — from idea to shipped product.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12);
+      --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 600px) { .container { padding: 0 24px; } }
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: all 0.2s ease; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; overflow: hidden; transition: all 0.3s ease; }
+    .logo-text { font-family: 'Outfit', -apple-system, sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; }
+    .logo-mark .icon-line { width: 12px; height: 2.5px; background: var(--accent); border-radius: 2px; animation: iconGlow 2.5s ease-in-out infinite; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); }
+    @keyframes iconGlow { 0%, 100% { transform: scaleX(1); opacity: 1; } 50% { transform: scaleX(0.6); opacity: 0.8; } }
+    nav { display: flex; align-items: center; gap: 32px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    nav a:hover, nav a.active { color: var(--text); }
+    .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; }
+    .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--text); transition: all 0.3s ease; }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-card); flex-direction: column; align-items: flex-start; padding: 100px 32px 32px; gap: 0; box-shadow: -4px 0 24px rgba(0,0,0,0.1); transition: right 0.3s var(--ease-out); }
+      nav.open { right: 0; }
+      nav a { padding: 16px 0; width: 100%; border-bottom: 1px solid var(--border); font-size: 16px; }
+      nav .nav-cta { margin-top: 16px; width: 100%; text-align: center; border-bottom: none; }
+    }
+
+    .page-hero { padding: 140px 0 40px; text-align: center; }
+    .page-hero h1 { font-size: clamp(36px, 8vw, 56px); margin-bottom: 16px; }
+    .page-hero p { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.6; }
+    @media (max-width: 600px) { .page-hero { padding: 120px 0 32px; } .page-hero p { font-size: 16px; } }
+
+    .workflows-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; padding-bottom: 100px; }
+    @media (max-width: 600px) { .workflows-grid { grid-template-columns: 1fr; gap: 16px; padding-bottom: 60px; } }
+
+    .workflow-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 32px; transition: all 0.3s var(--ease-out); display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.02), 0 8px 16px rgba(0,0,0,0.02); }
+    .workflow-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 4px 8px rgba(13,148,136,0.04), 0 12px 24px rgba(13,148,136,0.06), 0 24px 48px rgba(13,148,136,0.08); }
+    @media (max-width: 600px) { .workflow-card { padding: 24px; } .workflow-card:hover { transform: none; } }
+    .workflow-emoji { font-size: 40px; margin-bottom: 16px; }
+    .workflow-card h3 { font-size: 22px; margin-bottom: 8px; }
+    .workflow-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; flex: 1; margin-bottom: 20px; }
+    .workflow-tools { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .workflow-tool-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: var(--bg-alt); border-radius: 100px; font-size: 12px; font-weight: 500; color: var(--text-secondary); }
+    .workflow-tool-pill img { width: 14px; height: 14px; object-fit: contain; }
+    .workflow-arrow { color: var(--accent); font-weight: 600; font-size: 14px; }
+    .workflow-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--accent); transition: gap 0.2s ease; }
+    .workflow-link:hover { gap: 10px; }
+
+    footer { padding: 64px 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--text); }
+    @media (max-width: 600px) { footer { padding: 40px 0; } .footer-content { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../" class="logo"><div class="logo-mark"><div class="icon-line"></div></div><span class="logo-text">fewertools</span></a>
+      <nav id="nav">
+        <a href="../stages/">Stages</a>
+        <a href="../stacks/">Stacks</a>
+        <a href="../tools/">Tools</a>
+        <a href="./" class="active">Workflows</a>
+        <a href="../compare/">Compare</a>
+        <a href="../gems/">Gems 💎</a>
+        <a href="../products/">Products</a>
+        <a href="../philosophy/">Philosophy</a>
+        <a href="../stages/" class="nav-cta">Find your stack</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="reveal">Workflows</h1>
+      <p class="reveal">Tools don't work alone — they work together. These are the exact workflows we use and recommend. Not individual tools, but complete systems.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="workflows-grid">
+
+        <a href="./idea-to-mvp.html" class="workflow-card reveal">
+          <div class="workflow-emoji">🚀</div>
+          <h3>From Idea to MVP in a Weekend</h3>
+          <p>Go from napkin sketch to deployed product in 48 hours. The exact sequence of tools that makes weekend MVPs actually possible.</p>
+          <div class="workflow-tools">
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/anthropic/191919" alt="">Claude</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/vercel/000000" alt="">v0</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/cursor/000000" alt="">Cursor</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="">Supabase</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/vercel/000000" alt="">Vercel</span>
+          </div>
+          <span class="workflow-link">Read the playbook →</span>
+        </a>
+
+        <a href="./customer-feedback-loop.html" class="workflow-card reveal reveal-delay-1">
+          <div class="workflow-emoji">🔄</div>
+          <h3>Customer Feedback Loop</h3>
+          <p>From "this is broken" to "it's fixed" in one seamless flow. No more feedback falling through the cracks.</p>
+          <div class="workflow-tools">
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/intercom/6AFDEF" alt="">Intercom</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/linear/5E6AD2" alt="">Linear</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/github/181717" alt="">GitHub</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/vercel/000000" alt="">Vercel</span>
+          </div>
+          <span class="workflow-link">Read the playbook →</span>
+        </a>
+
+        <a href="./content-machine.html" class="workflow-card reveal reveal-delay-2">
+          <div class="workflow-emoji">📝</div>
+          <h3>Solo Content Machine</h3>
+          <p>How one person runs content across 4+ platforms without burning out. Batch, repurpose, distribute.</p>
+          <div class="workflow-tools">
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/anthropic/191919" alt="">Claude</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/twitter/000000" alt="">Typefully</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/buffer/231F20" alt="">Buffer</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/canva/00C4CC" alt="">Canva</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/beekeeper/000000" alt="">Beehiiv</span>
+          </div>
+          <span class="workflow-link">Read the playbook →</span>
+        </a>
+
+        <a href="./launch-day.html" class="workflow-card reveal">
+          <div class="workflow-emoji">🎯</div>
+          <h3>Launch Day Playbook</h3>
+          <p>The exact checklist and tool sequence for a successful launch. From Product Hunt to Twitter to email — timed and ordered.</p>
+          <div class="workflow-tools">
+            <span class="workflow-tool-pill">Product Hunt</span>
+            <span class="workflow-arrow">+</span>
+            <span class="workflow-tool-pill">Twitter/X</span>
+            <span class="workflow-arrow">+</span>
+            <span class="workflow-tool-pill">Reddit</span>
+            <span class="workflow-arrow">+</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/minutemailer/4353FF" alt="">Loops</span>
+          </div>
+          <span class="workflow-link">Read the playbook →</span>
+        </a>
+
+        <a href="./analytics-setup.html" class="workflow-card reveal reveal-delay-1">
+          <div class="workflow-emoji">📊</div>
+          <h3>Analytics That Actually Help</h3>
+          <p>What to track, what to ignore, and how to set it up without drowning in dashboards. Signal over noise.</p>
+          <div class="workflow-tools">
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/posthog/1D4AFF" alt="">PostHog</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/metabase/509EE3" alt="">Metabase</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/sentry/362D59" alt="">Sentry</span>
+          </div>
+          <span class="workflow-link">Read the playbook →</span>
+        </a>
+
+        <a href="./ai-dev-workflow.html" class="workflow-card reveal reveal-delay-2">
+          <div class="workflow-emoji">🤖</div>
+          <h3>AI-Powered Development</h3>
+          <p>How to use Claude, Cursor, v0, and Bolt together without chaos. The right tool at the right stage of coding.</p>
+          <div class="workflow-tools">
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/anthropic/191919" alt="">Claude</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/cursor/000000" alt="">Cursor</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/vercel/000000" alt="">v0</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/lightning/000000" alt="">Bolt</span>
+            <span class="workflow-arrow">→</span>
+            <span class="workflow-tool-pill"><img src="https://cdn.simpleicons.org/githubcopilot/000000" alt="">Copilot</span>
+          </div>
+          <span class="workflow-link">Read the playbook →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2026 Fewer Tools. Tools work better together.</p>
+        <div class="footer-links">
+          <a href="../">Home</a>
+          <a href="../tools/">Tools</a>
+          <a href="../compare/">Compare</a>
+          <a href="../gems/">Gems</a>
+          <a href="../philosophy/">Philosophy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+    window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('active'); nav.classList.toggle('open'); });
+    nav.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { menuToggle.classList.remove('active'); nav.classList.remove('open'); }); });
+  </script>
+<script src="/_vercel/insights/script.js" defer></script>
+<script src="/_vercel/speed-insights/script.js" defer></script>
+</body>
+</html>

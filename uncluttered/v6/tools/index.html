@@ -1,411 +1,540 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tools — Fewer Tools</title>
-  <meta name="description" content="Every tool we recommend, organized by category. One pick per job.">
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://fewertools.com/tools/">
-  <meta property="og:title" content="Tools — Fewer Tools">
-  <meta property="og:description" content="Every tool we recommend, organized by category.">
-  <meta property="og:image" content="https://fewertools.com/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
-      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
-      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
-      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12);
-      --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
-      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
-      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
-    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
-    a { color: inherit; text-decoration: none; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-    @media (max-width: 600px) { .container { padding: 0 24px; } }
-    
-    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s var(--ease-out); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; }
-    header.scrolled { border-bottom-color: var(--border); }
-    header .container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { display: flex; align-items: center; gap: 10px; }
-    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: all 0.3s ease; }
-    .logo-text { font-family: "Outfit", -apple-system, sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; color: var(--text); } .logo-mark .icon-line { width: 12px; height: 2.5px; background: var(--accent); border-radius: 2px; animation: iconGlow 2.5s ease-in-out infinite; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); } @keyframes iconGlow { 0%, 100% { transform: scaleX(1); opacity: 1; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); } 50% { transform: scaleX(0.6); opacity: 0.8; box-shadow: 0 0 12px rgba(13, 148, 136, 0.8); } }
-    nav { display: flex; align-items: center; gap: 40px; }
-    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
-    nav a:hover { color: var(--text); }
-    .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
-    
-    /* Mobile Menu */
-    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; }
-    .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--text); transition: all 0.3s ease; }
-    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .menu-toggle.active span:nth-child(2) { opacity: 0; }
-    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-    
-    @media (max-width: 768px) {
-      .menu-toggle { display: flex; }
-      nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-card); flex-direction: column; align-items: flex-start; padding: 100px 32px 32px; gap: 0; box-shadow: -4px 0 24px rgba(0,0,0,0.1); transition: right 0.3s var(--ease-out); }
-      nav.open { right: 0; }
-      nav a { padding: 16px 0; width: 100%; border-bottom: 1px solid var(--border); font-size: 16px; }
-      nav .nav-cta { margin-top: 16px; width: 100%; text-align: center; border-bottom: none; }
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tools Directory — Fewer Tools</title>
+<meta name="description" content="170+ tools reviewed with real opinions. Search, filter, and find the right tool for every job.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAFAF8;--bg-alt:#F3F3F0;--bg-dark:#0a0a0a;--bg-card:#FFFFFF;
+  --text:#1a1a1a;--text-secondary:#555;--text-muted:#888;
+  --accent:#0D9488;--accent-hover:#0F766E;--accent-subtle:rgba(13,148,136,0.1);
+  --border:rgba(0,0,0,0.08);
+  --radius-sm:8px;--radius-md:12px;--radius-lg:20px;
+}
+body{font-family:"Inter",-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-    .page-hero { padding: 140px 0 60px; text-align: center; }
-    .page-hero h1 { font-size: clamp(36px, 8vw, 56px); margin-bottom: 16px; }
-    .page-hero p { font-size: 18px; color: var(--text-secondary); max-width: 500px; margin: 0 auto; }
-    @media (max-width: 600px) { 
-      .page-hero { padding: 120px 0 40px; }
-      .page-hero p { font-size: 16px; }
-    }
+/* ─── Header ─── */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,250,248,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+header .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.logo-mark{width:32px;height:32px;background:var(--bg-dark);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center}
+.icon-line{width:12px;height:2.5px;background:var(--accent);border-radius:2px}
+.logo-text{font-family:"Outfit";font-weight:600;font-size:21px}
+nav{display:flex;align-items:center;gap:8px}
+nav a{text-decoration:none;color:var(--text-muted);font-size:14px;font-weight:500;padding:6px 12px;border-radius:var(--radius-sm);transition:all .2s}
+nav a:hover{color:var(--text);background:var(--bg-alt)}
+.nav-cta{background:var(--bg-dark)!important;color:#fff!important;padding:8px 18px!important;border-radius:99px!important;font-size:13px!important}
+.nav-cta:hover{opacity:.85}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;width:32px;height:24px;position:relative;z-index:1001}
+.menu-toggle span{display:block;width:100%;height:2px;background:var(--text);position:absolute;left:0;transition:all .3s}
+.menu-toggle span:nth-child(1){top:2px}
+.menu-toggle span:nth-child(2){top:11px}
+.menu-toggle span:nth-child(3){top:20px}
+.menu-toggle.active span:nth-child(1){top:11px;transform:rotate(45deg)}
+.menu-toggle.active span:nth-child(2){opacity:0}
+.menu-toggle.active span:nth-child(3){top:11px;transform:rotate(-45deg)}
 
-    .tools-section { padding-bottom: 100px; }
-    @media (max-width: 600px) { .tools-section { padding-bottom: 60px; } }
-    .category { margin-bottom: 64px; }
-    @media (max-width: 600px) { .category { margin-bottom: 48px; } }
-    .category-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
-    @media (max-width: 600px) { .category-header { margin-bottom: 16px; } }
-    .category-icon { width: 40px; height: 40px; background: var(--accent-subtle); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 20px; }
-    @media (max-width: 600px) { .category-icon { width: 36px; height: 36px; font-size: 18px; } }
-    .category h2 { font-size: 24px; }
-    @media (max-width: 600px) { .category h2 { font-size: 20px; } }
-    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-    @media (max-width: 600px) { .tools-grid { grid-template-columns: 1fr; gap: 12px; } }
-    
-    .tool-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; transition: all 0.3s var(--ease-out); display: flex; align-items: center; gap: 16px; }
-    .tool-item:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(13, 148, 136, 0.08); }
-    @media (max-width: 600px) { 
-      .tool-item { padding: 16px; gap: 12px; border-radius: var(--radius-md); }
-      .tool-item:hover { transform: none; }
-    }
-    .tool-logo { width: 44px; height: 44px; background: var(--bg); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; padding: 10px; flex-shrink: 0; }
-    .tool-logo img { width: 100%; height: 100%; object-fit: contain; }
-    @media (max-width: 600px) { .tool-logo { width: 40px; height: 40px; padding: 8px; } }
-    .tool-info { flex: 1; min-width: 0; }
-    .tool-name { font-weight: 600; font-size: 16px; margin-bottom: 2px; }
-    @media (max-width: 600px) { .tool-name { font-size: 15px; } }
-    .tool-desc { font-size: 13px; color: var(--text-muted); }
-    @media (max-width: 600px) { .tool-desc { font-size: 12px; } }
-    .tool-stage { display: inline-flex; padding: 3px 8px; background: var(--accent-subtle); color: var(--accent); border-radius: 100px; font-size: 11px; font-weight: 600; white-space: nowrap; }
-    @media (max-width: 600px) { .tool-stage { font-size: 10px; padding: 2px 6px; } }
+/* ─── Hero ─── */
+.hero{padding:120px 0 40px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent-subtle);color:var(--accent);padding:6px 16px;border-radius:99px;font-size:13px;font-weight:600;margin-bottom:20px}
+.hero h1{font-family:"Space Grotesk";font-size:clamp(36px,5vw,56px);font-weight:700;line-height:1.1;margin-bottom:16px;letter-spacing:-1.5px}
+.hero p{font-size:18px;color:var(--text-secondary);max-width:560px;margin:0 auto 36px}
+.tool-count{font-family:"Space Grotesk";font-size:14px;color:var(--text-muted);margin-top:12px}
+.tool-count strong{color:var(--accent);font-weight:700}
 
-    footer { padding: 64px 0; border-top: 1px solid var(--border); }
-    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
-    .footer-content p { font-size: 14px; color: var(--text-muted); }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 14px; color: var(--text-muted); }
-    .footer-links a:hover { color: var(--text); }
-  </style>
+/* ─── Search ─── */
+.search-section{max-width:640px;margin:0 auto 32px;position:relative}
+.search-wrap{position:relative}
+.search-icon{position:absolute;left:20px;top:50%;transform:translateY(-50%);color:var(--text-muted);pointer-events:none;width:20px;height:20px}
+#searchInput{width:100%;padding:16px 52px 16px 52px;border:2px solid var(--border);border-radius:var(--radius-md);font-size:16px;font-family:"Inter";background:var(--bg-card);color:var(--text);outline:none;transition:border-color .2s}
+#searchInput:focus{border-color:var(--accent)}
+#searchInput::placeholder{color:var(--text-muted)}
+.search-clear{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:var(--bg-alt);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;display:none;align-items:center;justify-content:center;font-size:14px;color:var(--text-muted);transition:all .2s}
+.search-clear:hover{background:var(--border);color:var(--text)}
+.search-clear.visible{display:flex}
+
+/* ─── Category Pills ─── */
+.category-filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:40px;padding:0 24px}
+.cat-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:99px;font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid var(--border);background:var(--bg-card);color:var(--text-secondary);transition:all .2s;white-space:nowrap;user-select:none}
+.cat-pill:hover{border-color:var(--accent);color:var(--accent)}
+.cat-pill.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cat-pill .cat-emoji{font-size:15px}
+.cat-pill .cat-count{font-size:11px;opacity:.7;font-weight:600}
+
+/* ─── Grid ─── */
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:80px}
+.no-results{grid-column:1/-1;text-align:center;padding:80px 20px;display:none}
+.no-results h3{font-family:"Space Grotesk";font-size:24px;margin-bottom:8px}
+.no-results p{color:var(--text-muted)}
+
+/* ─── Tool Card ─── */
+.tool-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:20px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:12px;transition:all .25s ease;position:relative}
+.tool-card:hover{border-color:rgba(13,148,136,0.3);box-shadow:0 4px 24px rgba(0,0,0,0.06);transform:translateY(-2px)}
+.tool-card-top{display:flex;align-items:center;gap:12px}
+.tool-logo{width:40px;height:40px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;background:var(--bg-alt)}
+.tool-logo img{width:24px;height:24px;object-fit:contain}
+.tool-logo-letter{width:40px;height:40px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-family:"Space Grotesk";font-weight:700;font-size:18px;color:#fff;flex-shrink:0}
+.tool-info{flex:1;min-width:0}
+.tool-name{font-family:"Space Grotesk";font-weight:600;font-size:16px;line-height:1.2;display:flex;align-items:center;gap:6px}
+.ext-icon{color:var(--text-muted);opacity:0;transition:opacity .2s}
+.tool-card:hover .ext-icon{opacity:1}
+.tool-desc{font-size:13.5px;color:var(--text-secondary);line-height:1.5}
+.tool-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600;letter-spacing:.3px}
+.badge-category{background:var(--bg-alt);color:var(--text-muted)}
+.badge-free{background:#ecfdf5;color:#059669}
+.badge-freemium{background:#eff6ff;color:#2563eb}
+.badge-paid{background:#fef3c7;color:#d97706}
+.badge-pick{background:var(--accent);color:#fff}
+
+/* ─── Reveal ─── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── Footer ─── */
+footer{border-top:1px solid var(--border);padding:40px 0;margin-top:40px}
+.footer-content{display:flex;justify-content:space-between;align-items:center}
+.footer-content p{font-size:14px;color:var(--text-muted)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:14px;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--text)}
+
+/* ─── Responsive ─── */
+@media(max-width:900px){.tools-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  nav{position:fixed;top:0;right:-100%;width:280px;height:100vh;background:var(--bg);flex-direction:column;padding:80px 24px 24px;gap:4px;transition:right .3s;box-shadow:-4px 0 20px rgba(0,0,0,0.1);align-items:stretch}
+  nav.open{right:0}
+  nav a{padding:12px 16px;font-size:16px;border-radius:var(--radius-sm)}
+  .nav-cta{text-align:center;margin-top:12px}
+  .menu-toggle{display:block}
+  .tools-grid{grid-template-columns:1fr}
+  .hero h1{font-size:32px}
+  .hero{padding:100px 0 32px}
+  .category-filters{padding:0;justify-content:flex-start}
+  .footer-content{flex-direction:column;gap:16px;text-align:center}
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <a href="../" class="logo"><div class="logo-mark"><div class="icon-line"></div></div><span class="logo-text">fewertools</span></a>
-      <nav id="nav">
-        <a href="../stages/">Stages</a>
-        <a href="../stacks/">Stacks</a>
-        <a href="./">Tools</a>
-        <a href="../products/">Products</a>
-        <a href="../philosophy/">Philosophy</a>
-        <a href="../stages/" class="nav-cta">Find your stack</a>
-      </nav>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+
+<header>
+  <div class="container">
+    <a href="../" class="logo"><div class="logo-mark"><div class="icon-line"></div></div><span class="logo-text">fewertools</span></a>
+    <nav id="nav">
+      <a href="../stacks/">Stacks</a>
+      <a href="./" style="color: var(--text)">Tools</a>
+      <a href="../workflows/">Workflows</a>
+      <a href="../compare/">Compare</a>
+      <a href="../gems/">Hidden Gems 💎</a>
+      <a href="../philosophy/">Philosophy</a>
+      <a href="../stages/" class="nav-cta">Find your stack</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge reveal">📂 The Directory</div>
+    <h1 class="reveal">Every tool,<br>one honest opinion.</h1>
+    <p class="reveal">No affiliate links. No sponsored placements. Just real takes on 170+ tools — so you can stop researching and start building.</p>
+    <div class="tool-count reveal">Showing <strong id="visibleCount">0</strong> tools</div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="search-section reveal">
+    <div class="search-wrap">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search tools, categories, or descriptions..." autocomplete="off">
+      <button class="search-clear" id="searchClear" aria-label="Clear search">&#x2715;</button>
     </div>
-  </header>
+  </div>
 
-  <section class="page-hero">
-    <div class="container">
-      <h1 class="reveal">All Tools</h1>
-      <p class="reveal">Every tool we recommend. One pick per job. Click to see which stack.</p>
-    </div>
-  </section>
+  <div class="category-filters reveal" id="categoryFilters"></div>
 
-  <section class="tools-section">
-    <div class="container">
-      
-      <div class="category reveal">
-        <div class="category-header">
-          <div class="category-icon">🧠</div>
-          <h2>AI & Productivity</h2>
-        </div>
-        <div class="tools-grid">
-          <a href="../stacks/building.html#tool-cursor" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/cursor/000000" alt="Cursor"></div>
-            <div class="tool-info">
-              <div class="tool-name">Cursor</div>
-              <div class="tool-desc">AI-powered coding</div>
-            </div>
-            <span class="tool-stage">Building</span>
-          </a>
-          <a href="../stacks/starting.html#tool-claude" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/anthropic/191919" alt="Claude"></div>
-            <div class="tool-info">
-              <div class="tool-name">Claude</div>
-              <div class="tool-desc">AI thinking partner</div>
-            </div>
-            <span class="tool-stage">Starting</span>
-          </a>
-          <a href="../stacks/starting.html#tool-perplexity" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/perplexity/1FB8CD" alt="Perplexity"></div>
-            <div class="tool-info">
-              <div class="tool-name">Perplexity</div>
-              <div class="tool-desc">AI research</div>
-            </div>
-            <span class="tool-stage">Starting</span>
-          </a>
-          <a href="../stacks/starting.html#tool-v0" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/vercel/000000" alt="v0"></div>
-            <div class="tool-info">
-              <div class="tool-name">v0</div>
-              <div class="tool-desc">AI UI generation</div>
-            </div>
-            <span class="tool-stage">Starting</span>
-          </a>
-          <a href="../stacks/starting.html#tool-midjourney" class="tool-item">
-            <div class="tool-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Midjourney_Emblem.png" alt="Midjourney"></div>
-            <div class="tool-info">
-              <div class="tool-name">Midjourney</div>
-              <div class="tool-desc">AI image generation</div>
-            </div>
-            <span class="tool-stage">Starting</span>
-          </a>
-        </div>
-      </div>
+  <div class="tools-grid" id="toolsGrid">
+    <div class="no-results" id="noResults"><h3>No tools found</h3><p>Try a different search term or category.</p></div>
+  </div>
+</div>
 
-      <div class="category reveal">
-        <div class="category-header">
-          <div class="category-icon">🔧</div>
-          <h2>Development</h2>
-        </div>
-        <div class="tools-grid">
-          <a href="../stacks/building.html#tool-nextjs" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/nextdotjs/000000" alt="Next.js"></div>
-            <div class="tool-info">
-              <div class="tool-name">Next.js</div>
-              <div class="tool-desc">React framework</div>
-            </div>
-            <span class="tool-stage">Building</span>
-          </a>
-          <a href="../stacks/building.html#tool-supabase" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/supabase/3FCF8E" alt="Supabase"></div>
-            <div class="tool-info">
-              <div class="tool-name">Supabase</div>
-              <div class="tool-desc">Backend & database</div>
-            </div>
-            <span class="tool-stage">Building</span>
-          </a>
-          <a href="../stacks/building.html#tool-vercel" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel"></div>
-            <div class="tool-info">
-              <div class="tool-name">Vercel</div>
-              <div class="tool-desc">Hosting & deploy</div>
-            </div>
-            <span class="tool-stage">Building</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="category reveal">
-        <div class="category-header">
-          <div class="category-icon">🎨</div>
-          <h2>Design & Planning</h2>
-        </div>
-        <div class="tools-grid">
-          <a href="../stacks/starting.html#tool-figma" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma"></div>
-            <div class="tool-info">
-              <div class="tool-name">Figma</div>
-              <div class="tool-desc">Design & prototype</div>
-            </div>
-            <span class="tool-stage">Starting</span>
-          </a>
-          <a href="../stacks/starting.html#tool-notion" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/notion/000000" alt="Notion"></div>
-            <div class="tool-info">
-              <div class="tool-name">Notion</div>
-              <div class="tool-desc">Docs & planning</div>
-            </div>
-            <span class="tool-stage">Starting</span>
-          </a>
-          <a href="../stacks/simplifying.html" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/linear/5E6AD2" alt="Linear"></div>
-            <div class="tool-info">
-              <div class="tool-name">Linear</div>
-              <div class="tool-desc">Issue tracking</div>
-            </div>
-            <span class="tool-stage">Simplifying</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="category reveal">
-        <div class="category-header">
-          <div class="category-icon">💰</div>
-          <h2>Payments & Email</h2>
-        </div>
-        <div class="tools-grid">
-          <a href="../stacks/building.html#tool-stripe" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/stripe/635BFF" alt="Stripe"></div>
-            <div class="tool-info">
-              <div class="tool-name">Stripe</div>
-              <div class="tool-desc">Payments</div>
-            </div>
-            <span class="tool-stage">Building</span>
-          </a>
-          <a href="../stacks/building.html#tool-resend" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/resend/000000" alt="Resend"></div>
-            <div class="tool-info">
-              <div class="tool-name">Resend</div>
-              <div class="tool-desc">Transactional email</div>
-            </div>
-            <span class="tool-stage">Building</span>
-          </a>
-          <a href="../stacks/growing.html#tool-loops" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/minutemailer/4353FF" alt="Loops"></div>
-            <div class="tool-info">
-              <div class="tool-name">Loops</div>
-              <div class="tool-desc">Email marketing</div>
-            </div>
-            <span class="tool-stage">Growing</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="category reveal">
-        <div class="category-header">
-          <div class="category-icon">📈</div>
-          <h2>Analytics & Monitoring</h2>
-        </div>
-        <div class="tools-grid">
-          <a href="../stacks/growing.html#tool-posthog" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/posthog/1D4AFF" alt="PostHog"></div>
-            <div class="tool-info">
-              <div class="tool-name">PostHog</div>
-              <div class="tool-desc">Product analytics</div>
-            </div>
-            <span class="tool-stage">Growing</span>
-          </a>
-          <a href="../stacks/growing.html#tool-sentry" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/sentry/362D59" alt="Sentry"></div>
-            <div class="tool-info">
-              <div class="tool-name">Sentry</div>
-              <div class="tool-desc">Error tracking</div>
-            </div>
-            <span class="tool-stage">Growing</span>
-          </a>
-          <a href="../stacks/growing.html#tool-metabase" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/metabase/509EE3" alt="Metabase"></div>
-            <div class="tool-info">
-              <div class="tool-name">Metabase</div>
-              <div class="tool-desc">Dashboards & BI</div>
-            </div>
-            <span class="tool-stage">Growing</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="category reveal">
-        <div class="category-header">
-          <div class="category-icon">💬</div>
-          <h2>Communication & Support</h2>
-        </div>
-        <div class="tools-grid">
-          <a href="../stacks/growing.html#tool-intercom" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/intercom/6AFDEF" alt="Intercom"></div>
-            <div class="tool-info">
-              <div class="tool-name">Intercom</div>
-              <div class="tool-desc">Customer support</div>
-            </div>
-            <span class="tool-stage">Growing</span>
-          </a>
-          <a href="../stacks/simplifying.html" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/slack/4A154B" alt="Slack"></div>
-            <div class="tool-info">
-              <div class="tool-name">Slack</div>
-              <div class="tool-desc">Team chat</div>
-            </div>
-            <span class="tool-stage">Simplifying</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="category reveal">
-        <div class="category-header">
-          <div class="category-icon">⚡</div>
-          <h2>Automation & Security</h2>
-        </div>
-        <div class="tools-grid">
-          <a href="../stacks/simplifying.html" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/zapier/FF4A00" alt="Zapier"></div>
-            <div class="tool-info">
-              <div class="tool-name">Zapier</div>
-              <div class="tool-desc">Automation</div>
-            </div>
-            <span class="tool-stage">Simplifying</span>
-          </a>
-          <a href="../stacks/simplifying.html" class="tool-item">
-            <div class="tool-logo"><img src="https://cdn.simpleicons.org/1password/0094F5" alt="1Password"></div>
-            <div class="tool-info">
-              <div class="tool-name">1Password</div>
-              <div class="tool-desc">Password management</div>
-            </div>
-            <span class="tool-stage">Simplifying</span>
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <p>© 2026 Fewer Tools. Every tool earns its place.</p>
-        <div class="footer-links">
-          <a href="../">Home</a>
-          <a href="../stacks/">Stacks</a>
-          <a href="../philosophy/">Philosophy</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-    window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
-    
-    // Mobile menu
-    const menuToggle = document.getElementById('menuToggle');
-    const nav = document.getElementById('nav');
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('active');
-      nav.classList.toggle('open');
-    });
-    nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        nav.classList.remove('open');
-      });
-    });
-  </script>
+<footer><div class="container"><div class="footer-content"><p>&copy; 2026 Fewer Tools. Every tool earns its place.</p><div class="footer-links"><a href="../">Home</a><a href="../stacks/">Stacks</a><a href="../philosophy/">Philosophy</a></div></div></div></footer>
 <script src="/_vercel/insights/script.js" defer></script>
 <script src="/_vercel/speed-insights/script.js" defer></script>
+
+<script>
+(function(){
+// Mobile menu
+var menuToggle = document.getElementById('menuToggle');
+var nav = document.getElementById('nav');
+menuToggle.addEventListener('click', function(){
+  menuToggle.classList.toggle('active');
+  nav.classList.toggle('open');
+});
+
+// Reveal observer
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e,i){
+    if(e.isIntersecting){
+      setTimeout(function(){ e.target.classList.add('visible'); }, i*60);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+
+// ─── Categories ───
+var categories = [
+  {id:'ai-assistants',name:'AI Assistants',emoji:'\u{1F9E0}',color:'#8b5cf6'},
+  {id:'ai-writing',name:'AI Writing',emoji:'\u270D\uFE0F',color:'#ec4899'},
+  {id:'ai-image',name:'AI Image & Design',emoji:'\u{1F3A8}',color:'#f59e0b'},
+  {id:'ai-video',name:'AI Video',emoji:'\u{1F3AC}',color:'#ef4444'},
+  {id:'ai-audio',name:'AI Audio & Voice',emoji:'\u{1F50A}',color:'#6366f1'},
+  {id:'ai-coding',name:'AI Coding',emoji:'\u{1F4BB}',color:'#10b981'},
+  {id:'frameworks',name:'Frameworks',emoji:'\u{1F6E0}\uFE0F',color:'#3b82f6'},
+  {id:'hosting',name:'Hosting & Deploy',emoji:'\u2601\uFE0F',color:'#06b6d4'},
+  {id:'databases',name:'Databases',emoji:'\u{1F5C4}\uFE0F',color:'#8b5cf6'},
+  {id:'auth',name:'Auth & Security',emoji:'\u{1F510}',color:'#ef4444'},
+  {id:'payments',name:'Payments',emoji:'\u{1F4B0}',color:'#f59e0b'},
+  {id:'email',name:'Email',emoji:'\u{1F4E7}',color:'#ec4899'},
+  {id:'analytics',name:'Analytics',emoji:'\u{1F4CA}',color:'#3b82f6'},
+  {id:'support',name:'Support & Chat',emoji:'\u{1F4AC}',color:'#06b6d4'},
+  {id:'docs',name:'Docs & Planning',emoji:'\u{1F4DD}',color:'#10b981'},
+  {id:'marketing',name:'Marketing & Social',emoji:'\u{1F3AF}',color:'#f97316'},
+  {id:'automation',name:'Automation',emoji:'\u{1F916}',color:'#8b5cf6'},
+  {id:'nocode',name:'No-Code & Builders',emoji:'\u{1F4F1}',color:'#ec4899'},
+  {id:'meetings',name:'Meetings & Collab',emoji:'\u{1F4F9}',color:'#6366f1'},
+  {id:'seo',name:'SEO & Content',emoji:'\u{1F50D}',color:'#f59e0b'},
+  {id:'ecommerce',name:'Ecommerce',emoji:'\u{1F4E6}',color:'#ef4444'},
+  {id:'testing',name:'Testing & Monitoring',emoji:'\u{1F9EA}',color:'#10b981'},
+  {id:'crm',name:'CRM & Sales',emoji:'\u{1F4BC}',color:'#3b82f6'}
+];
+
+// ─── Tools Data (172 tools) ───
+var tools = [
+  // AI Assistants (6)
+  {n:'Claude',c:'ai-assistants',i:'anthropic',ic:'181818',d:'The one that actually thinks before it speaks. Best for nuanced reasoning and long-form work.',p:'Free',pk:true,u:'https://claude.ai'},
+  {n:'ChatGPT',c:'ai-assistants',i:'openai',ic:'412991',d:'The OG. Still the default for most people — huge plugin ecosystem, good enough at everything.',p:'Freemium',pk:false,u:'https://chat.openai.com'},
+  {n:'Gemini',c:'ai-assistants',i:'google',ic:'4285F4',d:"Google's contender. Shines when you need it plugged into Google's ecosystem.",p:'Free',pk:false,u:'https://gemini.google.com'},
+  {n:'Perplexity',c:'ai-assistants',i:'perplexity',ic:'20808D',d:'Google search is cooked. This is what search should feel like — answers with receipts.',p:'Freemium',pk:true,u:'https://perplexity.ai'},
+  {n:'Poe',c:'ai-assistants',i:null,ic:'6C5CE7',d:'Access every model from one place. Good for comparison shopping across LLMs.',p:'Freemium',pk:false,u:'https://poe.com'},
+  {n:'Pi',c:'ai-assistants',i:null,ic:'FF6F00',d:'The conversational one. Feels more like talking to a friend than prompting a machine.',p:'Free',pk:false,u:'https://pi.ai'},
+
+  // AI Writing (10)
+  {n:'Jasper',c:'ai-writing',i:'jasper',ic:'FF4438',d:'Enterprise AI writing that marketing teams swear by. Expensive, but it ships content fast.',p:'Paid',pk:false,u:'https://jasper.ai'},
+  {n:'Copy.ai',c:'ai-writing',i:null,ic:'2563EB',d:'Quick marketing copy generator. Templates galore. Not deep, but gets drafts out the door.',p:'Freemium',pk:false,u:'https://copy.ai'},
+  {n:'Writesonic',c:'ai-writing',i:null,ic:'6C5CE7',d:'AI writing for SEO-focused content. Decent blog post generator if you feed it well.',p:'Freemium',pk:false,u:'https://writesonic.com'},
+  {n:'Lex',c:'ai-writing',i:null,ic:'1a1a1a',d:'Writing tool for thinkers, not marketers. Clean interface, subtle AI. Google Docs meets the future.',p:'Free',pk:false,u:'https://lex.page'},
+  {n:'Rytr',c:'ai-writing',i:null,ic:'6C5CE7',d:'Budget-friendly AI writer. Not the sharpest, but gets basic copy done without breaking the bank.',p:'Freemium',pk:false,u:'https://rytr.me'},
+  {n:'Sudowrite',c:'ai-writing',i:null,ic:'FF6B6B',d:'Built specifically for fiction writers. Story engine that actually understands narrative arcs.',p:'Paid',pk:false,u:'https://sudowrite.com'},
+  {n:'Moonbeam',c:'ai-writing',i:null,ic:'6366F1',d:"Long-form AI writing that doesn't suck. Great for essays and blog posts with structure.",p:'Paid',pk:false,u:'https://gomoonbeam.com'},
+  {n:'Grammarly',c:'ai-writing',i:'grammarly',ic:'15C39A',d:'You already know what this does. Grammar, tone, clarity — the spell-check that grew up.',p:'Freemium',pk:false,u:'https://grammarly.com'},
+  {n:'Hemingway',c:'ai-writing',i:null,ic:'FFD700',d:'Makes your writing bold and clear. Highlights the fluff so you can kill it. Free and sharp.',p:'Free',pk:false,u:'https://hemingwayapp.com'},
+  {n:'Wordtune',c:'ai-writing',i:null,ic:'6C63FF',d:'Rewrites sentences to sound better. Like having an editor on speed dial for every paragraph.',p:'Freemium',pk:false,u:'https://wordtune.com'},
+
+  // AI Image & Design (9)
+  {n:'Midjourney',c:'ai-image',i:null,ic:'000000',d:'Still the king of aesthetic. Renders that make people ask "is that real?" Every single time.',p:'Paid',pk:true,u:'https://midjourney.com'},
+  {n:'DALL-E 3',c:'ai-image',i:'openai',ic:'412991',d:'Best text-in-image generation. Follows prompts more literally than Midjourney. Built into ChatGPT.',p:'Paid',pk:false,u:'https://openai.com/dall-e-3'},
+  {n:'Ideogram',c:'ai-image',i:null,ic:'FF6B6B',d:'The typography king. Actually renders text in images correctly. Wild that this works.',p:'Freemium',pk:false,u:'https://ideogram.ai'},
+  {n:'Leonardo AI',c:'ai-image',i:null,ic:'7C3AED',d:'Free tier that slaps. Fine-tune your own models. Game art and concept art powerhouse.',p:'Freemium',pk:false,u:'https://leonardo.ai'},
+  {n:'Flux',c:'ai-image',i:null,ic:'1a1a1a',d:'Open source image gen that caught everyone off guard. Free and absurdly capable.',p:'Free',pk:false,u:'https://flux1.ai'},
+  {n:'Recraft',c:'ai-image',i:null,ic:'FF4444',d:'Vector illustrations and icons on demand. The "I need a custom icon in 30 seconds" tool.',p:'Freemium',pk:false,u:'https://recraft.ai'},
+  {n:'Canva AI',c:'ai-image',i:'canva',ic:'00C4CC',d:'AI features bolted onto the design tool everyone already uses. Magic Eraser is legit.',p:'Freemium',pk:false,u:'https://canva.com'},
+  {n:'Krea',c:'ai-image',i:null,ic:'000000',d:'Real-time AI image generation. Sketch something rough, watch it become art instantly.',p:'Freemium',pk:false,u:'https://krea.ai'},
+  {n:'Playground',c:'ai-image',i:null,ic:'5046E5',d:'Free image gen with a nice UI. Good for iterating fast without burning through credits.',p:'Freemium',pk:false,u:'https://playground.com'},
+
+  // AI Video (8)
+  {n:'Runway',c:'ai-video',i:null,ic:'000000',d:'The OG AI video tool. Gen-3 is genuinely impressive. Hollywood is getting nervous.',p:'Paid',pk:false,u:'https://runwayml.com'},
+  {n:'Pika',c:'ai-video',i:null,ic:'FF6B35',d:"Short-form AI video that's fun to play with. Great for quick clips and social content.",p:'Freemium',pk:false,u:'https://pika.art'},
+  {n:'HeyGen',c:'ai-video',i:null,ic:'5B4FFF',d:'AI avatars that look eerily human. Perfect for training videos without booking a film crew.',p:'Paid',pk:false,u:'https://heygen.com'},
+  {n:'Synthesia',c:'ai-video',i:null,ic:'2563EB',d:"Enterprise AI video. Your CEO's digital twin doing training videos. Slightly unsettling, very efficient.",p:'Paid',pk:false,u:'https://synthesia.io'},
+  {n:'Luma Dream Machine',c:'ai-video',i:null,ic:'7C3AED',d:'Text-to-video that surprised everyone. Free tier is generous. Physics getting better every week.',p:'Freemium',pk:false,u:'https://lumalabs.ai'},
+  {n:'Kling',c:'ai-video',i:null,ic:'FF4444',d:"China's answer to Runway. Surprisingly good motion and coherence. One to watch closely.",p:'Freemium',pk:false,u:'https://klingai.com'},
+  {n:'InVideo AI',c:'ai-video',i:null,ic:'3B82F6',d:'Describe a video, get a video. Best for explainers and YouTube content at scale.',p:'Freemium',pk:false,u:'https://invideo.io'},
+  {n:'Descript',c:'ai-video',i:'descript',ic:'00D084',d:'Edit video by editing text. Delete ums, clone your voice, fix eye contact. Actual sorcery.',p:'Freemium',pk:false,u:'https://descript.com'},
+
+  // AI Audio & Voice (8)
+  {n:'ElevenLabs',c:'ai-audio',i:null,ic:'000000',d:"Voice cloning so good it's scary. The undisputed king of AI text-to-speech. Eerily real.",p:'Freemium',pk:false,u:'https://elevenlabs.io'},
+  {n:'Descript Audio',c:'ai-audio',i:'descript',ic:'00D084',d:"Podcast editing for people who hate editing. Overdub fills in the words you forgot to say.",p:'Freemium',pk:false,u:'https://descript.com'},
+  {n:'Whisper',c:'ai-audio',i:'openai',ic:'412991',d:"OpenAI's transcription model. Free, open source, and embarrassingly more accurate than paid alternatives.",p:'Free',pk:false,u:'https://github.com/openai/whisper'},
+  {n:'Suno',c:'ai-audio',i:null,ic:'FF6B35',d:'Type a prompt, get a full song. Vocals, instruments, the works. Musicians are having feelings.',p:'Freemium',pk:false,u:'https://suno.com'},
+  {n:'Udio',c:'ai-audio',i:null,ic:'7C3AED',d:"Suno's rival. Some say better audio quality, especially for instrumentals and complex arrangements.",p:'Freemium',pk:false,u:'https://udio.com'},
+  {n:'Murf',c:'ai-audio',i:null,ic:'5B4FFF',d:'Professional voiceovers without booking talent. Solid for videos, presentations, and e-learning.',p:'Paid',pk:false,u:'https://murf.ai'},
+  {n:'Podcast.ai',c:'ai-audio',i:null,ic:'FF4444',d:'AI-generated podcast conversations. Weird and wonderful experiment in synthetic media.',p:'Free',pk:false,u:'https://podcast.ai'},
+  {n:'Adobe Podcast',c:'ai-audio',i:'adobe',ic:'FF0000',d:'Audio cleanup that makes your $20 mic sound like a studio. Enhance Speech is pure magic.',p:'Free',pk:false,u:'https://podcast.adobe.com'},
+
+  // AI Coding (10)
+  {n:'Cursor',c:'ai-coding',i:null,ic:'000000',d:'The AI editor that actually understands your codebase. Not just autocomplete — full context.',p:'Freemium',pk:true,u:'https://cursor.com'},
+  {n:'GitHub Copilot',c:'ai-coding',i:'githubcopilot',ic:'000000',d:'The autocomplete that started it all. Solid in VS Code. Good, but no longer the best.',p:'Paid',pk:false,u:'https://github.com/features/copilot'},
+  {n:'Bolt',c:'ai-coding',i:null,ic:'F7CE00',d:'Describe an app, get a running app. StackBlitz-powered full-stack generation in seconds flat.',p:'Freemium',pk:false,u:'https://bolt.new'},
+  {n:'Replit Agent',c:'ai-coding',i:'replit',ic:'F26207',d:'An AI that deploys. Describe what you want, it builds and ships it. Welcome to the future.',p:'Paid',pk:false,u:'https://replit.com'},
+  {n:'Windsurf',c:'ai-coding',i:null,ic:'3B82F6',d:"Codeium's IDE. Flows feel natural — AI that works with you, not just autocompleting for you.",p:'Freemium',pk:false,u:'https://codeium.com/windsurf'},
+  {n:'v0',c:'ai-coding',i:'vercel',ic:'000000',d:"Describe a UI, get production-ready React. Vercel's gift to frontend developers everywhere.",p:'Freemium',pk:true,u:'https://v0.dev'},
+  {n:'Tabnine',c:'ai-coding',i:null,ic:'6C63FF',d:'Privacy-focused code completion. Runs locally if you want. Enterprise teams love the control.',p:'Freemium',pk:false,u:'https://tabnine.com'},
+  {n:'Supermaven',c:'ai-coding',i:null,ic:'10B981',d:"Stupidly fast autocomplete. 300ms latency. Your fingers literally can't keep up with it.",p:'Free',pk:false,u:'https://supermaven.com'},
+  {n:'Devin',c:'ai-coding',i:null,ic:'7C3AED',d:"The first AI software engineer. Controversial, overhyped, but a glimpse of where we're heading.",p:'Paid',pk:false,u:'https://devin.ai'},
+  {n:'Lovable',c:'ai-coding',i:null,ic:'FF6B6B',d:'Full-stack app builder for non-engineers. Describe it, deploy it. Surprisingly capable output.',p:'Freemium',pk:false,u:'https://lovable.dev'},
+
+  // Frameworks (8)
+  {n:'Next.js',c:'frameworks',i:'nextdotjs',ic:'000000',d:'The React framework. Server components, app router, the whole kitchen sink. Industry standard now.',p:'Free',pk:true,u:'https://nextjs.org'},
+  {n:'Nuxt',c:'frameworks',i:'nuxtdotjs',ic:'00DC82',d:'Next.js but for Vue people. Equally powerful, arguably better DX. Nitro engine is underrated.',p:'Free',pk:false,u:'https://nuxt.com'},
+  {n:'SvelteKit',c:'frameworks',i:'svelte',ic:'FF3E00',d:'Less code, more speed. The framework that makes React feel bloated. Developer joy is real.',p:'Free',pk:false,u:'https://kit.svelte.dev'},
+  {n:'Remix',c:'frameworks',i:'remix',ic:'000000',d:"Web fundamentals done right. Forms, loaders, progressive enhancement. The adults' framework.",p:'Free',pk:false,u:'https://remix.run'},
+  {n:'Astro',c:'frameworks',i:'astro',ic:'FF5D01',d:'Ship zero JS by default. Perfect for content sites. Islands architecture is lowkey genius.',p:'Free',pk:false,u:'https://astro.build'},
+  {n:'Hono',c:'frameworks',i:'hono',ic:'FF6B35',d:'Ultrafast web framework for the edge. 14kb total. Runs everywhere. The new Express, basically.',p:'Free',pk:false,u:'https://hono.dev'},
+  {n:'Express',c:'frameworks',i:'express',ic:'000000',d:'The grandaddy of Node frameworks. Still works. Still fine. Just not exciting anymore.',p:'Free',pk:false,u:'https://expressjs.com'},
+  {n:'Fastify',c:'frameworks',i:'fastify',ic:'000000',d:'Express but faster with better DX. Schema validation built in. Criminally underrated.',p:'Free',pk:false,u:'https://fastify.dev'},
+
+  // Hosting & Deploy (8)
+  {n:'Vercel',c:'hosting',i:'vercel',ic:'000000',d:'Push to git, site is live. DX so smooth it ruined us for everything else. The gold standard.',p:'Freemium',pk:true,u:'https://vercel.com'},
+  {n:'Netlify',c:'hosting',i:'netlify',ic:'00C7B7',d:'The OG JAMstack host. Still great for static sites and serverless functions. Reliable.',p:'Freemium',pk:false,u:'https://netlify.com'},
+  {n:'Railway',c:'hosting',i:'railway',ic:'0B0D0E',d:"Deploy anything with zero config. Databases, apps, cron jobs. Heroku's cool successor.",p:'Freemium',pk:false,u:'https://railway.app'},
+  {n:'Render',c:'hosting',i:'render',ic:'46E3B7',d:"Simple cloud hosting that doesn't require a PhD in DevOps. Free tier is surprisingly solid.",p:'Freemium',pk:false,u:'https://render.com'},
+  {n:'Fly.io',c:'hosting',i:'flydotio',ic:'7B3BE2',d:'Run your app close to users worldwide. Edge deployment for when latency actually matters.',p:'Freemium',pk:false,u:'https://fly.io'},
+  {n:'Cloudflare Pages',c:'hosting',i:'cloudflare',ic:'F38020',d:"Free static hosting on the world's fastest network. Workers for server-side logic. Unbeatable.",p:'Freemium',pk:false,u:'https://pages.cloudflare.com'},
+  {n:'DigitalOcean',c:'hosting',i:'digitalocean',ic:'0080FF',d:'Cloud infrastructure for devs who want VMs without AWS complexity. Droplets still slap.',p:'Paid',pk:false,u:'https://digitalocean.com'},
+  {n:'AWS Amplify',c:'hosting',i:'awsamplify',ic:'FF9900',d:'AWS made approachable. Full-stack hosting with auth, storage, and APIs baked in.',p:'Freemium',pk:false,u:'https://aws.amazon.com/amplify'},
+
+  // Databases (9)
+  {n:'Supabase',c:'databases',i:'supabase',ic:'3FCF8E',d:'Postgres + auth + storage + realtime. Firebase for people who want to own their data.',p:'Freemium',pk:true,u:'https://supabase.com'},
+  {n:'PlanetScale',c:'databases',i:'planetscale',ic:'000000',d:'MySQL with git-like branching. Schema changes without downtime. Database DevOps, solved.',p:'Freemium',pk:false,u:'https://planetscale.com'},
+  {n:'Neon',c:'databases',i:'neon',ic:'00E699',d:'Serverless Postgres that scales to zero. Branch your database like code. Free tier is generous.',p:'Freemium',pk:false,u:'https://neon.tech'},
+  {n:'Turso',c:'databases',i:'turso',ic:'4FF8D2',d:'SQLite at the edge. Stupidly fast for read-heavy apps. Per-user databases are a game-changer.',p:'Freemium',pk:false,u:'https://turso.tech'},
+  {n:'Convex',c:'databases',i:null,ic:'EE342F',d:'Backend-as-a-database. Realtime, type-safe, serverless. Firebase rebuilt by TypeScript nerds.',p:'Freemium',pk:false,u:'https://convex.dev'},
+  {n:'MongoDB Atlas',c:'databases',i:'mongodb',ic:'47A248',d:"The document database in the cloud. Love it or hate it, it's everywhere. JSON all the way down.",p:'Freemium',pk:false,u:'https://mongodb.com/atlas'},
+  {n:'Upstash',c:'databases',i:'upstash',ic:'00E9A3',d:'Serverless Redis and Kafka. Pay per request. Perfect for rate limiting, caching, and queues.',p:'Freemium',pk:false,u:'https://upstash.com'},
+  {n:'CockroachDB',c:'databases',i:'cockroachlabs',ic:'6933FF',d:'Distributed SQL that survives anything. For when your data absolutely, positively cannot go down.',p:'Freemium',pk:false,u:'https://cockroachlabs.com'},
+  {n:'Xata',c:'databases',i:null,ic:'7C3AED',d:'Postgres with a spreadsheet UI, full-text search, and branching built in. Very dev-friendly.',p:'Freemium',pk:false,u:'https://xata.io'},
+
+  // Auth & Security (7)
+  {n:'Clerk',c:'auth',i:'clerk',ic:'6C47FF',d:'Drop-in auth with beautiful components. User management UI that actually looks good out of the box.',p:'Freemium',pk:false,u:'https://clerk.com'},
+  {n:'Supabase Auth',c:'auth',i:'supabase',ic:'3FCF8E',d:"Free auth that comes with Supabase. Social logins, magic links, RLS. No-brainer if you're there.",p:'Free',pk:false,u:'https://supabase.com/auth'},
+  {n:'NextAuth',c:'auth',i:'nextdotjs',ic:'000000',d:"Auth for Next.js that's free and flexible. Now Auth.js — works with any framework too.",p:'Free',pk:false,u:'https://authjs.dev'},
+  {n:'Auth0',c:'auth',i:'auth0',ic:'EB5424',d:'Enterprise auth that handles every edge case. Overkill for side projects, essential for serious apps.',p:'Freemium',pk:false,u:'https://auth0.com'},
+  {n:'1Password',c:'auth',i:'1password',ic:'0094F5',d:'The password manager your team actually uses. Developer secrets, SSH keys, everything locked down.',p:'Paid',pk:true,u:'https://1password.com'},
+  {n:'Bitwarden',c:'auth',i:'bitwarden',ic:'175DDC',d:"Open source password management. Self-host it if you're that person. Solid and truly free.",p:'Freemium',pk:false,u:'https://bitwarden.com'},
+  {n:'Lucia',c:'auth',i:null,ic:'5F57FF',d:"Auth library that doesn't try to own your users. Minimal, flexible, fully open source.",p:'Free',pk:false,u:'https://lucia-auth.com'},
+
+  // Payments (6)
+  {n:'Stripe',c:'payments',i:'stripe',ic:'635BFF',d:"The payments API. Every serious business uses it. Documentation so good it's literally a meme.",p:'Paid',pk:true,u:'https://stripe.com'},
+  {n:'LemonSqueezy',c:'payments',i:'lemonsqueezy',ic:'FFC233',d:"Stripe + merchant of record. Handles VAT and taxes so you don't have to. Indie dev favorite.",p:'Paid',pk:false,u:'https://lemonsqueezy.com'},
+  {n:'Paddle',c:'payments',i:null,ic:'FFCC00',d:'Merchant of record for SaaS. Takes the global tax headache away. Enterprise-grade billing.',p:'Paid',pk:false,u:'https://paddle.com'},
+  {n:'Gumroad',c:'payments',i:'gumroad',ic:'FF90E8',d:'Sell digital products in 5 minutes. High fees, but dead simple. The creator economy OG.',p:'Paid',pk:false,u:'https://gumroad.com'},
+  {n:'Ko-fi',c:'payments',i:'kofi',ic:'FF5E5B',d:'Accept tips and sell stuff without giving up a percentage. Free. The anti-Patreon.',p:'Free',pk:false,u:'https://ko-fi.com'},
+  {n:'Polar',c:'payments',i:null,ic:'0062FF',d:'Monetize open source. Subscriptions, sponsorships, and digital products for developers.',p:'Freemium',pk:false,u:'https://polar.sh'},
+
+  // Email (8)
+  {n:'Resend',c:'email',i:'resend',ic:'000000',d:'Email API that developers actually enjoy using. Built by the React Email creator. Clean as hell.',p:'Freemium',pk:true,u:'https://resend.com'},
+  {n:'Loops',c:'email',i:null,ic:'4B0082',d:'Email for SaaS. Beautiful UI, event-based automations, built for product teams. The new standard.',p:'Freemium',pk:true,u:'https://loops.so'},
+  {n:'ConvertKit',c:'email',i:'convertkit',ic:'FB6970',d:'Email marketing for creators. Landing pages, automations, paid newsletters. Creator-first DNA.',p:'Freemium',pk:false,u:'https://convertkit.com'},
+  {n:'Beehiiv',c:'email',i:null,ic:'FFC700',d:'Newsletter platform built by Morning Brew alumni. Growth tools baked in. Serious about scale.',p:'Freemium',pk:false,u:'https://beehiiv.com'},
+  {n:'Buttondown',c:'email',i:null,ic:'0069FF',d:"Newsletter tool for the minimalist. Markdown-first, no bloat. Built by one person. Indie legend.",p:'Freemium',pk:false,u:'https://buttondown.email'},
+  {n:'Mailchimp',c:'email',i:'mailchimp',ic:'FFE01B',d:'The email giant everyone starts with and eventually outgrows. Still works. Getting bloated though.',p:'Freemium',pk:false,u:'https://mailchimp.com'},
+  {n:'Plunk',c:'email',i:null,ic:'8B5CF6',d:'Open source transactional email. Self-host or use their cloud. Simple, effective, free.',p:'Free',pk:false,u:'https://useplunk.com'},
+  {n:'React Email',c:'email',i:'react',ic:'61DAFB',d:"Build emails with React components. Finally, email templates that don't make you want to cry.",p:'Free',pk:false,u:'https://react.email'},
+
+  // Analytics (8)
+  {n:'PostHog',c:'analytics',i:'posthog',ic:'F9BD2B',d:'Product analytics, session replay, feature flags, A/B testing — all open source. The everything tool.',p:'Freemium',pk:true,u:'https://posthog.com'},
+  {n:'Plausible',c:'analytics',i:'plausible',ic:'5850EC',d:'Privacy-first analytics in a less-than-1KB script. See your traffic without selling your soul.',p:'Paid',pk:false,u:'https://plausible.io'},
+  {n:'Fathom',c:'analytics',i:null,ic:'9187FF',d:'Simple, private analytics. One dashboard, zero complexity. Know your numbers, respect your users.',p:'Paid',pk:false,u:'https://usefathom.com'},
+  {n:'Mixpanel',c:'analytics',i:'mixpanel',ic:'7856FF',d:"Event-based product analytics. Funnels, retention, cohorts. The serious product team's choice.",p:'Freemium',pk:false,u:'https://mixpanel.com'},
+  {n:'Amplitude',c:'analytics',i:'amplitude',ic:'1A1B25',d:"Enterprise product analytics. Powerful but complex. You'll need a data person to set it up right.",p:'Freemium',pk:false,u:'https://amplitude.com'},
+  {n:'Pirsch',c:'analytics',i:null,ic:'00AA55',d:'Cookie-free, privacy-friendly analytics from Germany. Simple dashboard, GDPR-compliant out of the box.',p:'Paid',pk:false,u:'https://pirsch.io'},
+  {n:'Simple Analytics',c:'analytics',i:'simpleanalytics',ic:'FF4F64',d:"Privacy-first analytics that's actually simple. No cookies, no tracking scripts, just the numbers.",p:'Paid',pk:false,u:'https://simpleanalytics.com'},
+  {n:'Umami',c:'analytics',i:'umami',ic:'000000',d:'Self-hosted analytics that costs nothing forever. Open source Plausible alternative. Deploy on Vercel.',p:'Free',pk:false,u:'https://umami.is'},
+
+  // Support & Chat (6)
+  {n:'Intercom',c:'support',i:'intercom',ic:'6AFDEF',d:'The support tool that defined the category. AI-first now. Pricey, but the experience is premium.',p:'Paid',pk:true,u:'https://intercom.com'},
+  {n:'Crisp',c:'support',i:null,ic:'4B60FF',d:'Chat widget + shared inbox + knowledge base. Feature-packed and way cheaper than Intercom.',p:'Freemium',pk:false,u:'https://crisp.chat'},
+  {n:'Zendesk',c:'support',i:'zendesk',ic:'03363D',d:'Enterprise support juggernaut. Does everything. Also costs everything. You know the deal.',p:'Paid',pk:false,u:'https://zendesk.com'},
+  {n:'Tawk.to',c:'support',i:null,ic:'03C04A',d:'Completely free live chat. No catch. Seriously. It just works and costs absolutely nothing.',p:'Free',pk:false,u:'https://tawk.to'},
+  {n:'Chatwoot',c:'support',i:null,ic:'1F93FF',d:'Open source Intercom alternative. Self-host your support stack. Omnichannel and actually good.',p:'Free',pk:false,u:'https://chatwoot.com'},
+  {n:'Help Scout',c:'support',i:null,ic:'1292EE',d:'Support tool that feels human. Shared inbox, docs, beacon widget. For teams that care about UX.',p:'Paid',pk:false,u:'https://helpscout.com'},
+
+  // Docs & Planning (8)
+  {n:'Notion',c:'docs',i:'notion',ic:'000000',d:"The everything workspace. Docs, wikis, databases, projects. Your second brain's second brain.",p:'Freemium',pk:true,u:'https://notion.so'},
+  {n:'Linear',c:'docs',i:'linear',ic:'5E6AD2',d:"Issue tracking that doesn't suck. Keyboard-first, blazing fast, beautiful. Jira is shaking.",p:'Freemium',pk:true,u:'https://linear.app'},
+  {n:'Coda',c:'docs',i:'coda',ic:'F46A54',d:'Docs that work like apps. Tables, automations, buttons. Notion on steroids for power users.',p:'Freemium',pk:false,u:'https://coda.io'},
+  {n:'Obsidian',c:'docs',i:'obsidian',ic:'7C3AED',d:'Local-first markdown notes with a graph view. Your brain, mapped. Plugin ecosystem is bonkers.',p:'Free',pk:false,u:'https://obsidian.md'},
+  {n:'Basecamp',c:'docs',i:'basecamp',ic:'1D2D35',d:'Project management for people who hate project management. Opinionated, simple, flat fee.',p:'Paid',pk:false,u:'https://basecamp.com'},
+  {n:'Height',c:'docs',i:null,ic:'6C47FF',d:"AI-native project management. Auto-categorizes tasks, suggests workflows. Linear's younger sibling.",p:'Freemium',pk:false,u:'https://height.app'},
+  {n:'Todoist',c:'docs',i:'todoist',ic:'E44332',d:'The to-do app that respects your time. Natural language input, clean design, just works.',p:'Freemium',pk:false,u:'https://todoist.com'},
+  {n:'ClickUp',c:'docs',i:'clickup',ic:'7B68EE',d:'Does everything. Docs, tasks, whiteboards, goals. Feature-stuffed. Love it or drown in it.',p:'Freemium',pk:false,u:'https://clickup.com'},
+
+  // Marketing & Social (8)
+  {n:'Buffer',c:'marketing',i:'buffer',ic:'231F20',d:'Schedule social posts without the complexity. Clean, simple, gets the job done. The calm choice.',p:'Freemium',pk:false,u:'https://buffer.com'},
+  {n:'Typefully',c:'marketing',i:null,ic:'2563EB',d:'Write and schedule Twitter/X threads beautifully. Analytics that help you understand what works.',p:'Freemium',pk:false,u:'https://typefully.com'},
+  {n:'Canva',c:'marketing',i:'canva',ic:'00C4CC',d:'Design tool for non-designers. Templates for literally everything. Your marketing team lives here.',p:'Freemium',pk:false,u:'https://canva.com'},
+  {n:'Taplio',c:'marketing',i:null,ic:'0077B5',d:'LinkedIn growth tool. AI-assisted posts, carousel maker, analytics. For the LinkedIn grindset.',p:'Paid',pk:false,u:'https://taplio.com'},
+  {n:'Later',c:'marketing',i:null,ic:'FF5733',d:'Visual social media scheduler. Great for Instagram. Plan your entire feed before posting.',p:'Freemium',pk:false,u:'https://later.com'},
+  {n:'Hootsuite',c:'marketing',i:'hootsuite',ic:'143059',d:'Enterprise social management. Powerful but pricey. For teams managing multiple brands at once.',p:'Paid',pk:false,u:'https://hootsuite.com'},
+  {n:'Publer',c:'marketing',i:null,ic:'4B7BEC',d:'Budget Buffer alternative. Cross-platform scheduling with a generous free tier. Gets it done.',p:'Freemium',pk:false,u:'https://publer.io'},
+  {n:'Hypefury',c:'marketing',i:null,ic:'F59E0B',d:'Twitter/X growth machine. Auto-plug, threads, scheduling. Built by creators, for creators.',p:'Paid',pk:false,u:'https://hypefury.com'},
+
+  // Automation (6)
+  {n:'Zapier',c:'automation',i:'zapier',ic:'FF4A00',d:'Connect anything to everything. 6000+ integrations. The glue of the internet. Not cheap though.',p:'Freemium',pk:true,u:'https://zapier.com'},
+  {n:'Make',c:'automation',i:null,ic:'6D00CC',d:"Visual automation that's more powerful than Zapier. Branching, loops, complex flows. Builder's choice.",p:'Freemium',pk:false,u:'https://make.com'},
+  {n:'n8n',c:'automation',i:'n8n',ic:'EA4B71',d:'Zapier but self-hosted and free. For builders who want full control over their automations.',p:'Free',pk:false,u:'https://n8n.io'},
+  {n:'Pipedream',c:'automation',i:'pipedream',ic:'22C55E',d:'Developer-first automation. Write code, connect APIs, deploy workflows. Zapier for engineers.',p:'Freemium',pk:false,u:'https://pipedream.com'},
+  {n:'Trigger.dev',c:'automation',i:null,ic:'1a1a1a',d:"Background jobs for TypeScript. Open source, reliable, built for production. Cron jobs that don't flake.",p:'Free',pk:false,u:'https://trigger.dev'},
+  {n:'Inngest',c:'automation',i:null,ic:'5D5FEF',d:'Event-driven functions with retries, throttling, and scheduling baked in. Backend queues made elegant.',p:'Freemium',pk:false,u:'https://inngest.com'},
+
+  // No-Code & Builders (8)
+  {n:'Framer',c:'nocode',i:'framer',ic:'0055FF',d:"Websites that look like a designer made them. Because you're the designer now. Publish in minutes.",p:'Freemium',pk:false,u:'https://framer.com'},
+  {n:'Webflow',c:'nocode',i:'webflow',ic:'4353FF',d:'The power of code with the ease of visual design. CMS included. Agencies swear by it.',p:'Freemium',pk:false,u:'https://webflow.com'},
+  {n:'Bubble',c:'nocode',i:'bubble',ic:'0D0D0D',d:'Build full web apps without code. Complex logic, databases, APIs. Slow but incredibly capable.',p:'Freemium',pk:false,u:'https://bubble.io'},
+  {n:'Softr',c:'nocode',i:null,ic:'3B82F6',d:'Turn Airtable into web apps. Client portals, directories, internal tools. Surprisingly polished.',p:'Freemium',pk:false,u:'https://softr.io'},
+  {n:'Carrd',c:'nocode',i:null,ic:'000000',d:'One-page sites for $19/year. Landing pages, link-in-bio, simple sites. One dev. Absolute legend.',p:'Freemium',pk:false,u:'https://carrd.co'},
+  {n:'Typedream',c:'nocode',i:null,ic:'7C3AED',d:'Notion-style website builder. Type, drag, publish. Beautiful defaults when you just want it done.',p:'Freemium',pk:false,u:'https://typedream.com'},
+  {n:'Glide',c:'nocode',i:null,ic:'7B68EE',d:'Turn spreadsheets into mobile apps. Internal tools, client portals, CRUD apps. Spreadsheet magic.',p:'Freemium',pk:false,u:'https://glideapps.com'},
+  {n:'Retool',c:'nocode',i:'retool',ic:'F5622A',d:"Build internal tools in minutes. Drag-and-drop UI + SQL/API connections. Your ops team's best friend.",p:'Freemium',pk:false,u:'https://retool.com'},
+
+  // Meetings & Collab (7)
+  {n:'Loom',c:'meetings',i:'loom',ic:'625DF5',d:'Record your screen, share the link. Single-handedly killed unnecessary meetings. Async king.',p:'Freemium',pk:false,u:'https://loom.com'},
+  {n:'Cal.com',c:'meetings',i:'caldotcom',ic:'292929',d:'Open source Calendly. Self-host or use their cloud. Scheduling that respects your freedom.',p:'Free',pk:false,u:'https://cal.com'},
+  {n:'Grain',c:'meetings',i:null,ic:'7C3AED',d:'AI meeting notes that actually capture the important stuff. Highlights, summaries, action items.',p:'Freemium',pk:false,u:'https://grain.com'},
+  {n:'Riverside',c:'meetings',i:null,ic:'009CA3',d:'Studio-quality recordings over the internet. Podcasters and creators love it. Local recording FTW.',p:'Freemium',pk:false,u:'https://riverside.fm'},
+  {n:'Butter',c:'meetings',i:null,ic:'FFB800',d:"Interactive workshops and meetings that don't suck. Polls, breakout rooms, agendas built in.",p:'Freemium',pk:false,u:'https://butter.us'},
+  {n:'Slack',c:'meetings',i:'slack',ic:'4A154B',d:'Where work happens. Also where work gets interrupted. Love-hate relationship since 2013.',p:'Freemium',pk:false,u:'https://slack.com'},
+  {n:'Discord',c:'meetings',i:'discord',ic:'5865F2',d:'Not just for gamers anymore. Communities, voice chat, threads. The new digital town square.',p:'Free',pk:false,u:'https://discord.com'},
+
+  // SEO & Content (7)
+  {n:'Ahrefs',c:'seo',i:'ahrefs',ic:'FF8C00',d:'The SEO power tool. Backlink analysis, keyword research, site audits. Industry standard for a reason.',p:'Paid',pk:false,u:'https://ahrefs.com'},
+  {n:'Semrush',c:'seo',i:'semrush',ic:'FF642D',d:'All-in-one marketing toolkit. SEO, PPC, content, social. Everything Ahrefs does, plus more scope.',p:'Paid',pk:false,u:'https://semrush.com'},
+  {n:'Surfer SEO',c:'seo',i:null,ic:'00C4A7',d:'Content optimization that tells you exactly what to write. NLP-powered. Rankings actually go up.',p:'Paid',pk:false,u:'https://surferseo.com'},
+  {n:'Clearscope',c:'seo',i:null,ic:'2563EB',d:'Content grading against competitors. Enterprise pricing, enterprise results. Premium play.',p:'Paid',pk:false,u:'https://clearscope.io'},
+  {n:'Frase',c:'seo',i:null,ic:'6366F1',d:'AI content briefs and optimization combined. Research, write, optimize — one streamlined workflow.',p:'Paid',pk:false,u:'https://frase.io'},
+  {n:'Ubersuggest',c:'seo',i:null,ic:'F97316',d:"Neil Patel's SEO tool. Decent for beginners on a budget. Lifetime deal available. Gets basics done.",p:'Freemium',pk:false,u:'https://neilpatel.com/ubersuggest'},
+  {n:'AnswerThePublic',c:'seo',i:null,ic:'F59E0B',d:'See what people actually search for, visualized. Great for finding content angles nobody else covers.',p:'Freemium',pk:false,u:'https://answerthepublic.com'},
+
+  // Ecommerce (6)
+  {n:'Shopify',c:'ecommerce',i:'shopify',ic:'7AB55C',d:'The ecommerce platform. Garage sale to enterprise. Ecosystem is massive. The bill will be too.',p:'Paid',pk:false,u:'https://shopify.com'},
+  {n:'Gumroad Store',c:'ecommerce',i:'gumroad',ic:'FF90E8',d:'Digital products, memberships, courses. Simple storefront. High fees but zero friction to start.',p:'Paid',pk:false,u:'https://gumroad.com'},
+  {n:'LemonSqueezy Store',c:'ecommerce',i:'lemonsqueezy',ic:'FFC233',d:'Gumroad competitor that actually handles taxes. Better fees, better DX. The new default for digital.',p:'Paid',pk:false,u:'https://lemonsqueezy.com'},
+  {n:'WooCommerce',c:'ecommerce',i:'woocommerce',ic:'96588A',d:"WordPress + ecommerce. Free and extensible. Plugin hell if you're not careful. Powers millions.",p:'Free',pk:false,u:'https://woocommerce.com'},
+  {n:'Medusa',c:'ecommerce',i:null,ic:'1A1A2E',d:'Open source Shopify alternative. Headless commerce for developers. Full control, zero vendor lock-in.',p:'Free',pk:false,u:'https://medusajs.com'},
+  {n:'Saleor',c:'ecommerce',i:null,ic:'5B68F5',d:'GraphQL-first commerce platform. Enterprise-ready, fully open source. Custom storefronts welcome.',p:'Free',pk:false,u:'https://saleor.io'},
+
+  // Testing & Monitoring (6)
+  {n:'Sentry',c:'testing',i:'sentry',ic:'362D59',d:'Error tracking that shows you what broke, why, and for whom. Every production app needs this.',p:'Freemium',pk:true,u:'https://sentry.io'},
+  {n:'LogRocket',c:'testing',i:'logrocket',ic:'764ABC',d:'Session replay meets error tracking. Watch users struggle with your UI. Humbling and very useful.',p:'Freemium',pk:false,u:'https://logrocket.com'},
+  {n:'BrowserStack',c:'testing',i:'browserstack',ic:'F5811F',d:'Test on every browser and device without owning them all. Cross-browser testing that works.',p:'Paid',pk:false,u:'https://browserstack.com'},
+  {n:'Checkly',c:'testing',i:null,ic:'2DCD71',d:'Monitoring as code. Playwright tests as synthetic monitors. Know before your users complain.',p:'Freemium',pk:false,u:'https://checklyhq.com'},
+  {n:'Datadog',c:'testing',i:'datadog',ic:'632CA6',d:'Infrastructure monitoring for the big leagues. Logs, APM, dashboards. The bill will also be big.',p:'Freemium',pk:false,u:'https://datadoghq.com'},
+  {n:'Better Stack',c:'testing',i:null,ic:'000000',d:'Uptime monitoring + incident management + logs. Beautiful status pages. The modern monitoring stack.',p:'Freemium',pk:false,u:'https://betterstack.com'},
+
+  // CRM & Sales (5)
+  {n:'HubSpot',c:'crm',i:'hubspot',ic:'FF5C35',d:'CRM that does marketing, sales, and service. Free tier is legit. Then they get you on the upsell.',p:'Freemium',pk:false,u:'https://hubspot.com'},
+  {n:'Attio',c:'crm',i:null,ic:'000000',d:'Modern CRM with real-time data syncing. Beautiful UI. The Notion of CRMs. Actually enjoyable.',p:'Freemium',pk:false,u:'https://attio.com'},
+  {n:'Folk',c:'crm',i:null,ic:'7C3AED',d:'Lightweight CRM for people who hate CRMs. Import from anywhere, enrich automatically. Refreshing.',p:'Freemium',pk:false,u:'https://folk.app'},
+  {n:'Close',c:'crm',i:null,ic:'244757',d:'CRM built for closing deals. Built-in calling, email, SMS. For sales teams that actually sell.',p:'Paid',pk:false,u:'https://close.com'},
+  {n:'Pipedrive',c:'crm',i:'pipedrive',ic:'017737',d:'Visual sales pipeline. Drag deals through stages. Simple, effective, and small teams love it.',p:'Paid',pk:false,u:'https://pipedrive.com'}
+];
+
+// ─── Build Category Filter Pills ───
+var filtersEl = document.getElementById('categoryFilters');
+var allPill = document.createElement('button');
+allPill.className = 'cat-pill active';
+allPill.dataset.cat = 'all';
+allPill.innerHTML = '<span class="cat-emoji">\u{1F525}</span> All <span class="cat-count">' + tools.length + '</span>';
+filtersEl.appendChild(allPill);
+
+categories.forEach(function(cat) {
+  var count = tools.filter(function(t){ return t.c === cat.id; }).length;
+  var pill = document.createElement('button');
+  pill.className = 'cat-pill';
+  pill.dataset.cat = cat.id;
+  pill.innerHTML = '<span class="cat-emoji">' + cat.emoji + '</span> ' + cat.name + ' <span class="cat-count">' + count + '</span>';
+  filtersEl.appendChild(pill);
+});
+
+// ─── Build Tool Cards ───
+var grid = document.getElementById('toolsGrid');
+var countEl = document.getElementById('visibleCount');
+countEl.textContent = tools.length;
+
+function getCat(id) {
+  for (var i = 0; i < categories.length; i++) {
+    if (categories[i].id === id) return categories[i];
+  }
+  return categories[0];
+}
+
+tools.forEach(function(t) {
+  var cat = getCat(t.c);
+  var card = document.createElement('a');
+  card.href = t.u || '#';
+  card.target = t.u ? '_blank' : '_self';
+  card.rel = t.u ? 'noopener' : '';
+  card.className = 'tool-card';
+  card.dataset.cat = t.c;
+  card.dataset.search = (t.n + ' ' + t.d + ' ' + cat.name + ' ' + t.p).toLowerCase();
+
+  var logoHTML;
+  if (t.i) {
+    logoHTML = '<div class="tool-logo"><img src="https://cdn.simpleicons.org/' + t.i + '/' + (t.ic || '555') + '" alt="' + t.n + '" loading="lazy" onerror="this.parentElement.outerHTML=\'<div class=tool-logo-letter style=background:' + cat.color + '>' + t.n[0] + '</div>\'"></div>';
+  } else {
+    logoHTML = '<div class="tool-logo-letter" style="background:' + cat.color + '">' + t.n[0] + '</div>';
+  }
+
+  var badges = '';
+  if (t.pk) badges += '<span class="badge badge-pick">Our Pick \u2713</span>';
+  var pc = t.p === 'Free' ? 'badge-free' : t.p === 'Freemium' ? 'badge-freemium' : 'badge-paid';
+  badges += '<span class="badge ' + pc + '">' + t.p + '</span>';
+  badges += '<span class="badge badge-category">' + cat.emoji + ' ' + cat.name + '</span>';
+
+  var linkIcon = t.u ? '<svg class="ext-icon" viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>' : '';
+  card.innerHTML = '<div class="tool-card-top">' + logoHTML + '<div class="tool-info"><div class="tool-name">' + t.n + linkIcon + '</div></div></div><div class="tool-desc">' + t.d + '</div><div class="tool-badges">' + badges + '</div>';
+  grid.appendChild(card);
+});
+
+// ─── Search & Filter ───
+var searchInput = document.getElementById('searchInput');
+var searchClear = document.getElementById('searchClear');
+var activeCategory = 'all';
+
+function filterTools() {
+  var query = searchInput.value.toLowerCase().trim();
+  searchClear.classList.toggle('visible', query.length > 0);
+  var cards = grid.querySelectorAll('.tool-card');
+  var visible = 0;
+  cards.forEach(function(card) {
+    var matchesCat = activeCategory === 'all' || card.dataset.cat === activeCategory;
+    var matchesSearch = !query || card.dataset.search.indexOf(query) !== -1;
+    if (matchesCat && matchesSearch) {
+      card.style.display = '';
+      visible++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  countEl.textContent = visible;
+  document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+}
+
+searchInput.addEventListener('input', filterTools);
+searchClear.addEventListener('click', function() {
+  searchInput.value = '';
+  filterTools();
+  searchInput.focus();
+});
+
+filtersEl.addEventListener('click', function(e) {
+  var pill = e.target.closest('.cat-pill');
+  if (!pill) return;
+  filtersEl.querySelectorAll('.cat-pill').forEach(function(p){ p.classList.remove('active'); });
+  pill.classList.add('active');
+  activeCategory = pill.dataset.cat;
+  filterTools();
+});
+})();
+</script>
 </body>
 </html>
