@@ -180,6 +180,20 @@
     .perks-total strong { color: var(--accent); font-size: 20px; }
     @media (max-width: 600px) { .perks-grid { grid-template-columns: 1fr; } }
 
+    /* Subject Tabs */
+    .subject-tab { padding: 8px 16px; background: var(--bg-card); border: 1.5px solid var(--border); border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--text-secondary); cursor: pointer; transition: all 0.2s ease; font-family: var(--font-body); }
+    .subject-tab:hover { border-color: var(--accent); color: var(--accent); }
+    .subject-tab.active { background: var(--accent); border-color: var(--accent); color: white; }
+    .subject-panel { display: none; }
+    .subject-panel.active { display: flex; flex-direction: column; gap: 12px; }
+    .subject-tool { display: flex; align-items: flex-start; gap: 16px; padding: 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); transition: all 0.2s ease; }
+    .subject-tool:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .subject-tool img { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; margin-top: 2px; }
+    .subject-tool div { flex: 1; }
+    .subject-tool strong { display: block; font-family: var(--font-display); font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .subject-tool span { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+    @media (max-width: 600px) { .subject-tab { font-size: 12px; padding: 6px 12px; } .subject-tool { padding: 16px; } .subject-tool img { width: 24px; height: 24px; } }
+    
     /* Calculator */
     .calculator-section { padding: var(--space-3xl) 0; background: var(--bg-alt); }
     .calculator-header { text-align: center; margin-bottom: var(--space-2xl); }
@@ -1151,6 +1165,78 @@
     </div>
   </section>
 
+  <!-- Tools by Subject -->
+  <section style="padding: var(--space-3xl) 0; background: var(--bg-alt);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Tools for your course</h2>
+        <p>Subject-specific picks that go beyond the basics.</p>
+      </div>
+      <div class="reveal" style="max-width: 800px; margin: 0 auto;">
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: var(--space-xl);" id="subjectTabs">
+          <button class="subject-tab active" data-subject="medicine" onclick="showSubject('medicine')">🩺 Medicine</button>
+          <button class="subject-tab" data-subject="law" onclick="showSubject('law')">⚖️ Law</button>
+          <button class="subject-tab" data-subject="stem" onclick="showSubject('stem')">🔬 STEM</button>
+          <button class="subject-tab" data-subject="cs" onclick="showSubject('cs')">💻 Computer Science</button>
+          <button class="subject-tab" data-subject="business" onclick="showSubject('business')">📊 Business</button>
+          <button class="subject-tab" data-subject="creative" onclick="showSubject('creative')">🎨 Creative Arts</button>
+          <button class="subject-tab" data-subject="social" onclick="showSubject('social')">🧠 Social Sciences</button>
+          <button class="subject-tab" data-subject="humanities" onclick="showSubject('humanities')">📖 Humanities</button>
+        </div>
+        <div id="subjectContent">
+          <div class="subject-panel active" data-panel="medicine">
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=amboss.com&sz=128" alt=""><div><strong>Amboss</strong><span>Clinical knowledge library with integrated question bank. Visual explanations of diseases, symptoms, and treatments. Student discount available.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/anki/236BFF" alt=""><div><strong>Anki</strong><span>Spaced repetition flashcards — the gold standard for med students. Pre-made decks for anatomy, pharmacology, pathology. Free and open-source.</span></div></div>
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=3d4medical.com&sz=128" alt=""><div><strong>Complete Anatomy</strong><span>Interactive 3D anatomy atlas. Rotate, dissect, and annotate any structure. Free tier covers basics, student pricing for full access.</span></div></div>
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=osmosis.org&sz=128" alt=""><div><strong>Osmosis</strong><span>Visual, concise explanations of medical concepts. Great for understanding pathophysiology and pharmacology. Free tier + student discounts.</span></div></div>
+          </div>
+          <div class="subject-panel" data-panel="law">
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=westlaw.com&sz=128" alt=""><div><strong>Westlaw</strong><span>The definitive legal research database. Most law schools provide free access — check with your library. Essential for case law research.</span></div></div>
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=casetext.com&sz=128" alt=""><div><strong>Casetext (CoCounsel)</strong><span>AI-powered legal research. Ask questions in plain English, get relevant cases and statutes. Faster than traditional Boolean searching.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/zotero/CC2936" alt=""><div><strong>Zotero + OSCOLA</strong><span>Auto-generate OSCOLA citations for law essays. One-click save from Westlaw/Bailii. Tracks every case and statute you reference.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt=""><div><strong>Notion (Case Briefs)</strong><span>Template databases for case briefs, statute summaries, and revision notes. Search across all your briefs instantly.</span></div></div>
+          </div>
+          <div class="subject-panel" data-panel="stem">
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/overleaf/47A141" alt=""><div><strong>Overleaf</strong><span>Write papers and reports in LaTeX — the standard for STEM publishing. Collaborative, free, with hundreds of journal templates.</span></div></div>
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=mathworks.com&sz=128" alt=""><div><strong>MATLAB</strong><span>Industry-standard for engineering, physics, and data analysis. Most unis include student licenses. Check your IT department.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/wolframmathematica/DD1100" alt=""><div><strong>Wolfram Alpha</strong><span>Solve any equation step-by-step. Covers calculus, linear algebra, differential equations, statistics, and physics.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/jupyter/F37626" alt=""><div><strong>Jupyter Notebooks</strong><span>Free interactive coding environment for Python, R, and more. Essential for data science, physics simulations, and coursework.</span></div></div>
+          </div>
+          <div class="subject-panel" data-panel="cs">
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/github/181717" alt=""><div><strong>GitHub Copilot</strong><span>AI pair programmer — free for students. Autocompletes code, explains errors, and helps you debug. Works in VS Code and JetBrains.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/cursor/000000" alt=""><div><strong>Cursor</strong><span>AI-first code editor. Chat with your codebase, get refactoring suggestions. Free tier available. Great for learning new languages.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/jetbrains/000000" alt=""><div><strong>JetBrains IDEs</strong><span>IntelliJ, PyCharm, WebStorm — all free for students. Professional-grade IDEs that make Java, Python, and web dev smoother.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/replit/F26207" alt=""><div><strong>Replit</strong><span>Code in any language from the browser — no setup. Built-in AI assistant. Perfect for quick assignments or when you're on someone else's machine.</span></div></div>
+          </div>
+          <div class="subject-panel" data-panel="business">
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=tableau.com&sz=128" alt=""><div><strong>Tableau</strong><span>Professional data visualisation — free for students. Turn spreadsheets into interactive dashboards. Looks impressive in presentations.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt=""><div><strong>Notion (Case Study DB)</strong><span>Build a searchable database of case studies with tags for industry, framework, and outcome. Revision becomes effortless.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/googlesheets/34A853" alt=""><div><strong>Google Sheets + ChatGPT</strong><span>Financial modelling, forecasting, and data analysis. Use ChatGPT to write complex formulas and explain financial concepts.</span></div></div>
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt=""><div><strong>Canva</strong><span>Free Pro for students. Business presentations, pitch decks, infographics, and marketing materials — all template-driven.</span></div></div>
+          </div>
+          <div class="subject-panel" data-panel="creative">
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/figma/F24E1E" alt=""><div><strong>Figma</strong><span>Free Education plan. Industry-standard for UI/UX, graphic design, and prototyping. Build your portfolio with real projects.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/behance/1769FF" alt=""><div><strong>Behance</strong><span>Showcase your work to future employers and clients. Free portfolio platform by Adobe. Get discovered by creative agencies.</span></div></div>
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt=""><div><strong>Canva Pro</strong><span>Free for students. Premium templates, brand kit, background remover, AI tools. Covers 90% of design coursework needs.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/adobe/FF0000" alt=""><div><strong>Adobe Creative Cloud</strong><span>60% student discount. Photoshop, Illustrator, Premiere, After Effects. The industry suite — essential for serious creatives.</span></div></div>
+          </div>
+          <div class="subject-panel" data-panel="social">
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=jasp-stats.org&sz=128" alt=""><div><strong>JASP (free SPSS alternative)</strong><span>Statistical analysis made easy — free and open-source. Covers t-tests, ANOVA, regression, factor analysis. Clean interface.</span></div></div>
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=lumivero.com&sz=128" alt=""><div><strong>NVivo</strong><span>Qualitative data analysis for interviews, focus groups, and thematic analysis. Student pricing available. Essential for dissertations.</span></div></div>
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=consensus.app&sz=128" alt=""><div><strong>Consensus</strong><span>Search 200M+ peer-reviewed papers with AI. Get yes/no answers backed by studies. Perfect for literature reviews in psychology and sociology.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/perplexity/1FB8CD" alt=""><div><strong>Perplexity (Academic Mode)</strong><span>Research with real citations. Toggle academic mode to prioritise peer-reviewed sources. Great for finding empirical evidence fast.</span></div></div>
+          </div>
+          <div class="subject-panel" data-panel="humanities">
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/zotero/CC2936" alt=""><div><strong>Zotero</strong><span>Reference manager that handles Harvard, MLA, Chicago, and 9,000+ citation styles. One-click save from JSTOR, Google Scholar, etc.</span></div></div>
+            <div class="subject-tool"><img src="https://cdn.simpleicons.org/grammarly/15C39A" alt=""><div><strong>Grammarly</strong><span>Writing-heavy courses need writing support. Catches grammar, improves clarity, detects tone. Free browser extension covers most needs.</span></div></div>
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=consensus.app&sz=128" alt=""><div><strong>Consensus</strong><span>Search peer-reviewed papers with AI. Useful for finding critical theory, historical analysis, and philosophical arguments with citations.</span></div></div>
+            <div class="subject-tool"><img src="https://www.google.com/s2/favicons?domain=jenni.ai&sz=128" alt=""><div><strong>Jenni AI</strong><span>Academic writing assistant. Helps structure arguments, generate outlines from your thesis, and write in proper academic tone.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Free Student Perks -->
   <section class="perks-section" id="perks">
     <div class="container">
@@ -1469,6 +1555,12 @@
     
     // Header scroll
     window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
+    
+    // Subject tabs
+    function showSubject(subject) {
+      document.querySelectorAll('.subject-tab').forEach(t => t.classList.toggle('active', t.dataset.subject === subject));
+      document.querySelectorAll('.subject-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === subject));
+    }
     
     // Card reveal animations
     const cardObserver = new IntersectionObserver((entries) => {

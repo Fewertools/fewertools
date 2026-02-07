@@ -331,6 +331,19 @@
       todoist: { name: 'Todoist', icon: 'https://cdn.simpleicons.org/todoist/E44332', url: 'https://todoist.com', free: true, safe: true },
       mendeley: { name: 'Mendeley', icon: 'https://cdn.simpleicons.org/mendeley/9D1620', url: 'https://mendeley.com', free: true, safe: true },
       pomofocus: { name: 'Pomofocus', icon: 'https://www.google.com/s2/favicons?domain=pomofocus.io&sz=128', url: 'https://pomofocus.io', free: true, safe: true },
+      // Subject-specific tools
+      completeanatomy: { name: 'Complete Anatomy', icon: 'https://www.google.com/s2/favicons?domain=3d4medical.com&sz=128', url: 'https://3d4medical.com', free: false, safe: true },
+      amboss: { name: 'Amboss', icon: 'https://www.google.com/s2/favicons?domain=amboss.com&sz=128', url: 'https://amboss.com', free: false, safe: true },
+      osmosis: { name: 'Osmosis', icon: 'https://www.google.com/s2/favicons?domain=osmosis.org&sz=128', url: 'https://osmosis.org', free: true, safe: true },
+      overleaf: { name: 'Overleaf', icon: 'https://cdn.simpleicons.org/overleaf/47A141', url: 'https://overleaf.com', free: true, safe: true },
+      matlab: { name: 'MATLAB', icon: 'https://www.google.com/s2/favicons?domain=mathworks.com&sz=128', url: 'https://mathworks.com/academia/students.html', free: false, safe: true },
+      casetext: { name: 'Casetext (CoCounsel)', icon: 'https://www.google.com/s2/favicons?domain=casetext.com&sz=128', url: 'https://casetext.com', free: false, safe: true },
+      westlaw: { name: 'Westlaw', icon: 'https://www.google.com/s2/favicons?domain=westlaw.com&sz=128', url: 'https://legal.thomsonreuters.com/en/products/westlaw', free: false, safe: true },
+      tableau: { name: 'Tableau', icon: 'https://www.google.com/s2/favicons?domain=tableau.com&sz=128', url: 'https://tableau.com/academic/students', free: true, safe: true },
+      procreate: { name: 'Procreate', icon: 'https://www.google.com/s2/favicons?domain=procreate.com&sz=128', url: 'https://procreate.com', free: false, safe: true },
+      behance: { name: 'Behance', icon: 'https://cdn.simpleicons.org/behance/1769FF', url: 'https://behance.net', free: true, safe: true },
+      spss: { name: 'SPSS / JASP', icon: 'https://www.google.com/s2/favicons?domain=jasp-stats.org&sz=128', url: 'https://jasp-stats.org', free: true, safe: true },
+      nvivo: { name: 'NVivo', icon: 'https://www.google.com/s2/favicons?domain=lumivero.com&sz=128', url: 'https://lumivero.com/products/nvivo/', free: false, safe: true },
     };
 
     // Recommendation engine
@@ -341,25 +354,39 @@
       // Core tools everyone gets (with personalized reasons)
       const reasons = {};
 
-      // Subject-based primary tools
+      // Subject-based primary tools (including course-specific picks)
       if (subject === 'cs') {
         tools.push('copilot'); reasons.copilot = 'Free for CS students — AI pair programming in VS Code';
-        tools.push('cursor'); reasons.cursor = 'AI-first code editor for faster development';
-      } else if (subject === 'stem' || subject === 'medicine') {
+        tools.push('cursor'); reasons.cursor = 'AI-first code editor with chat — debug faster';
+      } else if (subject === 'stem') {
         tools.push('wolfram'); reasons.wolfram = 'Solve equations, plot graphs, check your working';
-        tools.push('photomath'); reasons.photomath = 'Snap a photo of any maths problem for step-by-step solutions';
+        tools.push('overleaf'); reasons.overleaf = 'Write papers and reports in LaTeX — free and collaborative';
+        if (budget !== 'free') { tools.push('matlab'); reasons.matlab = 'MATLAB student license — essential for engineering and data'; }
+      } else if (subject === 'medicine') {
+        tools.push('anki'); reasons.anki = 'Med students swear by it — spaced repetition for 1000s of facts';
+        tools.push('osmosis'); reasons.osmosis = 'Visual explanations of medical concepts + board prep';
+        tools.push('completeanatomy'); reasons.completeanatomy = '3D anatomy atlas — interactive, detailed, and beautiful';
+        if (budget !== 'free') { tools.push('amboss'); reasons.amboss = 'Clinical knowledge library with integrated Qbank'; }
       } else if (subject === 'law') {
-        tools.push('perplexity'); reasons.perplexity = 'Research case law with cited sources';
+        tools.push('perplexity'); reasons.perplexity = 'Research case law and legislation with cited sources';
         tools.push('zotero'); reasons.zotero = 'Generate OSCOLA citations automatically';
-      } else if (subject === 'humanities' || subject === 'social') {
+        tools.push('westlaw'); reasons.westlaw = 'Most unis provide free access — essential for case research';
+      } else if (subject === 'humanities') {
         tools.push('perplexity'); reasons.perplexity = 'Research with cited sources — perfect for essays';
         tools.push('grammarly'); reasons.grammarly = 'Polish your writing without changing your voice';
+        tools.push('zotero'); reasons.zotero = 'Manage citations in Harvard, MLA, Chicago — any style';
+      } else if (subject === 'social') {
+        tools.push('perplexity'); reasons.perplexity = 'Find peer-reviewed studies with cited sources';
+        tools.push('spss'); reasons.spss = 'JASP is a free SPSS alternative — stats analysis made easy';
+        if (year === 'final' || year === 'postgrad') { tools.push('nvivo'); reasons.nvivo = 'Qualitative data analysis for dissertations and research'; }
       } else if (subject === 'business') {
-        tools.push('perplexity'); reasons.perplexity = 'Market research and data with cited sources';
+        tools.push('perplexity'); reasons.perplexity = 'Market research, industry data, with cited sources';
         tools.push('notion'); reasons.notion = 'Organise case studies, notes, and group projects';
+        tools.push('tableau'); reasons.tableau = 'Free for students — professional data visualisation';
       } else if (subject === 'creative') {
         tools.push('canva'); reasons.canva = 'Free Pro with student email — design anything';
         tools.push('figma'); reasons.figma = 'Free Education plan — industry-standard design tool';
+        tools.push('behance'); reasons.behance = 'Build your portfolio — showcase work to future employers';
       }
 
       // Struggle-based
@@ -431,8 +458,8 @@
         tools.push('forest'); reasons.forest = reasons.forest || 'Stay focused during study sessions';
       }
 
-      // Deduplicate and limit to 6
-      tools = [...new Set(tools)].slice(0, 6);
+      // Deduplicate and limit to 7
+      tools = [...new Set(tools)].slice(0, 7);
 
       return tools.map(key => ({
         ...TOOLS[key],
