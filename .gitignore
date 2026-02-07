@@ -1,1 +1,24 @@
 .vercel
+
+# Local Netlify folder
+.netlify
+
+# Clawdbot workspace (private)
+AGENTS.md
+SOUL.md
+USER.md
+IDENTITY.md
+MANDATE.md
+MEMORY.md
+HEARTBEAT.md
+TOOLS.md
+memory/
+sessions/
+drafts/
+projects/
+systems/
+performance-log.md
+*.png
+*.jpg
+fewertools-*.png
+fewertools-*.jpg
