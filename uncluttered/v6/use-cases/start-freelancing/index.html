@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Freelancing — Fewer Tools</title>
+  <meta name="description" content="The exact tools to find clients, manage projects, send invoices, and get paid as a freelancer. One lean stack.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <meta property="og:title" content="Start Freelancing — Fewer Tools">
+  <meta property="og:description" content="Find clients, manage projects, send invoices. The lean freelancer toolkit.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>*{margin:0;padding:0;box-sizing:border-box}:root{--bg:#FAFAF8;--bg-alt:#F3F3F0;--bg-dark:#0a0a0a;--bg-card:#FFF;--text:#1a1a1a;--text-secondary:#555;--text-muted:#888;--text-inverse:#FAFAF8;--accent:#0D9488;--accent-hover:#0F766E;--accent-subtle:rgba(13,148,136,0.1);--border:rgba(0,0,0,0.08);--border-strong:rgba(0,0,0,0.12);--font-display:'Space Grotesk',-apple-system,sans-serif;--font-body:'Inter',-apple-system,sans-serif;--space-xs:4px;--space-sm:8px;--space-md:16px;--space-lg:24px;--space-xl:40px;--space-2xl:64px;--space-3xl:100px;--max-width:1200px;--radius-sm:8px;--radius-md:12px;--radius-lg:20px;--radius-xl:28px;--ease-out:cubic-bezier(0.22,1,0.36,1)}html{scroll-behavior:smooth}body{font-family:var(--font-body);font-size:16px;line-height:1.6;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;letter-spacing:-0.03em;line-height:1.1}a{color:inherit;text-decoration:none}.container{max-width:var(--max-width);margin:0 auto;padding:0 var(--space-xl)}@media(max-width:600px){.container{padding:0 var(--space-lg)}}.reveal{opacity:0;transform:translateY(30px);transition:all .8s var(--ease-out)}.reveal.visible{opacity:1;transform:translateY(0)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-sm);padding:var(--space-md) var(--space-lg);font-family:var(--font-body);font-size:15px;font-weight:600;border-radius:var(--radius-md);border:none;cursor:pointer;transition:all .2s ease}.btn-primary{background:var(--bg-dark);color:var(--text-inverse)}.btn-primary:hover{background:#222;transform:translateY(-2px)}.btn-secondary{background:transparent;color:var(--text);border:1.5px solid var(--border-strong)}.btn-secondary:hover{border-color:var(--text)}header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:var(--space-lg) 0;background:rgba(250,250,248,0.9);backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:all .2s ease}header.scrolled{border-bottom-color:var(--border)}header .container{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:var(--space-sm)}.logo-mark{width:32px;height:32px;background:var(--bg-dark);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;overflow:hidden}.logo-text{font-family:"Outfit",-apple-system,sans-serif;font-weight:600;font-size:21px;letter-spacing:-0.5px}.logo-mark .icon-line{width:12px;height:2.5px;background:var(--accent);border-radius:2px;animation:g 2.5s ease-in-out infinite;box-shadow:0 0 8px rgba(13,148,136,0.5)}@keyframes g{0%,100%{transform:scaleX(1);opacity:1}50%{transform:scaleX(0.6);opacity:0.8}}nav{display:flex;align-items:center;gap:var(--space-xl)}nav a{font-size:14px;font-weight:500;color:var(--text-muted);transition:color .2s}nav a:hover{color:var(--text)}.nav-cta{padding:var(--space-sm) var(--space-md);background:var(--bg-dark);color:var(--text-inverse)!important;border-radius:var(--radius-sm)}@media(max-width:768px){nav a:not(.nav-cta){display:none}}.page-hero{padding:140px 0 var(--space-2xl);position:relative}.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 0%,rgba(13,148,136,0.06) 0%,transparent 70%);pointer-events:none}.breadcrumb{display:flex;align-items:center;gap:var(--space-sm);font-size:13px;color:var(--text-muted);margin-bottom:var(--space-lg)}.breadcrumb a:hover{color:var(--text)}.hero-badge{display:inline-flex;align-items:center;gap:var(--space-sm);padding:8px 16px;background:var(--accent-subtle);border:1px solid var(--accent);border-radius:100px;font-size:13px;font-weight:600;color:var(--accent);margin-bottom:var(--space-lg)}.page-hero h1{font-size:clamp(40px,8vw,64px);margin-bottom:var(--space-md)}.page-hero h1 .highlight{color:var(--accent)}.hero-subtitle{font-size:20px;color:var(--text-secondary);max-width:600px;line-height:1.6;margin-bottom:var(--space-xl)}.stack-tools{display:flex;flex-wrap:wrap;gap:var(--space-md);margin-bottom:var(--space-2xl)}.stack-tool{display:flex;align-items:center;gap:var(--space-sm);padding:10px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:14px;font-weight:500;transition:all .2s}.stack-tool:hover{border-color:var(--accent);transform:translateY(-2px)}.stack-tool img{width:20px;height:20px;object-fit:contain}.comparison-section{padding:var(--space-3xl) 0}.section-header{text-align:center;margin-bottom:var(--space-2xl)}.section-header h2{margin-bottom:var(--space-sm)}.section-header p{font-size:17px;color:var(--text-secondary)}.comparison-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:var(--space-lg)}@media(max-width:768px){.comparison-grid{grid-template-columns:1fr}}.comparison-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;transition:all .4s var(--ease-out);box-shadow:0 1px 2px rgba(0,0,0,0.02),0 4px 8px rgba(0,0,0,0.02)}.comparison-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 24px rgba(13,148,136,0.06),0 24px 48px rgba(13,148,136,0.08)}.comparison-pick{padding:var(--space-xl);background:linear-gradient(135deg,rgba(13,148,136,0.08) 0%,rgba(13,148,136,0.02) 100%)}.comparison-pick-label{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:var(--space-md)}.comparison-pick-label::before{content:'🏆';font-size:14px}.comparison-pick-header{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-sm)}.comparison-pick-logo{width:48px;height:48px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;padding:10px}.comparison-pick-logo img{width:100%;height:100%;object-fit:contain}.comparison-pick-name{font-family:var(--font-display);font-size:24px;font-weight:700}.comparison-pick-meta{display:flex;align-items:center;gap:8px;margin-top:4px}.comparison-pick-pricing{display:inline-flex;padding:3px 8px;background:rgba(34,197,94,0.1);border-radius:100px;font-size:11px;font-weight:600;color:#16A34A}.comparison-pick-desc{font-size:15px;color:var(--text-secondary);line-height:1.6;margin-bottom:var(--space-md)}.comparison-pick-wins{display:flex;flex-direction:column;gap:6px;margin-bottom:var(--space-md)}.comparison-pick-win{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary)}.comparison-pick-win::before{content:'✓';color:var(--accent);font-weight:700}.comparison-pick-actions{display:flex;gap:var(--space-sm)}.comparison-pick-link{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;background:var(--bg-dark);color:var(--text-inverse);border-radius:var(--radius-md);font-size:13px;font-weight:600;transition:all .2s}.comparison-pick-link:hover{background:#222}.comparison-pick-link svg{width:14px;height:14px}.comparison-alternatives{padding:var(--space-lg) var(--space-xl)}.comparison-alt-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:var(--space-md)}.comparison-alt-list{display:flex;flex-direction:column;gap:4px}.comparison-alt{display:flex;align-items:flex-start;gap:var(--space-md);padding:10px 12px;border-radius:var(--radius-sm);cursor:pointer;transition:all .2s}.comparison-alt:hover{background:var(--bg-alt)}.comparison-alt-icon{width:24px;height:24px;background:rgba(13,148,136,0.1);color:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}.comparison-alt-name{font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px}.comparison-alt-name::after{content:'+';font-size:12px;color:var(--text-muted)}.comparison-alt.expanded .comparison-alt-name::after{content:'−'}.comparison-alt-reason{font-size:13px;color:var(--text-muted);margin-top:2px}.comparison-alt-detail{font-size:12px;color:var(--text-secondary);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);line-height:1.5;display:none}.comparison-alt.expanded .comparison-alt-detail{display:block}.related-section{padding:var(--space-3xl) 0;background:var(--bg-alt)}.related-grid{display:flex;flex-wrap:wrap;gap:var(--space-md);justify-content:center}.related-link{padding:12px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);font-size:14px;font-weight:500;transition:all .2s}.related-link:hover{border-color:var(--accent);transform:translateY(-2px)}.cta-section{padding:var(--space-3xl) 0;background:var(--bg-dark);color:var(--text-inverse);text-align:center}.cta-section h2{font-size:clamp(28px,5vw,40px);margin-bottom:var(--space-md)}.cta-section p{color:rgba(255,255,255,0.6);margin-bottom:var(--space-xl)}.cta-actions{display:flex;gap:var(--space-md);justify-content:center;flex-wrap:wrap}.cta-section .btn-primary{background:var(--accent)}.cta-section .btn-primary:hover{background:var(--accent-hover)}.cta-section .btn-secondary{border-color:rgba(255,255,255,0.2);color:var(--text-inverse)}footer{padding:var(--space-2xl) 0;border-top:1px solid var(--border)}.footer-content{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-lg)}.footer-content p{font-size:14px;color:var(--text-muted)}.footer-links{display:flex;gap:var(--space-lg)}.footer-links a{font-size:14px;color:var(--text-muted)}.footer-links a:hover{color:var(--text)}@media(max-width:600px){.comparison-pick{padding:var(--space-lg)}.comparison-pick-name{font-size:20px}.comparison-alternatives{padding:var(--space-md) var(--space-lg)}.section-header h2{font-size:28px}}</style>
+</head>
+<body>
+  <header><div class="container"><a href="../../" class="logo"><div class="logo-mark"><div class="icon-line"></div></div><span class="logo-text">fewertools</span></a><nav><a href="../../stacks/">Stacks</a><a href="../../tools/">Tools</a><a href="../../workflows/">Workflows</a><a href="../../compare/">Compare</a><a href="../../gems/">Hidden Gems 💎</a><a href="../../students/">Students 🎓</a><a href="../../stages/" class="nav-cta">Find your stack</a></nav></div></header>
+
+  <section class="page-hero"><div class="container">
+    <div class="breadcrumb reveal"><a href="../../">Home</a> <span>→</span> <a href="../">Use Cases</a> <span>→</span> Freelancing</div>
+    <span class="hero-badge reveal">💼 Use Case Stack</span>
+    <h1 class="reveal">Start <span class="highlight">Freelancing</span></h1>
+    <p class="hero-subtitle reveal">Find clients, deliver great work, get paid on time. Six tools to run a solo freelance business or small agency — without the overhead.</p>
+    <div class="stack-tools reveal">
+      <div class="stack-tool"><img src="https://www.google.com/s2/favicons?domain=contra.com&sz=128" alt=""><span>Contra</span></div>
+      <div class="stack-tool"><img src="https://cdn.simpleicons.org/notion/000000" alt=""><span>Notion</span></div>
+      <div class="stack-tool"><img src="https://cdn.simpleicons.org/stripe/635BFF" alt=""><span>Stripe</span></div>
+      <div class="stack-tool"><img src="https://www.google.com/s2/favicons?domain=calendly.com&sz=128" alt=""><span>Calendly</span></div>
+      <div class="stack-tool"><img src="https://www.google.com/s2/favicons?domain=loom.com&sz=128" alt=""><span>Loom</span></div>
+      <div class="stack-tool"><img src="https://www.google.com/s2/favicons?domain=waveapps.com&sz=128" alt=""><span>Wave</span></div>
+    </div>
+  </div></section>
+
+  <section class="comparison-section" id="tools"><div class="container">
+    <div class="section-header reveal"><h2>Your freelance toolkit</h2><p>Find work, manage projects, present, schedule, invoice, get paid.</p></div>
+    <div class="comparison-grid">
+      <div class="comparison-card reveal"><div class="comparison-pick">
+        <div class="comparison-pick-label">Our Pick — Finding Clients</div>
+        <div class="comparison-pick-header"><div class="comparison-pick-logo"><img src="https://www.google.com/s2/favicons?domain=contra.com&sz=128" alt="Contra"></div><div><span class="comparison-pick-name">Contra</span><div class="comparison-pick-meta"><span class="comparison-pick-pricing">0% commission</span></div></div></div>
+        <p class="comparison-pick-desc">A freelance marketplace that charges zero commission. Build a portfolio, find clients, and keep 100% of your earnings. Clean interface, curated opportunities, and built-in contracts.</p>
+        <div class="comparison-pick-wins">
+          <span class="comparison-pick-win">0% commission — keep everything you earn</span>
+          <span class="comparison-pick-win">Beautiful portfolio page included</span>
+          <span class="comparison-pick-win">Built-in contracts and milestone payments</span>
+        </div>
+        <div class="comparison-pick-actions"><a href="https://contra.com" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+      </div><div class="comparison-alternatives"><div class="comparison-alt-label">Also consider</div><div class="comparison-alt-list">
+        <div class="comparison-alt" onclick="this.classList.toggle('expanded')"><div class="comparison-alt-icon">→</div><div class="comparison-alt-content"><span class="comparison-alt-name">Upwork</span><p class="comparison-alt-reason">Largest marketplace — more clients, more competition</p><p class="comparison-alt-detail">The biggest freelance marketplace. Higher volume of jobs but 10% commission and fierce competition. Good for getting your first 3-5 clients, then move to direct relationships.</p></div></div>
+        <div class="comparison-alt" onclick="this.classList.toggle('expanded')"><div class="comparison-alt-icon">→</div><div class="comparison-alt-content"><span class="comparison-alt-name">Fiverr</span><p class="comparison-alt-reason">Best for productised services</p><p class="comparison-alt-detail">Turn your skill into a fixed-price "gig" that clients can buy instantly. 20% commission but great for building volume. Best for design, writing, and video editing.</p></div></div>
+      </div></div></div>
+
+      <div class="comparison-card reveal"><div class="comparison-pick">
+        <div class="comparison-pick-label">Our Pick — Project Management</div>
+        <div class="comparison-pick-header"><div class="comparison-pick-logo"><img src="https://cdn.simpleicons.org/notion/000000" alt="Notion"></div><div><span class="comparison-pick-name">Notion</span><div class="comparison-pick-meta"><span class="comparison-pick-pricing">Free</span></div></div></div>
+        <p class="comparison-pick-desc">Client workspace, project tracker, proposal templates, meeting notes, and a CRM — all in one. Share pages with clients for async collaboration. Templates for every freelance workflow.</p>
+        <div class="comparison-pick-wins">
+          <span class="comparison-pick-win">Client portal — share specific pages</span>
+          <span class="comparison-pick-win">Proposal and contract templates</span>
+          <span class="comparison-pick-win">Project pipeline with Kanban view</span>
+        </div>
+        <div class="comparison-pick-actions"><a href="https://notion.so" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+      </div><div class="comparison-alternatives"><div class="comparison-alt-label">Also consider</div><div class="comparison-alt-list">
+        <div class="comparison-alt" onclick="this.classList.toggle('expanded')"><div class="comparison-alt-icon">→</div><div class="comparison-alt-content"><span class="comparison-alt-name">ClickUp</span><p class="comparison-alt-reason">More structured project management</p><p class="comparison-alt-detail">If you need time tracking, Gantt charts, and resource management built in. Generous free tier. Better for agency-scale work with multiple team members.</p></div></div>
+        <div class="comparison-alt" onclick="this.classList.toggle('expanded')"><div class="comparison-alt-icon">→</div><div class="comparison-alt-content"><span class="comparison-alt-name">Trello</span><p class="comparison-alt-reason">Dead-simple Kanban boards</p><p class="comparison-alt-detail">If Notion feels too complex. Drag-and-drop cards: Lead → Proposal → Active → Complete → Paid. Free and visual. Many freelancers start here.</p></div></div>
+      </div></div></div>
+
+      <div class="comparison-card reveal"><div class="comparison-pick">
+        <div class="comparison-pick-label">Our Pick — Payments</div>
+        <div class="comparison-pick-header"><div class="comparison-pick-logo"><img src="https://cdn.simpleicons.org/stripe/635BFF" alt="Stripe"></div><div><span class="comparison-pick-name">Stripe</span><div class="comparison-pick-meta"><span class="comparison-pick-pricing">2.9% + 30¢</span></div></div></div>
+        <p class="comparison-pick-desc">Accept payments from anywhere in the world. Payment links (no code), subscriptions for retainers, and instant payouts. The gold standard for freelance payments.</p>
+        <div class="comparison-pick-wins">
+          <span class="comparison-pick-win">Payment links — send a link, get paid</span>
+          <span class="comparison-pick-win">Recurring billing for retainer clients</span>
+          <span class="comparison-pick-win">Instant payouts to your bank</span>
+        </div>
+        <div class="comparison-pick-actions"><a href="https://stripe.com" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+      </div><div class="comparison-alternatives"><div class="comparison-alt-label">Also consider</div><div class="comparison-alt-list">
+        <div class="comparison-alt" onclick="this.classList.toggle('expanded')"><div class="comparison-alt-icon">→</div><div class="comparison-alt-content"><span class="comparison-alt-name">PayPal</span><p class="comparison-alt-reason">Universal — everyone has it</p><p class="comparison-alt-detail">Higher fees (3.49% + 49¢) and clunkier UX, but every client already has a PayPal account. Best for international clients who can't use Stripe.</p></div></div>
+        <div class="comparison-alt" onclick="this.classList.toggle('expanded')"><div class="comparison-alt-icon">→</div><div class="comparison-alt-content"><span class="comparison-alt-name">Wise</span><p class="comparison-alt-reason">Cheapest international transfers</p><p class="comparison-alt-detail">If you work with international clients, Wise's multi-currency accounts and low FX fees save hundreds per year. Get paid in USD, EUR, GBP with local account details.</p></div></div>
+      </div></div></div>
+
+      <div class="comparison-card reveal"><div class="comparison-pick">
+        <div class="comparison-pick-label">Our Pick — Scheduling</div>
+        <div class="comparison-pick-header"><div class="comparison-pick-logo"><img src="https://www.google.com/s2/favicons?domain=calendly.com&sz=128" alt="Calendly"></div><div><span class="comparison-pick-name">Calendly</span><div class="comparison-pick-meta"><span class="comparison-pick-pricing">Free tier</span></div></div></div>
+        <p class="comparison-pick-desc">Stop the "when are you free?" email chain. Share a link, clients pick a time, it's in both calendars. Buffer between meetings, timezone handling, and intake forms built in.</p>
+        <div class="comparison-pick-wins">
+          <span class="comparison-pick-win">Automatic timezone conversion</span>
+          <span class="comparison-pick-win">Buffer time between meetings</span>
+          <span class="comparison-pick-win">Custom intake questions per meeting type</span>
+        </div>
+        <div class="comparison-pick-actions"><a href="https://calendly.com" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+      </div><div class="comparison-alternatives"><div class="comparison-alt-label">Also consider</div><div class="comparison-alt-list">
+        <div class="comparison-alt" onclick="this.classList.toggle('expanded')"><div class="comparison-alt-icon">→</div><div class="comparison-alt-content"><span class="comparison-alt-name">Cal.com</span><p class="comparison-alt-reason">Open-source Calendly alternative</p><p class="comparison-alt-detail">Everything Calendly does, but open-source. Self-host for free or use their cloud. More customisable. Growing fast among indie developers.</p></div></div>
+        <div class="comparison-alt" onclick="this.classList.toggle('expanded')"><div class="comparison-alt-icon">→</div><div class="comparison-alt-content"><span class="comparison-alt-name">SavvyCal</span><p class="comparison-alt-reason">More polished, overlay your calendar</p><p class="comparison-alt-detail">Clients can overlay their calendar on top of yours to find mutual free slots. Premium feel. $12/mo — worth it once you're doing 10+ meetings/week.</p></div></div>
+      </div></div></div>
+
+      <div class="comparison-card reveal"><div class="comparison-pick">
+        <div class="comparison-pick-label">Our Pick — Client Communication</div>
+        <div class="comparison-pick-header"><div class="comparison-pick-logo"><img src="https://www.google.com/s2/favicons?domain=loom.com&sz=128" alt="Loom"></div><div><span class="comparison-pick-name">Loom</span><div class="comparison-pick-meta"><span class="comparison-pick-pricing">Free tier</span></div></div></div>
+        <p class="comparison-pick-desc">Record your screen + face in 2 minutes instead of writing a 20-minute email. Project updates, walkthroughs, and feedback — async, personal, and efficient. Clients love it.</p>
+        <div class="comparison-pick-wins">
+          <span class="comparison-pick-win">Replace meetings with async video updates</span>
+          <span class="comparison-pick-win">Viewers can react and comment at timestamps</span>
+          <span class="comparison-pick-win">Auto-generated transcript and summary</span>
+        </div>
+        <div class="comparison-pick-actions"><a href="https://loom.com" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+      </div><div class="comparison-alternatives"><div class="comparison-alt-label">Also consider</div><div class="comparison-alt-list">
+        <div class="comparison-alt" onclick="this.classList.toggle('expanded')"><div class="comparison-alt-icon">→</div><div class="comparison-alt-content"><span class="comparison-alt-name">Tella</span><p class="comparison-alt-reason">More polished videos with editing</p><p class="comparison-alt-detail">Like Loom but with built-in editing, transitions, and layout options. Creates more professional-looking walkthroughs. Great for proposals and client onboarding.</p></div></div>
+        <div class="comparison-alt" onclick="this.classList.toggle('expanded')"><div class="comparison-alt-icon">→</div><div class="comparison-alt-content"><span class="comparison-alt-name">Slack / Discord</span><p class="comparison-alt-reason">Real-time messaging for active projects</p><p class="comparison-alt-detail">For ongoing retainer clients, a shared Slack channel keeps communication instant and organised. Free tier works fine for 1-3 clients.</p></div></div>
+      </div></div></div>
+
+      <div class="comparison-card reveal"><div class="comparison-pick">
+        <div class="comparison-pick-label">Our Pick — Invoicing</div>
+        <div class="comparison-pick-header"><div class="comparison-pick-logo"><img src="https://www.google.com/s2/favicons?domain=waveapps.com&sz=128" alt="Wave"></div><div><span class="comparison-pick-name">Wave</span><div class="comparison-pick-meta"><span class="comparison-pick-pricing">Free</span></div></div></div>
+        <p class="comparison-pick-desc">Professional invoices, expense tracking, and basic accounting — completely free. No limits on invoices or clients. Generates financial reports for tax time. The best free invoicing tool, period.</p>
+        <div class="comparison-pick-wins">
+          <span class="comparison-pick-win">Unlimited invoices and clients — $0</span>
+          <span class="comparison-pick-win">Automatic payment reminders</span>
+          <span class="comparison-pick-win">Income statements and balance sheets</span>
+        </div>
+        <div class="comparison-pick-actions"><a href="https://waveapps.com" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
+      </div><div class="comparison-alternatives"><div class="comparison-alt-label">Also consider</div><div class="comparison-alt-list">
+        <div class="comparison-alt" onclick="this.classList.toggle('expanded')"><div class="comparison-alt-icon">→</div><div class="comparison-alt-content"><span class="comparison-alt-name">FreshBooks</span><p class="comparison-alt-reason">Best UX — invoicing that feels premium</p><p class="comparison-alt-detail">Gorgeous invoices, time tracking, and project profitability reports. $17/mo but saves hours on admin. Worth it once you're billing $5K+/month.</p></div></div>
+        <div class="comparison-alt" onclick="this.classList.toggle('expanded')"><div class="comparison-alt-icon">→</div><div class="comparison-alt-content"><span class="comparison-alt-name">Xero</span><p class="comparison-alt-reason">Full accounting if you're scaling to agency</p><p class="comparison-alt-detail">More than invoicing — full double-entry accounting, payroll, bank reconciliation. $13/mo. Choose this when you need an accountant to review your books.</p></div></div>
+      </div></div></div>
+    </div>
+  </div></section>
+
+  <section class="related-section"><div class="container">
+    <div class="section-header reveal"><h2>Related stacks</h2><p>Level up your freelance business.</p></div>
+    <div class="related-grid reveal">
+      <a href="../../stacks/starting.html" class="related-link">💡 Starting Stack</a>
+      <a href="../personal-brand/" class="related-link">🌟 Personal Brand</a>
+      <a href="../content-agency/" class="related-link">📱 Content Agency</a>
+      <a href="../sell-digital-products/" class="related-link">📦 Sell Digital Products</a>
+      <a href="../" class="related-link">🎯 All Use Cases</a>
+    </div>
+  </div></section>
+
+  <section class="cta-section"><div class="container reveal">
+    <h2>Ready to go freelance?</h2>
+    <p>Set up these tools today and land your first client this week.</p>
+    <div class="cta-actions">
+      <a href="../../stages/" class="btn btn-primary" style="padding:18px 32px;font-size:16px">Find your stage stack →</a>
+      <a href="../" class="btn btn-secondary" style="padding:18px 32px;font-size:16px">Browse all use cases</a>
+    </div>
+  </div></section>
+
+  <footer><div class="container"><div class="footer-content"><p>© 2026 Fewer Tools. Less tools. More building.</p><div class="footer-links"><a href="../../philosophy/">Philosophy</a><a href="../../tools/">All Tools</a><a href="../../stages/">Stages</a></div></div></div></footer>
+  <script>const reveals=document.querySelectorAll('.reveal');const observer=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});reveals.forEach(el=>observer.observe(el));window.addEventListener('scroll',()=>{document.querySelector('header').classList.toggle('scrolled',window.scrollY>50)});</script>
+  <script src="/_vercel/insights/script.js" defer></script>
+  <script src="/_vercel/speed-insights/script.js" defer></script>
+</body>
+</html>
