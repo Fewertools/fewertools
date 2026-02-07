@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Your Student Stack — Fewer Tools</title>
+  <meta name="description" content="Answer 6 quick questions and get a personalised AI tool stack for your studies. 60 seconds. Completely free.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fewertools.com/students/quiz/">
+  <meta property="og:title" content="Find Your Student Stack — 60 Second Quiz">
+  <meta property="og:description" content="Answer 6 questions, get your personalised AI tool stack. Free.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12);
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    header { padding: 24px 0; border-bottom: 1px solid var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; }
+    .logo { display: flex; align-items: center; gap: 8px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; }
+    .logo-mark .icon-line { width: 12px; height: 2.5px; background: var(--accent); border-radius: 2px; }
+    .logo-text { font-family: "Outfit", -apple-system, sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; }
+    .back-link { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
+    .back-link:hover { color: var(--text); }
+
+    /* Progress */
+    .progress-bar { position: sticky; top: 0; z-index: 100; background: var(--bg); padding: 16px 0 12px; border-bottom: 1px solid var(--border); }
+    .progress-track { height: 4px; background: var(--bg-alt); border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.5s var(--ease-out); }
+    .progress-text { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--text-muted); }
+
+    /* Quiz */
+    .quiz-wrapper { padding: 60px 0 100px; min-height: 70vh; }
+    .quiz-step { display: none; animation: fadeIn 0.4s var(--ease-out); }
+    .quiz-step.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .quiz-step h2 { font-size: clamp(24px, 5vw, 36px); margin-bottom: 8px; }
+    .quiz-step .subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; }
+    .quiz-emoji { font-size: 40px; margin-bottom: 16px; display: block; }
+
+    /* Options */
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--bg-card); border: 2px solid var(--border); border-radius: var(--radius-md); cursor: pointer; transition: all 0.2s ease; font-size: 15px; font-weight: 500; }
+    .option:hover { border-color: var(--accent); transform: translateX(4px); }
+    .option.selected { border-color: var(--accent); background: var(--accent-subtle); }
+    .option-icon { font-size: 20px; width: 28px; text-align: center; flex-shrink: 0; }
+    .option-text { flex: 1; }
+    .option-check { width: 22px; height: 22px; border: 2px solid var(--border-strong); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; font-size: 12px; color: transparent; }
+    .option.selected .option-check { border-color: var(--accent); background: var(--accent); color: white; }
+
+    /* Navigation */
+    .quiz-nav { display: flex; justify-content: space-between; margin-top: 40px; gap: 12px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; font-family: var(--font-body); font-size: 15px; font-weight: 600; border-radius: var(--radius-md); border: none; cursor: pointer; transition: all 0.2s ease; }
+    .btn-primary { background: var(--bg-dark); color: var(--text-inverse); }
+    .btn-primary:hover { background: #222; transform: translateY(-2px); }
+    .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+    .btn-secondary { background: transparent; color: var(--text-muted); border: 1.5px solid var(--border-strong); }
+    .btn-secondary:hover { border-color: var(--text); color: var(--text); }
+    .btn-accent { background: var(--accent); color: white; }
+    .btn-accent:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+    /* Results */
+    .results-wrapper { display: none; animation: fadeIn 0.6s var(--ease-out); padding: 60px 0 100px; }
+    .results-wrapper.active { display: block; }
+    .results-header { text-align: center; margin-bottom: 40px; }
+    .results-header h1 { font-size: clamp(28px, 5vw, 40px); margin-bottom: 8px; }
+    .results-header .profile-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; background: var(--accent-subtle); border: 1px solid var(--accent); border-radius: 100px; font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 16px; }
+
+    .stack-result { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 24px; }
+    .stack-result-header { padding: 24px 28px 16px; border-bottom: 1px solid var(--border); }
+    .stack-result-header h3 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+    .result-tool { display: flex; align-items: center; gap: 16px; padding: 18px 28px; border-bottom: 1px solid var(--border); transition: background 0.2s; }
+    .result-tool:last-child { border-bottom: none; }
+    .result-tool:hover { background: var(--bg-alt); }
+    .result-tool-num { width: 28px; height: 28px; background: var(--bg-alt); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; color: var(--text-muted); flex-shrink: 0; }
+    .result-tool-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .result-tool-icon img { width: 28px; height: 28px; object-fit: contain; }
+    .result-tool-info { flex: 1; }
+    .result-tool-name { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+    .result-tool-reason { font-size: 13px; color: var(--text-muted); }
+    .result-tool-badge { display: inline-flex; padding: 3px 8px; border-radius: 100px; font-size: 11px; font-weight: 600; flex-shrink: 0; }
+    .badge-free { background: rgba(34, 197, 94, 0.1); color: #16A34A; }
+    .badge-safe { background: rgba(13, 148, 136, 0.1); color: var(--accent); }
+
+    /* Email capture */
+    .email-capture { background: var(--bg-dark); border-radius: var(--radius-xl); padding: 40px 32px; text-align: center; color: var(--text-inverse); margin-top: 32px; }
+    .email-capture h3 { font-size: 22px; margin-bottom: 8px; }
+    .email-capture p { color: rgba(255,255,255,0.6); margin-bottom: 24px; font-size: 15px; }
+    .email-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
+    .email-input { flex: 1; padding: 14px 18px; border: 2px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); border-radius: var(--radius-md); color: white; font-size: 15px; font-family: var(--font-body); outline: none; transition: border-color 0.2s; }
+    .email-input::placeholder { color: rgba(255,255,255,0.3); }
+    .email-input:focus { border-color: var(--accent); }
+    .email-submit { padding: 14px 24px; background: var(--accent); color: white; border: none; border-radius: var(--radius-md); font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: var(--font-body); white-space: nowrap; }
+    .email-submit:hover { background: var(--accent-hover); }
+    .email-success { display: none; color: var(--accent); font-weight: 600; font-size: 15px; }
+    @media (max-width: 500px) { .email-form { flex-direction: column; } }
+
+    /* Share */
+    .share-section { text-align: center; margin-top: 32px; }
+    .share-section p { color: var(--text-muted); font-size: 14px; margin-bottom: 12px; }
+    .share-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .share-btn { padding: 10px 20px; border: 1.5px solid var(--border-strong); border-radius: var(--radius-md); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; background: var(--bg-card); }
+    .share-btn:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* Retake */
+    .retake { text-align: center; margin-top: 24px; }
+    .retake a { color: var(--text-muted); font-size: 14px; text-decoration: underline; }
+    .retake a:hover { color: var(--text); }
+
+    /* Footer */
+    footer { padding: 40px 0; border-top: 1px solid var(--border); }
+    footer .container { max-width: 1200px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    footer p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <a href="../../" class="logo"><div class="logo-mark"><div class="icon-line"></div></div><span class="logo-text">fewertools</span></a>
+      <a href="../" class="back-link">← Back to Student Stack</a>
+    </div>
+  </header>
+
+  <div class="progress-bar">
+    <div class="container">
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
+      <div class="progress-text"><span id="progressLabel">Question 1 of 6</span><span id="progressTime">⏱ ~60 seconds</span></div>
+    </div>
+  </div>
+
+  <!-- Quiz -->
+  <div class="quiz-wrapper" id="quizWrapper">
+    <div class="container">
+
+      <!-- Q1: Subject -->
+      <div class="quiz-step active" data-step="1">
+        <span class="quiz-emoji">📚</span>
+        <h2>What are you studying?</h2>
+        <p class="subtitle">Pick the closest match — this shapes your tool recommendations.</p>
+        <div class="options" data-key="subject">
+          <div class="option" data-value="stem"><span class="option-icon">🔬</span><span class="option-text">STEM (Science, Maths, Engineering)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="cs"><span class="option-icon">💻</span><span class="option-text">Computer Science / IT</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="humanities"><span class="option-icon">📖</span><span class="option-text">Humanities (English, History, Philosophy)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="business"><span class="option-icon">📊</span><span class="option-text">Business / Economics / Finance</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="creative"><span class="option-icon">🎨</span><span class="option-text">Creative Arts / Design / Media</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="law"><span class="option-icon">⚖️</span><span class="option-text">Law</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="medicine"><span class="option-icon">🩺</span><span class="option-text">Medicine / Health Sciences</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="social"><span class="option-icon">🧠</span><span class="option-text">Social Sciences (Psychology, Sociology)</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="quiz-nav"><div></div><button class="btn btn-primary" id="nextBtn1" disabled onclick="nextStep(1)">Continue →</button></div>
+      </div>
+
+      <!-- Q2: Biggest struggle -->
+      <div class="quiz-step" data-step="2">
+        <span class="quiz-emoji">😩</span>
+        <h2>What's your biggest struggle?</h2>
+        <p class="subtitle">Be honest — we've all been there.</p>
+        <div class="options" data-key="struggle">
+          <div class="option" data-value="writing"><span class="option-icon">✍️</span><span class="option-text">Writing essays and assignments</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="research"><span class="option-icon">🔍</span><span class="option-text">Finding and organising sources</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="revision"><span class="option-icon">📝</span><span class="option-text">Revision and remembering content</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="focus"><span class="option-icon">📱</span><span class="option-text">Staying focused (phone is too tempting)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="deadlines"><span class="option-icon">⏰</span><span class="option-text">Managing deadlines and workload</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="maths"><span class="option-icon">🧮</span><span class="option-text">Maths and problem solving</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="presentations"><span class="option-icon">🎤</span><span class="option-text">Presentations and group work</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="quiz-nav"><button class="btn btn-secondary" onclick="prevStep(2)">← Back</button><button class="btn btn-primary" id="nextBtn2" disabled onclick="nextStep(2)">Continue →</button></div>
+      </div>
+
+      <!-- Q3: Study style -->
+      <div class="quiz-step" data-step="3">
+        <span class="quiz-emoji">🧠</span>
+        <h2>How do you learn best?</h2>
+        <p class="subtitle">Everyone's different. This helps us pick the right format of tools.</p>
+        <div class="options" data-key="style">
+          <div class="option" data-value="reading"><span class="option-icon">📄</span><span class="option-text">Reading and taking notes</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="flashcards"><span class="option-icon">🗂️</span><span class="option-text">Flashcards and active recall</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="audio"><span class="option-icon">🎧</span><span class="option-text">Listening (podcasts, audio summaries)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="visual"><span class="option-icon">🖼️</span><span class="option-text">Visual (diagrams, mind maps, videos)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="practice"><span class="option-icon">✏️</span><span class="option-text">Practice problems and past papers</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="quiz-nav"><button class="btn btn-secondary" onclick="prevStep(3)">← Back</button><button class="btn btn-primary" id="nextBtn3" disabled onclick="nextStep(3)">Continue →</button></div>
+      </div>
+
+      <!-- Q4: Year -->
+      <div class="quiz-step" data-step="4">
+        <span class="quiz-emoji">🎓</span>
+        <h2>What year are you in?</h2>
+        <p class="subtitle">Final year dissertations need different tools than first year essays.</p>
+        <div class="options" data-key="year">
+          <div class="option" data-value="first"><span class="option-icon">1️⃣</span><span class="option-text">First year</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="second"><span class="option-icon">2️⃣</span><span class="option-text">Second year</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="final"><span class="option-icon">3️⃣</span><span class="option-text">Final year</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="postgrad"><span class="option-icon">🎯</span><span class="option-text">Postgraduate / Masters / PhD</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="quiz-nav"><button class="btn btn-secondary" onclick="prevStep(4)">← Back</button><button class="btn btn-primary" id="nextBtn4" disabled onclick="nextStep(4)">Continue →</button></div>
+      </div>
+
+      <!-- Q5: Budget -->
+      <div class="quiz-step" data-step="5">
+        <span class="quiz-emoji">💰</span>
+        <h2>What's your budget for tools?</h2>
+        <p class="subtitle">No judgement — most of our picks are free anyway.</p>
+        <div class="options" data-key="budget">
+          <div class="option" data-value="free"><span class="option-icon">🆓</span><span class="option-text">£0 — free tools only</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="low"><span class="option-icon">🪙</span><span class="option-text">Up to £5/month</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="medium"><span class="option-icon">💳</span><span class="option-text">Up to £15/month</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="any"><span class="option-icon">💎</span><span class="option-text">Whatever works best</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="quiz-nav"><button class="btn btn-secondary" onclick="prevStep(5)">← Back</button><button class="btn btn-primary" id="nextBtn5" disabled onclick="nextStep(5)">Continue →</button></div>
+      </div>
+
+      <!-- Q6: Device -->
+      <div class="quiz-step" data-step="6">
+        <span class="quiz-emoji">💻</span>
+        <h2>What do you mainly study on?</h2>
+        <p class="subtitle">Some tools work better on certain devices.</p>
+        <div class="options" data-key="device">
+          <div class="option" data-value="laptop"><span class="option-icon">💻</span><span class="option-text">Laptop / Desktop</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="ipad"><span class="option-icon">📱</span><span class="option-text">iPad / Tablet</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="phone"><span class="option-icon">📲</span><span class="option-text">Phone (mostly)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="mix"><span class="option-icon">🔄</span><span class="option-text">Mix of everything</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="quiz-nav"><button class="btn btn-secondary" onclick="prevStep(6)">← Back</button><button class="btn btn-accent" id="nextBtn6" disabled onclick="showResults()">See my stack 🚀</button></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="results-wrapper" id="resultsWrapper">
+    <div class="container">
+      <div class="results-header">
+        <div class="profile-badge" id="profileBadge">🎓 Your Stack</div>
+        <h1 id="resultsTitle">Your personalised stack</h1>
+        <p style="color: var(--text-secondary);" id="resultsSubtitle">Based on your answers, here are the tools that'll make the biggest difference.</p>
+      </div>
+
+      <div class="stack-result">
+        <div class="stack-result-header"><h3>🏆 Your recommended tools</h3></div>
+        <div id="toolsList"></div>
+      </div>
+
+      <!-- Email Capture -->
+      <div class="email-capture">
+        <h3>Save your stack + get weekly tips</h3>
+        <p>We'll send your personalised stack and one useful tool recommendation every week. No spam.</p>
+        <div class="email-form" id="emailForm">
+          <input type="email" class="email-input" id="emailInput" placeholder="your@university.ac.uk">
+          <button class="email-submit" onclick="submitEmail()">Save my stack →</button>
+        </div>
+        <div class="email-success" id="emailSuccess">✅ Saved! Check your inbox for your stack.</div>
+      </div>
+
+      <!-- Share -->
+      <div class="share-section">
+        <p>Share your stack with friends:</p>
+        <div class="share-buttons">
+          <button class="share-btn" onclick="shareTwitter()">𝕏 Share on X</button>
+          <button class="share-btn" onclick="shareWhatsApp()">💬 WhatsApp</button>
+          <button class="share-btn" onclick="copyLink()">🔗 Copy link</button>
+        </div>
+      </div>
+
+      <div class="retake"><a href="#" onclick="retakeQuiz(); return false;">← Retake quiz</a></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Fewer Tools. Less tools. More building.</p>
+      <div class="footer-links">
+        <a href="../">Student Stack</a>
+        <a href="../../tools/">All Tools</a>
+        <a href="../../stacks/">Stacks</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // State
+    const answers = {};
+    const totalSteps = 6;
+
+    // Tool database
+    const TOOLS = {
+      grammarly: { name: 'Grammarly', icon: 'https://cdn.simpleicons.org/grammarly/15C39A', url: 'https://grammarly.com', free: true, safe: true },
+      perplexity: { name: 'Perplexity', icon: 'https://cdn.simpleicons.org/perplexity/1FB8CD', url: 'https://perplexity.ai', free: true, safe: true },
+      notebooklm: { name: 'NotebookLM', icon: 'https://cdn.simpleicons.org/google/4285F4', url: 'https://notebooklm.google.com', free: true, safe: true },
+      notion: { name: 'Notion', icon: 'https://cdn.simpleicons.org/notion/000000', url: 'https://notion.so/students', free: true, safe: true },
+      copilot: { name: 'GitHub Copilot', icon: 'https://cdn.simpleicons.org/github/181717', url: 'https://education.github.com', free: true, safe: true },
+      gamma: { name: 'Gamma', icon: 'https://www.google.com/s2/favicons?domain=gamma.app&sz=128', url: 'https://gamma.app', free: true, safe: true },
+      wolfram: { name: 'Wolfram Alpha', icon: 'https://cdn.simpleicons.org/wolframmathematica/DD1100', url: 'https://wolframalpha.com', free: true, safe: true },
+      zotero: { name: 'Zotero', icon: 'https://cdn.simpleicons.org/zotero/CC2936', url: 'https://zotero.org', free: true, safe: true },
+      forest: { name: 'Forest', icon: 'https://www.google.com/s2/favicons?domain=forestapp.cc&sz=128', url: 'https://forestapp.cc', free: true, safe: true },
+      quillbot: { name: 'QuillBot', icon: 'https://www.google.com/s2/favicons?domain=quillbot.com&sz=128', url: 'https://quillbot.com', free: true, safe: true },
+      anki: { name: 'Anki', icon: 'https://cdn.simpleicons.org/anki/236BFF', url: 'https://apps.ankiweb.net', free: true, safe: true },
+      photomath: { name: 'Photomath', icon: 'https://www.google.com/s2/favicons?domain=photomath.com&sz=128', url: 'https://photomath.com', free: true, safe: true },
+      consensus: { name: 'Consensus', icon: 'https://www.google.com/s2/favicons?domain=consensus.app&sz=128', url: 'https://consensus.app', free: true, safe: true },
+      canva: { name: 'Canva', icon: 'https://www.google.com/s2/favicons?domain=canva.com&sz=128', url: 'https://canva.com/education', free: true, safe: true },
+      otterai: { name: 'Otter.ai', icon: 'https://www.google.com/s2/favicons?domain=otter.ai&sz=128', url: 'https://otter.ai', free: true, safe: true },
+      chatpdf: { name: 'ChatPDF', icon: 'https://www.google.com/s2/favicons?domain=chatpdf.com&sz=128', url: 'https://chatpdf.com', free: true, safe: true },
+      symbolab: { name: 'Symbolab', icon: 'https://cdn.simpleicons.org/symbolab/FF6F00', url: 'https://symbolab.com', free: true, safe: true },
+      cursor: { name: 'Cursor', icon: 'https://cdn.simpleicons.org/cursor/000000', url: 'https://cursor.sh', free: true, safe: true },
+      figma: { name: 'Figma', icon: 'https://cdn.simpleicons.org/figma/F24E1E', url: 'https://figma.com/education', free: true, safe: true },
+      todoist: { name: 'Todoist', icon: 'https://cdn.simpleicons.org/todoist/E44332', url: 'https://todoist.com', free: true, safe: true },
+      mendeley: { name: 'Mendeley', icon: 'https://cdn.simpleicons.org/mendeley/9D1620', url: 'https://mendeley.com', free: true, safe: true },
+      pomofocus: { name: 'Pomofocus', icon: 'https://www.google.com/s2/favicons?domain=pomofocus.io&sz=128', url: 'https://pomofocus.io', free: true, safe: true },
+    };
+
+    // Recommendation engine
+    function getRecommendations() {
+      const { subject, struggle, style, year, budget, device } = answers;
+      let tools = [];
+
+      // Core tools everyone gets (with personalized reasons)
+      const reasons = {};
+
+      // Subject-based primary tools
+      if (subject === 'cs') {
+        tools.push('copilot'); reasons.copilot = 'Free for CS students — AI pair programming in VS Code';
+        tools.push('cursor'); reasons.cursor = 'AI-first code editor for faster development';
+      } else if (subject === 'stem' || subject === 'medicine') {
+        tools.push('wolfram'); reasons.wolfram = 'Solve equations, plot graphs, check your working';
+        tools.push('photomath'); reasons.photomath = 'Snap a photo of any maths problem for step-by-step solutions';
+      } else if (subject === 'law') {
+        tools.push('perplexity'); reasons.perplexity = 'Research case law with cited sources';
+        tools.push('zotero'); reasons.zotero = 'Generate OSCOLA citations automatically';
+      } else if (subject === 'humanities' || subject === 'social') {
+        tools.push('perplexity'); reasons.perplexity = 'Research with cited sources — perfect for essays';
+        tools.push('grammarly'); reasons.grammarly = 'Polish your writing without changing your voice';
+      } else if (subject === 'business') {
+        tools.push('perplexity'); reasons.perplexity = 'Market research and data with cited sources';
+        tools.push('notion'); reasons.notion = 'Organise case studies, notes, and group projects';
+      } else if (subject === 'creative') {
+        tools.push('canva'); reasons.canva = 'Free Pro with student email — design anything';
+        tools.push('figma'); reasons.figma = 'Free Education plan — industry-standard design tool';
+      }
+
+      // Struggle-based
+      if (struggle === 'writing' && !tools.includes('grammarly')) {
+        tools.push('grammarly'); reasons.grammarly = reasons.grammarly || 'Fix grammar, improve clarity, check plagiarism';
+      }
+      if (struggle === 'writing') {
+        if (!tools.includes('quillbot')) { tools.push('quillbot'); reasons.quillbot = 'Paraphrase complex ideas in your own words'; }
+      }
+      if (struggle === 'research') {
+        if (!tools.includes('perplexity')) { tools.push('perplexity'); reasons.perplexity = reasons.perplexity || 'AI-powered research with real citations'; }
+        if (!tools.includes('zotero')) { tools.push('zotero'); reasons.zotero = reasons.zotero || 'Save sources and auto-generate bibliographies'; }
+      }
+      if (struggle === 'revision') {
+        tools.push('notebooklm'); reasons.notebooklm = 'Upload notes → get study guides + audio summaries';
+      }
+      if (struggle === 'focus') {
+        tools.push('forest'); reasons.forest = 'Block distracting apps — grow a tree while you study';
+      }
+      if (struggle === 'deadlines') {
+        if (!tools.includes('notion')) { tools.push('notion'); reasons.notion = reasons.notion || 'Track every deadline, assignment, and reading list'; }
+        tools.push('todoist'); reasons.todoist = 'Simple task management — "Essay due Friday 5pm"';
+      }
+      if (struggle === 'maths') {
+        if (!tools.includes('wolfram')) { tools.push('wolfram'); reasons.wolfram = reasons.wolfram || 'Step-by-step solutions for any equation'; }
+        if (!tools.includes('photomath')) { tools.push('photomath'); reasons.photomath = reasons.photomath || 'Photo → instant solution with explanations'; }
+      }
+      if (struggle === 'presentations') {
+        tools.push('gamma'); reasons.gamma = 'Generate beautiful presentations from a text prompt';
+      }
+
+      // Study style
+      if (style === 'flashcards') {
+        tools.push('anki'); reasons.anki = 'Spaced repetition flashcards — proven to boost retention';
+      }
+      if (style === 'audio') {
+        if (!tools.includes('notebooklm')) { tools.push('notebooklm'); reasons.notebooklm = reasons.notebooklm || 'Turns your notes into podcast-style audio summaries'; }
+        tools.push('otterai'); reasons.otterai = 'Auto-transcribe lectures — never miss a word';
+      }
+      if (style === 'reading') {
+        tools.push('chatpdf'); reasons.chatpdf = 'Chat with any PDF — ask questions about dense readings';
+      }
+      if (style === 'visual') {
+        if (!tools.includes('gamma')) { tools.push('gamma'); reasons.gamma = reasons.gamma || 'Create visual presentations and documents'; }
+        if (!tools.includes('canva')) { tools.push('canva'); reasons.canva = reasons.canva || 'Design mind maps, infographics, study materials'; }
+      }
+
+      // Year-based additions
+      if ((year === 'final' || year === 'postgrad') && !tools.includes('zotero')) {
+        tools.push('zotero'); reasons.zotero = reasons.zotero || 'Essential for dissertation — manage 100+ sources effortlessly';
+      }
+      if ((year === 'final' || year === 'postgrad') && !tools.includes('consensus')) {
+        tools.push('consensus'); reasons.consensus = 'Search peer-reviewed papers only — perfect for literature reviews';
+      }
+
+      // Ensure essentials are covered
+      if (!tools.includes('grammarly') && !tools.includes('quillbot')) {
+        tools.push('grammarly'); reasons.grammarly = reasons.grammarly || 'Polish every essay and assignment before submitting';
+      }
+      if (!tools.includes('notion') && !tools.includes('todoist')) {
+        tools.push('notion'); reasons.notion = reasons.notion || 'One app for notes, tasks, and deadlines';
+      }
+      if (!tools.includes('perplexity')) {
+        tools.push('perplexity'); reasons.perplexity = reasons.perplexity || 'AI-powered research — better than Google for academic work';
+      }
+
+      // Focus tool fallback
+      if (!tools.includes('forest') && !tools.includes('pomofocus')) {
+        tools.push('forest'); reasons.forest = reasons.forest || 'Stay focused during study sessions';
+      }
+
+      // Deduplicate and limit to 6
+      tools = [...new Set(tools)].slice(0, 6);
+
+      return tools.map(key => ({
+        ...TOOLS[key],
+        key,
+        reason: reasons[key] || ''
+      }));
+    }
+
+    function getProfileTitle() {
+      const subjectNames = {
+        stem: 'STEM', cs: 'Computer Science', humanities: 'Humanities',
+        business: 'Business', creative: 'Creative Arts', law: 'Law',
+        medicine: 'Medicine', social: 'Social Sciences'
+      };
+      const yearNames = { first: 'First Year', second: 'Second Year', final: 'Final Year', postgrad: 'Postgrad' };
+      return `${subjectNames[answers.subject] || ''} — ${yearNames[answers.year] || ''}`;
+    }
+
+    // Option selection
+    document.querySelectorAll('.option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        const parent = opt.closest('.options');
+        parent.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        const key = parent.dataset.key;
+        answers[key] = opt.dataset.value;
+        // Enable next button
+        const step = opt.closest('.quiz-step').dataset.step;
+        document.getElementById('nextBtn' + step).disabled = false;
+      });
+    });
+
+    // Navigation
+    function updateProgress(step) {
+      const pct = ((step - 1) / totalSteps) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = `Question ${step} of ${totalSteps}`;
+      const remaining = Math.max(0, (totalSteps - step + 1) * 10);
+      document.getElementById('progressTime').textContent = remaining > 0 ? `⏱ ~${remaining} seconds` : '⏱ Almost done!';
+    }
+
+    function nextStep(current) {
+      document.querySelector(`.quiz-step[data-step="${current}"]`).classList.remove('active');
+      document.querySelector(`.quiz-step[data-step="${current + 1}"]`).classList.add('active');
+      updateProgress(current + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function prevStep(current) {
+      document.querySelector(`.quiz-step[data-step="${current}"]`).classList.remove('active');
+      document.querySelector(`.quiz-step[data-step="${current - 1}"]`).classList.add('active');
+      updateProgress(current - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Show results
+    function showResults() {
+      document.getElementById('quizWrapper').style.display = 'none';
+      document.querySelector('.progress-bar').style.display = 'none';
+      const results = document.getElementById('resultsWrapper');
+      results.classList.add('active');
+
+      const profile = getProfileTitle();
+      document.getElementById('profileBadge').textContent = '🎓 ' + profile;
+      document.getElementById('resultsTitle').textContent = 'Your ' + profile + ' Stack';
+
+      const tools = getRecommendations();
+      const list = document.getElementById('toolsList');
+      list.innerHTML = tools.map((tool, i) => `
+        <a href="${tool.url}" target="_blank" class="result-tool">
+          <span class="result-tool-num">${i + 1}</span>
+          <span class="result-tool-icon"><img src="${tool.icon}" alt="${tool.name}"></span>
+          <span class="result-tool-info">
+            <span class="result-tool-name">${tool.name}</span>
+            <span class="result-tool-reason">${tool.reason}</span>
+          </span>
+          ${tool.free ? '<span class="result-tool-badge badge-free">Free</span>' : ''}
+          ${tool.safe ? '<span class="result-tool-badge badge-safe" style="margin-left:4px">Uni-safe</span>' : ''}
+        </a>
+      `).join('');
+
+      document.getElementById('progressFill').style.width = '100%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Email
+    function submitEmail() {
+      const email = document.getElementById('emailInput').value;
+      if (!email || !email.includes('@')) { document.getElementById('emailInput').style.borderColor = '#EF4444'; return; }
+      // Send to Beehiiv
+      const BEEHIIV_PUB_ID = 'ffe242b4-6337-4480-859c-00fceff08744';
+      try {
+        await fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            utm_source: 'fewertools',
+            utm_medium: 'quiz',
+            utm_campaign: `student_quiz_${answers.subject || 'unknown'}_${answers.year || 'unknown'}`,
+            custom_fields: [
+              { name: 'subject', value: answers.subject || '' },
+              { name: 'year', value: answers.year || '' },
+              { name: 'struggle', value: answers.struggle || '' }
+            ]
+          })
+        });
+      } catch(e) {}
+      // Backup to localStorage
+      const signups = JSON.parse(localStorage.getItem('fewertools_signups') || '[]');
+      if (!signups.includes(email)) { signups.push(email); localStorage.setItem('fewertools_signups', JSON.stringify(signups)); }
+      document.getElementById('emailForm').style.display = 'none';
+      document.getElementById('emailSuccess').style.display = 'block';
+    }
+
+    // Sharing
+    function shareTwitter() {
+      const text = `Just found my personalised AI study stack on @fewertools 🚀\n\nTake the 60-second quiz:`;
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://fewertools.com/students/quiz/')}`, '_blank');
+    }
+    function shareWhatsApp() {
+      const text = `Found this quiz that gives you a personalised AI tool stack for uni — mine was spot on 👀\n\nhttps://fewertools.com/students/quiz/`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+    function copyLink() {
+      navigator.clipboard.writeText('https://fewertools.com/students/quiz/');
+      const btn = event.target;
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => btn.textContent = '🔗 Copy link', 2000);
+    }
+
+    // Retake
+    function retakeQuiz() {
+      Object.keys(answers).forEach(k => delete answers[k]);
+      document.getElementById('resultsWrapper').classList.remove('active');
+      document.getElementById('quizWrapper').style.display = 'block';
+      document.querySelector('.progress-bar').style.display = 'block';
+      document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+      document.querySelector('.quiz-step[data-step="1"]').classList.add('active');
+      document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      for (let i = 1; i <= totalSteps; i++) document.getElementById('nextBtn' + i).disabled = true;
+      updateProgress(1);
+      document.getElementById('emailForm').style.display = 'flex';
+      document.getElementById('emailSuccess').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

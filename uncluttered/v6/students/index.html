@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Stack — Fewer Tools</title>
+  <meta name="description" content="The best AI tools for university students — organised by task. Writing, research, revision, notes, coding, and presentations. All uni-safe. Mostly free.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fewertools.com/students/">
+  <meta property="og:title" content="Student Stack — Fewer Tools">
+  <meta property="og:description" content="The best AI tools for university students. Writing, research, revision, coding & more. Uni-safe. Mostly free.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg: #FAFAF8;
+      --bg-alt: #F3F3F0;
+      --bg-dark: #0a0a0a;
+      --bg-card: #FFFFFF;
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --text-inverse: #FAFAF8;
+      --accent: #0D9488;
+      --accent-hover: #0F766E;
+      --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.12);
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px;
+      --space-xl: 40px; --space-2xl: 64px; --space-3xl: 100px; --space-4xl: 140px;
+      --max-width: 1200px;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-xl); }
+    @media (max-width: 600px) { .container { padding: 0 var(--space-lg); } }
+    
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); font-family: var(--font-body); font-size: 15px; font-weight: 600; border-radius: var(--radius-md); border: none; cursor: pointer; transition: all 0.2s ease; }
+    .btn-primary { background: var(--bg-dark); color: var(--text-inverse); }
+    .btn-primary:hover { background: #222; transform: translateY(-2px); }
+    .btn-secondary { background: transparent; color: var(--text); border: 1.5px solid var(--border-strong); }
+    .btn-secondary:hover { border-color: var(--text); }
+    
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--space-lg) 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: all 0.2s ease; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: var(--space-sm); font-family: var(--font-display); font-weight: 700; font-size: 20px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; transition: all 0.3s ease; }
+    .logo-text { font-family: "Outfit", -apple-system, sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; color: var(--text); }
+    .logo-mark .icon-line { width: 12px; height: 2.5px; background: var(--accent); border-radius: 2px; animation: iconGlow 2.5s ease-in-out infinite; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); }
+    @keyframes iconGlow { 0%, 100% { transform: scaleX(1); opacity: 1; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); } 50% { transform: scaleX(0.6); opacity: 0.8; box-shadow: 0 0 12px rgba(13, 148, 136, 0.8); } }
+    nav { display: flex; align-items: center; gap: var(--space-xl); }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s ease; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { padding: var(--space-sm) var(--space-md); background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    @media (max-width: 768px) { nav a:not(.nav-cta) { display: none; } }
+    
+    /* Hero */
+    .page-hero { padding: 140px 0 var(--space-2xl); }
+    .breadcrumb { display: flex; align-items: center; gap: var(--space-sm); font-size: 13px; color: var(--text-muted); margin-bottom: var(--space-lg); }
+    .breadcrumb a:hover { color: var(--text); }
+    .hero-badge { display: inline-flex; align-items: center; gap: var(--space-sm); padding: 8px 16px; background: var(--accent-subtle); border: 1px solid var(--accent); border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: var(--space-lg); }
+    .page-hero h1 { font-size: clamp(40px, 8vw, 64px); margin-bottom: var(--space-md); }
+    .page-hero h1 .highlight { color: var(--accent); }
+    .hero-subtitle { font-size: 20px; color: var(--text-secondary); max-width: 600px; line-height: 1.6; margin-bottom: var(--space-xl); }
+    
+    /* Stack Tools Overview */
+    .stack-tools { display: flex; flex-wrap: wrap; gap: var(--space-md); justify-content: center; margin-bottom: var(--space-2xl); }
+    .stack-tool { display: flex; align-items: center; gap: var(--space-sm); padding: 10px 18px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; font-size: 14px; font-weight: 500; transition: all 0.2s ease; }
+    .stack-tool:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .stack-tool img { width: 20px; height: 20px; object-fit: contain; }
+    
+    /* Architecture Diagram */
+    .stack-architecture { padding: var(--space-3xl) 0; background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%); }
+    .architecture-header { text-align: center; margin-bottom: var(--space-2xl); }
+    .architecture-header h2 { font-size: clamp(24px, 4vw, 32px); margin-bottom: var(--space-sm); }
+    .architecture-header p { color: var(--text-secondary); }
+    .architecture-diagram { display: flex; flex-direction: column; align-items: center; gap: var(--space-md); max-width: 900px; margin: 0 auto; }
+    .architecture-row { display: flex; justify-content: center; gap: var(--space-lg); width: 100%; flex-wrap: wrap; }
+    .architecture-node { display: flex; flex-direction: column; align-items: center; gap: var(--space-sm); padding: var(--space-lg); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); min-width: 120px; transition: all 0.3s var(--ease-out); }
+    .architecture-node:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .architecture-node.primary { border-color: var(--accent); background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, var(--bg-card) 100%); }
+    .architecture-node-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .architecture-node-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .architecture-node-name { font-family: var(--font-display); font-weight: 600; font-size: 14px; }
+    .architecture-node-role { font-size: 11px; color: var(--text-muted); text-align: center; }
+    .architecture-connector { display: flex; justify-content: center; align-items: center; height: 40px; position: relative; }
+    .architecture-connector::before { content: ''; position: absolute; width: 2px; height: 100%; background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%); }
+    .architecture-connector-arrow { width: 24px; height: 24px; background: var(--bg); border: 2px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 12px; z-index: 1; }
+    @media (max-width: 700px) {
+      .architecture-row { gap: var(--space-sm); }
+      .architecture-node { min-width: 80px; padding: var(--space-md); }
+      .architecture-node-icon { width: 32px; height: 32px; }
+      .architecture-node-name { font-size: 11px; }
+      .architecture-node-role { font-size: 9px; }
+    }
+    
+    /* Comparison Section */
+    .comparison-section { padding: var(--space-3xl) 0 var(--space-4xl); }
+    .section-header { text-align: center; margin-bottom: var(--space-2xl); }
+    .section-header h2 { margin-bottom: var(--space-sm); }
+    .section-header p { font-size: 17px; color: var(--text-secondary); }
+    .comparison-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: var(--space-lg); }
+    @media (max-width: 768px) { .comparison-grid { grid-template-columns: 1fr; } }
+    
+    .comparison-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; transition: all 0.4s var(--ease-out); }
+    .comparison-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .comparison-card .comparison-pick-tags,
+    .comparison-card .comparison-pick-wins,
+    .comparison-card .comparison-pick-actions,
+    .comparison-card .comparison-alternatives { opacity: 0; transform: translateY(10px); transition: all 0.4s var(--ease-out); }
+    .comparison-card.visible .comparison-pick-tags { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+    .comparison-card.visible .comparison-pick-wins { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+    .comparison-card.visible .comparison-pick-actions { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+    .comparison-card.visible .comparison-alternatives { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
+    
+    .comparison-pick { padding: var(--space-xl); background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(13, 148, 136, 0.02) 100%); }
+    .comparison-pick-label { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: var(--space-md); }
+    .comparison-pick-label::before { content: '🏆'; font-size: 14px; }
+    .comparison-pick-header { display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-sm); }
+    .comparison-pick-logo { width: 48px; height: 48px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; padding: 10px; }
+    .comparison-pick-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .comparison-pick-name { font-family: var(--font-display); font-size: 24px; font-weight: 700; }
+    .comparison-pick-meta { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+    .comparison-pick-pricing { display: inline-flex; padding: 3px 8px; background: rgba(34, 197, 94, 0.1); border-radius: 100px; font-size: 11px; font-weight: 600; color: #16A34A; }
+    .badge-uni-safe { display: inline-flex; padding: 3px 8px; background: rgba(13, 148, 136, 0.1); border-radius: 100px; font-size: 11px; font-weight: 600; color: var(--accent); }
+    .comparison-pick-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: var(--space-md) 0; }
+    .comparison-pick-tag { padding: 4px 10px; background: var(--bg); border-radius: 100px; font-size: 12px; color: var(--text-secondary); }
+    .comparison-pick-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-md); }
+    .comparison-pick-wins { display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--space-md); }
+    .comparison-pick-win { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); }
+    .comparison-pick-win::before { content: '✓'; color: var(--accent); font-weight: 700; }
+    .comparison-pick-actions { display: flex; gap: var(--space-sm); }
+    .comparison-pick-link { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; background: var(--bg-dark); color: var(--text-inverse); border-radius: var(--radius-md); font-size: 13px; font-weight: 600; transition: all 0.2s ease; }
+    .comparison-pick-link:hover { background: #222; }
+    .comparison-pick-link svg { width: 14px; height: 14px; }
+    
+    .comparison-alternatives { padding: var(--space-lg) var(--space-xl); }
+    .comparison-alt-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: var(--space-md); }
+    .comparison-alt-list { display: flex; flex-direction: column; gap: 4px; }
+    .comparison-alt { display: flex; align-items: flex-start; gap: var(--space-md); padding: 10px 12px; border-radius: var(--radius-sm); cursor: pointer; transition: all 0.2s ease; }
+    .comparison-alt:hover { background: var(--bg-alt); }
+    .comparison-alt-icon { width: 24px; height: 24px; background: rgba(13, 148, 136, 0.1); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+    .comparison-alt-name { font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+    .comparison-alt-name::after { content: '+'; font-size: 12px; color: var(--text-muted); }
+    .comparison-alt.expanded .comparison-alt-name::after { content: '−'; }
+    .comparison-alt-reason { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+    .comparison-alt-detail { font-size: 12px; color: var(--text-secondary); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); line-height: 1.5; display: none; }
+    .comparison-alt.expanded .comparison-alt-detail { display: block; }
+    
+    /* Free Student Perks */
+    .perks-section { padding: var(--space-3xl) 0; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%); color: var(--text-inverse); }
+    .perks-section .section-header h2 { color: var(--text-inverse); }
+    .perks-section .section-header p { color: rgba(255,255,255,0.6); }
+    .perks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-md); max-width: 1100px; margin: 0 auto; }
+    .perk-card { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm); padding: var(--space-lg); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); transition: all 0.3s var(--ease-out); text-decoration: none; }
+    .perk-card:hover { background: rgba(255,255,255,0.08); border-color: var(--accent); transform: translateY(-4px); }
+    .perk-card img { width: 32px; height: 32px; object-fit: contain; margin-bottom: var(--space-xs); }
+    .perk-name { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--text-inverse); }
+    .perk-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+    .perk-value { display: inline-flex; padding: 3px 10px; background: rgba(13, 148, 136, 0.2); border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--accent); margin-top: auto; }
+    .perks-total { text-align: center; margin-top: var(--space-xl); font-size: 18px; color: rgba(255,255,255,0.7); }
+    .perks-total strong { color: var(--accent); font-size: 20px; }
+    @media (max-width: 600px) { .perks-grid { grid-template-columns: 1fr; } }
+
+    /* Calculator */
+    .calculator-section { padding: var(--space-3xl) 0; background: var(--bg-alt); }
+    .calculator-header { text-align: center; margin-bottom: var(--space-2xl); }
+    .calculator-header h2 { margin-bottom: var(--space-sm); }
+    .calculator-header p { color: var(--text-secondary); }
+    .calculator-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: var(--space-xl); max-width: 600px; margin: 0 auto; }
+    .calculator-breakdown { display: flex; flex-direction: column; gap: var(--space-md); }
+    .calculator-item { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--bg); border-radius: var(--radius-md); }
+    .calculator-item-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; }
+    .calculator-item-icon img { width: 24px; height: 24px; object-fit: contain; }
+    .calculator-item-info { flex: 1; }
+    .calculator-item-name { font-weight: 600; font-size: 14px; }
+    .calculator-item-tier { font-size: 12px; color: var(--text-muted); }
+    .calculator-item-cost { font-weight: 700; font-size: 14px; }
+    .calculator-item-cost.free { color: #16A34A; }
+    .calculator-total { display: flex; justify-content: space-between; align-items: center; padding-top: var(--space-lg); margin-top: var(--space-lg); border-top: 2px solid var(--border); }
+    .calculator-total-label { font-weight: 600; }
+    .calculator-total-value { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: #16A34A; }
+    .calculator-note { font-size: 13px; color: var(--text-muted); text-align: center; margin-top: var(--space-lg); }
+    
+    /* Quick Start / Tips */
+    .quickstart-section { padding: var(--space-3xl) 0; }
+    .quickstart-header { text-align: center; margin-bottom: var(--space-2xl); }
+    .quickstart-header h2 { margin-bottom: var(--space-sm); }
+    .quickstart-header p { color: var(--text-secondary); }
+    .quickstart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); max-width: 900px; margin: 0 auto; }
+    .quickstart-step { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-xl); transition: all 0.3s ease; }
+    .quickstart-step:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .quickstart-step-number { width: 32px; height: 32px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; margin-bottom: var(--space-md); }
+    .quickstart-step-icon { font-size: 28px; margin-bottom: var(--space-md); }
+    .quickstart-step h4 { font-size: 16px; margin-bottom: var(--space-sm); }
+    .quickstart-step p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    
+    /* Skip Section */
+    .skip-section { padding: var(--space-3xl) 0; background: var(--bg-dark); color: var(--text-inverse); position: relative; overflow: hidden; }
+    .skip-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(13, 148, 136, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.06) 0%, transparent 50%); pointer-events: none; }
+    .skip-section .container { position: relative; z-index: 1; }
+    .skip-section h2 { margin-bottom: var(--space-sm); text-align: center; }
+    .skip-section > .container > p { color: rgba(255,255,255,0.5); font-size: 18px; margin-bottom: var(--space-2xl); text-align: center; }
+    .skip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); max-width: 700px; margin: 0 auto; }
+    @media (max-width: 600px) { .skip-grid { grid-template-columns: 1fr; } }
+    .skip-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-sm); padding: var(--space-lg); background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-lg); transition: all 0.3s ease; }
+    .skip-item:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); transform: translateY(-4px); }
+    .skip-icon { font-size: 28px; margin-bottom: var(--space-xs); opacity: 0.5; }
+    .skip-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.9); }
+    .skip-reason { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+    
+    /* CTA */
+    .cta-section { padding: var(--space-3xl) 0; background: var(--bg-dark); color: var(--text-inverse); text-align: center; }
+    .cta-section h2 { font-size: clamp(28px, 5vw, 40px); margin-bottom: var(--space-md); }
+    .cta-section p { color: rgba(255,255,255,0.6); margin-bottom: var(--space-xl); }
+    .cta-actions { display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap; }
+    .cta-section .btn-primary { background: var(--accent); }
+    .cta-section .btn-primary:hover { background: var(--accent-hover); }
+    .cta-section .btn-secondary { border-color: rgba(255,255,255,0.2); color: var(--text-inverse); }
+    .cta-section .btn-secondary:hover { border-color: rgba(255,255,255,0.5); }
+    
+    /* Footer */
+    footer { padding: var(--space-2xl) 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-lg); }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: var(--space-lg); }
+    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../" class="logo"><div class="logo-mark"><div class="icon-line"></div></div><span class="logo-text">fewertools</span></a>
+      <nav>
+        <a href="../stacks/">Stacks</a>
+        <a href="../tools/">Tools</a>
+        <a href="../workflows/">Workflows</a>
+        <a href="../compare/">Compare</a>
+        <a href="../gems/">Hidden Gems 💎</a>
+        <a href="../philosophy/">Philosophy</a>
+        <a href="../stages/" class="nav-cta">Find your stack</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb reveal"><a href="../">Home</a> <span>→</span> <a href="../stacks/">Stacks</a> <span>→</span> Students</div>
+      <span class="hero-badge reveal">🎓 Student Stack</span>
+      <h1 class="reveal">Study <span class="highlight">smarter.</span><br>Not harder.</h1>
+      <p class="hero-subtitle reveal">You don't need 20 AI tools. You need the right ones for your coursework, research, and revision — tools your university actually approves of.</p>
+      <a href="./quiz/" class="btn btn-primary reveal" style="margin-bottom: var(--space-lg);">Take the 60-second quiz → find your stack 🎯</a>
+      
+      <div class="stack-tools reveal">
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/grammarly/15C39A" alt="Grammarly">
+          <span>Grammarly</span>
+        </div>
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/perplexity/1FB8CD" alt="Perplexity">
+          <span>Perplexity</span>
+        </div>
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/google/4285F4" alt="NotebookLM">
+          <span>NotebookLM</span>
+        </div>
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/notion/000000" alt="Notion">
+          <span>Notion</span>
+        </div>
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub Copilot">
+          <span>GitHub Copilot</span>
+        </div>
+        <div class="stack-tool">
+          <img src="https://www.google.com/s2/favicons?domain=gamma.app&sz=128" alt="Gamma">
+          <span>Gamma</span>
+        </div>
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/wolframmathematica/DD1100" alt="Wolfram Alpha">
+          <span>Wolfram Alpha</span>
+        </div>
+        <div class="stack-tool">
+          <img src="https://cdn.simpleicons.org/zotero/CC2936" alt="Zotero">
+          <span>Zotero</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it fits together -->
+  <section class="stack-architecture">
+    <div class="container">
+      <div class="architecture-header reveal">
+        <h2>Your academic workflow</h2>
+        <p>Assignment lands → Research → Write → Polish → Present. Six tools, zero stress.</p>
+      </div>
+      <div class="architecture-diagram reveal">
+        <div class="architecture-row">
+          <div class="architecture-node">
+            <div class="architecture-node-icon">📋</div>
+            <span class="architecture-node-name">Assignment</span>
+            <span class="architecture-node-role">The brief</span>
+          </div>
+        </div>
+        <div class="architecture-connector"><span class="architecture-connector-arrow">↓</span></div>
+        <div class="architecture-row">
+          <div class="architecture-node primary">
+            <div class="architecture-node-icon"><img src="https://cdn.simpleicons.org/perplexity/1FB8CD" alt="Perplexity"></div>
+            <span class="architecture-node-name">Perplexity</span>
+            <span class="architecture-node-role">Research & Sources</span>
+          </div>
+          <div class="architecture-node primary">
+            <div class="architecture-node-icon"><img src="https://cdn.simpleicons.org/google/4285F4" alt="NotebookLM"></div>
+            <span class="architecture-node-name">NotebookLM</span>
+            <span class="architecture-node-role">Understand & Revise</span>
+          </div>
+        </div>
+        <div class="architecture-connector"><span class="architecture-connector-arrow">↓</span></div>
+        <div class="architecture-row">
+          <div class="architecture-node">
+            <div class="architecture-node-icon"><img src="https://cdn.simpleicons.org/notion/000000" alt="Notion"></div>
+            <span class="architecture-node-name">Notion</span>
+            <span class="architecture-node-role">Organise & Draft</span>
+          </div>
+        </div>
+        <div class="architecture-connector"><span class="architecture-connector-arrow">↓</span></div>
+        <div class="architecture-row">
+          <div class="architecture-node">
+            <div class="architecture-node-icon"><img src="https://cdn.simpleicons.org/grammarly/15C39A" alt="Grammarly"></div>
+            <span class="architecture-node-name">Grammarly</span>
+            <span class="architecture-node-role">Polish & Proofread</span>
+          </div>
+          <div class="architecture-node">
+            <div class="architecture-node-icon"><img src="https://www.google.com/s2/favicons?domain=gamma.app&sz=128" alt="Gamma"></div>
+            <span class="architecture-node-name">Gamma</span>
+            <span class="architecture-node-role">Present</span>
+          </div>
+          <div class="architecture-node">
+            <div class="architecture-node-icon"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub Copilot"></div>
+            <span class="architecture-node-name">Copilot</span>
+            <span class="architecture-node-role">Code (if needed)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tool Picks by Task -->
+  <section class="comparison-section" id="tools">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>One tool per task</h2>
+        <p>Organised by what you actually need to do — not alphabetically, not randomly.</p>
+      </div>
+      
+      <div class="comparison-grid">
+
+        <!-- Writing & Essays -->
+        <div class="comparison-card reveal">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick — Writing & Essays</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/grammarly/15C39A" alt="Grammarly">
+              </div>
+              <div>
+                <span class="comparison-pick-name">Grammarly</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free tier</span>
+                  <span class="badge-uni-safe">✅ Uni-safe</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">Grammar</span>
+              <span class="comparison-pick-tag">Tone</span>
+              <span class="comparison-pick-tag">Clarity</span>
+              <span class="comparison-pick-tag">Plagiarism check</span>
+            </div>
+            <p class="comparison-pick-desc">Polishes YOUR writing — doesn't write for you. Catches grammar mistakes, improves clarity, and checks for accidental plagiarism. Universities approve of this.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Works everywhere (browser extension)</span>
+              <span class="comparison-pick-win">Detects tone and formality level</span>
+              <span class="comparison-pick-win">Free tier covers most students</span>
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://grammarly.com" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Also consider</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">QuillBot</span>
+                  <p class="comparison-alt-reason">Best for paraphrasing complex text</p>
+                  <p class="comparison-alt-detail">When you understand a concept but can't find the right words. Helps rephrase without changing meaning. Free tier limited to 125 words at a time.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Hemingway Editor</span>
+                  <p class="comparison-alt-reason">Makes your writing punchy and clear</p>
+                  <p class="comparison-alt-detail">Highlights overly complex sentences, passive voice, and adverb overuse. Free web version. Great for dissertations that need to be readable.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Paperpal</span>
+                  <p class="comparison-alt-reason">Built specifically for academic writing</p>
+                  <p class="comparison-alt-detail">Understands academic conventions, citation styles, and discipline-specific language. Best for postgrad and research papers.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Research & Sources -->
+        <div class="comparison-card reveal">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick — Research & Sources</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/perplexity/1FB8CD" alt="Perplexity">
+              </div>
+              <div>
+                <span class="comparison-pick-name">Perplexity</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free tier</span>
+                  <span class="badge-uni-safe">✅ Uni-safe</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">AI Search</span>
+              <span class="comparison-pick-tag">Citations</span>
+              <span class="comparison-pick-tag">Academic Papers</span>
+            </div>
+            <p class="comparison-pick-desc">AI-powered research that cites every claim. Ask a question, get an answer with numbered sources you can verify. Like Google but it actually reads the pages for you.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Always shows sources (verify them!)</span>
+              <span class="comparison-pick-win">Academic focus mode for papers</span>
+              <span class="comparison-pick-win">Follow-up questions to go deeper</span>
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://perplexity.ai" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Also consider</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Consensus</span>
+                  <p class="comparison-alt-reason">Searches only peer-reviewed papers</p>
+                  <p class="comparison-alt-detail">If you need strictly academic sources, Consensus searches 200M+ published papers and synthesises findings. Perfect for literature reviews.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Semantic Scholar</span>
+                  <p class="comparison-alt-reason">Find papers and trace citations</p>
+                  <p class="comparison-alt-detail">Free AI-powered academic search from the Allen Institute. Excellent for finding related papers and understanding citation networks.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Elicit</span>
+                  <p class="comparison-alt-reason">AI research assistant for deep dives</p>
+                  <p class="comparison-alt-detail">Extracts key findings from papers automatically. Great for systematic reviews and research-heavy dissertations.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Revision & Study -->
+        <div class="comparison-card reveal">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick — Revision & Study</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/google/4285F4" alt="NotebookLM">
+              </div>
+              <div>
+                <span class="comparison-pick-name">NotebookLM</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free</span>
+                  <span class="badge-uni-safe">✅ Uni-safe</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">Study Guides</span>
+              <span class="comparison-pick-tag">Audio Summaries</span>
+              <span class="comparison-pick-tag">Q&A</span>
+            </div>
+            <p class="comparison-pick-desc">Upload your lecture notes, textbook PDFs, or slides — NotebookLM turns them into study guides, FAQs, and even audio podcast-style summaries. Built by Google, completely free.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Generates audio overviews of your notes</span>
+              <span class="comparison-pick-win">Ask questions about YOUR materials</span>
+              <span class="comparison-pick-win">Creates flashcards and study guides</span>
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://notebooklm.google.com" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Also consider</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Anki</span>
+                  <p class="comparison-alt-reason">Spaced repetition — the science of remembering</p>
+                  <p class="comparison-alt-detail">Free, open-source flashcard app using spaced repetition algorithms. Proven to improve long-term retention. Medical students swear by it.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Quizlet</span>
+                  <p class="comparison-alt-reason">AI-generated flashcards + practice tests</p>
+                  <p class="comparison-alt-detail">Paste your notes and it generates flashcards automatically. Has a large library of existing study sets from other students.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">ChatPDF</span>
+                  <p class="comparison-alt-reason">Chat with any PDF document</p>
+                  <p class="comparison-alt-detail">Upload a textbook chapter or paper, ask questions about it. Free tier: 3 PDFs and 50 questions per day. Great for dense readings.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes & Organisation -->
+        <div class="comparison-card reveal">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick — Notes & Organisation</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/notion/000000" alt="Notion">
+              </div>
+              <div>
+                <span class="comparison-pick-name">Notion</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free for students</span>
+                  <span class="badge-uni-safe">✅ Uni-safe</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">Notes</span>
+              <span class="comparison-pick-tag">Tasks</span>
+              <span class="comparison-pick-tag">Calendar</span>
+              <span class="comparison-pick-tag">AI Summaries</span>
+            </div>
+            <p class="comparison-pick-desc">Your entire university life in one app. Lecture notes, assignment deadlines, reading lists, group project docs — all in one place. Free Plus plan for students with .edu email.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Free Plus plan with .edu email</span>
+              <span class="comparison-pick-win">AI built-in for summaries & drafts</span>
+              <span class="comparison-pick-win">Templates for every course structure</span>
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://notion.so/students" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Also consider</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Obsidian</span>
+                  <p class="comparison-alt-reason">Local-first, your notes stay on your device</p>
+                  <p class="comparison-alt-detail">If you want total control and privacy. Markdown-based, works offline, no subscription. Steeper learning curve but extremely powerful.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Todoist</span>
+                  <p class="comparison-alt-reason">Simple task management with deadlines</p>
+                  <p class="comparison-alt-detail">If Notion feels like too much, Todoist does one thing perfectly: track what's due and when. Natural language input: "Essay due Friday 5pm".</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Otter.ai</span>
+                  <p class="comparison-alt-reason">Transcribe lectures automatically</p>
+                  <p class="comparison-alt-detail">Record lectures and get AI transcriptions with speaker labels. 300 free minutes/month. Never miss a word from a fast-talking lecturer again.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coding -->
+        <div class="comparison-card reveal">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick — Coding</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub Copilot">
+              </div>
+              <div>
+                <span class="comparison-pick-name">GitHub Copilot</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free for students</span>
+                  <span class="badge-uni-safe">✅ Uni-safe</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">AI Pair Programming</span>
+              <span class="comparison-pick-tag">Code Completion</span>
+              <span class="comparison-pick-tag">Debugging</span>
+            </div>
+            <p class="comparison-pick-desc">AI that codes alongside you. Suggests completions, explains errors, helps debug. Free through GitHub Education — just verify your student status.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Completely free with student verification</span>
+              <span class="comparison-pick-win">Works in VS Code, JetBrains, etc.</span>
+              <span class="comparison-pick-win">Explains code, not just writes it</span>
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://education.github.com" target="_blank" class="comparison-pick-link">Get student access <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Also consider</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Cursor</span>
+                  <p class="comparison-alt-reason">AI-first code editor with chat</p>
+                  <p class="comparison-alt-detail">Like VS Code but with AI deeply integrated. Ask questions about your codebase, get refactoring suggestions. Free tier available.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Replit</span>
+                  <p class="comparison-alt-reason">Code in the browser, no setup needed</p>
+                  <p class="comparison-alt-detail">Run code in any language straight from the browser. Built-in AI assistant. Perfect for quick assignments when you don't want to set up a dev environment.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">ChatGPT</span>
+                  <p class="comparison-alt-reason">Explain code concepts and debug errors</p>
+                  <p class="comparison-alt-detail">Paste an error message, get an explanation. Ask it to walk through an algorithm step by step. Best for learning, not just getting answers.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Presentations -->
+        <div class="comparison-card reveal">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick — Presentations</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://www.google.com/s2/favicons?domain=gamma.app&sz=128" alt="Gamma">
+              </div>
+              <div>
+                <span class="comparison-pick-name">Gamma</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free tier</span>
+                  <span class="badge-uni-safe">✅ Uni-safe</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">AI Presentations</span>
+              <span class="comparison-pick-tag">Slides</span>
+              <span class="comparison-pick-tag">Documents</span>
+            </div>
+            <p class="comparison-pick-desc">Describe your presentation topic, get beautiful slides in seconds. Edit and customise from there. No more spending 4 hours fighting PowerPoint layouts.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Generates full presentations from a prompt</span>
+              <span class="comparison-pick-win">Looks way better than default PowerPoint</span>
+              <span class="comparison-pick-win">Export to PDF, PPT, or share as link</span>
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://gamma.app" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Also consider</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Canva</span>
+                  <p class="comparison-alt-reason">More design control + templates</p>
+                  <p class="comparison-alt-detail">Free for students with .edu email. Huge template library. Better if you want specific design control. AI features built in.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Microsoft Designer</span>
+                  <p class="comparison-alt-reason">Free with Microsoft 365 Education</p>
+                  <p class="comparison-alt-detail">If your uni provides Microsoft 365 (most do), Designer is included free. AI-powered design tool integrated with PowerPoint.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Beautiful.ai</span>
+                  <p class="comparison-alt-reason">Smart slides that design themselves</p>
+                  <p class="comparison-alt-detail">Automatically adjusts layout as you add content. Less AI generation, more intelligent design assistance. Student discount available.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Maths & Problem Solving -->
+        <div class="comparison-card reveal">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick — Maths & Problem Solving</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/wolframmathematica/DD1100" alt="Wolfram Alpha">
+              </div>
+              <div>
+                <span class="comparison-pick-name">Wolfram Alpha</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free tier</span>
+                  <span class="badge-uni-safe">✅ Uni-safe</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">Calculus</span>
+              <span class="comparison-pick-tag">Algebra</span>
+              <span class="comparison-pick-tag">Statistics</span>
+              <span class="comparison-pick-tag">Physics</span>
+            </div>
+            <p class="comparison-pick-desc">A computational knowledge engine that solves equations, plots graphs, and explains step-by-step. Handles everything from basic algebra to differential equations and statistics.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Step-by-step solutions for any equation</span>
+              <span class="comparison-pick-win">Covers maths, physics, chemistry, engineering</span>
+              <span class="comparison-pick-win">Trusted by universities worldwide</span>
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://www.wolframalpha.com" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Also consider</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Photomath</span>
+                  <p class="comparison-alt-reason">Snap a photo, get the solution instantly</p>
+                  <p class="comparison-alt-detail">Point your phone camera at any maths problem — handwritten or printed — and get step-by-step solutions. Perfect for checking your work on homework sets.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Symbolab</span>
+                  <p class="comparison-alt-reason">Detailed equation solver with visual steps</p>
+                  <p class="comparison-alt-detail">Specialises in showing every step of a solution with clear explanations. Great for calculus, linear algebra, and trigonometry. Free tier covers most needs.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Microsoft Math Solver</span>
+                  <p class="comparison-alt-reason">Free, works from photos and handwriting</p>
+                  <p class="comparison-alt-detail">Completely free with no limits. Scan problems, type them, or draw them. Includes practice quizzes and video explanations for similar problems.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Citations & References -->
+        <div class="comparison-card reveal">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick — Citations & References</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://cdn.simpleicons.org/zotero/CC2936" alt="Zotero">
+              </div>
+              <div>
+                <span class="comparison-pick-name">Zotero</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free</span>
+                  <span class="badge-uni-safe">✅ Uni-safe</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">Bibliography</span>
+              <span class="comparison-pick-tag">Citations</span>
+              <span class="comparison-pick-tag">Reference Manager</span>
+            </div>
+            <p class="comparison-pick-desc">Save sources with one click, automatically generate bibliographies in Harvard, APA, MLA, or 9,000+ other styles. Integrates directly into Word and Google Docs. Every university recommends it.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">One-click save from browser to library</span>
+              <span class="comparison-pick-win">Auto-generates citations in any style</span>
+              <span class="comparison-pick-win">Free and open-source, no limits</span>
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://www.zotero.org" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Also consider</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Mendeley</span>
+                  <p class="comparison-alt-reason">Reference manager + PDF reader in one</p>
+                  <p class="comparison-alt-detail">Owned by Elsevier. Good PDF annotation features and a social network of researchers. Free with 2GB storage. Some prefer its cleaner interface.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">MyBib</span>
+                  <p class="comparison-alt-reason">Simple, fast citation generator</p>
+                  <p class="comparison-alt-detail">If you just need to quickly generate a bibliography without managing a full library. Paste a URL or DOI, get a formatted citation. Completely free, no account needed.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Paperpile</span>
+                  <p class="comparison-alt-reason">Best Google Docs integration</p>
+                  <p class="comparison-alt-detail">If you live in Google Docs, Paperpile has the smoothest integration. $2.99/mo for students. Worth it if you write long research papers frequently.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Focus & Productivity -->
+        <div class="comparison-card reveal">
+          <div class="comparison-pick">
+            <div class="comparison-pick-label">Our Pick — Focus & Productivity</div>
+            <div class="comparison-pick-header">
+              <div class="comparison-pick-logo">
+                <img src="https://www.google.com/s2/favicons?domain=forestapp.cc&sz=128" alt="Forest">
+              </div>
+              <div>
+                <span class="comparison-pick-name">Forest</span>
+                <div class="comparison-pick-meta">
+                  <span class="comparison-pick-pricing">Free tier</span>
+                  <span class="badge-uni-safe">✅ Uni-safe</span>
+                </div>
+              </div>
+            </div>
+            <div class="comparison-pick-tags">
+              <span class="comparison-pick-tag">Focus Timer</span>
+              <span class="comparison-pick-tag">App Blocker</span>
+              <span class="comparison-pick-tag">Gamified</span>
+            </div>
+            <p class="comparison-pick-desc">Plant a virtual tree when you start studying. If you leave the app to check Instagram, the tree dies. Sounds silly, but students swear by it — it turns focus into a game.</p>
+            <div class="comparison-pick-wins">
+              <span class="comparison-pick-win">Blocks distracting apps during focus time</span>
+              <span class="comparison-pick-win">Visual forest grows as you study more</span>
+              <span class="comparison-pick-win">Real trees planted through partnership</span>
+            </div>
+            <div class="comparison-pick-actions">
+              <a href="https://www.forestapp.cc" target="_blank" class="comparison-pick-link">Try it <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+            </div>
+          </div>
+          <div class="comparison-alternatives">
+            <div class="comparison-alt-label">Also consider</div>
+            <div class="comparison-alt-list">
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Pomofocus</span>
+                  <p class="comparison-alt-reason">Clean web-based pomodoro timer</p>
+                  <p class="comparison-alt-detail">No download needed. Open the browser, set 25 minutes, study. Tracks your sessions and shows stats. The simplest option that actually works.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">Cold Turkey Blocker</span>
+                  <p class="comparison-alt-reason">Nuclear option for distractions</p>
+                  <p class="comparison-alt-detail">Block websites and apps with no way to undo it until the timer runs out. When you genuinely cannot stop scrolling TikTok, this is the answer.</p>
+                </div>
+              </div>
+              <div class="comparison-alt" onclick="this.classList.toggle('expanded')">
+                <div class="comparison-alt-icon">→</div>
+                <div class="comparison-alt-content">
+                  <span class="comparison-alt-name">TickTick</span>
+                  <p class="comparison-alt-reason">Task manager + built-in pomodoro timer</p>
+                  <p class="comparison-alt-detail">Combines task lists, calendar view, habit tracking, and a pomodoro timer in one app. Break big essays into subtasks and tackle them one by one.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Free Student Perks -->
+  <section class="perks-section" id="perks">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Free stuff you're missing out on 🎁</h2>
+        <p>These premium tools are completely free with your student email. Most students never claim them.</p>
+      </div>
+      <div class="perks-grid reveal">
+        <a href="https://education.github.com/pack" target="_blank" class="perk-card">
+          <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub">
+          <span class="perk-name">GitHub Student Pack</span>
+          <span class="perk-desc">100+ free developer tools, domains, cloud credits, and Copilot</span>
+          <span class="perk-value">Worth $200+/yr</span>
+        </a>
+        <a href="https://www.jetbrains.com/academy/student-pack/" target="_blank" class="perk-card">
+          <img src="https://cdn.simpleicons.org/jetbrains/000000" alt="JetBrains">
+          <span class="perk-name">JetBrains IDEs</span>
+          <span class="perk-desc">IntelliJ, PyCharm, WebStorm — all professional IDEs, free</span>
+          <span class="perk-value">Worth $249+/yr</span>
+        </a>
+        <a href="https://www.figma.com/education/" target="_blank" class="perk-card">
+          <img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma">
+          <span class="perk-name">Figma Education</span>
+          <span class="perk-desc">Professional design tool — unlimited files and projects, free</span>
+          <span class="perk-value">Worth $144/yr</span>
+        </a>
+        <a href="https://www.notion.com/product/notion-for-education" target="_blank" class="perk-card">
+          <img src="https://cdn.simpleicons.org/notion/000000" alt="Notion">
+          <span class="perk-name">Notion Education</span>
+          <span class="perk-desc">Plus plan free — unlimited blocks, file uploads, and AI</span>
+          <span class="perk-value">Worth $96/yr</span>
+        </a>
+        <a href="https://www.canva.com/education/" target="_blank" class="perk-card">
+          <img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="Canva">
+          <span class="perk-name">Canva for Education</span>
+          <span class="perk-desc">Pro features free — premium templates, brand kit, AI tools</span>
+          <span class="perk-value">Worth $120/yr</span>
+        </a>
+        <a href="https://www.autodesk.com/education/edu-software/overview" target="_blank" class="perk-card">
+          <img src="https://cdn.simpleicons.org/autodesk/000000" alt="Autodesk">
+          <span class="perk-name">Autodesk Education</span>
+          <span class="perk-desc">AutoCAD, Maya, Fusion 360 — free for students and educators</span>
+          <span class="perk-value">Worth $1,775+/yr</span>
+        </a>
+        <a href="https://www.microsoft.com/en-gb/education/products/office" target="_blank" class="perk-card">
+          <img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=128" alt="Microsoft">
+          <span class="perk-name">Microsoft 365 Education</span>
+          <span class="perk-desc">Word, Excel, PowerPoint, Teams, OneDrive — all free</span>
+          <span class="perk-value">Worth $70/yr</span>
+        </a>
+        <a href="https://www.tableau.com/academic/students" target="_blank" class="perk-card">
+          <img src="https://www.google.com/s2/favicons?domain=tableau.com&sz=128" alt="Tableau">
+          <span class="perk-name">Tableau for Students</span>
+          <span class="perk-desc">Professional data visualisation — free Desktop and Prep</span>
+          <span class="perk-value">Worth $840/yr</span>
+        </a>
+      </div>
+      <p class="perks-total reveal">Total value: <strong>over $3,400/year</strong> in free software. All you need is a .edu or university email.</p>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="calculator-section">
+    <div class="container">
+      <div class="calculator-header reveal">
+        <h2>What this costs</h2>
+        <p>Spoiler: you're a student. We kept it free.</p>
+      </div>
+      <div class="calculator-card reveal">
+        <div class="calculator-breakdown">
+          <div class="calculator-item">
+            <div class="calculator-item-icon"><img src="https://cdn.simpleicons.org/grammarly/15C39A" alt="Grammarly"></div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">Grammarly</div>
+              <div class="calculator-item-tier">Free tier</div>
+            </div>
+            <div class="calculator-item-cost free">$0</div>
+          </div>
+          <div class="calculator-item">
+            <div class="calculator-item-icon"><img src="https://cdn.simpleicons.org/perplexity/1FB8CD" alt="Perplexity"></div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">Perplexity</div>
+              <div class="calculator-item-tier">Free tier</div>
+            </div>
+            <div class="calculator-item-cost free">$0</div>
+          </div>
+          <div class="calculator-item">
+            <div class="calculator-item-icon"><img src="https://cdn.simpleicons.org/google/4285F4" alt="NotebookLM"></div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">NotebookLM</div>
+              <div class="calculator-item-tier">Free (Google account)</div>
+            </div>
+            <div class="calculator-item-cost free">$0</div>
+          </div>
+          <div class="calculator-item">
+            <div class="calculator-item-icon"><img src="https://cdn.simpleicons.org/notion/000000" alt="Notion"></div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">Notion</div>
+              <div class="calculator-item-tier">Free Plus plan (.edu email)</div>
+            </div>
+            <div class="calculator-item-cost free">$0</div>
+          </div>
+          <div class="calculator-item">
+            <div class="calculator-item-icon"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub Copilot"></div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">GitHub Copilot</div>
+              <div class="calculator-item-tier">Free (GitHub Education)</div>
+            </div>
+            <div class="calculator-item-cost free">$0</div>
+          </div>
+          <div class="calculator-item">
+            <div class="calculator-item-icon"><img src="https://www.google.com/s2/favicons?domain=gamma.app&sz=128" alt="Gamma"></div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">Gamma</div>
+              <div class="calculator-item-tier">Free tier (400 credits)</div>
+            </div>
+            <div class="calculator-item-cost free">$0</div>
+          </div>
+          <div class="calculator-item">
+            <div class="calculator-item-icon"><img src="https://cdn.simpleicons.org/wolframmathematica/DD1100" alt="Wolfram Alpha"></div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">Wolfram Alpha</div>
+              <div class="calculator-item-tier">Free tier</div>
+            </div>
+            <div class="calculator-item-cost free">$0</div>
+          </div>
+          <div class="calculator-item">
+            <div class="calculator-item-icon"><img src="https://cdn.simpleicons.org/zotero/CC2936" alt="Zotero"></div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">Zotero</div>
+              <div class="calculator-item-tier">Free (open-source)</div>
+            </div>
+            <div class="calculator-item-cost free">$0</div>
+          </div>
+          <div class="calculator-item">
+            <div class="calculator-item-icon"><img src="https://www.google.com/s2/favicons?domain=forestapp.cc&sz=128" alt="Forest"></div>
+            <div class="calculator-item-info">
+              <div class="calculator-item-name">Forest</div>
+              <div class="calculator-item-tier">Free tier</div>
+            </div>
+            <div class="calculator-item-cost free">$0</div>
+          </div>
+        </div>
+        <div class="calculator-total">
+          <span class="calculator-total-label">Total monthly cost</span>
+          <div class="calculator-total-value">$0<span style="font-size:16px;font-weight:400;opacity:0.7">/mo</span></div>
+        </div>
+        <p class="calculator-note">* Every tool in this stack has a free tier that covers typical student usage. No credit card needed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Using AI responsibly -->
+  <section class="quickstart-section">
+    <div class="container">
+      <div class="quickstart-header reveal">
+        <h2>Use AI without getting flagged</h2>
+        <p>Three rules that keep you safe and actually learning.</p>
+      </div>
+      <div class="quickstart-grid">
+        <div class="quickstart-step reveal">
+          <div class="quickstart-step-icon">🔬</div>
+          <h4>AI is your research assistant, not your ghostwriter</h4>
+          <p>Use Perplexity to find sources and understand topics. Then write in your own words. Your lecturer can tell the difference — and so can AI detectors.</p>
+        </div>
+        <div class="quickstart-step reveal">
+          <div class="quickstart-step-icon">⚠️</div>
+          <h4>Always verify AI citations — they hallucinate</h4>
+          <p>AI can invent fake papers with real-sounding authors. Always click through to the actual source. Perplexity is better at this than ChatGPT, but still check.</p>
+        </div>
+        <div class="quickstart-step reveal">
+          <div class="quickstart-step-icon">✍️</div>
+          <h4>Write in YOUR voice, use AI to polish</h4>
+          <p>Draft your essay yourself. Then use Grammarly to catch errors and improve clarity. This is how professionals work — and it's completely allowed by every university.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you don't need -->
+  <section class="skip-section">
+    <div class="container">
+      <h2 class="reveal">What you don't need</h2>
+      <p class="reveal">Skip these. They'll waste your time or get you in trouble.</p>
+      <div class="skip-grid">
+        <div class="skip-item reveal">
+          <span class="skip-icon">🤖</span>
+          <span class="skip-name">AI essay writers</span>
+          <span class="skip-reason">Universities detect them. You learn nothing.</span>
+        </div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">🔓</span>
+          <span class="skip-name">AI detector bypassers</span>
+          <span class="skip-reason">Cat-and-mouse game you'll lose.</span>
+        </div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">💸</span>
+          <span class="skip-name">Paid AI subscriptions</span>
+          <span class="skip-reason">Free tiers cover 95% of student needs.</span>
+        </div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">📱</span>
+          <span class="skip-name">10 different AI apps</span>
+          <span class="skip-reason">6 tools. That's all you need.</span>
+        </div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">🎯</span>
+          <span class="skip-name">AI study planners</span>
+          <span class="skip-reason">Notion + your calendar is enough.</span>
+        </div>
+        <div class="skip-item reveal">
+          <span class="skip-icon">📝</span>
+          <span class="skip-name">"Humaniser" tools</span>
+          <span class="skip-reason">If you need one, you're doing it wrong.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter-section" style="padding: var(--space-3xl) 0; background: var(--bg-alt);">
+    <div class="container" style="max-width: 600px; text-align: center;">
+      <h2 class="reveal" style="margin-bottom: var(--space-sm);">Get smarter tools, weekly 📬</h2>
+      <p class="reveal" style="color: var(--text-secondary); margin-bottom: var(--space-xl); font-size: 17px;">One email. Five tools worth knowing. Sent every Tuesday. Free forever.</p>
+      <form class="reveal" id="studentNewsletterForm" style="display: flex; gap: 10px; max-width: 480px; margin: 0 auto;" onsubmit="subscribeNewsletter(event)">
+        <input type="email" id="studentEmailInput" placeholder="your@university.ac.uk" required style="flex:1; padding: 14px 18px; border: 2px solid var(--border-strong); border-radius: var(--radius-md); font-size: 15px; font-family: var(--font-body); outline: none; background: var(--bg-card); transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border-strong)'">
+        <button type="submit" class="btn btn-primary" style="white-space: nowrap; padding: 14px 24px;">Subscribe →</button>
+      </form>
+      <div id="studentNewsletterSuccess" style="display:none; color: var(--accent); font-weight: 600; font-size: 15px; margin-top: 16px;">✅ You're in! Check your inbox.</div>
+      <p class="reveal" style="color: var(--text-muted); font-size: 13px; margin-top: var(--space-md);">Join 0 students already subscribed. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container reveal">
+      <h2>Ready to study smarter?</h2>
+      <p>Six free tools. One stack. Better grades with less stress.</p>
+      <div class="cta-actions">
+        <a href="../stacks/" class="btn btn-primary">Explore more stacks →</a>
+        <a href="../" class="btn btn-secondary">Back to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2026 Fewer Tools. Less tools. More building.</p>
+        <div class="footer-links">
+          <a href="../philosophy/">Philosophy</a>
+          <a href="../tools/">All Tools</a>
+          <a href="../stacks/">Stacks</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Newsletter
+    async function subscribeNewsletter(e) {
+      e.preventDefault();
+      const email = document.getElementById('studentEmailInput').value.trim();
+      if (!email) return;
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Subscribing...';
+      btn.disabled = true;
+      try {
+        // TODO: Replace ffe242b4-6337-4480-859c-00fceff08744 with Beehiiv pub ID
+        const BEEHIIV_PUB_ID = 'ffe242b4-6337-4480-859c-00fceff08744';
+        await fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, utm_source: 'fewertools', utm_medium: 'website', utm_campaign: 'student_stack_signup' })
+        }).catch(() => {});
+        const signups = JSON.parse(localStorage.getItem('fewertools_signups') || '[]');
+        if (!signups.includes(email)) { signups.push(email); localStorage.setItem('fewertools_signups', JSON.stringify(signups)); }
+        document.getElementById('studentNewsletterForm').style.display = 'none';
+        document.getElementById('studentNewsletterSuccess').style.display = 'block';
+      } catch (err) {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
+    }
+
+    // Reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    
+    // Header scroll
+    window.addEventListener('scroll', () => document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50));
+    
+    // Card reveal animations
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.comparison-card').forEach(card => cardObserver.observe(card));
+  </script>
+</body>
+</html>

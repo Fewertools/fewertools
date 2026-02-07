@@ -1935,19 +1935,26 @@
       btn.disabled = true;
       
       try {
-        // Store locally for now (replace with your backend later)
-        const signups = JSON.parse(localStorage.getItem('uncluttered_signups') || '[]');
+        // Send to Beehiiv
+        // TODO: Replace ffe242b4-6337-4480-859c-00fceff08744 with your Beehiiv publication ID
+        const BEEHIIV_PUB_ID = 'ffe242b4-6337-4480-859c-00fceff08744';
+        await fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            utm_source: 'fewertools',
+            utm_medium: 'website',
+            utm_campaign: 'homepage_signup'
+          })
+        }).catch(() => {});
+        
+        // Also store locally as backup
+        const signups = JSON.parse(localStorage.getItem('fewertools_signups') || '[]');
         if (!signups.includes(email)) {
           signups.push(email);
-          localStorage.setItem('uncluttered_signups', JSON.stringify(signups));
+          localStorage.setItem('fewertools_signups', JSON.stringify(signups));
         }
-        
-        // Optional: Send to a backend
-        // await fetch('/api/newsletter', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({ email, source: 'uncluttered' })
-        // });
         
         // Show success
         newsletterForm.classList.add('hidden');
