@@ -13,6 +13,19 @@
   <meta property="og:description" content="Stripe vs LemonSqueezy: control vs simplicity for payments.">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "What's the difference between Stripe and LemonSqueezy?", "acceptedAnswer": {"@type": "Answer", "text": "Stripe is a payment processor — you handle tax, invoicing, compliance. LemonSqueezy is a Merchant of Record — they handle all of that for you."}},
+      {"@type": "Question", "name": "Does LemonSqueezy handle EU VAT?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. As Merchant of Record, LemonSqueezy collects and remits VAT/sales tax automatically in every jurisdiction."}},
+      {"@type": "Question", "name": "Is LemonSqueezy more expensive than Stripe?", "acceptedAnswer": {"@type": "Answer", "text": "Per transaction yes (5% + 50¢ vs 2.9% + 30¢), but LemonSqueezy includes tax handling and compliance that cost extra on Stripe."}},
+      {"@type": "Question", "name": "Can I use Stripe for digital products?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but you handle delivery, license keys, and tax yourself. LemonSqueezy includes digital delivery and license keys natively."}},
+      {"@type": "Question", "name": "Which should I use for a SaaS product?", "acceptedAnswer": {"@type": "Answer", "text": "Solo founder with straightforward SaaS: LemonSqueezy. Complex billing or marketplace payouts: Stripe."}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -114,6 +127,16 @@
     .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
     .related-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; transition: all 0.2s; }
     .related-link:hover { border-color: var(--accent); color: var(--accent); }
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; transition: border-color 0.2s; }
+    .faq-item[open] { border-color: var(--accent); }
+    .faq-item summary { padding: 18px 24px; font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: "+"; font-size: 20px; color: var(--text-muted); }
+    .faq-item[open] summary::after { content: "−"; color: var(--accent); }
+    .faq-item p { padding: 0 24px 18px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
     footer { padding: 64px 0; border-top: 1px solid var(--border); }
     .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
     .footer-content p { font-size: 14px; color: var(--text-muted); }
@@ -256,6 +279,32 @@
       <h2>🎯 Our Recommendation</h2>
       <p>For solo founders selling SaaS or digital products, <span class="rec-highlight">LemonSqueezy removes so much pain</span> that the higher transaction fee is worth it. No worrying about EU VAT, US sales tax, or being the merchant of record. You build, they handle the money stuff. But if you're building something more complex — a marketplace, custom billing, or you need maximum payment method coverage — <span class="rec-highlight">Stripe is still the gold standard</span>.</p>
     </div>
+
+    <section class="comparison-section reveal" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>What's the difference between Stripe and LemonSqueezy?</summary>
+          <p>Stripe is a payment processor — you handle everything else (tax, invoicing, compliance). LemonSqueezy is a Merchant of Record — they handle sales tax, VAT, invoicing, and compliance for you. You get paid minus their fees. LemonSqueezy is simpler; Stripe is more flexible.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does LemonSqueezy handle EU VAT?</summary>
+          <p>Yes — this is one of its biggest selling points. As the Merchant of Record, LemonSqueezy collects and remits VAT/sales tax in every jurisdiction automatically. With Stripe, you'd need a separate service like Stripe Tax or Paddle to handle this.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is LemonSqueezy more expensive than Stripe?</summary>
+          <p>Per transaction, yes. LemonSqueezy charges 5% + 50¢ per transaction vs Stripe's 2.9% + 30¢. But LemonSqueezy includes tax handling, invoicing, and compliance that would cost extra on Stripe. For indie products, the simplicity often makes LemonSqueezy cheaper overall.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I use Stripe for digital products?</summary>
+          <p>Yes, but you'll need to handle product delivery, license keys, and tax compliance yourself or through additional services. LemonSqueezy includes digital product delivery, license key generation, and software update distribution natively.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which should I use for a SaaS product?</summary>
+          <p>If you're a solo founder or small team selling a straightforward SaaS, LemonSqueezy removes the most headaches. If you need complex billing (usage-based, tiered, metered), marketplace payouts, or deep payment customisation, Stripe is the only option.</p>
+        </details>
+      </div>
+    </section>
 
     <div class="related reveal">
       <h3>Related Comparisons</h3>

@@ -13,6 +13,19 @@
   <meta property="og:description" content="PostHog vs Mixpanel: which analytics platform wins?">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Is PostHog really free?", "acceptedAnswer": {"@type": "Answer", "text": "PostHog's free tier includes 1 million events/month, 5,000 session recordings, and 1 million feature flag evaluations. Most early-stage products won't pay for months."}},
+      {"@type": "Question", "name": "Can PostHog replace Mixpanel, Hotjar, and LaunchDarkly?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — PostHog combines product analytics, session replays, feature flags, A/B testing, and surveys in one platform."}},
+      {"@type": "Question", "name": "Is Mixpanel easier to use than PostHog?", "acceptedAnswer": {"@type": "Answer", "text": "For non-technical team members, yes. Mixpanel's UI is more polished and intuitive. PostHog is developer-focused."}},
+      {"@type": "Question", "name": "Can I self-host PostHog?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. PostHog is fully open-source and can be self-hosted for complete data ownership. Mixpanel is cloud-only."}},
+      {"@type": "Question", "name": "Which has better event tracking?", "acceptedAnswer": {"@type": "Answer", "text": "PostHog has autocapture (automatic tracking). Mixpanel requires explicit event tracking code. PostHog starts faster; Mixpanel gives cleaner data."}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -114,6 +127,16 @@
     .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
     .related-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; transition: all 0.2s; }
     .related-link:hover { border-color: var(--accent); color: var(--accent); }
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; transition: border-color 0.2s; }
+    .faq-item[open] { border-color: var(--accent); }
+    .faq-item summary { padding: 18px 24px; font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: "+"; font-size: 20px; color: var(--text-muted); }
+    .faq-item[open] summary::after { content: "−"; color: var(--accent); }
+    .faq-item p { padding: 0 24px 18px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
     footer { padding: 64px 0; border-top: 1px solid var(--border); }
     .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
     .footer-content p { font-size: 14px; color: var(--text-muted); }
@@ -256,6 +279,32 @@
       <h2>🎯 Our Recommendation</h2>
       <p><span class="rec-highlight">PostHog is the fewer-tools choice</span> — and that's kind of the whole point of this site. One tool that handles product analytics, session replays, feature flags, A/B experiments, and surveys. That's 4-5 separate tools replaced. Mixpanel is more polished for pure analytics, but the all-in-one value of PostHog is hard to beat, especially with their generous free tier.</p>
     </div>
+
+    <section class="comparison-section reveal" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is PostHog really free?</summary>
+          <p>PostHog's free tier is extremely generous: 1 million events/month for analytics, 5,000 session recordings, 1 million feature flag evaluations, and 250 survey responses. For most early-stage products, you won't pay anything for months. Paid usage is pay-as-you-go.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can PostHog replace Mixpanel, Hotjar, and LaunchDarkly?</summary>
+          <p>Yes — that's the pitch. PostHog combines product analytics (Mixpanel), session replays (Hotjar), feature flags (LaunchDarkly), A/B testing, and surveys in one platform. Each individual feature isn't always as deep as the dedicated tool, but the integration between them is powerful.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is Mixpanel easier to use than PostHog?</summary>
+          <p>For non-technical team members, yes. Mixpanel's UI is more polished and intuitive for building funnels, cohorts, and reports. PostHog is developer-focused — it's powerful but assumes comfort with technical concepts. If your product/marketing team needs self-serve analytics, Mixpanel has a better learning curve.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I self-host PostHog?</summary>
+          <p>Yes. PostHog is fully open-source and can be self-hosted on your own infrastructure. This gives you complete data ownership and avoids sending user data to third parties. Mixpanel is cloud-only with no self-hosting option.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which has better event tracking?</summary>
+          <p>PostHog has autocapture — it automatically tracks clicks, pageviews, and form submissions without manual instrumentation. Mixpanel requires explicit event tracking code. PostHog gets you started faster; Mixpanel's manual approach gives cleaner, more intentional data.</p>
+        </details>
+      </div>
+    </section>
 
     <div class="related reveal">
       <h3>Related Comparisons</h3>

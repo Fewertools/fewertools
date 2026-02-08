@@ -13,6 +13,19 @@
   <meta property="og:description" content="Framer vs Webflow: which website builder is right for you?">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Is Framer better than Webflow in 2026?", "acceptedAnswer": {"@type": "Answer", "text": "For landing pages and marketing sites, Framer is faster and more visually polished. For content-heavy sites with blogs or e-commerce, Webflow is more capable."}},
+      {"@type": "Question", "name": "Can I build an e-commerce site with Framer?", "acceptedAnswer": {"@type": "Answer", "text": "Not natively. Framer doesn't have built-in e-commerce. Webflow has native e-commerce with product management, cart, and checkout."}},
+      {"@type": "Question", "name": "Is Framer free?", "acceptedAnswer": {"@type": "Answer", "text": "Framer has a free tier for personal sites. Paid plans start at $5/month. Webflow's free tier is more limited, with paid plans from $14/month."}},
+      {"@type": "Question", "name": "Do I need to know code to use Framer or Webflow?", "acceptedAnswer": {"@type": "Answer", "text": "No code required for either. Framer feels like designing in Figma. Webflow has a steeper learning curve as it exposes CSS concepts directly."}},
+      {"@type": "Question", "name": "Which is better for SEO — Framer or Webflow?", "acceptedAnswer": {"@type": "Answer", "text": "Both produce clean, fast sites. Webflow has more granular SEO controls. For most sites, the difference is negligible."}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -114,6 +127,16 @@
     .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
     .related-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; transition: all 0.2s; }
     .related-link:hover { border-color: var(--accent); color: var(--accent); }
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; transition: border-color 0.2s; }
+    .faq-item[open] { border-color: var(--accent); }
+    .faq-item summary { padding: 18px 24px; font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: "+"; font-size: 20px; color: var(--text-muted); }
+    .faq-item[open] summary::after { content: "−"; color: var(--accent); }
+    .faq-item p { padding: 0 24px 18px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
     footer { padding: 64px 0; border-top: 1px solid var(--border); }
     .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
     .footer-content p { font-size: 14px; color: var(--text-muted); }
@@ -256,6 +279,32 @@
       <h2>🎯 Our Recommendation</h2>
       <p>For startups, SaaS landing pages, and portfolio sites, <span class="rec-highlight">Framer is the move</span>. You'll go from idea to live site faster than with any other tool, and the results look incredible. For bigger projects with content management needs, e-commerce, or complex interactions, <span class="rec-highlight">Webflow's depth is unmatched</span>. Think of Framer as the sports car and Webflow as the SUV — both great, different jobs.</p>
     </div>
+
+    <section class="comparison-section reveal" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is Framer better than Webflow in 2026?</summary>
+          <p>For landing pages and marketing sites, Framer is faster and produces more visually polished results. For content-heavy sites with blogs, e-commerce, or complex CMS needs, Webflow is more capable. Neither is universally "better" — it depends on what you're building.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I build an e-commerce site with Framer?</summary>
+          <p>Not natively. Framer doesn't have built-in e-commerce features. You'd need to integrate external solutions like Shopify or Snipcart. Webflow has native e-commerce with product management, cart, and checkout — making it the better choice for online stores.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is Framer free?</summary>
+          <p>Framer has a free tier for personal sites with a Framer subdomain. Paid plans start at $5/month for custom domains. Webflow's free tier is more limited (2 pages, Webflow branding), with paid plans from $14/month. For hobby projects, Framer's free tier is more generous.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need to know code to use Framer or Webflow?</summary>
+          <p>No code required for either, but the learning curves differ. Framer is more intuitive — it feels like designing in Figma. Webflow has a steeper learning curve because it exposes CSS concepts (flexbox, grid, positioning) directly in its visual interface. Webflow teaches you more about web design fundamentals; Framer abstracts them away.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which is better for SEO — Framer or Webflow?</summary>
+          <p>Both produce clean, fast-loading sites that rank well. Webflow has more granular SEO controls (301 redirects, robots.txt, sitemap customisation). Framer handles the basics well but gives you less manual control. For most sites, the difference is negligible.</p>
+        </details>
+      </div>
+    </section>
 
     <div class="related reveal">
       <h3>Related Comparisons</h3>

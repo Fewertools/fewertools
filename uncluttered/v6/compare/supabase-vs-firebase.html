@@ -13,6 +13,19 @@
   <meta property="og:description" content="Supabase vs Firebase: which backend wins for your project?">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Is Supabase a good alternative to Firebase in 2026?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — Supabase has matured significantly and is now production-ready for most use cases. It offers a real PostgreSQL database, built-in auth, storage, and edge functions. The main advantage is data ownership."}},
+      {"@type": "Question", "name": "Is Supabase free?", "acceptedAnswer": {"@type": "Answer", "text": "Supabase has a generous free tier that includes a 500MB Postgres database, 1GB file storage, 50,000 monthly active users for auth, and 500MB bandwidth. The Pro plan starts at $25/month."}},
+      {"@type": "Question", "name": "Can I migrate from Firebase to Supabase?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but it requires effort. Supabase provides migration guides for moving from Firestore to Postgres. Plan for 1-2 weeks depending on complexity."}},
+      {"@type": "Question", "name": "Which is better for real-time apps?", "acceptedAnswer": {"@type": "Answer", "text": "Firebase still leads for real-time. Its real-time database and Firestore listeners are battle-tested at massive scale. Supabase has real-time subscriptions but isn't as mature for high-frequency updates."}},
+      {"@type": "Question", "name": "Which has cheaper pricing at scale?", "acceptedAnswer": {"@type": "Answer", "text": "Supabase, typically. Firebase's pay-per-operation model can lead to surprise bills. Supabase's flat $25/mo Pro plan is predictable."}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -114,6 +127,16 @@
     .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
     .related-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; transition: all 0.2s; }
     .related-link:hover { border-color: var(--accent); color: var(--accent); }
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; transition: border-color 0.2s; }
+    .faq-item[open] { border-color: var(--accent); }
+    .faq-item summary { padding: 18px 24px; font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: "+"; font-size: 20px; color: var(--text-muted); transition: transform 0.2s; }
+    .faq-item[open] summary::after { content: "−"; color: var(--accent); }
+    .faq-item p { padding: 0 24px 18px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
     footer { padding: 64px 0; border-top: 1px solid var(--border); }
     .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
     .footer-content p { font-size: 14px; color: var(--text-muted); }
@@ -256,6 +279,32 @@
       <h2>🎯 Our Recommendation</h2>
       <p>For new projects in 2025, <span class="rec-highlight">Supabase is the better default choice</span>. You get a real Postgres database you can query with SQL, take anywhere, and actually own. Firebase's real-time capabilities are still unmatched for specific use cases (chat, live collaboration), but the lock-in tax you pay later makes Supabase the safer long-term bet.</p>
     </div>
+
+    <section class="comparison-section reveal" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is Supabase a good alternative to Firebase in 2026?</summary>
+          <p>Yes — Supabase has matured significantly and is now production-ready for most use cases. It offers a real PostgreSQL database, built-in auth, storage, and edge functions. The main advantage over Firebase is data ownership: you can export your Postgres database at any time, and even self-host if needed.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is Supabase free?</summary>
+          <p>Supabase has a generous free tier that includes a 500MB Postgres database, 1GB file storage, 50,000 monthly active users for auth, and 500MB bandwidth. It's enough to build and launch a real product. The Pro plan starts at $25/month when you need more capacity.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I migrate from Firebase to Supabase?</summary>
+          <p>Yes, but it requires effort. Supabase provides migration guides and tools for moving from Firestore to Postgres. The main challenge is restructuring NoSQL document data into relational tables. Auth migration is also supported. Plan for 1-2 weeks depending on complexity.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which is better for real-time apps?</summary>
+          <p>Firebase still leads for real-time. Its real-time database and Firestore listeners are battle-tested at massive scale (think Google-level). Supabase has real-time subscriptions via PostgreSQL's LISTEN/NOTIFY, which works well but isn't as mature for high-frequency updates like live chat or multiplayer games.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which has cheaper pricing at scale?</summary>
+          <p>Supabase, typically. Firebase's pay-per-operation model can lead to surprise bills — especially with Firestore reads. Supabase's flat $25/mo Pro plan is predictable. However, Firebase's free tier handles more edge cases out of the box (analytics, crash reporting, push notifications).</p>
+        </details>
+      </div>
+    </section>
 
     <div class="related reveal">
       <h3>Related Comparisons</h3>

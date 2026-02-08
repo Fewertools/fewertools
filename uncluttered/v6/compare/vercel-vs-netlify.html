@@ -13,6 +13,19 @@
   <meta property="og:description" content="Vercel vs Netlify: which hosting platform wins for your project?">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Is Vercel better than Netlify for Next.js?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Vercel created Next.js and their platform is optimised for it — server components, ISR, middleware, and image optimisation all work perfectly out of the box."}},
+      {"@type": "Question", "name": "Is Netlify still good in 2026?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. Netlify has a more generous free tier, built-in form handling, identity/auth, and better support for static site generators like Hugo and Astro."}},
+      {"@type": "Question", "name": "Which is cheaper — Vercel or Netlify?", "acceptedAnswer": {"@type": "Answer", "text": "On free tiers, Netlify is more generous. Paid plans are similar ($19-20/mo). Vercel charges for serverless function execution and bandwidth overages. Netlify's pricing is more predictable."}},
+      {"@type": "Question", "name": "Can I host a static site on Vercel?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Vercel handles static sites, Astro, SvelteKit, Remix, and other frameworks perfectly well. Deployment is just as simple: connect your Git repo and push."}},
+      {"@type": "Question", "name": "Do I need to pay for Vercel or Netlify for a portfolio site?", "acceptedAnswer": {"@type": "Answer", "text": "No. Both have generous free tiers covering personal sites and portfolios, including custom domains, HTTPS, and automatic deployments from GitHub."}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -114,6 +127,16 @@
     .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
     .related-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; transition: all 0.2s; }
     .related-link:hover { border-color: var(--accent); color: var(--accent); }
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; transition: border-color 0.2s; }
+    .faq-item[open] { border-color: var(--accent); }
+    .faq-item summary { padding: 18px 24px; font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: "+"; font-size: 20px; color: var(--text-muted); transition: transform 0.2s; }
+    .faq-item[open] summary::after { content: "−"; color: var(--accent); }
+    .faq-item p { padding: 0 24px 18px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
     footer { padding: 64px 0; border-top: 1px solid var(--border); }
     .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
     .footer-content p { font-size: 14px; color: var(--text-muted); }
@@ -256,6 +279,32 @@
       <h2>🎯 Our Recommendation</h2>
       <p>It really comes down to your framework. <span class="rec-highlight">If you're using Next.js, Vercel is the obvious choice</span> — they made it, they optimize for it, and the DX is unbeatable. For everything else, Netlify's simplicity, built-in extras (forms, identity), and generous free tier make it the better all-rounder. Both are excellent. You won't regret either choice.</p>
     </div>
+
+    <section class="comparison-section reveal" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is Vercel better than Netlify for Next.js?</summary>
+          <p>Yes. Vercel created Next.js and their platform is optimised for it — server components, ISR, middleware, and image optimisation all work perfectly out of the box. Netlify supports Next.js too, but new features typically land on Vercel first. If you're all-in on Next.js, Vercel is the obvious choice.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is Netlify still good in 2026?</summary>
+          <p>Absolutely. Netlify has a more generous free tier (100GB bandwidth vs Vercel's less), built-in form handling, identity/auth, and better support for static site generators like Hugo and Astro. For anything that isn't Next.js, Netlify is often the simpler, cheaper option.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which is cheaper — Vercel or Netlify?</summary>
+          <p>On free tiers, Netlify is more generous. Paid plans are similar ($19-20/mo per member). The main cost difference comes at scale: Vercel charges for serverless function execution and bandwidth overages. Netlify's pricing is more predictable with higher included limits. For hobby projects, both free tiers are excellent.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I host a static site on Vercel?</summary>
+          <p>Yes. Despite Vercel's association with Next.js, it handles static sites, Astro, SvelteKit, Remix, and other frameworks perfectly well. Deployment is just as simple: connect your Git repo and push. That said, you're not getting any Vercel-specific advantage over Netlify for static hosting.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need to pay for Vercel or Netlify for a portfolio site?</summary>
+          <p>No. Both have generous free tiers that easily cover personal sites, portfolios, and small projects. Vercel's hobby plan and Netlify's starter plan both include custom domains, HTTPS, and automatic deployments from GitHub. You'd only need to upgrade for team features or high traffic.</p>
+        </details>
+      </div>
+    </section>
 
     <div class="related reveal">
       <h3>Related Comparisons</h3>

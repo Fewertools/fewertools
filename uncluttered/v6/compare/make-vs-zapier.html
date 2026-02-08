@@ -13,6 +13,19 @@
   <meta property="og:description" content="Make vs Zapier: which automation tool wins for solo builders?">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Is Make cheaper than Zapier?", "acceptedAnswer": {"@type": "Answer", "text": "Significantly. Make's free tier includes 1,000 operations/month vs Zapier's 100 tasks. For high-volume automations, Make can be 5-10x cheaper."}},
+      {"@type": "Question", "name": "Is Make harder to learn than Zapier?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, slightly. Make uses a visual scenario builder that takes time to learn. Zapier's linear trigger-action format is simpler but less powerful."}},
+      {"@type": "Question", "name": "Can Make do everything Zapier can?", "acceptedAnswer": {"@type": "Answer", "text": "Almost. Make supports 1,000+ integrations. Zapier has 6,000+ apps, so check Make's list first if you need a specific niche connector."}},
+      {"@type": "Question", "name": "Can I migrate my Zaps to Make?", "acceptedAnswer": {"@type": "Answer", "text": "No automated migration, but recreating workflows is straightforward. Most Zapier triggers and actions have Make equivalents."}},
+      {"@type": "Question", "name": "Which is better for a small business?", "acceptedAnswer": {"@type": "Answer", "text": "Non-technical teams: Zapier. Technical or cost-conscious teams: Make. For growing businesses, Make scales more affordably."}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -118,6 +131,16 @@
     .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
     .related-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; transition: all 0.2s; }
     .related-link:hover { border-color: var(--accent); color: var(--accent); }
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; transition: border-color 0.2s; }
+    .faq-item[open] { border-color: var(--accent); }
+    .faq-item summary { padding: 18px 24px; font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: "+"; font-size: 20px; color: var(--text-muted); }
+    .faq-item[open] summary::after { content: "−"; color: var(--accent); }
+    .faq-item p { padding: 0 24px 18px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
     footer { padding: 64px 0; border-top: 1px solid var(--border); }
     .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
     .footer-content p { font-size: 14px; color: var(--text-muted); }
@@ -271,6 +294,32 @@
       <p>For indie builders and startups, <span class="rec-highlight">Make is the better investment</span>. You get more power, more flexibility, and dramatically lower costs. The learning curve is real — budget an afternoon to learn the visual builder — but it pays off immediately when you're not hitting Zapier's task limits or paying for premium features that are free on Make.</p>
       <p style="margin-top: 12px">If you're automating for a team of non-technical people and need maximum simplicity, Zapier still has its place. But for builders who want automation that scales? Make.</p>
     </div>
+
+    <section class="comparison-section reveal" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is Make cheaper than Zapier?</summary>
+          <p>Significantly. Make's free tier includes 1,000 operations/month (vs Zapier's 100 tasks). Paid plans start at $9/month for 10,000 operations on Make, while Zapier charges $19.99/month for just 750 tasks. For high-volume automations, Make can be 5-10x cheaper.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is Make harder to learn than Zapier?</summary>
+          <p>Yes, slightly. Make uses a visual scenario builder with modules, routers, and filters — it's more powerful but takes time to learn. Zapier's linear trigger → action format is simpler. Budget an afternoon to learn Make's interface; after that, it's actually easier for complex workflows.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can Make do everything Zapier can?</summary>
+          <p>Almost. Make supports 1,000+ app integrations and can handle anything from simple automations to complex multi-branch workflows. Zapier has more niche integrations (6,000+ apps), so if you need a very specific app connector, check Make's integration list first.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I migrate my Zaps to Make?</summary>
+          <p>There's no automated migration tool, but recreating workflows in Make is straightforward. Most Zapier triggers and actions have Make equivalents. The visual builder actually makes complex Zaps easier to understand when rebuilt as Make scenarios.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which is better for a small business?</summary>
+          <p>If a non-technical team member needs to set up simple automations, Zapier. If the person setting up automations is comfortable with visual tools and you want to save money, Make. For growing businesses with increasing automation needs, Make scales much more affordably.</p>
+        </details>
+      </div>
+    </section>
 
     <div class="related reveal">
       <h3>Related Comparisons</h3>

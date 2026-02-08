@@ -13,6 +13,19 @@
   <meta property="og:description" content="Notion vs Coda: which workspace tool wins for your team?">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Is Notion better than Coda for personal use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for most people. Notion's writing experience, templates, and mobile app are more polished. Coda's power comes from formulas and automations that most personal users don't need."}},
+      {"@type": "Question", "name": "Can Coda replace a spreadsheet?", "acceptedAnswer": {"@type": "Answer", "text": "More effectively than Notion, yes. Coda has a full formula language, cross-table lookups, conditional formatting, and automation rules built into its tables."}},
+      {"@type": "Question", "name": "Is Notion free for students?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Notion offers a free Plus plan for students and educators with a .edu email address. This includes unlimited blocks, file uploads, and guest collaborators."}},
+      {"@type": "Question", "name": "Which is better for team wikis?", "acceptedAnswer": {"@type": "Answer", "text": "Notion, by a significant margin. Its page hierarchy, sidebar navigation, search, and wiki-specific features are purpose-built for knowledge management."}},
+      {"@type": "Question", "name": "Can I use Notion and Coda together?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, some teams use Notion for documentation and wikis, and Coda for data-heavy operational workflows. They serve genuinely different purposes."}}
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -114,6 +127,16 @@
     .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
     .related-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; transition: all 0.2s; }
     .related-link:hover { border-color: var(--accent); color: var(--accent); }
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; transition: border-color 0.2s; }
+    .faq-item[open] { border-color: var(--accent); }
+    .faq-item summary { padding: 18px 24px; font-weight: 600; font-size: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: "+"; font-size: 20px; color: var(--text-muted); transition: transform 0.2s; }
+    .faq-item[open] summary::after { content: "−"; color: var(--accent); }
+    .faq-item p { padding: 0 24px 18px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
     footer { padding: 64px 0; border-top: 1px solid var(--border); }
     .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
     .footer-content p { font-size: 14px; color: var(--text-muted); }
@@ -256,6 +279,32 @@
       <h2>🎯 Our Recommendation</h2>
       <p>For most teams, <span class="rec-highlight">Notion is the safer pick</span>. It's the better writing tool, the better wiki, and the better-looking workspace. But if your work lives in tables, formulas, and automated workflows — if you're basically building mini-apps from data — Coda is genuinely more powerful. Most people think they need Coda, but actually need Notion. Be honest about your use case.</p>
     </div>
+
+    <section class="comparison-section reveal" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is Notion better than Coda for personal use?</summary>
+          <p>Yes, for most people. Notion's writing experience, templates, and mobile app are more polished. Coda's power comes from formulas and automations that most personal users don't need. If you're organising notes, tasks, and docs, Notion is the cleaner choice.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can Coda replace a spreadsheet?</summary>
+          <p>More effectively than Notion, yes. Coda has a full formula language, cross-table lookups, conditional formatting, and automation rules built into its tables. It's designed to let you build mini-apps from data. Notion's databases are powerful but don't match Coda's spreadsheet-like capabilities.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is Notion free for students?</summary>
+          <p>Yes. Notion offers a free Plus plan for students and educators with a .edu email address. This includes unlimited blocks, file uploads, and guest collaborators — everything a student would need. Coda doesn't currently have a student-specific plan.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which is better for team wikis?</summary>
+          <p>Notion, by a significant margin. Its page hierarchy, sidebar navigation, search, and wiki-specific features (verified pages, team spaces) are purpose-built for knowledge management. Coda works for documentation but it's designed more for operational workflows than reference material.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I use Notion and Coda together?</summary>
+          <p>Yes, some teams do. They use Notion for documentation and wikis, and Coda for data-heavy operational workflows (inventory tracking, CRM, project scoring). The downside is maintaining two tools, but they serve genuinely different purposes well.</p>
+        </details>
+      </div>
+    </section>
 
     <div class="related reveal">
       <h3>Related Comparisons</h3>
