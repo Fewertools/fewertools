@@ -94,6 +94,15 @@ nav a:hover{color:var(--text);background:var(--bg-alt)}
 .badge-freemium{background:#eff6ff;color:#2563eb}
 .badge-paid{background:#fef3c7;color:#d97706}
 .badge-pick{background:var(--accent);color:#fff}
+.badge-rec{background:#ecfdf5;color:#059669;border:1px solid rgba(5,150,105,.2)}
+.badge-notyet{background:#fef3c7;color:#b45309;border:1px solid rgba(180,83,9,.15)}
+.badge-overkill{background:#fef2f2;color:#dc2626;border:1px solid rgba(220,38,38,.15)}
+.badge-replace{background:#eff6ff;color:#2563eb;border:1px solid rgba(37,99,235,.15)}
+.badge-stage{background:rgba(13,148,136,.1);color:#0D9488;border:1px solid rgba(13,148,136,.2)}
+.tool-decision{display:flex;flex-direction:column;gap:4px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.decision-use,.decision-avoid{font-size:12px;line-height:1.4;color:var(--text-muted)}
+.decision-use::before{content:'✓ ';color:#059669;font-weight:700}
+.decision-avoid::before{content:'✗ ';color:#b45309;font-weight:700}
 
 /* ─── Reveal ─── */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
@@ -151,6 +160,14 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:40px}
 </section>
 
 <div class="container">
+  <div class="reveal" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:32px">
+    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="overwhelmed" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--font-body)">😵 Overwhelmed by tools</button>
+    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="writing clarity" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--font-body)">✍️ Need writing clarity</button>
+    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="ship fast" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--font-body)">🚀 Need to ship fast</button>
+    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="free" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--font-body)">💸 Free tools only</button>
+    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="analytics" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--font-body)">📊 Understand my users</button>
+    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="automate" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--font-body)">🤖 Automate repetitive work</button>
+  </div>
   <div class="search-section reveal">
     <div class="search-wrap">
       <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -221,12 +238,12 @@ var categories = [
 // ─── Tools Data (172 tools) ───
 var tools = [
   // AI Assistants (6)
-  {n:'Claude',c:'ai-assistants',i:'anthropic',ic:'181818',d:'The one that actually thinks before it speaks. Best for nuanced reasoning and long-form work.',p:'Free',pk:true,u:'https://claude.ai'},
-  {n:'ChatGPT',c:'ai-assistants',i:'openai',ic:'412991',d:'The OG. Still the default for most people — huge plugin ecosystem, good enough at everything.',p:'Freemium',pk:false,u:'https://chat.openai.com'},
-  {n:'Gemini',c:'ai-assistants',i:'google',ic:'4285F4',d:"Google's contender. Shines when you need it plugged into Google's ecosystem.",p:'Free',pk:false,u:'https://gemini.google.com'},
-  {n:'Perplexity',c:'ai-assistants',i:'perplexity',ic:'20808D',d:'Google search is cooked. This is what search should feel like — answers with receipts.',p:'Freemium',pk:true,u:'https://perplexity.ai'},
-  {n:'Poe',c:'ai-assistants',i:null,ic:'6C5CE7',d:'Access every model from one place. Good for comparison shopping across LLMs.',p:'Freemium',pk:false,u:'https://poe.com'},
-  {n:'Pi',c:'ai-assistants',i:null,ic:'FF6F00',d:'The conversational one. Feels more like talking to a friend than prompting a machine.',p:'Free',pk:false,u:'https://pi.ai'},
+  {n:'Claude',c:'ai-assistants',i:'anthropic',ic:'181818',d:'The one that actually thinks before it speaks. Best for nuanced reasoning and long-form work.',p:'Free',pk:true,u:'https://claude.ai',v:'Recommended',s:'Starting',uw:'Deep reasoning, long documents, coding',av:'You need real-time web search'},
+  {n:'ChatGPT',c:'ai-assistants',i:'openai',ic:'412991',d:'The OG. Still the default for most people — huge plugin ecosystem, good enough at everything.',p:'Freemium',pk:false,u:'https://chat.openai.com',v:'Recommended',s:'Starting',uw:'General tasks, plugins, browsing',av:'You need the absolute best reasoning'},
+  {n:'Gemini',c:'ai-assistants',i:'google',ic:'4285F4',d:"Google's contender. Shines when you need it plugged into Google's ecosystem.",p:'Free',pk:false,u:'https://gemini.google.com',s:'Starting'},
+  {n:'Perplexity',c:'ai-assistants',i:'perplexity',ic:'20808D',d:'Google search is cooked. This is what search should feel like — answers with receipts.',p:'Freemium',pk:true,u:'https://perplexity.ai',v:'Recommended',s:'Starting',uw:'Research with sources, fact-checking',av:'You want creative generation, not search'},
+  {n:'Poe',c:'ai-assistants',i:null,ic:'6C5CE7',d:'Access every model from one place. Good for comparison shopping across LLMs.',p:'Freemium',pk:false,u:'https://poe.com',v:'Not yet',s:'Starting',uw:'Comparing models side by side',av:'You already have a preferred AI tool'},
+  {n:'Pi',c:'ai-assistants',i:null,ic:'FF6F00',d:'The conversational one. Feels more like talking to a friend than prompting a machine.',p:'Free',pk:false,u:'https://pi.ai',s:'Starting'},
 
   // AI Writing (10)
   {n:'Jasper',c:'ai-writing',i:'jasper',ic:'FF4438',d:'Enterprise AI writing that marketing teams swear by. Expensive, but it ships content fast.',p:'Paid',pk:false,u:'https://jasper.ai'},
@@ -272,8 +289,8 @@ var tools = [
   {n:'Adobe Podcast',c:'ai-audio',i:'adobe',ic:'FF0000',d:'Audio cleanup that makes your $20 mic sound like a studio. Enhance Speech is pure magic.',p:'Free',pk:false,u:'https://podcast.adobe.com'},
 
   // AI Coding (10)
-  {n:'Cursor',c:'ai-coding',i:null,ic:'000000',d:'The AI editor that actually understands your codebase. Not just autocomplete — full context.',p:'Freemium',pk:true,u:'https://cursor.com'},
-  {n:'GitHub Copilot',c:'ai-coding',i:'githubcopilot',ic:'000000',d:'The autocomplete that started it all. Solid in VS Code. Good, but no longer the best.',p:'Paid',pk:false,u:'https://github.com/features/copilot'},
+  {n:'Cursor',c:'ai-coding',i:null,ic:'000000',d:'The AI editor that actually understands your codebase. Not just autocomplete — full context.',p:'Freemium',pk:true,u:'https://cursor.com',v:'Recommended',s:'Building',uw:'Full-stack projects where context matters',av:'You only write small scripts'},
+  {n:'GitHub Copilot',c:'ai-coding',i:'githubcopilot',ic:'000000',d:'The autocomplete that started it all. Solid in VS Code. Good, but no longer the best.',p:'Paid',pk:false,u:'https://github.com/features/copilot',v:'Recommended',s:'Building',uw:'Inline autocomplete in your existing editor',av:'You want full codebase reasoning'},
   {n:'Bolt',c:'ai-coding',i:null,ic:'F7CE00',d:'Describe an app, get a running app. StackBlitz-powered full-stack generation in seconds flat.',p:'Freemium',pk:false,u:'https://bolt.new'},
   {n:'Replit Agent',c:'ai-coding',i:'replit',ic:'F26207',d:'An AI that deploys. Describe what you want, it builds and ships it. Welcome to the future.',p:'Paid',pk:false,u:'https://replit.com'},
   {n:'Windsurf',c:'ai-coding',i:null,ic:'3B82F6',d:"Codeium's IDE. Flows feel natural — AI that works with you, not just autocompleting for you.",p:'Freemium',pk:false,u:'https://codeium.com/windsurf'},
@@ -284,7 +301,7 @@ var tools = [
   {n:'Lovable',c:'ai-coding',i:null,ic:'FF6B6B',d:'Full-stack app builder for non-engineers. Describe it, deploy it. Surprisingly capable output.',p:'Freemium',pk:false,u:'https://lovable.dev'},
 
   // Frameworks (8)
-  {n:'Next.js',c:'frameworks',i:'nextdotjs',ic:'000000',d:'The React framework. Server components, app router, the whole kitchen sink. Industry standard now.',p:'Free',pk:true,u:'https://nextjs.org'},
+  {n:'Next.js',c:'frameworks',i:'nextdotjs',ic:'000000',d:'The React framework. Server components, app router, the whole kitchen sink. Industry standard now.',p:'Free',pk:true,u:'https://nextjs.org',v:'Recommended',s:'Building',uw:'Full-stack React apps with SSR/SSG',av:'You need something simpler — try Astro'},
   {n:'Nuxt',c:'frameworks',i:'nuxtdotjs',ic:'00DC82',d:'Next.js but for Vue people. Equally powerful, arguably better DX. Nitro engine is underrated.',p:'Free',pk:false,u:'https://nuxt.com'},
   {n:'SvelteKit',c:'frameworks',i:'svelte',ic:'FF3E00',d:'Less code, more speed. The framework that makes React feel bloated. Developer joy is real.',p:'Free',pk:false,u:'https://kit.svelte.dev'},
   {n:'Remix',c:'frameworks',i:'remix',ic:'000000',d:"Web fundamentals done right. Forms, loaders, progressive enhancement. The adults' framework.",p:'Free',pk:false,u:'https://remix.run'},
@@ -294,7 +311,7 @@ var tools = [
   {n:'Fastify',c:'frameworks',i:'fastify',ic:'000000',d:'Express but faster with better DX. Schema validation built in. Criminally underrated.',p:'Free',pk:false,u:'https://fastify.dev'},
 
   // Hosting & Deploy (8)
-  {n:'Vercel',c:'hosting',i:'vercel',ic:'000000',d:'Push to git, site is live. DX so smooth it ruined us for everything else. The gold standard.',p:'Freemium',pk:true,u:'https://vercel.com'},
+  {n:'Vercel',c:'hosting',i:'vercel',ic:'000000',d:'Push to git, site is live. DX so smooth it ruined us for everything else. The gold standard.',p:'Freemium',pk:true,u:'https://vercel.com',v:'Recommended',s:'Building',uw:'Frontend and full-stack JS apps',av:'You need raw server control or non-JS workloads'},
   {n:'Netlify',c:'hosting',i:'netlify',ic:'00C7B7',d:'The OG JAMstack host. Still great for static sites and serverless functions. Reliable.',p:'Freemium',pk:false,u:'https://netlify.com'},
   {n:'Railway',c:'hosting',i:'railway',ic:'0B0D0E',d:"Deploy anything with zero config. Databases, apps, cron jobs. Heroku's cool successor.",p:'Freemium',pk:false,u:'https://railway.app'},
   {n:'Render',c:'hosting',i:'render',ic:'46E3B7',d:"Simple cloud hosting that doesn't require a PhD in DevOps. Free tier is surprisingly solid.",p:'Freemium',pk:false,u:'https://render.com'},
@@ -304,7 +321,7 @@ var tools = [
   {n:'AWS Amplify',c:'hosting',i:'awsamplify',ic:'FF9900',d:'AWS made approachable. Full-stack hosting with auth, storage, and APIs baked in.',p:'Freemium',pk:false,u:'https://aws.amazon.com/amplify'},
 
   // Databases (9)
-  {n:'Supabase',c:'databases',i:'supabase',ic:'3FCF8E',d:'Postgres + auth + storage + realtime. Firebase for people who want to own their data.',p:'Freemium',pk:true,u:'https://supabase.com'},
+  {n:'Supabase',c:'databases',i:'supabase',ic:'3FCF8E',d:'Postgres + auth + storage + realtime. Firebase for people who want to own their data.',p:'Freemium',pk:true,u:'https://supabase.com',v:'Recommended',s:'Building',uw:'You want Postgres with batteries included',av:'You need a document database or heavy NoSQL'},
   {n:'PlanetScale',c:'databases',i:'planetscale',ic:'000000',d:'MySQL with git-like branching. Schema changes without downtime. Database DevOps, solved.',p:'Freemium',pk:false,u:'https://planetscale.com'},
   {n:'Neon',c:'databases',i:'neon',ic:'00E699',d:'Serverless Postgres that scales to zero. Branch your database like code. Free tier is generous.',p:'Freemium',pk:false,u:'https://neon.tech'},
   {n:'Turso',c:'databases',i:'turso',ic:'4FF8D2',d:'SQLite at the edge. Stupidly fast for read-heavy apps. Per-user databases are a game-changer.',p:'Freemium',pk:false,u:'https://turso.tech'},
@@ -324,7 +341,7 @@ var tools = [
   {n:'Lucia',c:'auth',i:null,ic:'5F57FF',d:"Auth library that doesn't try to own your users. Minimal, flexible, fully open source.",p:'Free',pk:false,u:'https://lucia-auth.com'},
 
   // Payments (6)
-  {n:'Stripe',c:'payments',i:'stripe',ic:'635BFF',d:"The payments API. Every serious business uses it. Documentation so good it's literally a meme.",p:'Paid',pk:true,u:'https://stripe.com'},
+  {n:'Stripe',c:'payments',i:'stripe',ic:'635BFF',d:"The payments API. Every serious business uses it. Documentation so good it's literally a meme.",p:'Paid',pk:true,u:'https://stripe.com',v:'Recommended',s:'Building',uw:'You need payments and want full control',av:'You want someone else to handle tax/VAT — try LemonSqueezy'},
   {n:'LemonSqueezy',c:'payments',i:'lemonsqueezy',ic:'FFC233',d:"Stripe + merchant of record. Handles VAT and taxes so you don't have to. Indie dev favorite.",p:'Paid',pk:false,u:'https://lemonsqueezy.com'},
   {n:'Paddle',c:'payments',i:null,ic:'FFCC00',d:'Merchant of record for SaaS. Takes the global tax headache away. Enterprise-grade billing.',p:'Paid',pk:false,u:'https://paddle.com'},
   {n:'Gumroad',c:'payments',i:'gumroad',ic:'FF90E8',d:'Sell digital products in 5 minutes. High fees, but dead simple. The creator economy OG.',p:'Paid',pk:false,u:'https://gumroad.com'},
@@ -332,8 +349,8 @@ var tools = [
   {n:'Polar',c:'payments',i:null,ic:'0062FF',d:'Monetize open source. Subscriptions, sponsorships, and digital products for developers.',p:'Freemium',pk:false,u:'https://polar.sh'},
 
   // Email (8)
-  {n:'Resend',c:'email',i:'resend',ic:'000000',d:'Email API that developers actually enjoy using. Built by the React Email creator. Clean as hell.',p:'Freemium',pk:true,u:'https://resend.com'},
-  {n:'Loops',c:'email',i:null,ic:'4B0082',d:'Email for SaaS. Beautiful UI, event-based automations, built for product teams. The new standard.',p:'Freemium',pk:true,u:'https://loops.so'},
+  {n:'Resend',c:'email',i:'resend',ic:'000000',d:'Email API that developers actually enjoy using. Built by the React Email creator. Clean as hell.',p:'Freemium',pk:true,u:'https://resend.com',v:'Recommended',s:'Building',uw:'Transactional emails with great DX',av:'You need marketing automation — try Loops'},
+  {n:'Loops',c:'email',i:null,ic:'4B0082',d:'Email for SaaS. Beautiful UI, event-based automations, built for product teams. The new standard.',p:'Freemium',pk:true,u:'https://loops.so',v:'Recommended',s:'Growing',uw:'Product-led email sequences and onboarding',av:'You just need to send transactional emails'},
   {n:'ConvertKit',c:'email',i:'convertkit',ic:'FB6970',d:'Email marketing for creators. Landing pages, automations, paid newsletters. Creator-first DNA.',p:'Freemium',pk:false,u:'https://convertkit.com'},
   {n:'Beehiiv',c:'email',i:null,ic:'FFC700',d:'Newsletter platform built by Morning Brew alumni. Growth tools baked in. Serious about scale.',p:'Freemium',pk:false,u:'https://beehiiv.com'},
   {n:'Buttondown',c:'email',i:null,ic:'0069FF',d:"Newsletter tool for the minimalist. Markdown-first, no bloat. Built by one person. Indie legend.",p:'Freemium',pk:false,u:'https://buttondown.email'},
@@ -342,7 +359,7 @@ var tools = [
   {n:'React Email',c:'email',i:'react',ic:'61DAFB',d:"Build emails with React components. Finally, email templates that don't make you want to cry.",p:'Free',pk:false,u:'https://react.email'},
 
   // Analytics (8)
-  {n:'PostHog',c:'analytics',i:'posthog',ic:'F9BD2B',d:'Product analytics, session replay, feature flags, A/B testing — all open source. The everything tool.',p:'Freemium',pk:true,u:'https://posthog.com'},
+  {n:'PostHog',c:'analytics',i:'posthog',ic:'F9BD2B',d:'Product analytics, session replay, feature flags, A/B testing — all open source. The everything tool.',p:'Freemium',pk:true,u:'https://posthog.com',v:'Recommended',s:'Growing',uw:'You have real users and need to understand behaviour',av:'You have fewer than 100 users — premature optimisation'},
   {n:'Plausible',c:'analytics',i:'plausible',ic:'5850EC',d:'Privacy-first analytics in a less-than-1KB script. See your traffic without selling your soul.',p:'Paid',pk:false,u:'https://plausible.io'},
   {n:'Fathom',c:'analytics',i:null,ic:'9187FF',d:'Simple, private analytics. One dashboard, zero complexity. Know your numbers, respect your users.',p:'Paid',pk:false,u:'https://usefathom.com'},
   {n:'Mixpanel',c:'analytics',i:'mixpanel',ic:'7856FF',d:"Event-based product analytics. Funnels, retention, cohorts. The serious product team's choice.",p:'Freemium',pk:false,u:'https://mixpanel.com'},
@@ -352,7 +369,7 @@ var tools = [
   {n:'Umami',c:'analytics',i:'umami',ic:'000000',d:'Self-hosted analytics that costs nothing forever. Open source Plausible alternative. Deploy on Vercel.',p:'Free',pk:false,u:'https://umami.is'},
 
   // Support & Chat (6)
-  {n:'Intercom',c:'support',i:'intercom',ic:'6AFDEF',d:'The support tool that defined the category. AI-first now. Pricey, but the experience is premium.',p:'Paid',pk:true,u:'https://intercom.com'},
+  {n:'Intercom',c:'support',i:'intercom',ic:'6AFDEF',d:'The support tool that defined the category. AI-first now. Pricey, but the experience is premium.',p:'Paid',pk:true,u:'https://intercom.com',v:'Recommended',s:'Growing',uw:'You have enough users that support tickets matter',av:'You have no users yet — overkill'},
   {n:'Crisp',c:'support',i:null,ic:'4B60FF',d:'Chat widget + shared inbox + knowledge base. Feature-packed and way cheaper than Intercom.',p:'Freemium',pk:false,u:'https://crisp.chat'},
   {n:'Zendesk',c:'support',i:'zendesk',ic:'03363D',d:'Enterprise support juggernaut. Does everything. Also costs everything. You know the deal.',p:'Paid',pk:false,u:'https://zendesk.com'},
   {n:'Tawk.to',c:'support',i:null,ic:'03C04A',d:'Completely free live chat. No catch. Seriously. It just works and costs absolutely nothing.',p:'Free',pk:false,u:'https://tawk.to'},
@@ -360,8 +377,8 @@ var tools = [
   {n:'Help Scout',c:'support',i:null,ic:'1292EE',d:'Support tool that feels human. Shared inbox, docs, beacon widget. For teams that care about UX.',p:'Paid',pk:false,u:'https://helpscout.com'},
 
   // Docs & Planning (8)
-  {n:'Notion',c:'docs',i:'notion',ic:'000000',d:"The everything workspace. Docs, wikis, databases, projects. Your second brain's second brain.",p:'Freemium',pk:true,u:'https://notion.so'},
-  {n:'Linear',c:'docs',i:'linear',ic:'5E6AD2',d:"Issue tracking that doesn't suck. Keyboard-first, blazing fast, beautiful. Jira is shaking.",p:'Freemium',pk:true,u:'https://linear.app'},
+  {n:'Notion',c:'docs',i:'notion',ic:'000000',d:"The everything workspace. Docs, wikis, databases, projects. Your second brain's second brain.",p:'Freemium',pk:true,u:'https://notion.so',v:'Recommended',s:'Starting',uw:'You need one place for all your thinking',av:'You just need quick notes — try Apple Notes'},
+  {n:'Linear',c:'docs',i:'linear',ic:'5E6AD2',d:"Issue tracking that doesn't suck. Keyboard-first, blazing fast, beautiful. Jira is shaking.",p:'Freemium',pk:true,u:'https://linear.app',v:'Recommended',s:'Building',uw:'You have a team or serious project to track',av:'You work solo and a to-do list is enough'},
   {n:'Coda',c:'docs',i:'coda',ic:'F46A54',d:'Docs that work like apps. Tables, automations, buttons. Notion on steroids for power users.',p:'Freemium',pk:false,u:'https://coda.io'},
   {n:'Obsidian',c:'docs',i:'obsidian',ic:'7C3AED',d:'Local-first markdown notes with a graph view. Your brain, mapped. Plugin ecosystem is bonkers.',p:'Free',pk:false,u:'https://obsidian.md'},
   {n:'Basecamp',c:'docs',i:'basecamp',ic:'1D2D35',d:'Project management for people who hate project management. Opinionated, simple, flat fee.',p:'Paid',pk:false,u:'https://basecamp.com'},
@@ -380,7 +397,7 @@ var tools = [
   {n:'Hypefury',c:'marketing',i:null,ic:'F59E0B',d:'Twitter/X growth machine. Auto-plug, threads, scheduling. Built by creators, for creators.',p:'Paid',pk:false,u:'https://hypefury.com'},
 
   // Automation (6)
-  {n:'Zapier',c:'automation',i:'zapier',ic:'FF4A00',d:'Connect anything to everything. 6000+ integrations. The glue of the internet. Not cheap though.',p:'Freemium',pk:true,u:'https://zapier.com'},
+  {n:'Zapier',c:'automation',i:'zapier',ic:'FF4A00',d:'Connect anything to everything. 6000+ integrations. The glue of the internet. Not cheap though.',p:'Freemium',pk:true,u:'https://zapier.com',v:'Recommended',s:'Simplifying',uw:'You repeat manual tasks between apps',av:'You don\'t have repeatable processes yet'},
   {n:'Make',c:'automation',i:null,ic:'6D00CC',d:"Visual automation that's more powerful than Zapier. Branching, loops, complex flows. Builder's choice.",p:'Freemium',pk:false,u:'https://make.com'},
   {n:'n8n',c:'automation',i:'n8n',ic:'EA4B71',d:'Zapier but self-hosted and free. For builders who want full control over their automations.',p:'Free',pk:false,u:'https://n8n.io'},
   {n:'Pipedream',c:'automation',i:'pipedream',ic:'22C55E',d:'Developer-first automation. Write code, connect APIs, deploy workflows. Zapier for engineers.',p:'Freemium',pk:false,u:'https://pipedream.com'},
@@ -424,7 +441,7 @@ var tools = [
   {n:'Saleor',c:'ecommerce',i:null,ic:'5B68F5',d:'GraphQL-first commerce platform. Enterprise-ready, fully open source. Custom storefronts welcome.',p:'Free',pk:false,u:'https://saleor.io'},
 
   // Testing & Monitoring (6)
-  {n:'Sentry',c:'testing',i:'sentry',ic:'362D59',d:'Error tracking that shows you what broke, why, and for whom. Every production app needs this.',p:'Freemium',pk:true,u:'https://sentry.io'},
+  {n:'Sentry',c:'testing',i:'sentry',ic:'362D59',d:'Error tracking that shows you what broke, why, and for whom. Every production app needs this.',p:'Freemium',pk:true,u:'https://sentry.io',v:'Recommended',s:'Growing',uw:'You have a production app with real users',av:'You\'re still building locally — add this at launch'},
   {n:'LogRocket',c:'testing',i:'logrocket',ic:'764ABC',d:'Session replay meets error tracking. Watch users struggle with your UI. Humbling and very useful.',p:'Freemium',pk:false,u:'https://logrocket.com'},
   {n:'BrowserStack',c:'testing',i:'browserstack',ic:'F5811F',d:'Test on every browser and device without owning them all. Cross-browser testing that works.',p:'Paid',pk:false,u:'https://browserstack.com'},
   {n:'Checkly',c:'testing',i:null,ic:'2DCD71',d:'Monitoring as code. Playwright tests as synthetic monitors. Know before your users complain.',p:'Freemium',pk:false,u:'https://checklyhq.com'},
@@ -476,7 +493,7 @@ tools.forEach(function(t) {
   card.rel = t.u ? 'noopener' : '';
   card.className = 'tool-card';
   card.dataset.cat = t.c;
-  card.dataset.search = (t.n + ' ' + t.d + ' ' + cat.name + ' ' + t.p).toLowerCase();
+  card.dataset.search = (t.n + ' ' + t.d + ' ' + cat.name + ' ' + t.p + ' ' + (t.s||'') + ' ' + (t.v||'') + ' ' + (t.uw||'') + ' ' + (t.av||'')).toLowerCase();
 
   var logoHTML;
   if (t.i) {
@@ -498,13 +515,26 @@ tools.forEach(function(t) {
   }
 
   var badges = '';
+  if (t.v) {
+    var vc = t.v === 'Recommended' ? 'badge-rec' : t.v === 'Not yet' ? 'badge-notyet' : t.v === 'Overkill' ? 'badge-overkill' : 'badge-replace';
+    badges += '<span class="badge ' + vc + '">' + t.v + '</span>';
+  }
   if (t.pk) badges += '<span class="badge badge-pick">Our Pick \u2713</span>';
   var pc = t.p === 'Free' ? 'badge-free' : t.p === 'Freemium' ? 'badge-freemium' : 'badge-paid';
   badges += '<span class="badge ' + pc + '">' + t.p + '</span>';
+  if (t.s) badges += '<span class="badge badge-stage">' + t.s + '</span>';
   badges += '<span class="badge badge-category">' + cat.emoji + ' ' + cat.name + '</span>';
 
+  var decisionHTML = '';
+  if (t.uw || t.av) {
+    decisionHTML = '<div class="tool-decision">';
+    if (t.uw) decisionHTML += '<div class="decision-use">Use when: ' + t.uw + '</div>';
+    if (t.av) decisionHTML += '<div class="decision-avoid">Avoid if: ' + t.av + '</div>';
+    decisionHTML += '</div>';
+  }
+
   var linkIcon = t.u ? '<svg class="ext-icon" viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>' : '';
-  card.innerHTML = '<div class="tool-card-top">' + logoHTML + '<div class="tool-info"><div class="tool-name">' + t.n + linkIcon + '</div></div></div><div class="tool-desc">' + t.d + '</div><div class="tool-badges">' + badges + '</div>';
+  card.innerHTML = '<div class="tool-card-top">' + logoHTML + '<div class="tool-info"><div class="tool-name">' + t.n + linkIcon + '</div></div></div><div class="tool-desc">' + t.d + '</div>' + decisionHTML + '<div class="tool-badges">' + badges + '</div>';
   grid.appendChild(card);
 });
 

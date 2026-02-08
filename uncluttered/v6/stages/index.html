@@ -173,6 +173,22 @@
     .signals-list li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 14px; }
     .signals-list li::before { content: '→'; color: var(--accent); font-weight: 600; }
 
+    /* Self-diagnosis enhancements */
+    .diagnosis { margin-top: 20px; padding: 16px 20px; background: var(--accent-subtle); border-radius: var(--radius-md); border-left: 3px solid var(--accent); }
+    .diagnosis-title { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 10px; }
+    .diagnosis-list { list-style: none; }
+    .diagnosis-list li { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; padding-left: 20px; position: relative; }
+    .diagnosis-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 700; font-size: 13px; }
+    .diagnosis-list li:last-child { margin-bottom: 0; }
+
+    .stage-trap { margin-top: 16px; display: flex; align-items: flex-start; gap: 8px; padding: 12px 16px; background: var(--orange-subtle); border-radius: var(--radius-sm); font-size: 13px; color: var(--text-secondary); }
+    .stage-trap .trap-icon { flex-shrink: 0; font-size: 15px; }
+    .stage-trap strong { color: var(--text); font-weight: 600; }
+
+    .stage-success { margin-top: 16px; display: flex; align-items: flex-start; gap: 8px; padding: 12px 16px; background: linear-gradient(135deg, rgba(13, 148, 136, 0.06), rgba(13, 148, 136, 0.02)); border-radius: var(--radius-sm); border: 1px solid rgba(13, 148, 136, 0.12); font-size: 13px; color: var(--text-secondary); }
+    .stage-success .success-icon { flex-shrink: 0; font-size: 15px; }
+    .stage-success strong { color: var(--accent); font-weight: 600; }
+
     .timeline-arrow { position: absolute; left: 50%; bottom: -36px; transform: translateX(-50%); width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; }
     @media (max-width: 768px) { .timeline-arrow { left: 24px; } }
     .timeline-item:last-child .timeline-arrow { display: none; }
@@ -426,8 +442,8 @@
   <section class="journey-section">
     <div class="container">
       <div class="section-header reveal">
-        <h2>Know when to level up</h2>
-        <p>Stages aren't permanent. Here's how to recognize when you're ready to move on.</p>
+        <h2>Where are you right now?</h2>
+        <p>Read through each stage. One of these will feel like looking in a mirror.</p>
       </div>
 
       <div class="timeline">
@@ -437,6 +453,22 @@
           <div class="timeline-content">
             <h3>Starting <span>Exploration</span></h3>
             <p>You have ideas to validate, problems to understand, and assumptions to test.</p>
+            <div class="diagnosis">
+              <div class="diagnosis-title">You might be here if…</div>
+              <ul class="diagnosis-list">
+                <li>You have 10 ideas and can't pick one</li>
+                <li>You're researching more than building</li>
+                <li>You feel excited but overwhelmed</li>
+              </ul>
+            </div>
+            <div class="stage-trap">
+              <span class="trap-icon">⚠️</span>
+              <span><strong>Common trap:</strong> Don't buy domains before validating ideas</span>
+            </div>
+            <div class="stage-success">
+              <span class="success-icon">🎯</span>
+              <span><strong>Success feels like:</strong> You've picked one idea and feel clear about the first step</span>
+            </div>
             <div class="signals">
               <div class="signals-title">Move to Building when:</div>
               <ul class="signals-list">
@@ -456,6 +488,22 @@
           <div class="timeline-content">
             <h3>Building <span>Shipping</span></h3>
             <p>You're turning ideas into reality. Code is being written, features are shipping.</p>
+            <div class="diagnosis">
+              <div class="diagnosis-title">You might be here if…</div>
+              <ul class="diagnosis-list">
+                <li>You've committed to one idea and need to make it real</li>
+                <li>You're writing code but drowning in setup decisions</li>
+                <li>You want to ship but keep getting sidetracked by tool choices</li>
+              </ul>
+            </div>
+            <div class="stage-trap">
+              <span class="trap-icon">⚠️</span>
+              <span><strong>Common trap:</strong> Don't add analytics before you have users</span>
+            </div>
+            <div class="stage-success">
+              <span class="success-icon">🎯</span>
+              <span><strong>Success feels like:</strong> Your product is live and someone other than you has used it</span>
+            </div>
             <div class="signals">
               <div class="signals-title">Move to Growing when:</div>
               <ul class="signals-list">
@@ -475,6 +523,22 @@
           <div class="timeline-content">
             <h3>Growing <span>Scaling</span></h3>
             <p>You have traction. Now it's about understanding, optimizing, and scaling.</p>
+            <div class="diagnosis">
+              <div class="diagnosis-title">You might be here if…</div>
+              <ul class="diagnosis-list">
+                <li>You have users but don't know what they're doing</li>
+                <li>Bugs are reaching customers before you notice</li>
+                <li>You're spending more time on ops than product</li>
+              </ul>
+            </div>
+            <div class="stage-trap">
+              <span class="trap-icon">⚠️</span>
+              <span><strong>Common trap:</strong> Don't add tools to fix process problems</span>
+            </div>
+            <div class="stage-success">
+              <span class="success-icon">🎯</span>
+              <span><strong>Success feels like:</strong> You make decisions based on data, not guesses</span>
+            </div>
             <div class="signals">
               <div class="signals-title">Consider Simplifying when:</div>
               <ul class="signals-list">
@@ -494,6 +558,22 @@
           <div class="timeline-content">
             <h3>Simplifying <span>Clarity</span></h3>
             <p>Step back, audit everything, cut ruthlessly, and regain focus.</p>
+            <div class="diagnosis">
+              <div class="diagnosis-title">You might be here if…</div>
+              <ul class="diagnosis-list">
+                <li>You have 15 subscriptions and use 5 of them</li>
+                <li>Context switching between tools is exhausting</li>
+                <li>You feel like your stack owns you, not the other way around</li>
+              </ul>
+            </div>
+            <div class="stage-trap">
+              <span class="trap-icon">⚠️</span>
+              <span><strong>Common trap:</strong> Don't cut tools your team actually depends on</span>
+            </div>
+            <div class="stage-success">
+              <span class="success-icon">🎯</span>
+              <span><strong>Success feels like:</strong> Every tool earns its place and nothing feels redundant</span>
+            </div>
             <div class="signals">
               <div class="signals-title">You've succeeded when:</div>
               <ul class="signals-list">

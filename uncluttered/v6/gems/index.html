@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://fewertools.com/gems/">
-  <title>Hidden Gems (2026) — Tools You Haven't Heard Of — Fewer Tools</title>
-  <meta name="description" content="25 lesser-known tools that deserve your attention. Curated by builders, not sponsored by vendors.">
+  <title>Hidden Gems (2026) — Quiet Tools That Replace Three Loud Ones — Fewer Tools</title>
+  <meta name="description" content="25 under-the-radar tools that aren't backed by massive marketing budgets — but they're genuinely better for specific use cases. Curated by builders.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fewertools.com/gems/">
   <meta property="og:title" content="Hidden Gems 💎 — Fewer Tools">
-  <meta property="og:description" content="25 lesser-known tools that deserve your attention.">
+  <meta property="og:description" content="25 quiet tools that replace three loud ones.">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +26,7 @@
       --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
       --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --stage-starting: #8B5CF6; --stage-building: #2563EB; --stage-growing: #059669; --stage-simplifying: #D97706;
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.6; }
@@ -64,10 +65,14 @@
     }
 
     /* Page Hero */
-    .page-hero { padding: 130px 0 48px; text-align: center; }
+    .page-hero { padding: 130px 0 32px; text-align: center; }
     .page-hero h1 { font-size: clamp(36px, 6vw, 56px); margin-bottom: 16px; }
-    .page-hero .subtitle { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.6; }
-    @media (max-width: 600px) { .page-hero { padding: 110px 0 32px; } .page-hero .subtitle { font-size: 16px; } }
+    .page-hero .subtitle { font-size: 18px; color: var(--text-secondary); max-width: 640px; margin: 0 auto; line-height: 1.6; }
+    @media (max-width: 600px) { .page-hero { padding: 110px 0 24px; } .page-hero .subtitle { font-size: 16px; } }
+
+    /* Not-yet note */
+    .not-yet-note { max-width: 560px; margin: 24px auto 0; padding: 16px 24px; background: var(--accent-subtle); border-radius: var(--radius-md); border-left: 3px solid var(--accent); text-align: left; }
+    .not-yet-note p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 
     /* Filter Tags */
     .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 48px; }
@@ -96,6 +101,18 @@
     .gem-pricing.freemium { background: rgba(59, 130, 246, 0.1); color: #2563EB; }
     .gem-pricing.paid { background: rgba(245, 158, 11, 0.1); color: #D97706; }
     .gem-review { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Stage tag */
+    .gem-stage { display: inline-block; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 100px; }
+    .gem-stage[data-stage="starting"] { background: rgba(139, 92, 246, 0.1); color: var(--stage-starting); }
+    .gem-stage[data-stage="building"] { background: rgba(37, 99, 235, 0.1); color: var(--stage-building); }
+    .gem-stage[data-stage="growing"] { background: rgba(5, 150, 105, 0.1); color: var(--stage-growing); }
+    .gem-stage[data-stage="simplifying"] { background: rgba(217, 119, 6, 0.1); color: var(--stage-simplifying); }
+
+    /* Underrated + When ready context */
+    .gem-context { margin-top: 12px; font-size: 12.5px; line-height: 1.5; color: var(--text-muted); }
+    .gem-context .why-underrated { font-style: italic; }
+    .gem-context .when-ready { display: block; margin-top: 4px; }
 
     /* CTA */
     .cta-box { background: var(--bg-dark); color: var(--text-inverse); border-radius: var(--radius-xl); padding: 48px; text-align: center; margin-bottom: 80px; }
@@ -132,12 +149,15 @@
 
   <section class="page-hero">
     <div class="container">
-      <h1 class="reveal">Hidden Gems 💎</h1>
-      <p class="subtitle reveal">25 lesser-known tools that deserve way more attention. No sponsorships, no affiliate links — just tools we genuinely think you should know about.</p>
+      <h1 class="reveal">Quiet tools that replace three loud ones.</h1>
+      <p class="subtitle reveal">No massive marketing budgets. No hype cycles. Just 25 tools that are genuinely better for specific use cases. Not everyone needs them — but when you do, they're game-changers.</p>
+      <div class="not-yet-note reveal">
+        <p>Not every gem is for everyone. Some of these are perfect for where you are right now. Others? Bookmark them for later. Your stage tag is a guide, not a deadline.</p>
+      </div>
     </div>
   </section>
 
-  <div class="container">
+  <div class="container" style="margin-top: 48px;">
     <div class="filter-bar reveal">
       <span class="filter-tag active" data-filter="all">All</span>
       <span class="filter-tag" data-filter="backend">Backend</span>
@@ -154,7 +174,7 @@
     <div class="gems-grid">
 
       <!-- 1. Trigger.dev -->
-      <div class="gem-card reveal" data-category="backend">
+      <div class="gem-card reveal" data-category="backend" data-stage="building">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #1B1F23;">T</div>
           <div><h3>Trigger.dev</h3><div class="gem-tagline">Background jobs without infrastructure</div></div>
@@ -162,13 +182,18 @@
         <div class="gem-badges">
           <span class="gem-category">Backend</span>
           <span class="gem-pricing free">Free</span>
+          <span class="gem-stage" data-stage="building">Building</span>
         </div>
         <p class="gem-review">Finally, background jobs that don't require you to set up Redis, Bull, and a worker server. Write async functions in TypeScript, deploy alongside your app, and get retries, scheduling, and observability out of the box. It's what serverless queues should have been from the start.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Newer entrant in a space dominated by legacy infra patterns.</span>
+          <span class="when-ready">When you're ready: your app needs scheduled tasks, webhooks, or async workflows.</span>
+        </div>
         <a href="https://trigger.dev" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 2. Neon -->
-      <div class="gem-card reveal" data-category="database">
+      <div class="gem-card reveal" data-category="database" data-stage="building">
         <div class="gem-card-header">
           <div class="gem-logo"><img src="https://www.google.com/s2/favicons?domain=neon.tech&sz=64" alt="Neon logo"></div>
           <div><h3>Neon</h3><div class="gem-tagline">Serverless Postgres that branches like Git</div></div>
@@ -176,13 +201,18 @@
         <div class="gem-badges">
           <span class="gem-category">Database</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="building">Building</span>
         </div>
         <p class="gem-review">Imagine creating a branch of your entire database for a PR — including the data. Neon does that. It's real Postgres (not a compatibility layer), it scales to zero when idle, and the branching feature alone makes it worth switching from Supabase for certain workflows.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Supabase dominates the conversation, but Neon's branching is a different paradigm.</span>
+          <span class="when-ready">When you're ready: your team needs preview environments or database branching per PR.</span>
+        </div>
         <a href="https://neon.tech" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 3. Turso -->
-      <div class="gem-card reveal" data-category="database">
+      <div class="gem-card reveal" data-category="database" data-stage="building">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #4FF8D2; color: #0a0a0a;">T</div>
           <div><h3>Turso</h3><div class="gem-tagline">SQLite at the edge, stupid fast reads</div></div>
@@ -190,13 +220,18 @@
         <div class="gem-badges">
           <span class="gem-category">Database</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="building">Building</span>
         </div>
         <p class="gem-review">SQLite embedded in your edge functions, replicated globally. Reads in single-digit milliseconds because the database lives next to your code. If your app is read-heavy (most are), Turso is absurdly fast and costs almost nothing. The future of database architecture for most apps.</p>
+        <div class="gem-context">
+          <span class="why-underrated">SQLite still carries a "toy database" stigma. Turso proves otherwise.</span>
+          <span class="when-ready">When you're ready: you're building a read-heavy app and want sub-10ms queries globally.</span>
+        </div>
         <a href="https://turso.tech" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 4. Pirsch -->
-      <div class="gem-card reveal" data-category="analytics">
+      <div class="gem-card reveal" data-category="analytics" data-stage="growing">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #2D4FDE;">P</div>
           <div><h3>Pirsch</h3><div class="gem-tagline">Privacy-first analytics, no cookie banners</div></div>
@@ -204,13 +239,18 @@
         <div class="gem-badges">
           <span class="gem-category">Analytics</span>
           <span class="gem-pricing paid">Paid</span>
+          <span class="gem-stage" data-stage="growing">Growing</span>
         </div>
         <p class="gem-review">No cookies means no cookie banner. No cookie banner means your site doesn't look like everyone else's. Pirsch gives you clean, privacy-friendly analytics with a beautiful dashboard. GDPR compliant by design, not by plugin. Perfect when you want numbers without the guilt.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Small German team, no VC-fuelled marketing. Competes on principles, not volume.</span>
+          <span class="when-ready">When you're ready: you have a live product and want clean analytics without legal overhead.</span>
+        </div>
         <a href="https://pirsch.io" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 5. Chatwoot -->
-      <div class="gem-card reveal" data-category="comms">
+      <div class="gem-card reveal" data-category="comms" data-stage="growing">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #1F93FF;">C</div>
           <div><h3>Chatwoot</h3><div class="gem-tagline">Open-source Intercom, self-hostable</div></div>
@@ -218,13 +258,18 @@
         <div class="gem-badges">
           <span class="gem-category">Comms & Email</span>
           <span class="gem-pricing free">Free</span>
+          <span class="gem-stage" data-stage="growing">Growing</span>
         </div>
         <p class="gem-review">Intercom charges $74/mo for features Chatwoot gives you free. Live chat, shared inbox, WhatsApp/Telegram/email integration, and a clean agent dashboard. Self-host it on a $5 VPS or use their cloud. The open-source customer support tool that actually competes.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Open source support tools don't get Intercom's conference sponsorships.</span>
+          <span class="when-ready">When you're ready: customers are reaching out and you need a shared inbox, not a personal email.</span>
+        </div>
         <a href="https://chatwoot.com" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 6. Height -->
-      <div class="gem-card reveal" data-category="devtools">
+      <div class="gem-card reveal" data-category="devtools" data-stage="building">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: linear-gradient(135deg, #7C3AED, #EC4899);">H</div>
           <div><h3>Height</h3><div class="gem-tagline">AI-native project management</div></div>
@@ -232,13 +277,18 @@
         <div class="gem-badges">
           <span class="gem-category">Dev Tools</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="building">Building</span>
         </div>
         <p class="gem-review">Linear's vibes but with AI baked in from day one. Height auto-categorizes tasks, suggests priorities, and writes status updates. The interface is gorgeous — feels like it was designed by people who actually use project management tools instead of just selling them.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Linear owns the dev mindshare. Height is doing something quietly different with AI.</span>
+          <span class="when-ready">When you're ready: your team is growing and you want project management that thinks alongside you.</span>
+        </div>
         <a href="https://height.app" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 7. Buttondown -->
-      <div class="gem-card reveal" data-category="comms">
+      <div class="gem-card reveal" data-category="comms" data-stage="starting">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #0069FF;">B</div>
           <div><h3>Buttondown</h3><div class="gem-tagline">Newsletter for people who hate Mailchimp</div></div>
@@ -246,13 +296,18 @@
         <div class="gem-badges">
           <span class="gem-category">Comms & Email</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="starting">Starting</span>
         </div>
         <p class="gem-review">Write newsletters in Markdown. No drag-and-drop email builders, no 47 templates — just your words, well-formatted, delivered. Buttondown has a one-person energy that big platforms lost years ago. Free for your first 100 subscribers, then actually reasonable pricing.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Built by one person. No sales team, no ad budget — just word of mouth.</span>
+          <span class="when-ready">When you're ready: you want to start a newsletter without signing up for enterprise bloatware.</span>
+        </div>
         <a href="https://buttondown.email" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 8. Typedream -->
-      <div class="gem-card reveal" data-category="website">
+      <div class="gem-card reveal" data-category="website" data-stage="starting">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #0a0a0a;">T</div>
           <div><h3>Typedream</h3><div class="gem-tagline">Notion-like website builder</div></div>
@@ -260,13 +315,18 @@
         <div class="gem-badges">
           <span class="gem-category">Website</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="starting">Starting</span>
         </div>
         <p class="gem-review">If Notion and Framer had a baby. Block-based editing that feels like writing a doc, but the output is a real, fast, beautiful website. Perfect for landing pages, portfolios, and startup sites. Way less intimidating than Webflow, way more capable than Carrd.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Wedged between Webflow's power users and Carrd's simplicity — easy to overlook.</span>
+          <span class="when-ready">When you're ready: you need a site that looks professional but don't want to learn a design tool.</span>
+        </div>
         <a href="https://typedream.com" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 9. Hono -->
-      <div class="gem-card reveal" data-category="backend">
+      <div class="gem-card reveal" data-category="backend" data-stage="building">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #FF6633;">🔥</div>
           <div><h3>Hono</h3><div class="gem-tagline">Ultrafast web framework, runs everywhere</div></div>
@@ -274,13 +334,18 @@
         <div class="gem-badges">
           <span class="gem-category">Backend</span>
           <span class="gem-pricing free">Free</span>
+          <span class="gem-stage" data-stage="building">Building</span>
         </div>
         <p class="gem-review">Express.js vibes but built for the edge era. Hono runs on Cloudflare Workers, Deno, Bun, Vercel, AWS Lambda — literally everywhere. It's tiny (&lt;14KB), blazing fast, and has first-class TypeScript support. The web framework for people who are tired of framework lock-in.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Born in the Cloudflare Workers ecosystem — still spreading to the mainstream.</span>
+          <span class="when-ready">When you're ready: you're building APIs or backends and want zero vendor lock-in.</span>
+        </div>
         <a href="https://hono.dev" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 10. Upstash -->
-      <div class="gem-card reveal" data-category="database">
+      <div class="gem-card reveal" data-category="database" data-stage="building">
         <div class="gem-card-header">
           <div class="gem-logo"><img src="https://cdn.simpleicons.org/upstash/00E9A3" alt="Upstash"></div>
           <div><h3>Upstash</h3><div class="gem-tagline">Serverless Redis, pay per request</div></div>
@@ -288,13 +353,18 @@
         <div class="gem-badges">
           <span class="gem-category">Database</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="building">Building</span>
         </div>
         <p class="gem-review">Redis that costs $0 when nobody's using it. Upstash's per-request pricing means you only pay for what you use — no idle costs. Perfect for rate limiting, caching, session storage, and queues. Their QStash product is also killer for serverless message queues.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Serverless Redis sounds niche until you realize every modern app needs caching.</span>
+          <span class="when-ready">When you're ready: you need caching, rate limiting, or queues but don't want to run Redis yourself.</span>
+        </div>
         <a href="https://upstash.com" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 11. Cal.com -->
-      <div class="gem-card reveal" data-category="devtools">
+      <div class="gem-card reveal" data-category="devtools" data-stage="simplifying">
         <div class="gem-card-header">
           <div class="gem-logo"><img src="https://cdn.simpleicons.org/caldotcom/292929" alt="Cal.com"></div>
           <div><h3>Cal.com</h3><div class="gem-tagline">Open-source Calendly alternative</div></div>
@@ -302,13 +372,18 @@
         <div class="gem-badges">
           <span class="gem-category">Dev Tools</span>
           <span class="gem-pricing free">Free</span>
+          <span class="gem-stage" data-stage="simplifying">Simplifying</span>
         </div>
         <p class="gem-review">Calendly charges $12/mo for round-robin scheduling. Cal.com gives it to you free and open-source. Custom booking pages, team scheduling, integrations with everything, and you can self-host for total control. The scheduling tool that respects both your time and your wallet.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Calendly's brand awareness is enormous. Cal.com wins on flexibility, not ads.</span>
+          <span class="when-ready">When you're ready: you're tired of paying for scheduling or need customizations Calendly won't allow.</span>
+        </div>
         <a href="https://cal.com" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 12. Medusa -->
-      <div class="gem-card reveal" data-category="commerce">
+      <div class="gem-card reveal" data-category="commerce" data-stage="building">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #56B4BB;">M</div>
           <div><h3>Medusa</h3><div class="gem-tagline">Open-source Shopify for developers</div></div>
@@ -316,13 +391,18 @@
         <div class="gem-badges">
           <span class="gem-category">Commerce</span>
           <span class="gem-pricing free">Free</span>
+          <span class="gem-stage" data-stage="building">Building</span>
         </div>
         <p class="gem-review">Headless commerce that you actually own. Medusa gives you the entire Shopify feature set — products, orders, carts, payments, shipping — as a Node.js backend you can customize endlessly. No per-transaction fees, no theme limitations, no platform lock-in. Commerce infrastructure for builders.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Shopify spends more on marketing per quarter than Medusa has raised total.</span>
+          <span class="when-ready">When you're ready: Shopify's fees or limitations are holding your store back.</span>
+        </div>
         <a href="https://medusajs.com" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 13. Folk -->
-      <div class="gem-card reveal" data-category="crm">
+      <div class="gem-card reveal" data-category="crm" data-stage="growing">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #5046E5;">F</div>
           <div><h3>Folk</h3><div class="gem-tagline">CRM that doesn't feel like enterprise</div></div>
@@ -330,13 +410,18 @@
         <div class="gem-badges">
           <span class="gem-category">CRM</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="growing">Growing</span>
         </div>
         <p class="gem-review">Most CRMs were designed for sales teams of 50. Folk was designed for you — the person who manages relationships across investors, customers, partners, and collaborators from one beautiful interface. It enriches contacts automatically and has the best Chrome extension for capturing leads we've ever used.</p>
+        <div class="gem-context">
+          <span class="why-underrated">CRM is a crowded, noisy market. Folk's human-scale approach gets drowned out.</span>
+          <span class="when-ready">When you're ready: your contacts are scattered across spreadsheets and you need one place for relationships.</span>
+        </div>
         <a href="https://folk.app" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 14. Attio -->
-      <div class="gem-card reveal" data-category="crm">
+      <div class="gem-card reveal" data-category="crm" data-stage="growing">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #0A0A0A;">A</div>
           <div><h3>Attio</h3><div class="gem-tagline">CRM with real-time data enrichment</div></div>
@@ -344,13 +429,18 @@
         <div class="gem-badges">
           <span class="gem-category">CRM</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="growing">Growing</span>
         </div>
         <p class="gem-review">Attio automatically enriches your contacts with company data, social profiles, and funding info — in real time. The interface feels like Notion meets Salesforce (in a good way). Flexible enough to model any relationship structure, not just "leads → deals → won." The CRM for the next decade.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Building a CRM from scratch means catching up to Salesforce's 20-year head start.</span>
+          <span class="when-ready">When you're ready: you need a CRM that adapts to your workflow, not the other way around.</span>
+        </div>
         <a href="https://attio.com" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 15. Fathom -->
-      <div class="gem-card reveal" data-category="analytics">
+      <div class="gem-card reveal" data-category="analytics" data-stage="growing">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #9187FF;">F</div>
           <div><h3>Fathom</h3><div class="gem-tagline">Analytics on one screen</div></div>
@@ -358,13 +448,18 @@
         <div class="gem-badges">
           <span class="gem-category">Analytics</span>
           <span class="gem-pricing paid">Paid</span>
+          <span class="gem-stage" data-stage="growing">Growing</span>
         </div>
         <p class="gem-review">Every metric you need, on one screen, with zero complexity. Fathom is the analytics tool for people who want to check their numbers in 30 seconds and get back to work. Cookie-free, GDPR-friendly, and the dashboard loads instantly. If Pirsch is the privacy purist, Fathom is the pragmatic minimalist.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Bootstrapped and profitable — they grow by being good, not by spending on ads.</span>
+          <span class="when-ready">When you're ready: Google Analytics feels like overkill and you just want clean numbers.</span>
+        </div>
         <a href="https://usefathom.com" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 16. Carrd -->
-      <div class="gem-card reveal" data-category="website">
+      <div class="gem-card reveal" data-category="website" data-stage="starting">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #2D2D2D;">C</div>
           <div><h3>Carrd</h3><div class="gem-tagline">One-page sites, $19/year</div></div>
@@ -372,13 +467,18 @@
         <div class="gem-badges">
           <span class="gem-category">Website</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="starting">Starting</span>
         </div>
         <p class="gem-review">Not everything needs to be a full website. Carrd builds beautiful one-page sites in minutes for $19/year. Landing pages, link-in-bio, waitlists, portfolios — if it fits on one page, Carrd does it better and cheaper than anything else. Built by one person. Used by millions. That's the dream.</p>
+        <div class="gem-context">
+          <span class="why-underrated">One-person operation. No funding, no PR. Just an incredible product at an absurd price.</span>
+          <span class="when-ready">When you're ready: you need a landing page or waitlist live by end of day.</span>
+        </div>
         <a href="https://carrd.co" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 17. Pipedream -->
-      <div class="gem-card reveal" data-category="automation">
+      <div class="gem-card reveal" data-category="automation" data-stage="simplifying">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #1EC66A;">P</div>
           <div><h3>Pipedream</h3><div class="gem-tagline">Developer-first automation beyond Zapier</div></div>
@@ -386,13 +486,18 @@
         <div class="gem-badges">
           <span class="gem-category">Automation</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="simplifying">Simplifying</span>
         </div>
         <p class="gem-review">Zapier for developers who outgrew Zapier. Write real code (Node.js, Python) in each step, use npm packages, hit any API. The free tier is absurdly generous — 10K invocations/month. When your automations are too complex for no-code tools but too small for a full service, Pipedream is perfect.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Zapier owns "automation" in everyone's head. Pipedream serves a different (developer) audience.</span>
+          <span class="when-ready">When you're ready: your Zapier workflows hit walls and you need real code in the middle.</span>
+        </div>
         <a href="https://pipedream.com" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 18. Inngest -->
-      <div class="gem-card reveal" data-category="backend">
+      <div class="gem-card reveal" data-category="backend" data-stage="building">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #5D5FEF;">I</div>
           <div><h3>Inngest</h3><div class="gem-tagline">Event-driven background functions</div></div>
@@ -400,13 +505,18 @@
         <div class="gem-badges">
           <span class="gem-category">Backend</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="building">Building</span>
         </div>
         <p class="gem-review">Write durable functions that survive server crashes. Inngest handles retries, scheduling, fan-out, and step functions — all from your existing framework. No separate worker infrastructure, no Redis, no queue management. Just send an event and Inngest runs the function. Wildly underrated.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Durable execution is a new category — most people don't know they need it yet.</span>
+          <span class="when-ready">When you're ready: your app has multi-step workflows that need to be reliable, not just fast.</span>
+        </div>
         <a href="https://inngest.com" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 19. Polar -->
-      <div class="gem-card reveal" data-category="commerce">
+      <div class="gem-card reveal" data-category="commerce" data-stage="growing">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #0062FF;">P</div>
           <div><h3>Polar</h3><div class="gem-tagline">Open source monetization + digital products</div></div>
@@ -414,13 +524,18 @@
         <div class="gem-badges">
           <span class="gem-category">Commerce</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="growing">Growing</span>
         </div>
         <p class="gem-review">Sell subscriptions, digital downloads, and license keys with a platform built for developers and creators. Polar handles payments, entitlements, and even GitHub Sponsors integration. It's the Gumroad alternative for people who want clean APIs alongside a beautiful storefront.</p>
+        <div class="gem-context">
+          <span class="why-underrated">New entrant in a space Gumroad and Stripe defined. Building on open-source ethos.</span>
+          <span class="when-ready">When you're ready: you want to monetize your project with subscriptions or digital products.</span>
+        </div>
         <a href="https://polar.sh" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 20. Plunk -->
-      <div class="gem-card reveal" data-category="comms">
+      <div class="gem-card reveal" data-category="comms" data-stage="building">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #8B5CF6;">P</div>
           <div><h3>Plunk</h3><div class="gem-tagline">Open-source email, self-hostable Resend alt</div></div>
@@ -428,13 +543,18 @@
         <div class="gem-badges">
           <span class="gem-category">Comms & Email</span>
           <span class="gem-pricing free">Free</span>
+          <span class="gem-stage" data-stage="building">Building</span>
         </div>
         <p class="gem-review">Transactional email that you can self-host. Plunk gives you a clean API for sending emails, plus automations and contact management. Think of it as an open-source Resend with a built-in audience management layer. Perfect for privacy-conscious projects or teams that want full control over their email stack.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Resend got the hype wave. Plunk quietly ships the self-hostable alternative.</span>
+          <span class="when-ready">When you're ready: you need transactional email and want to own the infrastructure.</span>
+        </div>
         <a href="https://useplunk.com" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 21. Unkey -->
-      <div class="gem-card reveal" data-category="devtools">
+      <div class="gem-card reveal" data-category="devtools" data-stage="building">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #0a0a0a;">U</div>
           <div><h3>Unkey</h3><div class="gem-tagline">API key management done right</div></div>
@@ -442,13 +562,18 @@
         <div class="gem-badges">
           <span class="gem-category">Dev Tools</span>
           <span class="gem-pricing free">Free</span>
+          <span class="gem-stage" data-stage="building">Building</span>
         </div>
         <p class="gem-review">You've built an API. Now you need to issue keys, set rate limits, and track usage. Building this yourself takes a week. Unkey does it in an afternoon. Create, revoke, and manage API keys with built-in rate limiting, usage analytics, and temporary keys. One of those "why didn't this exist sooner" tools.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Hyper-niche use case means it never trends on Hacker News. But if you need it, nothing else compares.</span>
+          <span class="when-ready">When you're ready: you're building an API product and need key management that isn't homegrown.</span>
+        </div>
         <a href="https://unkey.dev" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 22. Dub -->
-      <div class="gem-card reveal" data-category="devtools">
+      <div class="gem-card reveal" data-category="devtools" data-stage="growing">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #0a0a0a;">D</div>
           <div><h3>Dub</h3><div class="gem-tagline">Modern link management, not Bitly</div></div>
@@ -456,13 +581,18 @@
         <div class="gem-badges">
           <span class="gem-category">Dev Tools</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="growing">Growing</span>
         </div>
         <p class="gem-review">Bitly looks like it was built in 2009 because it was. Dub is the modern alternative — short links with analytics, custom domains, QR codes, and a gorgeous dashboard. Open-source, built on Next.js, and the founder documents everything. Use it for marketing links, referrals, or anywhere you need trackable URLs.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Bitly has decades of brand recognition. Dub is the indie challenger doing it better.</span>
+          <span class="when-ready">When you're ready: you're running marketing campaigns and need link tracking that doesn't feel ancient.</span>
+        </div>
         <a href="https://dub.co" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 23. Infisical -->
-      <div class="gem-card reveal" data-category="devtools">
+      <div class="gem-card reveal" data-category="devtools" data-stage="building">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #EAB308;">I</div>
           <div><h3>Infisical</h3><div class="gem-tagline">Open-source secrets management</div></div>
@@ -470,13 +600,18 @@
         <div class="gem-badges">
           <span class="gem-category">Dev Tools</span>
           <span class="gem-pricing free">Free</span>
+          <span class="gem-stage" data-stage="building">Building</span>
         </div>
         <p class="gem-review">Stop sharing .env files over Slack. Infisical manages secrets across your team, with versioning, access controls, and integrations with every platform you deploy to. It syncs to Vercel, AWS, Docker, GitHub Actions — wherever your app runs. Self-hostable, open-source, and way better than your current setup.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Secrets management is infrastructure — boring to talk about, critical to get right.</span>
+          <span class="when-ready">When you're ready: more than one person touches your .env files or you're deploying to multiple environments.</span>
+        </div>
         <a href="https://infisical.com" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 24. Mintlify -->
-      <div class="gem-card reveal" data-category="devtools">
+      <div class="gem-card reveal" data-category="devtools" data-stage="building">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #0D9373;">M</div>
           <div><h3>Mintlify</h3><div class="gem-tagline">Docs developers actually want to read</div></div>
@@ -484,13 +619,18 @@
         <div class="gem-badges">
           <span class="gem-category">Dev Tools</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="building">Building</span>
         </div>
         <p class="gem-review">Your docs are your product's first impression. Mintlify makes them gorgeous — write in MDX, get a beautiful, fast docs site with search, API references, and analytics. Stripe-level documentation quality without a Stripe-level docs team. Used by Turso, Resend, and dozens of YC startups.</p>
+        <div class="gem-context">
+          <span class="why-underrated">Documentation tooling is unsexy. Mintlify made it beautiful and still gets overlooked.</span>
+          <span class="when-ready">When you're ready: you're shipping a developer product and your docs need to match your code quality.</span>
+        </div>
         <a href="https://mintlify.com" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
       <!-- 25. Tinybird -->
-      <div class="gem-card reveal" data-category="analytics">
+      <div class="gem-card reveal" data-category="analytics" data-stage="growing">
         <div class="gem-card-header">
           <div class="gem-logo-letter" style="background: #22C55E;">T</div>
           <div><h3>Tinybird</h3><div class="gem-tagline">Real-time analytics API with SQL</div></div>
@@ -498,8 +638,13 @@
         <div class="gem-badges">
           <span class="gem-category">Analytics</span>
           <span class="gem-pricing freemium">Freemium</span>
+          <span class="gem-stage" data-stage="growing">Growing</span>
         </div>
         <p class="gem-review">Ingest millions of events, query them with SQL, and expose the results as low-latency APIs. Tinybird turns your analytics into a product feature — leaderboards, usage dashboards, real-time feeds. Built on ClickHouse but without the ops burden. The analytics backend for data-heavy products.</p>
+        <div class="gem-context">
+          <span class="why-underrated">ClickHouse expertise is rare. Tinybird abstracts it — but that's hard to explain in a tweet.</span>
+          <span class="when-ready">When you're ready: you need to turn event data into user-facing features, not just dashboards.</span>
+        </div>
         <a href="https://tinybird.co" target="_blank" rel="noopener" class="gem-visit">Visit website →</a>
       </div>
 
