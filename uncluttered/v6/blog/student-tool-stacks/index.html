@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="djODkIufikulfN-HqVngIFNu3ITlUAIJCu8s1BbVKs4" />
+  <link rel="canonical" href="https://fewertools.com/blog/student-tool-stacks/">
+  <title>We Added Student-Specific Tool Stacks for 8 University Courses — Fewer Tools</title>
+  <meta name="description" content="Computer Science, Engineering, Business, Design, and more — each with curated free and discounted tools built specifically for university students.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fewertools.com/blog/student-tool-stacks/">
+  <meta property="og:title" content="We Added Student-Specific Tool Stacks for 8 University Courses">
+  <meta property="og:description" content="Computer Science, Engineering, Business, Design, and more — each with curated free and discounted tools built specifically for university students.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="We Added Student-Specific Tool Stacks for 8 University Courses">
+  <meta name="twitter:description" content="Computer Science, Engineering, Business, Design, and more — curated tools for university students.">
+  <meta name="twitter:image" content="https://fewertools.com/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD: Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "We Added Student-Specific Tool Stacks for 8 University Courses",
+    "description": "Computer Science, Engineering, Business, Design, and more — each with curated free and discounted tools built specifically for university students.",
+    "datePublished": "2026-02-07",
+    "dateModified": "2026-02-07",
+    "author": {
+      "@type": "Organization",
+      "name": "Fewer Tools",
+      "url": "https://fewertools.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Fewer Tools",
+      "url": "https://fewertools.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://fewertools.com/blog/student-tool-stacks/"
+    },
+    "articleSection": "Students"
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12);
+      --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 600px) { .container { padding: 0 24px; } }
+
+    /* Animations */
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; overflow: hidden; transition: all 0.3s ease; }
+    .logo-text { font-family: "Outfit", sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; color: var(--text); }
+    .logo-mark .icon-line { width: 12px; height: 2.5px; background: var(--accent); border-radius: 2px; animation: iconGlow 2.5s ease-in-out infinite; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); }
+    @keyframes iconGlow { 0%, 100% { transform: scaleX(1); opacity: 1; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); } 50% { transform: scaleX(0.6); opacity: 0.8; box-shadow: 0 0 12px rgba(13, 148, 136, 0.8); } }
+    .logo:hover .logo-mark { transform: scale(1.08); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    nav { display: flex; align-items: center; gap: 40px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    nav a.active { color: var(--text); }
+    .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; }
+    .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--text); transition: all 0.3s ease; }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-card); flex-direction: column; align-items: flex-start; padding: 100px 32px 32px; gap: 0; box-shadow: -4px 0 24px rgba(0,0,0,0.1); transition: right 0.3s var(--ease-out); }
+      nav.open { right: 0; }
+      nav a { padding: 16px 0; width: 100%; border-bottom: 1px solid var(--border); font-size: 16px; }
+      nav .nav-cta { margin-top: 16px; width: 100%; text-align: center; border-bottom: none; }
+    }
+
+    /* Article Layout */
+    .article-header {
+      padding: 160px 0 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+    }
+    .article-header .container { position: relative; z-index: 1; }
+    .article-inner { max-width: 720px; margin: 0 auto; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .back-link:hover { color: var(--accent); gap: 12px; }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .article-date { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+    .article-category {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .cat-students { background: #EDE9FE; color: #6D28D9; }
+    .cat-comparisons { background: #DBEAFE; color: #1D4ED8; }
+    .cat-tools { background: var(--accent-subtle); color: var(--accent); }
+    .cat-insights { background: #FEF3C7; color: #B45309; }
+
+    .article-title {
+      font-size: clamp(32px, 6vw, 44px);
+      margin-bottom: 0;
+      line-height: 1.15;
+    }
+
+    /* Article Body */
+    .article-body {
+      padding: 0 0 80px;
+    }
+    .article-body .article-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .article-content p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+    .article-content h2 {
+      font-size: 28px;
+      margin: 48px 0 16px;
+      color: var(--text);
+    }
+    .article-content h3 {
+      font-size: 22px;
+      margin: 36px 0 12px;
+      color: var(--text);
+    }
+    .article-content strong { color: var(--text); }
+    .article-content ul, .article-content ol {
+      margin: 0 0 24px 24px;
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+    .article-content li { margin-bottom: 8px; }
+    .article-content a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(13, 148, 136, 0.3);
+      transition: text-decoration-color 0.2s;
+    }
+    .article-content a:hover { text-decoration-color: var(--accent); }
+    .article-content blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 16px 0 16px 24px;
+      margin: 32px 0;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    /* Divider */
+    .article-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 3px;
+      margin: 48px 0;
+      opacity: 0.4;
+    }
+
+    /* Related Posts */
+    .related-section {
+      padding: 0 0 80px;
+    }
+    .related-section .article-inner { max-width: 720px; margin: 0 auto; }
+    .related-heading {
+      font-size: 20px;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+    .related-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: all 0.3s var(--ease-out);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .related-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(13, 148, 136, 0.08);
+    }
+    @media (max-width: 600px) { .related-card:hover { transform: none; } }
+    .related-card .post-date { font-size: 12px; }
+    .related-card .post-title { font-size: 18px; }
+    .related-card .post-link { font-size: 13px; font-weight: 600; color: var(--accent); }
+
+    /* Footer */
+    footer { padding: 64px 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    @media (max-width: 600px) {
+      footer { padding: 40px 0; }
+      .footer-content { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .article-header { padding: 120px 0 32px; }
+      .article-title { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <a href="../../" class="logo">
+        <div class="logo-mark">
+          <div class="icon-line"></div>
+        </div>
+        <span class="logo-text">fewertools</span>
+      </a>
+      <nav id="nav">
+        <a href="../../stacks/">Stacks</a>
+        <a href="../../tools/">Tools</a>
+        <a href="../../compare/">Compare</a>
+        <a href="../../students/">Students 🎓</a>
+        <a href="../../gems/">Hidden Gems 💎</a>
+        <a href="../" class="active">Blog</a>
+        <a href="../../stages/" class="nav-cta">Find your stack</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Article Header -->
+  <section class="article-header">
+    <div class="container">
+      <div class="article-inner">
+        <a href="../" class="back-link reveal">← Back to all updates</a>
+        <div class="article-meta reveal reveal-delay-1">
+          <span class="article-date">Feb 7, 2026</span>
+          <span class="article-category cat-students">Students</span>
+        </div>
+        <h1 class="article-title reveal reveal-delay-2">We Added Student-Specific Tool Stacks for 8 University Courses</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article Body -->
+  <section class="article-body">
+    <div class="container">
+      <div class="article-inner">
+        <div class="article-content reveal">
+
+          <p>Every semester, the same ritual plays out in dorm rooms and study groups around the world: "What app should I use for this?" Students spend hours researching tools when they should be learning. We built something to fix that.</p>
+
+          <p>Our new <a href="../../students/">Students section</a> offers curated tool stacks for eight of the most popular university courses — each one tailored to actual coursework, not generic productivity advice.</p>
+
+          <h2>What's included</h2>
+
+          <p>Each course-specific stack covers the tools a student actually needs across their degree. Here's what we've launched with:</p>
+
+          <ul>
+            <li><strong>Computer Science</strong> — VS Code, GitHub Student Pack, Replit, and the best free resources for learning to code outside lectures</li>
+            <li><strong>Engineering</strong> — CAD tools with student licences, MATLAB alternatives, and collaborative project tools</li>
+            <li><strong>Business &amp; Economics</strong> — Spreadsheet power tools, financial modelling resources, and presentation apps that don't look like every other slide deck</li>
+            <li><strong>Design &amp; Creative Arts</strong> — Figma (free for students), affordable Adobe alternatives, and portfolio builders</li>
+            <li><strong>Medicine &amp; Health Sciences</strong> — Anki for spaced repetition, anatomy apps, and citation managers built for heavy research</li>
+            <li><strong>Law</strong> — Case management tools, legal research databases with student access, and document comparison tools</li>
+            <li><strong>Mathematics &amp; Statistics</strong> — LaTeX editors, computational tools, and graphing calculators that actually work well</li>
+            <li><strong>Communications &amp; Media</strong> — Free video editing, podcast production on a budget, and social media scheduling</li>
+          </ul>
+
+          <h2>Why course-specific stacks matter</h2>
+
+          <p>Generic "best tools for students" articles always recommend the same five apps: Notion, Google Drive, Grammarly, Todoist, and whatever calendar app is trending. Those are fine, but they miss the point.</p>
+
+          <p>A Computer Science student needs fundamentally different tools than a Law student. A Design major's workflow has almost nothing in common with a Medicine student's. Treating all students the same is lazy curation.</p>
+
+          <p>We talked to students across different programmes and asked one question: <strong>what do you actually use daily for your coursework?</strong> Their answers informed every stack.</p>
+
+          <h2>Free and discounted — verified</h2>
+
+          <p>Every tool in our student stacks has been verified for student pricing or free tiers. Many tools offer generous student plans that aren't well-advertised — GitHub's Student Developer Pack alone includes tools worth hundreds of pounds per year. We surface these so you don't have to hunt for them.</p>
+
+          <p>Where a tool doesn't have a student discount, we've included genuinely free alternatives that hold up for academic work. No "free trial" bait-and-switches.</p>
+
+          <h2>What's next</h2>
+
+          <p>This is a starting point. We're planning to add stacks for more courses — including Architecture, Psychology, and Data Science — based on which ones get the most requests. We're also looking into partnering with university societies to keep the recommendations grounded in real usage.</p>
+
+          <p>If your course isn't covered yet, or you think we've missed a tool that deserves a spot, head to the <a href="../../students/">Students page</a> and let us know.</p>
+
+          <p>Build more. Search less.</p>
+
+        </div>
+
+        <div class="article-divider reveal"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Posts -->
+  <section class="related-section">
+    <div class="container">
+      <div class="article-inner">
+        <h3 class="related-heading reveal">More updates</h3>
+        <div class="related-grid">
+
+          <a href="#" class="related-card reveal">
+            <div class="post-meta">
+              <span class="post-date">Feb 5, 2026</span>
+              <span class="article-category cat-comparisons" style="font-size:11px; padding: 3px 10px;">Comparisons</span>
+            </div>
+            <h4 class="post-title" style="font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.25;">Cursor vs GitHub Copilot: Our 2026 Verdict</h4>
+            <span class="post-link">Read more →</span>
+          </a>
+
+          <a href="#" class="related-card reveal reveal-delay-1">
+            <div class="post-meta">
+              <span class="post-date">Feb 3, 2026</span>
+              <span class="article-category cat-tools" style="font-size:11px; padding: 3px 10px;">Tools</span>
+            </div>
+            <h4 class="post-title" style="font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.25;">25 Hidden Gems That Deserve Your Attention</h4>
+            <span class="post-link">Read more →</span>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2026 Fewer Tools. Less tools. More building.</p>
+        <div class="footer-links">
+          <a href="../../philosophy/">Philosophy</a>
+          <a href="../../tools/">All Tools</a>
+          <a href="../../stages/">Stages</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Header scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      nav.classList.remove('open');
+    }));
+  </script>
+  <script src="/_vercel/insights/script.js" defer></script>
+  <script src="/_vercel/speed-insights/script.js" defer></script>
+</body>
+</html>
