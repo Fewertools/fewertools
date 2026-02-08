@@ -25,7 +25,7 @@
     header.scrolled { border-bottom-color: var(--border); }
     header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; }
     .logo { display: flex; align-items: center; gap: 10px; }
-    .logo-mark { width: 32px; height: 32px; background: var(--bg-dark); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .logo-mark { width: 32px; height: 32px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; overflow: hidden; }
     .logo-text { font-family: 'Outfit', -apple-system, sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; }
     .logo-mark .icon-line { width: 12px; height: 2.5px; background: var(--accent); border-radius: 2px; animation: iconGlow 2.5s ease-in-out infinite; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); }
     @keyframes iconGlow { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(0.6); } }
@@ -87,7 +87,7 @@
 <body>
   <header>
     <div class="container" style="max-width:1200px">
-      <a href="../" class="logo"><div class="logo-mark"><div class="icon-line"></div></div><span class="logo-text">fewertools</span></a>
+      <a href="../" class="logo"><div class="logo-mark"><img src="../logo-new-64.png" alt="Fewer Tools" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"></div><span class="logo-text">fewertools</span></a>
       <nav id="nav">
         <a href="../stacks/">Stacks</a>
         <a href="../tools/">Tools</a>
