@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customer Feedback Loop — Fewer Tools</title>
+  <link rel="canonical" href="https://fewertools.com/workflows/customer-feedback-loop.html">
+  <title>Customer Feedback Loop — Tool Workflow — Fewer Tools</title>
   <meta name="description" content="From 'this is broken' to 'it's fixed' in one seamless flow. Intercom → Linear → GitHub → Vercel.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,13 +25,13 @@
 
   <div class="content"><div class="container">
     <div class="tool-flow reveal">
-      <span class="tool-flow-item"><img src="https://cdn.simpleicons.org/intercom/6AFDEF" alt="">Intercom/Crisp</span>
+      <span class="tool-flow-item"><img src="https://cdn.simpleicons.org/intercom/6AFDEF" alt="Linear icon">Intercom/Crisp</span>
       <span class="flow-arrow">→</span>
-      <span class="tool-flow-item"><img src="https://cdn.simpleicons.org/linear/5E6AD2" alt="">Linear</span>
+      <span class="tool-flow-item"><img src="https://cdn.simpleicons.org/linear/5E6AD2" alt="GitHub icon">Linear</span>
       <span class="flow-arrow">→</span>
-      <span class="tool-flow-item"><img src="https://cdn.simpleicons.org/github/181717" alt="">GitHub</span>
+      <span class="tool-flow-item"><img src="https://cdn.simpleicons.org/github/181717" alt="Vercel icon">GitHub</span>
       <span class="flow-arrow">→</span>
-      <span class="tool-flow-item"><img src="https://cdn.simpleicons.org/vercel/000000" alt="">Vercel</span>
+      <span class="tool-flow-item"><img src="https://cdn.simpleicons.org/vercel/000000" alt="The problem icon">Vercel</span>
     </div>
 
     <h2 class="reveal">The problem</h2>
@@ -41,7 +42,7 @@
       <div class="step-number">1</div>
       <h3>Capture: Intercom or Crisp</h3>
       <p>When a user reports an issue or requests a feature, tag the conversation in Intercom/Crisp. Use consistent tags: <code>bug</code>, <code>feature-request</code>, <code>ux-issue</code>. The tagging takes 2 seconds and makes everything downstream work.</p>
-      <span class="tool-badge"><img src="https://cdn.simpleicons.org/intercom/6AFDEF" alt="">Intercom</span>
+      <span class="tool-badge"><img src="https://cdn.simpleicons.org/intercom/6AFDEF" alt="Prioritize: Linear icon">Intercom</span>
     </div>
 
     <div class="step reveal">
@@ -49,7 +50,7 @@
       <h3>Prioritize: Linear</h3>
       <p>Set up a Linear integration with Intercom (or use Zapier to connect Crisp). Tagged conversations automatically create Linear issues. Triage weekly: move items to "This Cycle" or "Backlog." Linear's cycles keep you shipping, not hoarding tickets.</p>
       <p>Use Linear's impact/effort labels to stack rank. High impact + low effort = do it this week.</p>
-      <span class="tool-badge"><img src="https://cdn.simpleicons.org/linear/5E6AD2" alt="">Linear</span>
+      <span class="tool-badge"><img src="https://cdn.simpleicons.org/linear/5E6AD2" alt="Build: GitHub icon">Linear</span>
     </div>
 
     <div class="step reveal">
@@ -57,14 +58,14 @@
       <h3>Build: GitHub</h3>
       <p>Linear issues link to GitHub branches automatically. Create a branch from the Linear issue, write the fix, push a PR. The PR description auto-links back to the Linear issue, which links back to the customer conversation.</p>
       <p>Full traceability: you can see exactly which customer request led to which code change.</p>
-      <span class="tool-badge"><img src="https://cdn.simpleicons.org/github/181717" alt="">GitHub</span>
+      <span class="tool-badge"><img src="https://cdn.simpleicons.org/github/181717" alt="Ship: Vercel icon">GitHub</span>
     </div>
 
     <div class="step reveal">
       <div class="step-number">4</div>
       <h3>Ship: Vercel</h3>
       <p>Merge the PR → Vercel auto-deploys → Linear issue auto-closes → Go back to Intercom and message the customer: "Fixed! It's live now." The whole loop closes in the same place it started.</p>
-      <span class="tool-badge"><img src="https://cdn.simpleicons.org/vercel/000000" alt="">Vercel</span>
+      <span class="tool-badge"><img src="https://cdn.simpleicons.org/vercel/000000" alt="💡 Pro tip: logo">Vercel</span>
     </div>
 
     <div class="pro-tip reveal">
