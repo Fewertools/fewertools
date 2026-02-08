@@ -480,7 +480,19 @@ tools.forEach(function(t) {
 
   var logoHTML;
   if (t.i) {
-    logoHTML = '<div class="tool-logo"><img src="https://cdn.simpleicons.org/' + t.i + '/' + (t.ic || '555') + '" alt="' + t.n + '" loading="lazy" onerror="this.parentElement.outerHTML=\'<div class=tool-logo-letter style=background:' + cat.color + '>' + t.n[0] + '</div>\'"></div>';
+    var iconSlug = t.i;
+    // Fix known Simple Icons renames
+    var slugFixes = {nuxtdotjs:'nuxt',convertkit:'kit',plausible:'plausibleanalytics'};
+    if (slugFixes[iconSlug]) iconSlug = slugFixes[iconSlug];
+    // Icons that don't exist in Simple Icons - use site favicon instead
+    var noSI = {adobe:1,ahrefs:1,amplitude:1,awsamplify:1,browserstack:1,bubble:1,descript:1,jasper:1,logrocket:1,neon:1,pipedream:1,pipedrive:1};
+    if (noSI[t.i]) {
+      var domain = t.u ? t.u.replace(/^https?:\/\//, '').replace(/\/.*$/, '') : '';
+      logoHTML = '<div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=' + domain + '&sz=64" alt="' + t.n + ' logo" loading="lazy" onerror="this.parentElement.outerHTML=\'<div class=tool-logo-letter style=background:' + cat.color + '>' + t.n[0] + '</div>\'"></div>';
+    } else {
+      // Try with color first, fallback to no-color, then letter
+      logoHTML = '<div class="tool-logo"><img src="https://cdn.simpleicons.org/' + iconSlug + '/' + (t.ic || '555') + '" alt="' + t.n + ' logo" loading="lazy" onerror="var img=this;var nc=\'https://cdn.simpleicons.org/' + iconSlug + '\';if(img.src.indexOf(\'/\'+\'' + (t.ic||'555') + '\')>-1){img.src=nc;}else{img.parentElement.outerHTML=\'<div class=tool-logo-letter style=background:' + cat.color + '>' + t.n[0] + '</div>\';}"></div>';
+    }
   } else {
     logoHTML = '<div class="tool-logo-letter" style="background:' + cat.color + '">' + t.n[0] + '</div>';
   }
