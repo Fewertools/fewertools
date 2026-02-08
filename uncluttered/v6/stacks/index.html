@@ -71,6 +71,15 @@
     .stack-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--accent); transition: gap 0.2s; }
     .stack-link:hover { gap: 12px; }
 
+    /* Decision context */
+    .stack-meta { margin-top: 16px; margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px; }
+    .stack-meta-item { font-size: 13px; line-height: 1.5; color: var(--text-muted); display: flex; gap: 8px; }
+    .stack-meta-item strong { color: var(--text-secondary); font-weight: 600; white-space: nowrap; }
+    .stack-meta-item.not-for { color: #b45309; }
+
+    .stacks-intro { text-align: center; max-width: 640px; margin: 0 auto; padding: 0 0 20px; }
+    .stacks-intro p { font-size: 16px; color: var(--text-secondary); line-height: 1.7; }
+
     footer { padding: 64px 0; border-top: 1px solid var(--border); }
     .footer-content { display: flex; justify-content: space-between; align-items: center; }
     .footer-content p { font-size: 14px; color: var(--text-muted); }
@@ -104,12 +113,20 @@
 
   <section>
     <div class="container">
+      <div class="stacks-intro reveal">
+        <p>Stacks are small sets of tools chosen for a specific stage. Each one removes decisions instead of adding them. Pick the stage that matches where you are now — not where you want to be.</p>
+      </div>
       <div class="stacks-grid">
         <a href="./starting.html" class="stack-card reveal">
           <div class="stack-icon">💡</div>
           <div class="subtitle">Exploration</div>
           <h3>Starting</h3>
           <p>You have an idea. Maybe several. You need to explore, validate, and think clearly — not collect tools.</p>
+          <div class="stack-meta">
+            <div class="stack-meta-item"><strong>For you if:</strong> You're exploring ideas and haven't committed to one yet</div>
+            <div class="stack-meta-item"><strong>Optimises for:</strong> Momentum and clarity over perfection</div>
+            <div class="stack-meta-item not-for"><strong>Skip if:</strong> You already know exactly what to build</div>
+          </div>
           <div class="stack-tools">
             <span class="stack-tool">Notion</span>
             <span class="stack-tool">Figma</span>
@@ -125,6 +142,11 @@
           <div class="subtitle">Shipping</div>
           <h3>Building</h3>
           <p>You know what to build. Now you need tools that help you ship — not tools that help you plan or dream.</p>
+          <div class="stack-meta">
+            <div class="stack-meta-item"><strong>For you if:</strong> You've validated an idea and need to make it real</div>
+            <div class="stack-meta-item"><strong>Optimises for:</strong> Shipping speed with a production-ready foundation</div>
+            <div class="stack-meta-item not-for"><strong>Skip if:</strong> You change direction daily or haven't picked an idea yet</div>
+          </div>
           <div class="stack-tools">
             <span class="stack-tool">Next.js</span>
             <span class="stack-tool">Supabase</span>
@@ -140,6 +162,11 @@
           <div class="subtitle">Scaling</div>
           <h3>Growing</h3>
           <p>You have users. Real ones. Now you need to understand behavior, catch issues, and build systems that scale.</p>
+          <div class="stack-meta">
+            <div class="stack-meta-item"><strong>For you if:</strong> You have real users and need to understand their behaviour</div>
+            <div class="stack-meta-item"><strong>Optimises for:</strong> Reliability, insight, and sustainable systems</div>
+            <div class="stack-meta-item not-for"><strong>Skip if:</strong> You don't have paying users yet — this is premature</div>
+          </div>
           <div class="stack-tools">
             <span class="stack-tool">PostHog</span>
             <span class="stack-tool">Sentry</span>
@@ -155,6 +182,11 @@
           <div class="subtitle">Clarity</div>
           <h3>Simplifying</h3>
           <p>You've accumulated too much. Time to cut, consolidate, and regain clarity. Less tools, more focus.</p>
+          <div class="stack-meta">
+            <div class="stack-meta-item"><strong>For you if:</strong> You have tool overlap, context switching fatigue, or maintenance debt</div>
+            <div class="stack-meta-item"><strong>Optimises for:</strong> Clarity and reduction — fewer tools, deeper use</div>
+            <div class="stack-meta-item not-for"><strong>Skip if:</strong> You're still building your first product</div>
+          </div>
           <div class="stack-tools">
             <span class="stack-tool">Notion</span>
             <span class="stack-tool">Linear</span>
@@ -169,6 +201,11 @@
           <div class="subtitle">Academic</div>
           <h3>Students</h3>
           <p>The right AI tools for coursework, research, and revision — tools your university actually approves of. All free.</p>
+          <div class="stack-meta">
+            <div class="stack-meta-item"><strong>For you if:</strong> You're at university and want tools that help you learn, not bypass learning</div>
+            <div class="stack-meta-item"><strong>Optimises for:</strong> Understanding, academic integrity, and £0 budgets</div>
+            <div class="stack-meta-item not-for"><strong>Skip if:</strong> You're a professional — these are tuned for academic contexts</div>
+          </div>
           <div class="stack-tools">
             <span class="stack-tool">Grammarly</span>
             <span class="stack-tool">Perplexity</span>

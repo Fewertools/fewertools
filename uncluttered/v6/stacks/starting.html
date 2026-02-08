@@ -239,6 +239,31 @@
     .footer-links { display: flex; gap: var(--space-lg); }
     .footer-links a { font-size: 14px; color: var(--text-muted); }
     .footer-links a:hover { color: var(--text); }
+
+    /* Decision Context Sections */
+    .context-section { padding: var(--space-2xl) 0; }
+    .context-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-lg); max-width: 900px; margin: 0 auto; }
+    .context-card { padding: var(--space-xl); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .context-card h3 { font-size: 18px; margin-bottom: var(--space-md); display: flex; align-items: center; gap: var(--space-sm); }
+    .context-card ul { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); }
+    .context-card li { font-size: 14px; color: var(--text-secondary); line-height: 1.6; padding-left: 20px; position: relative; }
+    .context-card li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
+    .context-card.warning { border-color: rgba(180, 83, 9, 0.2); background: rgba(254, 243, 199, 0.3); }
+    .context-card.warning li::before { color: #b45309; }
+    .context-card.ai-card { border-color: rgba(99, 102, 241, 0.2); background: rgba(238, 242, 255, 0.3); }
+    .context-card.ai-card li::before { color: #6366f1; }
+
+    .emotional-frame { text-align: center; padding: var(--space-xl) 0 0; }
+    .emotional-frame p { font-size: 18px; color: var(--text-secondary); font-style: italic; max-width: 560px; margin: 0 auto; line-height: 1.6; }
+
+    .setup-order { padding: var(--space-2xl) 0 var(--space-xl); }
+    .setup-order h2 { text-align: center; font-size: clamp(24px, 4vw, 32px); margin-bottom: var(--space-2xl); }
+    .setup-steps { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-lg); }
+    .setup-step { display: flex; gap: var(--space-lg); align-items: flex-start; }
+    .step-number { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+    .step-content h3 { font-size: 16px; margin-bottom: 4px; }
+    .step-content p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .step-number.muted { background: var(--bg-alt); color: var(--text-muted); }
   </style>
 </head>
 <body>
@@ -288,6 +313,68 @@
         <div class="stack-tool">
           <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Midjourney_Emblem.png" alt="Midjourney">
           <span>Midjourney</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emotional Frame + Decision Context -->
+  <section class="context-section">
+    <div class="container">
+      <div class="emotional-frame reveal">
+        <p>"At this stage, your goal is momentum, not optimisation. Don't build infrastructure for a product that doesn't exist yet."</p>
+      </div>
+
+      <div class="setup-order reveal">
+        <h2>Setup order</h2>
+        <div class="setup-steps">
+          <div class="setup-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Start with Notion + Claude</h3>
+              <p>Capture ideas, research competitors, and think through your concept. This is all you need for the first week.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Add Figma when you need to show someone</h3>
+              <p>Quick wireframes or mockups. Only when you're ready to get feedback — not before.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Use v0 to prototype, not to ship</h3>
+              <p>Generate working UI to test ideas. If it sticks, move to the Building stack.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-number step-number muted">×</div>
+            <div class="step-content">
+              <h3>Ignore everything else</h3>
+              <p>No analytics. No payment tools. No domain name. Not yet.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="context-grid reveal">
+        <div class="context-card warning">
+          <h3>⚠️ Not ready for this stack if…</h3>
+          <ul>
+            <li>You already know exactly what to build (go to Building)</li>
+            <li>You have paying users (go to Growing)</li>
+            <li>You're looking for a tech stack, not an idea stack</li>
+          </ul>
+        </div>
+        <div class="context-card ai-card">
+          <h3>🤖 AI at this stage</h3>
+          <ul>
+            <li><strong>Use for:</strong> Brainstorming, research, explaining concepts, exploring ideas</li>
+            <li><strong>Avoid:</strong> Generating final business plans, automating processes you haven't done manually</li>
+            <li>AI should help you think — not think for you. Not yet.</li>
+          </ul>
         </div>
       </div>
     </div>

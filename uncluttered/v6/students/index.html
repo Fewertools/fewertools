@@ -88,6 +88,39 @@
     .stack-tool:hover { border-color: var(--accent); transform: translateY(-2px); }
     .stack-tool img { width: 20px; height: 20px; object-fit: contain; }
     
+    /* Goal-Based Sections */
+    .goals-section { padding: var(--space-3xl) 0; }
+    .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: var(--space-lg); }
+    @media (max-width: 768px) { .goals-grid { grid-template-columns: 1fr; } }
+    .goal-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: var(--space-xl); transition: all 0.3s var(--ease-out); }
+    .goal-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .goal-card-icon { font-size: 28px; margin-bottom: var(--space-md); }
+    .goal-card h3 { font-size: 20px; margin-bottom: var(--space-sm); }
+    .goal-card-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-md); }
+    .goal-tools-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: var(--space-md); }
+    .goal-tool-item { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; }
+    .goal-tool-item img { width: 18px; height: 18px; object-fit: contain; }
+    .goal-tool-item .free-badge { font-size: 11px; font-weight: 600; color: #16A34A; background: rgba(34, 197, 94, 0.1); padding: 2px 6px; border-radius: 100px; margin-left: auto; }
+    .goal-ai-note { font-size: 13px; line-height: 1.6; padding: var(--space-md); background: var(--bg-alt); border-radius: var(--radius-md); }
+    .goal-ai-note .helpful { color: var(--accent); font-weight: 600; display: block; margin-bottom: 4px; }
+    .goal-ai-note .careful { color: #B45309; font-weight: 600; display: block; margin-top: 8px; margin-bottom: 4px; }
+
+    /* Academic Integrity Box */
+    .integrity-section { padding: var(--space-3xl) 0; }
+    .integrity-card { max-width: 800px; margin: 0 auto; background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%); border: 1px solid rgba(180, 83, 9, 0.15); border-radius: var(--radius-xl); padding: var(--space-xl) var(--space-xl) var(--space-lg); }
+    .integrity-card h2 { font-size: clamp(22px, 4vw, 28px); margin-bottom: var(--space-sm); color: var(--text); }
+    .integrity-card > p { font-size: 15px; color: var(--text-secondary); margin-bottom: var(--space-lg); line-height: 1.6; }
+    .integrity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-lg); }
+    .integrity-item { padding: var(--space-md); background: rgba(255,255,255,0.6); border-radius: var(--radius-md); }
+    .integrity-item h4 { font-size: 14px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .integrity-item ul { list-style: none; padding: 0; }
+    .integrity-item li { font-size: 13px; color: var(--text-secondary); line-height: 1.6; padding: 2px 0; }
+    .integrity-item li::before { content: '·'; margin-right: 6px; font-weight: 700; }
+    .integrity-test { padding: var(--space-md); background: rgba(255,255,255,0.7); border-radius: var(--radius-md); text-align: center; margin-bottom: var(--space-md); }
+    .integrity-test p { font-size: 16px; font-family: var(--font-display); font-weight: 600; color: var(--text); font-style: italic; }
+    .integrity-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--accent); }
+    .integrity-link:hover { text-decoration: underline; }
+
     /* Architecture Diagram */
     .stack-architecture { padding: var(--space-3xl) 0; background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%); }
     .architecture-header { text-align: center; margin-bottom: var(--space-2xl); }
@@ -289,7 +322,8 @@
       <div class="breadcrumb reveal"><a href="../">Home</a> <span>→</span> <a href="../stacks/">Stacks</a> <span>→</span> Students</div>
       <span class="hero-badge reveal">🎓 Student Stack</span>
       <h1 class="reveal">Study <span class="highlight">smarter.</span><br>Not harder.</h1>
-      <p class="hero-subtitle reveal">You don't need 20 AI tools. You need the right ones for your coursework, research, and revision — tools your university actually approves of.</p>
+      <p class="hero-subtitle reveal">University is about learning to think clearly. These tools help you do that faster — not skip it.</p>
+      <p class="hero-subtitle reveal" style="margin-top: -20px; font-size: 17px; color: var(--text-muted);">You don't need 20 AI tools. You need the right ones for your coursework, research, and revision — tools your university actually approves of.</p>
       <a href="./quiz/" class="btn btn-primary reveal" style="margin-bottom: var(--space-lg);">Take the 60-second quiz → find your stack 🎯</a>
       
       <div class="stack-tools reveal">
@@ -341,6 +375,103 @@
           <img src="https://www.google.com/s2/favicons?domain=forestapp.cc&sz=128" alt="Forest">
           <span>Forest</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Goal-Based Sections -->
+  <section class="goals-section" id="goals">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>What are you trying to do?</h2>
+        <p>Pick your goal. Get the right tools. Skip the noise.</p>
+      </div>
+      <div class="goals-grid">
+        
+        <!-- Study & Revision -->
+        <div class="goal-card reveal">
+          <div class="goal-card-icon">📖</div>
+          <h3>Study & Revision</h3>
+          <p class="goal-card-desc">Retain more, study less. Flashcards, spaced repetition, and AI-powered study guides from your own notes.</p>
+          <div class="goal-tools-list">
+            <div class="goal-tool-item"><img src="https://cdn.simpleicons.org/google/4285F4" alt="NotebookLM"> NotebookLM <span class="free-badge">Free</span></div>
+            <div class="goal-tool-item"><img src="https://cdn.simpleicons.org/anki/236BFF" alt="Anki"> Anki <span class="free-badge">Free</span></div>
+            <div class="goal-tool-item"><img src="https://www.google.com/s2/favicons?domain=quizlet.com&sz=128" alt="Quizlet"> Quizlet <span class="free-badge">Free tier</span></div>
+            <div class="goal-tool-item"><img src="https://www.google.com/s2/favicons?domain=forestapp.cc&sz=128" alt="Forest"> Forest <span class="free-badge">Free tier</span></div>
+          </div>
+          <div class="goal-ai-note">
+            <span class="helpful">✦ AI helps with:</span> Generating flashcards from your notes, creating audio summaries, identifying knowledge gaps.
+            <span class="careful">⚠ Be careful:</span> If AI is doing the recall for you, you're not learning. Use it to build study materials, then study without it.
+          </div>
+        </div>
+
+        <!-- Essay Writing & Clarity -->
+        <div class="goal-card reveal">
+          <div class="goal-card-icon">✍️</div>
+          <h3>Essay Writing & Clarity</h3>
+          <p class="goal-card-desc">Write clearly, argue well, and get your grammar right. AI polishes — you think.</p>
+          <div class="goal-tools-list">
+            <div class="goal-tool-item"><img src="https://cdn.simpleicons.org/grammarly/15C39A" alt="Grammarly"> Grammarly <span class="free-badge">Free tier</span></div>
+            <div class="goal-tool-item"><img src="https://www.google.com/s2/favicons?domain=jenni.ai&sz=128" alt="Jenni AI"> Jenni AI <span class="free-badge">Free tier</span></div>
+            <div class="goal-tool-item"><img src="https://www.google.com/s2/favicons?domain=hemingwayapp.com&sz=128" alt="Hemingway"> Hemingway Editor <span class="free-badge">Free</span></div>
+          </div>
+          <div class="goal-ai-note">
+            <span class="helpful">✦ AI helps with:</span> Catching grammar mistakes, improving sentence structure, generating outlines from your thesis.
+            <span class="careful">⚠ Be careful:</span> AI-generated paragraphs are detectable and often generic. Draft it yourself, then polish.
+          </div>
+        </div>
+
+        <!-- Research & Reading -->
+        <div class="goal-card reveal">
+          <div class="goal-card-icon">🔬</div>
+          <h3>Research & Reading</h3>
+          <p class="goal-card-desc">Find sources, manage citations, and actually understand dense papers without reading them three times.</p>
+          <div class="goal-tools-list">
+            <div class="goal-tool-item"><img src="https://cdn.simpleicons.org/perplexity/1FB8CD" alt="Perplexity"> Perplexity <span class="free-badge">Free tier</span></div>
+            <div class="goal-tool-item"><img src="https://cdn.simpleicons.org/zotero/CC2936" alt="Zotero"> Zotero <span class="free-badge">Free</span></div>
+            <div class="goal-tool-item"><img src="https://www.google.com/s2/favicons?domain=consensus.app&sz=128" alt="Consensus"> Consensus <span class="free-badge">Free tier</span></div>
+            <div class="goal-tool-item"><img src="https://www.google.com/s2/favicons?domain=elicit.com&sz=128" alt="Elicit"> Elicit <span class="free-badge">Free tier</span></div>
+          </div>
+          <div class="goal-ai-note">
+            <span class="helpful">✦ AI helps with:</span> Finding relevant papers quickly, summarising long articles, explaining complex methodology.
+            <span class="careful">⚠ Be careful:</span> AI can hallucinate citations. Always click through to verify the actual source exists and says what AI claims.
+          </div>
+        </div>
+
+        <!-- Presentations & Projects -->
+        <div class="goal-card reveal">
+          <div class="goal-card-icon">🎨</div>
+          <h3>Presentations & Projects</h3>
+          <p class="goal-card-desc">Make things look professional without spending hours on layout. Visual tools that do the design for you.</p>
+          <div class="goal-tools-list">
+            <div class="goal-tool-item"><img src="https://www.google.com/s2/favicons?domain=gamma.app&sz=128" alt="Gamma"> Gamma <span class="free-badge">Free tier</span></div>
+            <div class="goal-tool-item"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="Canva"> Canva <span class="free-badge">Free for students</span></div>
+            <div class="goal-tool-item"><img src="https://cdn.simpleicons.org/figma/F24E1E" alt="Figma"> Figma <span class="free-badge">Free for students</span></div>
+            <div class="goal-tool-item"><img src="https://cdn.simpleicons.org/notion/000000" alt="Notion"> Notion <span class="free-badge">Free for students</span></div>
+          </div>
+          <div class="goal-ai-note">
+            <span class="helpful">✦ AI helps with:</span> Generating slide layouts, creating visuals, structuring group project docs.
+            <span class="careful">⚠ Be careful:</span> AI-generated slides can be generic. Customise the content and make sure you understand every point you're presenting.
+          </div>
+        </div>
+
+        <!-- Coding & STEM -->
+        <div class="goal-card reveal">
+          <div class="goal-card-icon">💻</div>
+          <h3>Coding & STEM</h3>
+          <p class="goal-card-desc">Debug faster, understand equations, and get an AI pair programmer — free with your student email.</p>
+          <div class="goal-tools-list">
+            <div class="goal-tool-item"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub Copilot"> GitHub Copilot <span class="free-badge">Free for students</span></div>
+            <div class="goal-tool-item"><img src="https://cdn.simpleicons.org/wolframmathematica/DD1100" alt="Wolfram Alpha"> Wolfram Alpha <span class="free-badge">Free tier</span></div>
+            <div class="goal-tool-item"><img src="https://cdn.simpleicons.org/overleaf/47A141" alt="Overleaf"> Overleaf <span class="free-badge">Free</span></div>
+            <div class="goal-tool-item"><img src="https://cdn.simpleicons.org/jupyter/F37626" alt="Jupyter"> Jupyter Notebooks <span class="free-badge">Free</span></div>
+          </div>
+          <div class="goal-ai-note">
+            <span class="helpful">✦ AI helps with:</span> Explaining error messages, suggesting code completions, walking through algorithms step-by-step.
+            <span class="careful">⚠ Be careful:</span> Copying AI-generated code without understanding it defeats the purpose. Use AI to learn the pattern, then write it yourself.
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1444,6 +1575,48 @@
           <h4>Write in YOUR voice, use AI to polish</h4>
           <p>Draft your essay yourself. Then use Grammarly to catch errors and improve clarity. This is how professionals work — and it's completely allowed by every university.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Academic Integrity -->
+  <section class="integrity-section">
+    <div class="container">
+      <div class="integrity-card reveal">
+        <h2>🎓 AI & Academic Integrity</h2>
+        <p>Most universities now have AI policies. Here's the honest version — not to scare you, but so you can use these tools confidently.</p>
+        <div class="integrity-grid">
+          <div class="integrity-item">
+            <h4 style="color: #16A34A;">✅ Usually acceptable</h4>
+            <ul>
+              <li>Using AI to explain concepts you don't understand</li>
+              <li>Grammar and spell-checking your own writing</li>
+              <li>Brainstorming ideas and outlining arguments</li>
+              <li>Understanding lecturer feedback</li>
+            </ul>
+          </div>
+          <div class="integrity-item">
+            <h4 style="color: #B45309;">⚠️ Risky territory</h4>
+            <ul>
+              <li>Generating essay paragraphs, even to "rewrite later"</li>
+              <li>Getting AI to solve problem sets</li>
+              <li>Paraphrasing sources through AI instead of reading them</li>
+              <li>Using AI for take-home exam answers</li>
+            </ul>
+          </div>
+          <div class="integrity-item">
+            <h4 style="color: #DC2626;">🚫 Never</h4>
+            <ul>
+              <li>Submitting raw AI output as your own work</li>
+              <li>Using AI to bypass plagiarism detectors</li>
+              <li>Hiding AI use when your uni requires disclosure</li>
+            </ul>
+          </div>
+        </div>
+        <div class="integrity-test">
+          <p>"Could I explain and defend every part of this work in a viva?"</p>
+        </div>
+        <a href="../ai-use-guide/" class="integrity-link">Read the full AI Use Guide →</a>
       </div>
     </div>
   </section>
