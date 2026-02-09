@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://fewertools.com/build/">
-  <title>AI Stack Builder — Get Your Perfect Tool Stack in 30 Seconds — Fewer Tools</title>
+  <title>AI Stack Builder. Get Your Perfect Tool Stack in 30 Seconds - Fewer Tools</title>
   <meta name="description" content="Describe what you're building and get a personalized tool stack recommendation in 30 seconds. No signup required. 100% free.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fewertools.com/build/">
-  <meta property="og:title" content="AI Stack Builder — Your Perfect Tool Stack in 30 Seconds">
-  <meta property="og:description" content="Describe what you're building. Get your personalized stack. No signup, no AI API — just smart recommendations.">
+  <meta property="og:title" content="AI Stack Builder. Your Perfect Tool Stack in 30 Seconds">
+  <meta property="og:description" content="Describe what you're building. Get your personalized stack. No signup, no AI API, just smart recommendations.">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +28,7 @@
       --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; min-height: 100vh; }
     h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
     a { color: inherit; text-decoration: none; }
@@ -364,7 +364,7 @@
         <div class="options" data-key="stage">
           <div class="option" data-value="starting">
             <span class="option-icon">💡</span>
-            <span class="option-text">Starting<div class="option-desc">Just an idea — haven't built anything yet</div></span>
+            <span class="option-text">Starting<div class="option-desc">Just an idea, haven't built anything yet</div></span>
             <span class="option-check">✓</span>
           </div>
           <div class="option" data-value="building">
@@ -379,7 +379,7 @@
           </div>
           <div class="option" data-value="simplifying">
             <span class="option-icon">✨</span>
-            <span class="option-text">Simplifying<div class="option-desc">Too many tools — need to consolidate</div></span>
+            <span class="option-text">Simplifying<div class="option-desc">Too many tools, need to consolidate</div></span>
             <span class="option-check">✓</span>
           </div>
         </div>
@@ -392,7 +392,7 @@
       <div class="step" id="step2q2">
         <span class="step-emoji">💰</span>
         <h2>What's your budget?</h2>
-        <p class="subtitle">No judgement — great tools exist at every price.</p>
+        <p class="subtitle">No judgement, great tools exist at every price.</p>
         <div class="options" data-key="budget">
           <div class="option" data-value="free">
             <span class="option-icon">🆓</span>
@@ -428,7 +428,7 @@
         <div class="options" data-key="priority">
           <div class="option" data-value="speed">
             <span class="option-icon">⚡</span>
-            <span class="option-text">Speed<div class="option-desc">Ship fast — fastest to set up</div></span>
+            <span class="option-text">Speed<div class="option-desc">Ship fast, fastest to set up</div></span>
             <span class="option-check">✓</span>
           </div>
           <div class="option" data-value="quality">
@@ -523,16 +523,16 @@ const state = {
 
 // ===== CHIP TEMPLATES =====
 const templates = {
-  saas: "A SaaS web application — I need to build, deploy, and get paying users",
-  youtube: "A YouTube channel — I need to record, edit, optimise, and grow my audience",
-  newsletter: "A newsletter — I need to write, design, send, and grow subscribers",
-  ecommerce: "An e-commerce store — I need to sell products online with payments and shipping",
-  mobile: "A mobile app — I need to build, design, and ship to the App Store and Play Store",
-  podcast: "A podcast — I need to record, edit, host, and distribute episodes",
-  freelance: "A freelance business — I need a portfolio, invoicing, contracts, and project management",
-  student: "A student project — I need tools for studying, research, writing, and revision",
-  blog: "A blog — I need to write, publish, optimise for SEO, and track readers",
-  digital: "Digital products — I need to create, sell, and market courses, templates, or ebooks"
+  saas: "A SaaS web application. I need to build, deploy, and get paying users",
+  youtube: "A YouTube channel. I need to record, edit, optimise, and grow my audience",
+  newsletter: "A newsletter. I need to write, design, send, and grow subscribers",
+  ecommerce: "An e-commerce store. I need to sell products online with payments and shipping",
+  mobile: "A mobile app. I need to build, design, and ship to the App Store and Play Store",
+  podcast: "A podcast. I need to record, edit, host, and distribute episodes",
+  freelance: "A freelance business. I need a portfolio, invoicing, contracts, and project management",
+  student: "A student project. I need tools for studying, research, writing, and revision",
+  blog: "A blog. I need to write, publish, optimise for SEO, and track readers",
+  digital: "Digital products. I need to create, sell, and market courses, templates, or ebooks"
 };
 
 // ===== PROJECT TYPE DETECTION =====
@@ -682,39 +682,39 @@ function buildStack() {
         categories.push({
           name: '🚀 Build Your App',
           tool: 'lovable',
-          reason: 'Lovable — Describe your app in plain English and get a working product deployed in minutes. No coding needed.'
+          reason: 'Lovable. Describe your app in plain English and get a working product deployed in minutes. No coding needed.'
         });
         categories.push({
           name: '💳 Payments',
           tool: 'lemonsqueezy',
-          reason: 'Lemon Squeezy — Handles taxes, billing pages, and checkout. Ship payments in an hour, not a week.'
+          reason: 'Lemon Squeezy. Handles taxes, billing pages, and checkout. Ship payments in an hour, not a week.'
         });
         categories.push({
           name: '📋 Planning',
           tool: 'notion',
-          reason: 'Notion — Notes, tasks, docs, wiki — all in one. Perfect for solo builders getting started.'
+          reason: 'Notion. Notes, tasks, docs, wiki, all in one. Perfect for solo builders getting started.'
         });
       } else if (isStarting && wantsQuality) {
         // Quality-focused starting path
         categories.push({
           name: '🎨 UI Builder',
           tool: 'v0',
-          reason: 'v0 by Vercel — Generate beautiful UI components with AI. Paste into your codebase and customise.'
+          reason: 'v0 by Vercel. Generate beautiful UI components with AI. Paste into your codebase and customise.'
         });
         categories.push({
           name: '⚙️ Framework',
           tool: 'nextjs',
-          reason: 'Next.js — Full-stack React. API routes, SSR, and the biggest ecosystem for building quality apps.'
+          reason: 'Next.js. Full-stack React. API routes, SSR, and the biggest ecosystem for building quality apps.'
         });
         categories.push({
           name: '🗄️ Database + Auth',
           tool: 'supabase',
-          reason: 'Supabase — Postgres + auth + realtime in one. Skip stitching 3 services together.'
+          reason: 'Supabase. Postgres + auth + realtime in one. Skip stitching 3 services together.'
         });
         categories.push({
           name: '☁️ Hosting',
           tool: 'vercel',
-          reason: 'Vercel — Push to deploy. Preview URLs. Zero config. Just works.'
+          reason: 'Vercel. Push to deploy. Preview URLs. Zero config. Just works.'
         });
       } else if (isStarting && (wantsCost || isFree)) {
         // Free/cheap starting path
@@ -722,104 +722,104 @@ function buildStack() {
           name: '🚀 Build Your App',
           tool: isFree ? 'replit' : 'bolt',
           reason: isFree
-            ? 'Replit — Code, deploy, and share. All in your browser, completely free. No setup needed.'
-            : 'Bolt.new — Describe what you want, get a working app. Iterate by chatting with AI.'
+            ? 'Replit. Code, deploy, and share. All in your browser, completely free. No setup needed.'
+            : 'Bolt.new. Describe what you want, get a working app. Iterate by chatting with AI.'
         });
         categories.push({
           name: '🗄️ Database + Auth',
           tool: 'supabase',
-          reason: 'Supabase — Generous free tier covers auth, database, and storage. Everything you need to start.'
+          reason: 'Supabase. Generous free tier covers auth, database, and storage. Everything you need to start.'
         });
         categories.push({
           name: '📋 Planning',
           tool: 'notion',
-          reason: 'Notion — Free for personal use. Notes, tasks, and project tracking in one place.'
+          reason: 'Notion. Free for personal use. Notes, tasks, and project tracking in one place.'
         });
       } else if (isBuilding) {
         // Developer building path
         categories.push({
           name: '⚙️ Framework',
           tool: 'nextjs',
-          reason: 'Next.js — Full-stack React. API routes, SSR, and the biggest ecosystem.'
+          reason: 'Next.js. Full-stack React. API routes, SSR, and the biggest ecosystem.'
         });
         categories.push({
           name: '🗄️ Database + Auth',
           tool: 'supabase',
-          reason: 'Supabase — Postgres + auth + realtime in one. Skip stitching 3 services together.'
+          reason: 'Supabase. Postgres + auth + realtime in one. Skip stitching 3 services together.'
         });
         categories.push({
           name: '☁️ Hosting',
           tool: 'vercel',
-          reason: 'Vercel — Push to deploy. Preview URLs. Zero config. Just works.'
+          reason: 'Vercel. Push to deploy. Preview URLs. Zero config. Just works.'
         });
         categories.push({
           name: '💳 Payments',
           tool: 'stripe',
-          reason: 'Stripe — The gold standard. Flexible APIs for any billing model you can dream up.'
+          reason: 'Stripe. The gold standard. Flexible APIs for any billing model you can dream up.'
         });
         categories.push({
           name: '🤖 AI Editor',
           tool: 'cursor',
-          reason: 'Cursor — AI-first code editor. Write, refactor, and debug with AI baked in. Ship 3x faster.'
+          reason: 'Cursor. AI-first code editor. Write, refactor, and debug with AI baked in. Ship 3x faster.'
         });
       } else if (isGrowing) {
         // Growth path
         categories.push({
           name: '⚙️ Framework',
           tool: 'nextjs',
-          reason: 'Next.js — Full-stack React. API routes, SSR, and the biggest ecosystem.'
+          reason: 'Next.js. Full-stack React. API routes, SSR, and the biggest ecosystem.'
         });
         categories.push({
           name: '🗄️ Database + Auth',
           tool: 'supabase',
-          reason: 'Supabase — Postgres + auth + realtime in one. Scales with you.'
+          reason: 'Supabase. Postgres + auth + realtime in one. Scales with you.'
         });
         categories.push({
           name: '☁️ Hosting',
           tool: 'vercel',
-          reason: 'Vercel — Push to deploy. Preview URLs. Edge functions. Scales automatically.'
+          reason: 'Vercel. Push to deploy. Preview URLs. Edge functions. Scales automatically.'
         });
         categories.push({
           name: '💳 Payments',
           tool: 'stripe',
-          reason: 'Stripe — The gold standard. Subscriptions, usage billing, invoicing — all of it.'
+          reason: 'Stripe. The gold standard. Subscriptions, usage billing, invoicing, all of it.'
         });
         categories.push({
           name: '📊 Analytics',
           tool: 'posthog',
-          reason: 'PostHog — Analytics + session replay + feature flags. One tool replaces three.'
+          reason: 'PostHog. Analytics + session replay + feature flags. One tool replaces three.'
         });
         categories.push({
           name: '📋 Project Tracking',
           tool: 'linear',
-          reason: 'Linear — Fast, opinionated project tracking. Built for teams that ship.'
+          reason: 'Linear. Fast, opinionated project tracking. Built for teams that ship.'
         });
         categories.push({
           name: '📧 Email',
           tool: 'resend',
-          reason: 'Resend — Modern transactional email. Great DX, generous free tier.'
+          reason: 'Resend. Modern transactional email. Great DX, generous free tier.'
         });
       } else if (isSimplifying) {
         // Simplification audit
         categories.push({
           name: '🗄️ Replace DB + Auth + Realtime',
           tool: 'supabase',
-          reason: 'Supabase — Replace your separate database, auth, and realtime services with one tool. Fewer bills, fewer configs.'
+          reason: 'Supabase. Replace your separate database, auth, and realtime services with one tool. Fewer bills, fewer configs.'
         });
         categories.push({
           name: '☁️ Consolidate Hosting',
           tool: 'vercel',
-          reason: 'Vercel — Consolidate frontend hosting, serverless functions, and edge caching. One platform, one bill.'
+          reason: 'Vercel. Consolidate frontend hosting, serverless functions, and edge caching. One platform, one bill.'
         });
         categories.push({
           name: '💳 Simplify Payments',
           tool: 'lemonsqueezy',
-          reason: 'Lemon Squeezy — Replace Stripe + tax service + billing portal. Handles everything in one.'
+          reason: 'Lemon Squeezy. Replace Stripe + tax service + billing portal. Handles everything in one.'
         });
         categories.push({
           name: '📋 One Workspace',
           tool: 'notion',
-          reason: 'Notion — Replace separate docs, wiki, tasks, and notes tools. Everything in one place.'
+          reason: 'Notion. Replace separate docs, wiki, tasks, and notes tools. Everything in one place.'
         });
       }
       break;
@@ -830,83 +830,83 @@ function buildStack() {
         categories.push({
           name: '🎥 Recording',
           tool: 'screenpal',
-          reason: 'ScreenPal — Record your screen or webcam in one click. Way simpler than OBS for getting started.'
+          reason: 'ScreenPal. Record your screen or webcam in one click. Way simpler than OBS for getting started.'
         });
         categories.push({
           name: '✂️ Editing',
           tool: 'capcut',
-          reason: 'CapCut — Edit videos with templates, auto-captions, and effects. Way easier than professional editors.'
+          reason: 'CapCut. Edit videos with templates, auto-captions, and effects. Way easier than professional editors.'
         });
         categories.push({
           name: '🖼️ Thumbnails',
           tool: 'canva',
-          reason: 'Canva — Drag-and-drop thumbnails in minutes. YouTube-sized templates ready to go.'
+          reason: 'Canva. Drag-and-drop thumbnails in minutes. YouTube-sized templates ready to go.'
         });
       } else if (isStarting && (wantsCost || isFree)) {
         // Free path: phone + free tools
         categories.push({
           name: '✂️ Editing',
           tool: 'capcut',
-          reason: 'CapCut — Completely free video editor with templates, auto-captions, and effects. Works on phone too.'
+          reason: 'CapCut. Completely free video editor with templates, auto-captions, and effects. Works on phone too.'
         });
         categories.push({
           name: '🖼️ Thumbnails',
           tool: 'canva',
-          reason: 'Canva — Free thumbnail templates. Drag, drop, done. No design skills needed.'
+          reason: 'Canva. Free thumbnail templates. Drag, drop, done. No design skills needed.'
         });
         categories.push({
           name: '📝 Scripts & Ideas',
           tool: 'notion',
-          reason: 'Notion — Free. Script templates, content calendar, and video ideas all in one workspace.'
+          reason: 'Notion. Free. Script templates, content calendar, and video ideas all in one workspace.'
         });
       } else if (isStarting && wantsQuality) {
         // Quality starting path
         categories.push({
           name: '🎥 Recording',
           tool: 'obs',
-          reason: 'OBS Studio — Free, powerful, industry standard. More control when you want professional quality.'
+          reason: 'OBS Studio. Free, powerful, industry standard. More control when you want professional quality.'
         });
         categories.push({
           name: '✂️ Editing',
           tool: 'davinci',
-          reason: 'DaVinci Resolve — Hollywood-grade editing and colour grading. Completely free.'
+          reason: 'DaVinci Resolve. Hollywood-grade editing and colour grading. Completely free.'
         });
         categories.push({
           name: '🖼️ Thumbnails',
           tool: 'canva',
-          reason: 'Canva — Quick thumbnails while you focus on content quality. Upgrade to Figma later.'
+          reason: 'Canva. Quick thumbnails while you focus on content quality. Upgrade to Figma later.'
         });
         categories.push({
           name: '🔍 SEO / Growth',
           tool: 'tubebuddy',
-          reason: 'TubeBuddy — A/B test thumbnails, find keywords, track rankings. Free tier to start.'
+          reason: 'TubeBuddy. A/B test thumbnails, find keywords, track rankings. Free tier to start.'
         });
       } else if (isBuilding) {
         // Active creator path
         categories.push({
           name: '🎥 Recording',
           tool: 'obs',
-          reason: 'OBS Studio — Free, powerful, customisable. Scenes, overlays, and streaming built in.'
+          reason: 'OBS Studio. Free, powerful, customisable. Scenes, overlays, and streaming built in.'
         });
         categories.push({
           name: '✂️ Editing',
           tool: 'davinci',
-          reason: 'DaVinci Resolve — Professional editing and colour grading. The free version has everything you need.'
+          reason: 'DaVinci Resolve. Professional editing and colour grading. The free version has everything you need.'
         });
         categories.push({
           name: '🖼️ Thumbnails',
           tool: 'canva',
-          reason: 'Canva — Fast thumbnails and social graphics. Templates for every format.'
+          reason: 'Canva. Fast thumbnails and social graphics. Templates for every format.'
         });
         categories.push({
           name: '🔍 SEO / Growth',
           tool: 'tubebuddy',
-          reason: 'TubeBuddy — A/B test thumbnails, find keywords, and track your rankings.'
+          reason: 'TubeBuddy. A/B test thumbnails, find keywords, and track your rankings.'
         });
         categories.push({
           name: '📝 Scripts & Notes',
           tool: 'notion',
-          reason: 'Notion — Script templates, content calendar, video ideas all in one workspace.'
+          reason: 'Notion. Script templates, content calendar, video ideas all in one workspace.'
         });
       } else if (isGrowing || isSimplifying) {
         // Pro creator path
@@ -914,25 +914,25 @@ function buildStack() {
           name: '🎥 Recording',
           tool: wantsQuality ? 'screenflow' : 'obs',
           reason: wantsQuality
-            ? 'ScreenFlow — Clean Mac-native recording + editing. Professional output, less fiddling.'
-            : 'OBS Studio — Free, powerful, industry standard. You know it, it works.'
+            ? 'ScreenFlow. Clean Mac-native recording + editing. Professional output, less fiddling.'
+            : 'OBS Studio. Free, powerful, industry standard. You know it, it works.'
         });
         categories.push({
           name: '✂️ Editing',
           tool: wantsQuality ? 'finalcut' : 'davinci',
           reason: wantsQuality
-            ? 'Final Cut Pro — Fast rendering on Mac. Magnetic timeline saves hours per video.'
-            : 'DaVinci Resolve — Professional editing and colour grading. Hard to beat for free.'
+            ? 'Final Cut Pro. Fast rendering on Mac. Magnetic timeline saves hours per video.'
+            : 'DaVinci Resolve. Professional editing and colour grading. Hard to beat for free.'
         });
         categories.push({
           name: '🔍 SEO / Growth',
           tool: 'vidiq',
-          reason: 'vidIQ — Keyword research, competitor tracking, AI title suggestions. Level up your discoverability.'
+          reason: 'vidIQ. Keyword research, competitor tracking, AI title suggestions. Level up your discoverability.'
         });
         categories.push({
           name: '🎵 Music',
           tool: 'epidemic',
-          reason: 'Epidemic Sound — Copyright-free music and SFX. No claims, ever. Worth it at scale.'
+          reason: 'Epidemic Sound. Copyright-free music and SFX. No claims, ever. Worth it at scale.'
         });
       }
       break;
@@ -943,87 +943,87 @@ function buildStack() {
         categories.push({
           name: '📧 Platform',
           tool: 'substack',
-          reason: 'Substack — Start writing and building an audience in 5 minutes. Payments, design, and distribution built in.'
+          reason: 'Substack. Start writing and building an audience in 5 minutes. Payments, design, and distribution built in.'
         });
         categories.push({
           name: '📋 Planning',
           tool: 'notion',
-          reason: 'Notion — Editorial calendar, idea bank, and research notes. Your writing companion.'
+          reason: 'Notion. Editorial calendar, idea bank, and research notes. Your writing companion.'
         });
       } else if (isStarting && (wantsCost || isFree)) {
         // Free path
         categories.push({
           name: '📧 Platform',
           tool: 'substack',
-          reason: 'Substack — Completely free to use. Built-in audience discovery, payments when you\'re ready.'
+          reason: 'Substack. Completely free to use. Built-in audience discovery, payments when you\'re ready.'
         });
         categories.push({
           name: '📋 Planning',
           tool: 'notion',
-          reason: 'Notion — Free. Plan your editorial calendar and store research in one place.'
+          reason: 'Notion. Free. Plan your editorial calendar and store research in one place.'
         });
       } else if (isStarting && wantsQuality) {
         // Quality starting path
         categories.push({
           name: '📧 Platform',
           tool: 'substack',
-          reason: 'Substack — Beautiful default design, built-in audience. Start writing now, customise later.'
+          reason: 'Substack. Beautiful default design, built-in audience. Start writing now, customise later.'
         });
         categories.push({
           name: '✍️ Writing',
           tool: 'grammarly',
-          reason: 'Grammarly — Polish every issue. Catches tone, clarity, and grammar before you hit send.'
+          reason: 'Grammarly. Polish every issue. Catches tone, clarity, and grammar before you hit send.'
         });
         categories.push({
           name: '📋 Planning',
           tool: 'notion',
-          reason: 'Notion — Editorial calendar, idea bank, and research notes in one place.'
+          reason: 'Notion. Editorial calendar, idea bank, and research notes in one place.'
         });
       } else if (isBuilding) {
         // Building audience
         categories.push({
           name: '📧 Platform',
           tool: 'beehiiv',
-          reason: 'Beehiiv — Custom design, referral programs, and advanced analytics. Level up from Substack.'
+          reason: 'Beehiiv. Custom design, referral programs, and advanced analytics. Level up from Substack.'
         });
         categories.push({
           name: '✍️ Writing',
           tool: 'grammarly',
-          reason: 'Grammarly — Polish every issue. Catches tone, clarity, and grammar.'
+          reason: 'Grammarly. Polish every issue. Catches tone, clarity, and grammar.'
         });
         categories.push({
           name: '🎨 Design',
           tool: 'canva',
-          reason: 'Canva — Headers, social cards, and lead magnets. Templates for everything.'
+          reason: 'Canva. Headers, social cards, and lead magnets. Templates for everything.'
         });
         categories.push({
           name: '📋 Planning',
           tool: 'notion',
-          reason: 'Notion — Editorial calendar, idea bank, and research notes in one place.'
+          reason: 'Notion. Editorial calendar, idea bank, and research notes in one place.'
         });
       } else if (isGrowing || isSimplifying) {
         // Growth machine
         categories.push({
           name: '📧 Platform',
           tool: 'beehiiv',
-          reason: 'Beehiiv — When you need custom design, referral programs, and monetisation tools. The growth machine.'
+          reason: 'Beehiiv. When you need custom design, referral programs, and monetisation tools. The growth machine.'
         });
         categories.push({
           name: '✍️ Writing',
           tool: 'grammarly',
-          reason: 'Grammarly — Polish every issue. Catches tone, clarity, and grammar.'
+          reason: 'Grammarly. Polish every issue. Catches tone, clarity, and grammar.'
         });
         if (!isFree) {
           categories.push({
             name: '📈 Growth',
             tool: 'sparkloop',
-            reason: 'SparkLoop — Referral system for newsletters. Your readers bring you more readers, automatically.'
+            reason: 'SparkLoop. Referral system for newsletters. Your readers bring you more readers, automatically.'
           });
         }
         categories.push({
           name: '🎨 Design',
           tool: 'canva',
-          reason: 'Canva — Headers, social cards, and lead magnets. Templates for everything.'
+          reason: 'Canva. Headers, social cards, and lead magnets. Templates for everything.'
         });
       }
       break;
@@ -1034,85 +1034,85 @@ function buildStack() {
         categories.push({
           name: '🏪 Store',
           tool: 'gumroad',
-          reason: 'Gumroad — Upload your product, set a price, start selling. That\'s literally it. No monthly fee.'
+          reason: 'Gumroad. Upload your product, set a price, start selling. That\'s literally it. No monthly fee.'
         });
         categories.push({
           name: '🎨 Product Design',
           tool: 'canva',
-          reason: 'Canva — Product images, social ads, and marketing materials. Fast and professional.'
+          reason: 'Canva. Product images, social ads, and marketing materials. Fast and professional.'
         });
       } else if (isStarting && (wantsCost || isFree)) {
         // Free path
         categories.push({
           name: '🏪 Store',
           tool: 'gumroad',
-          reason: 'Gumroad — Free to use, takes a small % per sale. Start selling with zero upfront cost.'
+          reason: 'Gumroad. Free to use, takes a small % per sale. Start selling with zero upfront cost.'
         });
         categories.push({
           name: '🎨 Product Design',
           tool: 'canva',
-          reason: 'Canva — Free templates for product images and social posts. No design skills needed.'
+          reason: 'Canva. Free templates for product images and social posts. No design skills needed.'
         });
         categories.push({
           name: '📊 Analytics',
           tool: 'ga4',
-          reason: 'Google Analytics — Free, powerful, and integrates with everything. Track your traffic.'
+          reason: 'Google Analytics. Free, powerful, and integrates with everything. Track your traffic.'
         });
       } else if (isStarting && wantsQuality) {
         // Quality starting path for physical products
         categories.push({
           name: '🏪 Store',
           tool: 'shopify',
-          reason: 'Shopify — The e-commerce standard. Inventory, shipping, payments — all handled professionally.'
+          reason: 'Shopify. The e-commerce standard. Inventory, shipping, payments, all handled professionally.'
         });
         categories.push({
           name: '🎨 Design',
           tool: 'canva',
-          reason: 'Canva — Product photos, social ads, email headers. Professional results, fast.'
+          reason: 'Canva. Product photos, social ads, email headers. Professional results, fast.'
         });
         categories.push({
           name: '📧 Email Marketing',
           tool: 'mailchimp',
-          reason: 'Mailchimp — Free tier, easy setup. Start building your email list from day one.'
+          reason: 'Mailchimp. Free tier, easy setup. Start building your email list from day one.'
         });
       } else if (isBuilding) {
         // Building path
         categories.push({
           name: '🏪 Store',
           tool: 'shopify',
-          reason: 'Shopify — Inventory, shipping, payments, and a massive app ecosystem. Everything you need.'
+          reason: 'Shopify. Inventory, shipping, payments, and a massive app ecosystem. Everything you need.'
         });
         categories.push({
           name: '📧 Email Marketing',
           tool: 'klaviyo',
-          reason: 'Klaviyo — Built for e-commerce. Abandoned cart emails, segments, and revenue tracking.'
+          reason: 'Klaviyo. Built for e-commerce. Abandoned cart emails, segments, and revenue tracking.'
         });
         categories.push({
           name: '🎨 Design',
           tool: 'canva',
-          reason: 'Canva — Product images, social ads, email headers. Fast and professional.'
+          reason: 'Canva. Product images, social ads, email headers. Fast and professional.'
         });
         categories.push({
           name: '📊 Analytics',
           tool: 'ga4',
-          reason: 'Google Analytics — Track where customers come from and what they buy.'
+          reason: 'Google Analytics. Track where customers come from and what they buy.'
         });
       } else if (isGrowing || isSimplifying) {
         // Growth path
         categories.push({
           name: '🏪 Store',
           tool: 'shopify',
-          reason: 'Shopify — Scales with you. Shopify Plus when you need it, massive app ecosystem.'
+          reason: 'Shopify. Scales with you. Shopify Plus when you need it, massive app ecosystem.'
         });
         categories.push({
           name: '📧 Email Marketing',
           tool: 'klaviyo',
-          reason: 'Klaviyo — Advanced segments, abandoned cart flows, revenue attribution. Built for e-commerce growth.'
+          reason: 'Klaviyo. Advanced segments, abandoned cart flows, revenue attribution. Built for e-commerce growth.'
         });
         categories.push({
           name: '📊 Analytics',
           tool: 'posthog',
-          reason: 'PostHog — Session recordings + funnels. See exactly where customers drop off and fix it.'
+          reason: 'PostHog. Session recordings + funnels. See exactly where customers drop off and fix it.'
         });
       }
       break;
@@ -1123,12 +1123,12 @@ function buildStack() {
         categories.push({
           name: '📱 Build Your App',
           tool: 'lovable',
-          reason: 'Lovable — Build a web app that works on any phone. Deploy instantly, no app store approval needed.'
+          reason: 'Lovable. Build a web app that works on any phone. Deploy instantly, no app store approval needed.'
         });
         categories.push({
           name: '🗄️ Backend',
           tool: 'supabase',
-          reason: 'Supabase — Auth, database, storage, realtime. One backend for your whole app, generous free tier.'
+          reason: 'Supabase. Auth, database, storage, realtime. One backend for your whole app, generous free tier.'
         });
       } else if (isStarting && (wantsCost || isFree)) {
         // Free/cheap no-code path
@@ -1136,74 +1136,74 @@ function buildStack() {
           name: '📱 Build Your App',
           tool: isFree ? 'replit' : 'bubble',
           reason: isFree
-            ? 'Replit — Code and deploy in your browser. Completely free to start. Great for learning and building.'
-            : 'Bubble — Build full apps without code. Drag-and-drop logic, database, and UI. Works on mobile.'
+            ? 'Replit. Code and deploy in your browser. Completely free to start. Great for learning and building.'
+            : 'Bubble. Build full apps without code. Drag-and-drop logic, database, and UI. Works on mobile.'
         });
         categories.push({
           name: '🗄️ Backend',
           tool: 'supabase',
-          reason: 'Supabase — Free tier covers auth, database, and storage. Everything your app needs.'
+          reason: 'Supabase. Free tier covers auth, database, and storage. Everything your app needs.'
         });
       } else if (isStarting && wantsQuality) {
         // Quality native path
         categories.push({
           name: '📱 Framework',
           tool: 'expo',
-          reason: 'Expo (React Native) — One codebase, both platforms. OTA updates and a huge ecosystem.'
+          reason: 'Expo (React Native). One codebase, both platforms. OTA updates and a huge ecosystem.'
         });
         categories.push({
           name: '🗄️ Backend',
           tool: 'supabase',
-          reason: 'Supabase — Auth, database, storage, realtime. One backend for your whole app.'
+          reason: 'Supabase. Auth, database, storage, realtime. One backend for your whole app.'
         });
         categories.push({
           name: '🎨 Design',
           tool: 'figma',
-          reason: 'Figma — Design screens, prototype flows, hand off to dev. The industry standard.'
+          reason: 'Figma. Design screens, prototype flows, hand off to dev. The industry standard.'
         });
       } else if (isBuilding) {
         // Developer building path
         categories.push({
           name: '📱 Framework',
           tool: 'expo',
-          reason: 'Expo (React Native) — One codebase, both platforms. OTA updates. Huge ecosystem.'
+          reason: 'Expo (React Native). One codebase, both platforms. OTA updates. Huge ecosystem.'
         });
         categories.push({
           name: '🗄️ Backend',
           tool: 'supabase',
-          reason: 'Supabase — Auth, database, storage, realtime. One backend for your whole app.'
+          reason: 'Supabase. Auth, database, storage, realtime. One backend for your whole app.'
         });
         categories.push({
           name: '🎨 Design',
           tool: 'figma',
-          reason: 'Figma — Design screens, prototype flows, hand off to dev. The standard.'
+          reason: 'Figma. Design screens, prototype flows, hand off to dev. The standard.'
         });
         categories.push({
           name: '🤖 AI Editor',
           tool: 'cursor',
-          reason: 'Cursor — AI-first code editor. Write React Native components faster with AI assistance.'
+          reason: 'Cursor. AI-first code editor. Write React Native components faster with AI assistance.'
         });
       } else if (isGrowing || isSimplifying) {
         // Growth path
         categories.push({
           name: '📱 Framework',
           tool: 'expo',
-          reason: 'Expo (React Native) — One codebase, both platforms. EAS Build for app store submissions.'
+          reason: 'Expo (React Native). One codebase, both platforms. EAS Build for app store submissions.'
         });
         categories.push({
           name: '🗄️ Backend',
           tool: 'supabase',
-          reason: 'Supabase — Auth, database, storage, realtime. Scales with your user base.'
+          reason: 'Supabase. Auth, database, storage, realtime. Scales with your user base.'
         });
         categories.push({
           name: '🔔 Push Notifications',
           tool: 'onesignal',
-          reason: 'OneSignal — Free tier handles most apps. Segments, scheduling, and automation.'
+          reason: 'OneSignal. Free tier handles most apps. Segments, scheduling, and automation.'
         });
         categories.push({
           name: '📊 Analytics',
           tool: 'amplitude',
-          reason: 'Amplitude — Product analytics built for mobile. Cohorts, funnels, and retention curves.'
+          reason: 'Amplitude. Product analytics built for mobile. Cohorts, funnels, and retention curves.'
         });
       }
       break;
@@ -1214,95 +1214,95 @@ function buildStack() {
         categories.push({
           name: '📡 Host & Distribute',
           tool: 'spotify4podcasters',
-          reason: 'Spotify for Podcasters — Free hosting, distribution to all platforms. Upload and you\'re live.'
+          reason: 'Spotify for Podcasters. Free hosting, distribution to all platforms. Upload and you\'re live.'
         });
         categories.push({
           name: '✂️ Edit & Produce',
           tool: 'descript',
-          reason: 'Descript — Edit audio by editing text. Remove filler words in one click. Record, edit, and publish in one tool.'
+          reason: 'Descript. Edit audio by editing text. Remove filler words in one click. Record, edit, and publish in one tool.'
         });
         categories.push({
           name: '🖼️ Cover Art',
           tool: 'canva',
-          reason: 'Canva — Podcast cover art and episode graphics in minutes. Templates ready to go.'
+          reason: 'Canva. Podcast cover art and episode graphics in minutes. Templates ready to go.'
         });
       } else if (isStarting && (wantsCost || isFree)) {
         // Free path
         categories.push({
           name: '📡 Host & Distribute',
           tool: 'spotify4podcasters',
-          reason: 'Spotify for Podcasters — Completely free hosting and distribution to every platform.'
+          reason: 'Spotify for Podcasters. Completely free hosting and distribution to every platform.'
         });
         categories.push({
           name: '✂️ Editing',
           tool: 'audacity',
-          reason: 'Audacity — Free, open source audio editor. Does everything you need for podcast editing.'
+          reason: 'Audacity. Free, open source audio editor. Does everything you need for podcast editing.'
         });
         categories.push({
           name: '🖼️ Cover Art',
           tool: 'canva',
-          reason: 'Canva — Free podcast cover art templates. Look professional without paying a designer.'
+          reason: 'Canva. Free podcast cover art templates. Look professional without paying a designer.'
         });
       } else if (isStarting && wantsQuality) {
         // Quality starting path
         categories.push({
           name: '🎙️ Recording',
           tool: 'riverside',
-          reason: 'Riverside.fm — Studio-quality remote recording. Local tracks for both audio and video.'
+          reason: 'Riverside.fm. Studio-quality remote recording. Local tracks for both audio and video.'
         });
         categories.push({
           name: '✂️ Editing',
           tool: 'descript',
-          reason: 'Descript — Edit by editing text. Remove filler words, add transitions, export clean audio.'
+          reason: 'Descript. Edit by editing text. Remove filler words, add transitions, export clean audio.'
         });
         categories.push({
           name: '📡 Hosting',
           tool: 'spotify4podcasters',
-          reason: 'Spotify for Podcasters — Free hosting while you build your audience.'
+          reason: 'Spotify for Podcasters. Free hosting while you build your audience.'
         });
       } else if (isBuilding) {
         // Active podcaster
         categories.push({
           name: '🎙️ Recording',
           tool: 'riverside',
-          reason: 'Riverside.fm — Studio-quality remote recording. Separate tracks, video + audio.'
+          reason: 'Riverside.fm. Studio-quality remote recording. Separate tracks, video + audio.'
         });
         categories.push({
           name: '✂️ Editing',
           tool: 'descript',
-          reason: 'Descript — Edit audio by editing text. Remove filler words in one click.'
+          reason: 'Descript. Edit audio by editing text. Remove filler words in one click.'
         });
         categories.push({
           name: '📡 Hosting',
           tool: 'transistor',
-          reason: 'Transistor — Premium hosting with analytics, multiple shows, and private podcasts.'
+          reason: 'Transistor. Premium hosting with analytics, multiple shows, and private podcasts.'
         });
         categories.push({
           name: '📝 Show Notes',
           tool: 'notion',
-          reason: 'Notion — Guest research, episode outlines, and show notes. One workspace for everything.'
+          reason: 'Notion. Guest research, episode outlines, and show notes. One workspace for everything.'
         });
       } else if (isGrowing || isSimplifying) {
         // Growth path
         categories.push({
           name: '🎙️ Recording',
           tool: 'riverside',
-          reason: 'Riverside.fm — Studio-quality recording. Your listeners can hear the difference.'
+          reason: 'Riverside.fm. Studio-quality recording. Your listeners can hear the difference.'
         });
         categories.push({
           name: '✂️ Editing',
           tool: 'descript',
-          reason: 'Descript — Edit by editing text. Fastest workflow for regular episode production.'
+          reason: 'Descript. Edit by editing text. Fastest workflow for regular episode production.'
         });
         categories.push({
           name: '📡 Hosting',
           tool: 'transistor',
-          reason: 'Transistor — Advanced analytics, multiple shows, private feeds. Built for serious podcasters.'
+          reason: 'Transistor. Advanced analytics, multiple shows, private feeds. Built for serious podcasters.'
         });
         categories.push({
           name: '📈 Growth',
           tool: 'opusclip',
-          reason: 'Opus Clip — AI turns episodes into viral short clips for social media. Grow your audience on autopilot.'
+          reason: 'Opus Clip. AI turns episodes into viral short clips for social media. Grow your audience on autopilot.'
         });
       }
       break;
@@ -1313,108 +1313,108 @@ function buildStack() {
         categories.push({
           name: '🌐 Portfolio',
           tool: 'carrd',
-          reason: 'Carrd — Build a clean portfolio page in 10 minutes. No design skills needed. From $9/year.'
+          reason: 'Carrd. Build a clean portfolio page in 10 minutes. No design skills needed. From $9/year.'
         });
         categories.push({
           name: '💳 Invoicing',
           tool: 'wave',
-          reason: 'Wave — Free invoicing, accounting, and receipts. Built for freelancers, zero cost.'
+          reason: 'Wave. Free invoicing, accounting, and receipts. Built for freelancers, zero cost.'
         });
         categories.push({
           name: '📋 Project Management',
           tool: 'notion',
-          reason: 'Notion — Client projects, task tracking, meeting notes. Your second brain, completely free.'
+          reason: 'Notion. Client projects, task tracking, meeting notes. Your second brain, completely free.'
         });
       } else if (isStarting && (wantsCost || isFree)) {
         // Free path
         categories.push({
           name: '🌐 Portfolio',
           tool: 'carrd',
-          reason: 'Carrd — One-page portfolio site. Free tier available, or $9/year for custom domain.'
+          reason: 'Carrd. One-page portfolio site. Free tier available, or $9/year for custom domain.'
         });
         categories.push({
           name: '💳 Invoicing',
           tool: 'wave',
-          reason: 'Wave — Completely free invoicing and accounting. No catch, no hidden fees.'
+          reason: 'Wave. Completely free invoicing and accounting. No catch, no hidden fees.'
         });
         categories.push({
           name: '📋 Project Management',
           tool: 'notion',
-          reason: 'Notion — Free for personal use. Tasks, notes, client projects — all in one.'
+          reason: 'Notion. Free for personal use. Tasks, notes, client projects, all in one.'
         });
         categories.push({
           name: '🤝 Find Work',
           tool: 'contra',
-          reason: 'Contra — Find freelance work with zero commission. Built for independents.'
+          reason: 'Contra. Find freelance work with zero commission. Built for independents.'
         });
       } else if (isStarting && wantsQuality) {
         // Quality starting path
         categories.push({
           name: '🌐 Portfolio',
           tool: 'framer',
-          reason: 'Framer — Beautiful, interactive portfolio sites. Impress clients before the first meeting.'
+          reason: 'Framer. Beautiful, interactive portfolio sites. Impress clients before the first meeting.'
         });
         categories.push({
           name: '💳 Invoicing & Contracts',
           tool: 'bonsai',
-          reason: 'Bonsai — Contracts, proposals, and invoicing in one place. Built specifically for freelancers.'
+          reason: 'Bonsai. Contracts, proposals, and invoicing in one place. Built specifically for freelancers.'
         });
         categories.push({
           name: '📋 Project Management',
           tool: 'notion',
-          reason: 'Notion — Client projects, task tracking, meeting notes. Your second brain.'
+          reason: 'Notion. Client projects, task tracking, meeting notes. Your second brain.'
         });
       } else if (isBuilding || isGrowing || isSimplifying) {
         // Growth path
         categories.push({
           name: '🌐 Portfolio',
           tool: 'framer',
-          reason: 'Framer — Beautiful, interactive portfolio sites. Stand out from template portfolios.'
+          reason: 'Framer. Beautiful, interactive portfolio sites. Stand out from template portfolios.'
         });
         categories.push({
           name: '💳 Invoicing & Contracts',
           tool: 'bonsai',
-          reason: 'Bonsai — Contracts, proposals, invoicing, and accounting. One tool for all the boring stuff.'
+          reason: 'Bonsai. Contracts, proposals, invoicing, and accounting. One tool for all the boring stuff.'
         });
         categories.push({
           name: '⏱️ Time Tracking',
           tool: 'toggl',
-          reason: 'Toggl — Simple time tracking. One click to start. Know exactly what to bill.'
+          reason: 'Toggl. Simple time tracking. One click to start. Know exactly what to bill.'
         });
         categories.push({
           name: '📋 Project Management',
           tool: 'notion',
-          reason: 'Notion — Client projects, task tracking, meeting notes. Your second brain.'
+          reason: 'Notion. Client projects, task tracking, meeting notes. Your second brain.'
         });
       }
       break;
 
     case 'student':
-      // Special case — always simple and free
+      // Special case, always simple and free
       categories.push({
         name: '🔍 Research',
         tool: 'perplexity',
-        reason: 'Perplexity — AI research with real citations. Better than Google for academic work.'
+        reason: 'Perplexity. AI research with real citations. Better than Google for academic work.'
       });
       categories.push({
         name: '📚 Study Notes',
         tool: 'notebooklm',
-        reason: 'NotebookLM — Upload your notes, get study guides + audio summaries. By Google, totally free.'
+        reason: 'NotebookLM. Upload your notes, get study guides + audio summaries. By Google, totally free.'
       });
       categories.push({
         name: '✍️ Writing',
         tool: 'grammarly',
-        reason: 'Grammarly — Polish essays without changing your voice. Free tier is excellent.'
+        reason: 'Grammarly. Polish essays without changing your voice. Free tier is excellent.'
       });
       categories.push({
         name: '📋 Organisation',
         tool: 'notion',
-        reason: 'Notion — Free for students. Notes, tasks, deadlines, and project management in one place.'
+        reason: 'Notion. Free for students. Notes, tasks, deadlines, and project management in one place.'
       });
       categories.push({
         name: '🧠 Revision',
         tool: 'anki',
-        reason: 'Anki — Spaced repetition flashcards. Proven to boost long-term retention. Free.'
+        reason: 'Anki. Spaced repetition flashcards. Proven to boost long-term retention. Free.'
       });
       break;
 
@@ -1424,85 +1424,85 @@ function buildStack() {
         categories.push({
           name: '📝 Platform',
           tool: 'substack',
-          reason: 'Substack — Start writing and building an audience in 5 minutes. Built-in readers, payments, and SEO.'
+          reason: 'Substack. Start writing and building an audience in 5 minutes. Built-in readers, payments, and SEO.'
         });
         categories.push({
           name: '📋 Planning',
           tool: 'notion',
-          reason: 'Notion — Draft, outline, and organise all your content in one place. Free.'
+          reason: 'Notion. Draft, outline, and organise all your content in one place. Free.'
         });
       } else if (isStarting && (wantsCost || isFree)) {
         // Free path
         categories.push({
           name: '📝 Platform',
           tool: 'substack',
-          reason: 'Substack — Completely free. Built-in audience discovery means readers find you.'
+          reason: 'Substack. Completely free. Built-in audience discovery means readers find you.'
         });
         categories.push({
           name: '📋 Planning',
           tool: 'notion',
-          reason: 'Notion — Free. Draft, plan, and organise your content calendar.'
+          reason: 'Notion. Free. Draft, plan, and organise your content calendar.'
         });
       } else if (isStarting && wantsQuality) {
         // Quality starting path
         categories.push({
           name: '📝 Platform',
           tool: 'ghost',
-          reason: 'Ghost — Beautiful publishing platform. Built-in SEO, newsletters, and memberships.'
+          reason: 'Ghost. Beautiful publishing platform. Built-in SEO, newsletters, and memberships.'
         });
         categories.push({
           name: '✍️ Writing',
           tool: 'iawriter',
-          reason: 'iA Writer — Distraction-free writing. Markdown, focus mode, beautiful typography.'
+          reason: 'iA Writer. Distraction-free writing. Markdown, focus mode, beautiful typography.'
         });
         categories.push({
           name: '🔍 SEO',
           tool: 'ubersuggest',
-          reason: 'Ubersuggest — Free keyword ideas and site audits. Great for getting started with SEO.'
+          reason: 'Ubersuggest. Free keyword ideas and site audits. Great for getting started with SEO.'
         });
       } else if (isBuilding) {
         // Developer/builder blog
         categories.push({
           name: '📝 Framework',
           tool: 'astro',
-          reason: 'Astro — Lightning fast static sites. Markdown-based, developer-friendly, perfect for blogs.'
+          reason: 'Astro. Lightning fast static sites. Markdown-based, developer-friendly, perfect for blogs.'
         });
         categories.push({
           name: '☁️ Hosting',
           tool: 'vercel',
-          reason: 'Vercel — Push to deploy. Your blog is live in seconds after every commit.'
+          reason: 'Vercel. Push to deploy. Your blog is live in seconds after every commit.'
         });
         categories.push({
           name: '✍️ Writing',
           tool: 'iawriter',
-          reason: 'iA Writer — Distraction-free Markdown writing. Focus mode and beautiful typography.'
+          reason: 'iA Writer. Distraction-free Markdown writing. Focus mode and beautiful typography.'
         });
         categories.push({
           name: '🔍 SEO',
           tool: 'ubersuggest',
-          reason: 'Ubersuggest — Free keyword ideas and site audits. Enough to start ranking.'
+          reason: 'Ubersuggest. Free keyword ideas and site audits. Enough to start ranking.'
         });
       } else if (isGrowing || isSimplifying) {
         // Growth path
         categories.push({
           name: '📝 Platform',
           tool: 'ghost',
-          reason: 'Ghost — SEO, newsletters, memberships, and beautiful design. The serious blogging platform.'
+          reason: 'Ghost. SEO, newsletters, memberships, and beautiful design. The serious blogging platform.'
         });
         categories.push({
           name: '🔍 SEO',
           tool: 'ahrefs',
-          reason: 'Ahrefs — Keyword research, backlink tracking, content gap analysis. The gold standard for SEO.'
+          reason: 'Ahrefs. Keyword research, backlink tracking, content gap analysis. The gold standard for SEO.'
         });
         categories.push({
           name: '📊 Analytics',
           tool: 'plausible',
-          reason: 'Plausible — Simple, privacy-first analytics. See what matters without the bloat.'
+          reason: 'Plausible. Simple, privacy-first analytics. See what matters without the bloat.'
         });
         categories.push({
           name: '🖼️ Images',
           tool: 'canva',
-          reason: 'Canva — Blog headers, social cards, and infographics. Unsplash built right in.'
+          reason: 'Canva. Blog headers, social cards, and infographics. Unsplash built right in.'
         });
       }
       break;
@@ -1513,69 +1513,69 @@ function buildStack() {
         categories.push({
           name: '🏪 Sell Your Product',
           tool: 'gumroad',
-          reason: 'Gumroad — Upload your product, set a price, start selling. That\'s literally it. No monthly fee.'
+          reason: 'Gumroad. Upload your product, set a price, start selling. That\'s literally it. No monthly fee.'
         });
         categories.push({
           name: '🎨 Product Design',
           tool: 'canva',
-          reason: 'Canva — Design product covers, slides, and marketing materials. Templates for everything.'
+          reason: 'Canva. Design product covers, slides, and marketing materials. Templates for everything.'
         });
       } else if (isStarting && (wantsCost || isFree)) {
         // Free path
         categories.push({
           name: '🏪 Sell Your Product',
           tool: 'gumroad',
-          reason: 'Gumroad — Free to use, takes a small percentage per sale. Zero upfront cost to start selling.'
+          reason: 'Gumroad. Free to use, takes a small percentage per sale. Zero upfront cost to start selling.'
         });
         categories.push({
           name: '🎨 Product Design',
           tool: 'canva',
-          reason: 'Canva — Free templates for product covers and marketing. No design skills needed.'
+          reason: 'Canva. Free templates for product covers and marketing. No design skills needed.'
         });
       } else if (isStarting && wantsQuality) {
         // Quality starting path
         categories.push({
           name: '🏪 Sell Your Product',
           tool: 'lemonsqueezy',
-          reason: 'Lemon Squeezy — Handles global taxes, license keys, subscriptions. Professional from day one.'
+          reason: 'Lemon Squeezy. Handles global taxes, license keys, subscriptions. Professional from day one.'
         });
         categories.push({
           name: '🌐 Landing Page',
           tool: 'framer',
-          reason: 'Framer — Interactive, animated landing pages. Make your product look premium.'
+          reason: 'Framer. Interactive, animated landing pages. Make your product look premium.'
         });
         categories.push({
           name: '📧 Email List',
           tool: 'beehiiv',
-          reason: 'Beehiiv — Build your email list with newsletter + landing pages + referrals.'
+          reason: 'Beehiiv. Build your email list with newsletter + landing pages + referrals.'
         });
       } else if (isBuilding || isGrowing || isSimplifying) {
         // Growth path
         categories.push({
           name: '🏪 Platform',
           tool: 'lemonsqueezy',
-          reason: 'Lemon Squeezy — Handles global taxes, license keys, subscriptions, and clean checkout pages.'
+          reason: 'Lemon Squeezy. Handles global taxes, license keys, subscriptions, and clean checkout pages.'
         });
         categories.push({
           name: '🌐 Landing Page',
           tool: 'framer',
-          reason: 'Framer — Interactive, animated landing pages. Stand out from template sites.'
+          reason: 'Framer. Interactive, animated landing pages. Stand out from template sites.'
         });
         categories.push({
           name: '📧 Email List',
           tool: 'beehiiv',
-          reason: 'Beehiiv — Newsletter + landing pages + referrals. Grow your audience and sell to them.'
+          reason: 'Beehiiv. Newsletter + landing pages + referrals. Grow your audience and sell to them.'
         });
         categories.push({
           name: '🎨 Design',
           tool: 'canva',
-          reason: 'Canva — Product covers, social graphics, and marketing materials. Fast and professional.'
+          reason: 'Canva. Product covers, social graphics, and marketing materials. Fast and professional.'
         });
       }
       break;
   }
 
-  // Apply budget filter — remove paid tools when budget is "free"
+  // Apply budget filter, remove paid tools when budget is "free"
   if (isFree) {
     categories = categories.filter(cat => {
       const tool = TOOLS[cat.tool];
@@ -1692,7 +1692,7 @@ function showResults() {
   document.getElementById('stackBadge').textContent = '🛠️ ' + stackName;
   document.getElementById('stackTitle').textContent = stackName;
   document.getElementById('stackSubtitle').textContent = isStudent
-    ? "Here are essential free tools for students — plus we've got a dedicated section for you."
+    ? "Here are essential free tools for students, plus we've got a dedicated section for you."
     : "Based on your project and preferences, here's exactly what you need.";
 
   // Student special
@@ -1782,13 +1782,13 @@ function saveShare() {
 
 function shareTwitter() {
   const name = getStackName(state.projectType);
-  const text = `Just built my personalised tool stack on @fewertools 🛠️\n\n${name} — the exact tools I need, nothing else.\n\nBuild yours in 30 seconds:`;
+  const text = `Just built my personalised tool stack on @fewertools 🛠️\n\n${name}, the exact tools I need, nothing else.\n\nBuild yours in 30 seconds:`;
   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
 }
 
 function shareWhatsApp() {
   const name = getStackName(state.projectType);
-  const text = `Check this out — I got a personalised tool stack recommendation for my project 🚀\n\n${name}\n\n${window.location.href}`;
+  const text = `Check this out. I got a personalised tool stack recommendation for my project 🚀\n\n${name}\n\n${window.location.href}`;
   window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
 }
 

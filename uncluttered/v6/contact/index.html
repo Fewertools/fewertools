@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="djODkIufikulfN-HqVngIFNu3ITlUAIJCu8s1BbVKs4" />
   <link rel="canonical" href="https://fewertools.com/contact/">
-  <title>Contact — Fewer Tools</title>
+  <title>Contact - Fewer Tools</title>
   <meta name="description" content="Got a question, suggestion, or partnership idea? Get in touch with the team behind Fewer Tools.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fewertools.com/contact/">
-  <meta property="og:title" content="Contact — Fewer Tools">
+  <meta property="og:title" content="Contact - Fewer Tools">
   <meta property="og:description" content="Got a question, suggestion, or partnership idea? Get in touch.">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -28,7 +28,7 @@
       --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.6; }
     h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
     a { color: inherit; text-decoration: none; }
@@ -287,7 +287,7 @@
       nav.classList.remove('open');
     }));
 
-    // Form handling — mailto-based (no backend needed)
+    // Form handling - mailto-based (no backend needed)
     const form = document.getElementById('contactForm');
     const success = document.getElementById('formSuccess');
     form.addEventListener('submit', (e) => {
@@ -296,7 +296,7 @@
       const email = form.email.value;
       const topic = form.topic.options[form.topic.selectedIndex].text;
       const message = form.message.value;
-      const subject = 'Fewer Tools — ' + topic;
+      const subject = 'Fewer Tools - ' + topic;
       const body = 'From: ' + name + ' (' + email + ')\nTopic: ' + topic + '\n\n' + message;
       window.location.href = 'mailto:clinton@fewertools.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       // Show success after redirect

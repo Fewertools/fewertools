@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://fewertools.com/workflows/idea-to-mvp.html">
-  <title>Idea to MVP in a Weekend — Tool Workflow — Fewer Tools</title>
+  <title>Idea to MVP in a Weekend. Tool Workflow - Fewer Tools</title>
   <meta name="description" content="The exact tool workflow to go from napkin sketch to deployed product in 48 hours. Claude → v0 → Cursor → Supabase → Vercel.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF; --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8; --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1); --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12); --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif; --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px; --ease-out: cubic-bezier(0.22, 1, 0.36, 1); }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.6; }
     h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
     a { color: inherit; text-decoration: none; }
@@ -105,7 +105,7 @@
     <div class="container">
       <div class="breadcrumb reveal"><a href="./">← Workflows</a></div>
       <h1 class="reveal">From Idea to MVP in a Weekend 🚀</h1>
-      <p class="subtitle reveal">The exact tool sequence to go from "what if..." to a deployed, working product in 48 hours. No fluff, no filler — just the steps that actually work.</p>
+      <p class="subtitle reveal">The exact tool sequence to go from "what if..." to a deployed, working product in 48 hours. No fluff, no filler, just the steps that actually work.</p>
     </div>
   </section>
 
@@ -133,9 +133,9 @@
         <h3>Saturday Morning: Think with Claude (2 hours)</h3>
         <p>Don't open your code editor. Open Claude. Describe your idea, your target user, and the core problem. Ask Claude to:</p>
         <ul>
-          <li>Poke holes in your idea — what would make this fail?</li>
-          <li>Define the MVP scope — what's the ONE thing it needs to do?</li>
-          <li>Write a technical spec — database schema, API routes, key components</li>
+          <li>Poke holes in your idea, what would make this fail?</li>
+          <li>Define the MVP scope, what's the ONE thing it needs to do?</li>
+          <li>Write a technical spec, database schema, API routes, key components</li>
           <li>List the exact pages/screens needed (keep it to 3-5 max)</li>
         </ul>
         <p>You'll walk away with a clear spec that prevents scope creep later.</p>
@@ -145,7 +145,7 @@
       <div class="step reveal">
         <div class="step-number">2</div>
         <h3>Saturday Late Morning: Prototype UI with v0 (2 hours)</h3>
-        <p>Take your spec from Claude and paste it into v0. Ask it to generate your main page components. You're not building the final UI — you're getting a visual prototype that's actually made of real React + Tailwind code. This means you can use it directly later.</p>
+        <p>Take your spec from Claude and paste it into v0. Ask it to generate your main page components. You're not building the final UI, you're getting a visual prototype that's actually made of real React + Tailwind code. This means you can use it directly later.</p>
         <p>Generate 3-5 components, iterate on the ones that look right, and download the code. You now have production-quality UI components before lunch.</p>
         <span class="tool-badge"><img src="https://cdn.simpleicons.org/vercel/000000" alt="Saturday Afternoon: Wire it up in Cursor (4 hours) icon">v0</span>
       </div>
@@ -158,7 +158,7 @@
           <li>Connect the components together with routing</li>
           <li>Add form handling and state management</li>
           <li>Write API routes for your backend logic</li>
-          <li>Feed it your Claude spec for context — Cursor's codebase awareness makes this seamless</li>
+          <li>Feed it your Claude spec for context. Cursor's codebase awareness makes this seamless</li>
         </ul>
         <p>By dinner, you should have a working frontend with placeholder data.</p>
         <span class="tool-badge"><img src="https://cdn.simpleicons.org/cursor/000000" alt="Sunday Morning: Add the backend with Supabase (3 hours) icon">Cursor</span>
@@ -170,7 +170,7 @@
         <p>Create a Supabase project. Take the database schema from your Claude spec and create the tables. Supabase gives you:</p>
         <ul>
           <li>Postgres database with a visual table editor</li>
-          <li>Auth (email/password, Google, GitHub) — 5 minutes to set up</li>
+          <li>Auth (email/password, Google, GitHub), 5 minutes to set up</li>
           <li>Row-level security policies for protecting data</li>
           <li>Auto-generated REST and GraphQL APIs</li>
         </ul>
@@ -182,7 +182,7 @@
         <div class="step-number">5</div>
         <h3>Sunday Afternoon: Deploy on Vercel (30 min)</h3>
         <p>Push to GitHub. Connect the repo to Vercel. Click deploy. That's literally it. Set your environment variables for Supabase, and you have a live URL you can share with the world.</p>
-        <p>Every future push auto-deploys. Every PR gets a preview URL. You're not just deployed — you have a professional CI/CD pipeline.</p>
+        <p>Every future push auto-deploys. Every PR gets a preview URL. You're not just deployed, you have a professional CI/CD pipeline.</p>
         <span class="tool-badge"><img src="https://cdn.simpleicons.org/vercel/000000" alt="💡 Pro tip: logo">Vercel</span>
       </div>
 

@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://fewertools.com/students/quiz/">
-  <title>Student Tool Quiz — Find Your Perfect Stack — Fewer Tools</title>
+  <title>Student Tool Quiz. Find Your Perfect Stack - Fewer Tools</title>
   <meta name="description" content="Answer 6 quick questions and get a personalised AI tool stack for your studies. 60 seconds. Completely free.">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://fewertools.com/students/quiz/">
-  <meta property="og:title" content="Find Your Student Stack — 60 Second Quiz">
+  <meta property="og:title" content="Find Your Student Stack, 60 Second Quiz">
   <meta property="og:description" content="Answer 6 questions, get your personalised AI tool stack. Free.">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -28,7 +28,7 @@
       --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; min-height: 100vh; }
     h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
     a { color: inherit; text-decoration: none; }
@@ -162,7 +162,7 @@
       <div class="quiz-step active" data-step="1">
         <span class="quiz-emoji">📚</span>
         <h2>What are you studying?</h2>
-        <p class="subtitle">Pick the closest match — this shapes your tool recommendations.</p>
+        <p class="subtitle">Pick the closest match, this shapes your tool recommendations.</p>
         <div class="options" data-key="subject">
           <div class="option" data-value="stem"><span class="option-icon">🔬</span><span class="option-text">STEM (Science, Maths, Engineering)</span><span class="option-check">✓</span></div>
           <div class="option" data-value="cs"><span class="option-icon">💻</span><span class="option-text">Computer Science / IT</span><span class="option-check">✓</span></div>
@@ -180,7 +180,7 @@
       <div class="quiz-step" data-step="2">
         <span class="quiz-emoji">😩</span>
         <h2>What's your biggest struggle?</h2>
-        <p class="subtitle">Be honest — we've all been there.</p>
+        <p class="subtitle">Be honest, we've all been there.</p>
         <div class="options" data-key="struggle">
           <div class="option" data-value="writing"><span class="option-icon">✍️</span><span class="option-text">Writing essays and assignments</span><span class="option-check">✓</span></div>
           <div class="option" data-value="research"><span class="option-icon">🔍</span><span class="option-text">Finding and organising sources</span><span class="option-check">✓</span></div>
@@ -226,9 +226,9 @@
       <div class="quiz-step" data-step="5">
         <span class="quiz-emoji">💰</span>
         <h2>What's your budget for tools?</h2>
-        <p class="subtitle">No judgement — most of our picks are free anyway.</p>
+        <p class="subtitle">No judgement, most of our picks are free anyway.</p>
         <div class="options" data-key="budget">
-          <div class="option" data-value="free"><span class="option-icon">🆓</span><span class="option-text">£0 — free tools only</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="free"><span class="option-icon">🆓</span><span class="option-text">£0, free tools only</span><span class="option-check">✓</span></div>
           <div class="option" data-value="low"><span class="option-icon">🪙</span><span class="option-text">Up to £5/month</span><span class="option-check">✓</span></div>
           <div class="option" data-value="medium"><span class="option-icon">💳</span><span class="option-text">Up to £15/month</span><span class="option-check">✓</span></div>
           <div class="option" data-value="any"><span class="option-icon">💎</span><span class="option-text">Whatever works best</span><span class="option-check">✓</span></div>
@@ -358,37 +358,37 @@
 
       // Subject-based primary tools (including course-specific picks)
       if (subject === 'cs') {
-        tools.push('copilot'); reasons.copilot = 'Free for CS students — AI pair programming in VS Code';
-        tools.push('cursor'); reasons.cursor = 'AI-first code editor with chat — debug faster';
+        tools.push('copilot'); reasons.copilot = 'Free for CS students. AI pair programming in VS Code';
+        tools.push('cursor'); reasons.cursor = 'AI-first code editor with chat, debug faster';
       } else if (subject === 'stem') {
         tools.push('wolfram'); reasons.wolfram = 'Solve equations, plot graphs, check your working';
-        tools.push('overleaf'); reasons.overleaf = 'Write papers and reports in LaTeX — free and collaborative';
-        if (budget !== 'free') { tools.push('matlab'); reasons.matlab = 'MATLAB student license — essential for engineering and data'; }
+        tools.push('overleaf'); reasons.overleaf = 'Write papers and reports in LaTeX, free and collaborative';
+        if (budget !== 'free') { tools.push('matlab'); reasons.matlab = 'MATLAB student license, essential for engineering and data'; }
       } else if (subject === 'medicine') {
-        tools.push('anki'); reasons.anki = 'Med students swear by it — spaced repetition for 1000s of facts';
+        tools.push('anki'); reasons.anki = 'Med students swear by it, spaced repetition for 1000s of facts';
         tools.push('osmosis'); reasons.osmosis = 'Visual explanations of medical concepts + board prep';
-        tools.push('completeanatomy'); reasons.completeanatomy = '3D anatomy atlas — interactive, detailed, and beautiful';
+        tools.push('completeanatomy'); reasons.completeanatomy = '3D anatomy atlas, interactive, detailed, and beautiful';
         if (budget !== 'free') { tools.push('amboss'); reasons.amboss = 'Clinical knowledge library with integrated Qbank'; }
       } else if (subject === 'law') {
         tools.push('perplexity'); reasons.perplexity = 'Research case law and legislation with cited sources';
         tools.push('zotero'); reasons.zotero = 'Generate OSCOLA citations automatically';
-        tools.push('westlaw'); reasons.westlaw = 'Most unis provide free access — essential for case research';
+        tools.push('westlaw'); reasons.westlaw = 'Most unis provide free access, essential for case research';
       } else if (subject === 'humanities') {
-        tools.push('perplexity'); reasons.perplexity = 'Research with cited sources — perfect for essays';
+        tools.push('perplexity'); reasons.perplexity = 'Research with cited sources, perfect for essays';
         tools.push('grammarly'); reasons.grammarly = 'Polish your writing without changing your voice';
-        tools.push('zotero'); reasons.zotero = 'Manage citations in Harvard, MLA, Chicago — any style';
+        tools.push('zotero'); reasons.zotero = 'Manage citations in Harvard, MLA, Chicago, any style';
       } else if (subject === 'social') {
         tools.push('perplexity'); reasons.perplexity = 'Find peer-reviewed studies with cited sources';
-        tools.push('spss'); reasons.spss = 'JASP is a free SPSS alternative — stats analysis made easy';
+        tools.push('spss'); reasons.spss = 'JASP is a free SPSS alternative, stats analysis made easy';
         if (year === 'final' || year === 'postgrad') { tools.push('nvivo'); reasons.nvivo = 'Qualitative data analysis for dissertations and research'; }
       } else if (subject === 'business') {
         tools.push('perplexity'); reasons.perplexity = 'Market research, industry data, with cited sources';
         tools.push('notion'); reasons.notion = 'Organise case studies, notes, and group projects';
-        tools.push('tableau'); reasons.tableau = 'Free for students — professional data visualisation';
+        tools.push('tableau'); reasons.tableau = 'Free for students, professional data visualisation';
       } else if (subject === 'creative') {
-        tools.push('canva'); reasons.canva = 'Free Pro with student email — design anything';
-        tools.push('figma'); reasons.figma = 'Free Education plan — industry-standard design tool';
-        tools.push('behance'); reasons.behance = 'Build your portfolio — showcase work to future employers';
+        tools.push('canva'); reasons.canva = 'Free Pro with student email, design anything';
+        tools.push('figma'); reasons.figma = 'Free Education plan, industry-standard design tool';
+        tools.push('behance'); reasons.behance = 'Build your portfolio, showcase work to future employers';
       }
 
       // Struggle-based
@@ -406,11 +406,11 @@
         tools.push('notebooklm'); reasons.notebooklm = 'Upload notes → get study guides + audio summaries';
       }
       if (struggle === 'focus') {
-        tools.push('forest'); reasons.forest = 'Block distracting apps — grow a tree while you study';
+        tools.push('forest'); reasons.forest = 'Block distracting apps, grow a tree while you study';
       }
       if (struggle === 'deadlines') {
         if (!tools.includes('notion')) { tools.push('notion'); reasons.notion = reasons.notion || 'Track every deadline, assignment, and reading list'; }
-        tools.push('todoist'); reasons.todoist = 'Simple task management — "Essay due Friday 5pm"';
+        tools.push('todoist'); reasons.todoist = 'Simple task management, "Essay due Friday 5pm"';
       }
       if (struggle === 'maths') {
         if (!tools.includes('wolfram')) { tools.push('wolfram'); reasons.wolfram = reasons.wolfram || 'Step-by-step solutions for any equation'; }
@@ -422,14 +422,14 @@
 
       // Study style
       if (style === 'flashcards') {
-        tools.push('anki'); reasons.anki = 'Spaced repetition flashcards — proven to boost retention';
+        tools.push('anki'); reasons.anki = 'Spaced repetition flashcards, proven to boost retention';
       }
       if (style === 'audio') {
         if (!tools.includes('notebooklm')) { tools.push('notebooklm'); reasons.notebooklm = reasons.notebooklm || 'Turns your notes into podcast-style audio summaries'; }
-        tools.push('otterai'); reasons.otterai = 'Auto-transcribe lectures — never miss a word';
+        tools.push('otterai'); reasons.otterai = 'Auto-transcribe lectures, never miss a word';
       }
       if (style === 'reading') {
-        tools.push('chatpdf'); reasons.chatpdf = 'Chat with any PDF — ask questions about dense readings';
+        tools.push('chatpdf'); reasons.chatpdf = 'Chat with any PDF, ask questions about dense readings';
       }
       if (style === 'visual') {
         if (!tools.includes('gamma')) { tools.push('gamma'); reasons.gamma = reasons.gamma || 'Create visual presentations and documents'; }
@@ -438,10 +438,10 @@
 
       // Year-based additions
       if ((year === 'final' || year === 'postgrad') && !tools.includes('zotero')) {
-        tools.push('zotero'); reasons.zotero = reasons.zotero || 'Essential for dissertation — manage 100+ sources effortlessly';
+        tools.push('zotero'); reasons.zotero = reasons.zotero || 'Essential for dissertation, manage 100+ sources effortlessly';
       }
       if ((year === 'final' || year === 'postgrad') && !tools.includes('consensus')) {
-        tools.push('consensus'); reasons.consensus = 'Search peer-reviewed papers only — perfect for literature reviews';
+        tools.push('consensus'); reasons.consensus = 'Search peer-reviewed papers only, perfect for literature reviews';
       }
 
       // Ensure essentials are covered
@@ -452,7 +452,7 @@
         tools.push('notion'); reasons.notion = reasons.notion || 'One app for notes, tasks, and deadlines';
       }
       if (!tools.includes('perplexity')) {
-        tools.push('perplexity'); reasons.perplexity = reasons.perplexity || 'AI-powered research — better than Google for academic work';
+        tools.push('perplexity'); reasons.perplexity = reasons.perplexity || 'AI-powered research, better than Google for academic work';
       }
 
       // Focus tool fallback
@@ -477,7 +477,7 @@
         medicine: 'Medicine', social: 'Social Sciences'
       };
       const yearNames = { first: 'First Year', second: 'Second Year', final: 'Final Year', postgrad: 'Postgrad' };
-      return `${subjectNames[answers.subject] || ''} — ${yearNames[answers.year] || ''}`;
+      return `${subjectNames[answers.subject] || ''}, ${yearNames[answers.year] || ''}`;
     }
 
     // Option selection
@@ -578,7 +578,7 @@
       window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://fewertools.com/students/quiz/')}`, '_blank');
     }
     function shareWhatsApp() {
-      const text = `Found this quiz that gives you a personalised AI tool stack for uni — mine was spot on 👀\n\nhttps://fewertools.com/students/quiz/`;
+      const text = `Found this quiz that gives you a personalised AI tool stack for uni, mine was spot on 👀\n\nhttps://fewertools.com/students/quiz/`;
       window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     }
     function copyLink() {

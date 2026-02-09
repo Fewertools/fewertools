@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://fewertools.com/workflows/analytics-setup.html">
-  <title>Analytics Setup Guide — Minimal Stack — Fewer Tools</title>
+  <title>Analytics Setup Guide. Minimal Stack - Fewer Tools</title>
   <meta name="description" content="The minimal analytics setup for startups. PostHog for product analytics, Sentry for errors, Metabase for dashboards. You don't need 5 analytics tools.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF; --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8; --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1); --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12); --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif; --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px; --ease-out: cubic-bezier(0.22, 1, 0.36, 1); }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.6; }
     h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
     a { color: inherit; text-decoration: none; }
@@ -105,7 +105,7 @@
     <div class="container">
       <div class="breadcrumb reveal"><a href="./">← Workflows</a></div>
       <h1 class="reveal">Analytics That Actually Help 📊</h1>
-      <p class="subtitle reveal">You don't need 5 analytics tools. Here's the minimal setup that gives you real insight — what to track, what to ignore, and when to look at dashboards.</p>
+      <p class="subtitle reveal">You don't need 5 analytics tools. Here's the minimal setup that gives you real insight, what to track, what to ignore, and when to look at dashboards.</p>
     </div>
   </section>
 
@@ -122,8 +122,8 @@
       </div>
 
       <h2 class="reveal">Why most analytics setups fail</h2>
-      <p class="reveal">You install Google Analytics, Mixpanel, Hotjar, Amplitude, and a custom event tracker. Now you have five dashboards, none of which you check. The data is there but the insight isn't. The problem was never the tools — it was tracking everything instead of what matters.</p>
-      <p class="reveal">This workflow gives you four layers — and you only add each one when you actually need it.</p>
+      <p class="reveal">You install Google Analytics, Mixpanel, Hotjar, Amplitude, and a custom event tracker. Now you have five dashboards, none of which you check. The data is there but the insight isn't. The problem was never the tools, it was tracking everything instead of what matters.</p>
+      <p class="reveal">This workflow gives you four layers, and you only add each one when you actually need it.</p>
 
       <h2 class="reveal">The Setup</h2>
 
@@ -132,11 +132,11 @@
         <h3>PostHog for Product Analytics</h3>
         <p>PostHog is the only analytics tool you need at the start. It's open-source, has a generous free tier (1M events/mo), and does product analytics, session recording, and feature flags in one tool. Here's what to actually track:</p>
         <ul style="margin-top: 12px">
-          <li><strong>Sign up completed</strong> — your top-of-funnel number</li>
-          <li><strong>Core action performed</strong> — whatever your product's "aha moment" is (first project created, first message sent, first report run)</li>
-          <li><strong>Returned after 24 hours</strong> — early retention signal</li>
-          <li><strong>Upgraded to paid</strong> — the money event</li>
-          <li><strong>Invited a team member</strong> — organic growth signal</li>
+          <li><strong>Sign up completed</strong>, your top-of-funnel number</li>
+          <li><strong>Core action performed</strong>, whatever your product's "aha moment" is (first project created, first message sent, first report run)</li>
+          <li><strong>Returned after 24 hours</strong>, early retention signal</li>
+          <li><strong>Upgraded to paid</strong>, the money event</li>
+          <li><strong>Invited a team member</strong>, organic growth signal</li>
         </ul>
         <p style="margin-top: 12px">That's 5 events. Not 50. Five. You can add more later when you have specific questions.</p>
         <span class="tool-badge"><img src="https://cdn.simpleicons.org/posthog/1d4aff" alt="What to Ignore (Vanity Metrics) icon">PostHog · Free up to 1M events/mo</span>
@@ -147,11 +147,11 @@
         <h3>What to Ignore (Vanity Metrics)</h3>
         <p>Half of analytics is knowing what <em>not</em> to look at. These numbers feel good but tell you nothing actionable:</p>
         <ul style="margin-top: 12px">
-          <li><strong>Total page views</strong> — meaningless without context. A bot farm can give you 100K views.</li>
-          <li><strong>Total registered users</strong> — unless they come back, they're not users. They're email addresses.</li>
-          <li><strong>Time on page</strong> — someone leaving a tab open isn't engagement.</li>
-          <li><strong>Bounce rate (in isolation)</strong> — a 90% bounce rate on a docs page might be great. They found their answer.</li>
-          <li><strong>Social media followers</strong> — doesn't correlate with revenue. At all.</li>
+          <li><strong>Total page views</strong>, meaningless without context. A bot farm can give you 100K views.</li>
+          <li><strong>Total registered users</strong>, unless they come back, they're not users. They're email addresses.</li>
+          <li><strong>Time on page</strong>, someone leaving a tab open isn't engagement.</li>
+          <li><strong>Bounce rate (in isolation)</strong>, a 90% bounce rate on a docs page might be great. They found their answer.</li>
+          <li><strong>Social media followers</strong>, doesn't correlate with revenue. At all.</li>
         </ul>
         <p style="margin-top: 12px">Focus on: activation rate, retention (Day 1, Day 7, Day 30), and conversion to paid. Everything else is noise until you have 1,000+ users.</p>
       </div>
@@ -159,12 +159,12 @@
       <div class="step reveal">
         <div class="step-number">3</div>
         <h3>Sentry for Error Tracking</h3>
-        <p>Analytics tells you what users do. Sentry tells you what broke. You need both, and they serve completely different purposes. Set up Sentry from day one — it takes 10 minutes and saves you hours of debugging.</p>
+        <p>Analytics tells you what users do. Sentry tells you what broke. You need both, and they serve completely different purposes. Set up Sentry from day one, it takes 10 minutes and saves you hours of debugging.</p>
         <ul style="margin-top: 12px">
-          <li><strong>Install the SDK</strong> for your framework (Next.js, React, Node, Python — they have everything)</li>
+          <li><strong>Install the SDK</strong> for your framework (Next.js, React, Node, Python, they have everything)</li>
           <li><strong>Set up source maps</strong> so errors show real line numbers, not minified garbage</li>
-          <li><strong>Configure alerts</strong> — get notified on Slack/email when a new error type appears</li>
-          <li><strong>Track user context</strong> — attach the user ID so you know WHO hit the bug</li>
+          <li><strong>Configure alerts</strong>, get notified on Slack/email when a new error type appears</li>
+          <li><strong>Track user context</strong>, attach the user ID so you know WHO hit the bug</li>
         </ul>
         <p style="margin-top: 12px">The free tier covers 5K errors/month. That's plenty unless your app is on fire (in which case you have bigger problems).</p>
         <span class="tool-badge"><img src="https://cdn.simpleicons.org/sentry/362D59" alt="Metabase for Dashboards (When You Need Them) icon">Sentry · Free up to 5K errors/mo</span>
@@ -175,7 +175,7 @@
         <h3>Metabase for Dashboards (When You Need Them)</h3>
         <p>Don't set up dashboards on day one. You won't have enough data to make them useful. Add Metabase when you hit ~500 users and start needing answers that PostHog's built-in charts can't give you.</p>
         <ul style="margin-top: 12px">
-          <li><strong>Connect it directly to your database</strong> — Metabase reads from Postgres, MySQL, etc.</li>
+          <li><strong>Connect it directly to your database</strong>. Metabase reads from Postgres, MySQL, etc.</li>
           <li><strong>Build 3 dashboards max:</strong> Revenue, Engagement, Growth</li>
           <li><strong>Use SQL mode</strong> for complex queries, visual mode for simple ones</li>
           <li><strong>Share read-only links</strong> with your team instead of giving everyone login access</li>

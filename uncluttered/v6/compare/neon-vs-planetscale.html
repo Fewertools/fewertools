@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://fewertools.com/compare/neon-vs-planetscale.html">
-  <title>Neon vs PlanetScale (2026) — Honest Comparison — Fewer Tools</title>
+  <title>Neon vs PlanetScale (2026). Honest Comparison - Fewer Tools</title>
   <meta name="description" content="Neon vs PlanetScale: which serverless database wins? Postgres branching vs MySQL scaling. Honest comparison of features, pricing, and DX.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://fewertools.com/compare/neon-vs-planetscale.html">
-  <meta property="og:title" content="Neon vs PlanetScale — Fewer Tools">
+  <meta property="og:title" content="Neon vs PlanetScale - Fewer Tools">
   <meta property="og:description" content="Neon vs PlanetScale: serverless Postgres vs serverless MySQL. Which database should you choose?">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -40,7 +40,7 @@
       --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
     h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
     a { color: inherit; text-decoration: none; }
@@ -150,7 +150,7 @@
   <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Neon vs PlanetScale (2026) — Honest Comparison",
+  "headline": "Neon vs PlanetScale (2026). Honest Comparison",
   "description": "Neon vs PlanetScale: serverless Postgres vs serverless MySQL. Which database wins?",
   "datePublished": "2026-02-01",
   "author": { "@type": "Organization", "name": "Fewer Tools", "url": "https://fewertools.com" }
@@ -217,13 +217,13 @@
         </thead>
         <tbody>
           <tr><td>Database Engine</td><td class="check">PostgreSQL</td><td>MySQL (Vitess)</td></tr>
-          <tr><td>Free Tier</td><td class="check">Yes — 0.5 GB storage, autoscaling</td><td class="cross">Removed in 2024 — starts at $39/mo</td></tr>
+          <tr><td>Free Tier</td><td class="check">Yes, 0.5 GB storage, autoscaling</td><td class="cross">Removed in 2024, starts at $39/mo</td></tr>
           <tr><td>Database Branching</td><td class="check">Instant copy-on-write branches</td><td class="check">Branch-based workflow</td></tr>
           <tr><td>Scale to Zero</td><td class="check">Auto-suspends when idle</td><td class="cross">Always-on minimum</td></tr>
           <tr><td>Connection Pooling</td><td class="check">Built-in pgbouncer</td><td class="check">Built-in connection handling</td></tr>
           <tr><td>Sharding</td><td class="cross">Not built-in</td><td class="check">Vitess-powered horizontal sharding</td></tr>
           <tr><td>Foreign Keys</td><td class="check">Full Postgres FK support</td><td class="check">Added in 2023 (was missing)</td></tr>
-          <tr><td>JSON Support</td><td class="check">JSONB — binary, indexable</td><td>JSON — text-based</td></tr>
+          <tr><td>JSON Support</td><td class="check">JSONB, binary, indexable</td><td>JSON, text-based</td></tr>
           <tr><td>ORM Support</td><td class="check">Prisma, Drizzle, TypeORM natively</td><td class="check">Prisma, Drizzle (MySQL mode)</td></tr>
           <tr><td>Read Replicas</td><td class="check">Instant read replicas</td><td class="check">Global read replicas</td></tr>
         </tbody>
@@ -238,18 +238,18 @@
           <div class="price">$0<span> to start</span></div>
           <ul>
             <li>Free: 0.5 GB storage, 1 project, auto-suspend</li>
-            <li>Launch: $19/mo — 10 GB, no auto-suspend</li>
-            <li>Scale: $69/mo — 50 GB, read replicas</li>
-            <li>Business: $700/mo — 500 GB, SLA</li>
+            <li>Launch: $19/mo, 10 GB, no auto-suspend</li>
+            <li>Scale: $69/mo, 50 GB, read replicas</li>
+            <li>Business: $700/mo, 500 GB, SLA</li>
           </ul>
         </div>
         <div class="pricing-card">
           <h3>PlanetScale</h3>
           <div class="price">$39<span>/mo</span></div>
           <ul>
-            <li>Scaler: $39/mo — 10 GB, 1B row reads</li>
-            <li>Scaler Pro: $99/mo — 25 GB, more throughput</li>
-            <li>Enterprise: Custom — sharding, SLA</li>
+            <li>Scaler: $39/mo, 10 GB, 1B row reads</li>
+            <li>Scaler Pro: $99/mo, 25 GB, more throughput</li>
+            <li>Enterprise: Custom, sharding, SLA</li>
             <li>No free tier (removed April 2024)</li>
           </ul>
         </div>

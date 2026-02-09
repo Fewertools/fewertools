@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://fewertools.com/workflows/ai-dev-workflow.html">
-  <title>AI-Powered Development Workflow — Fewer Tools</title>
+  <title>AI-Powered Development Workflow - Fewer Tools</title>
   <meta name="description" content="The guide to using AI coding tools together without chaos. Claude for planning, v0 for prototyping, Cursor for building, Copilot for inline suggestions.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF; --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8; --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1); --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12); --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif; --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px; --ease-out: cubic-bezier(0.22, 1, 0.36, 1); }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.6; }
     h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
     a { color: inherit; text-decoration: none; }
@@ -112,7 +112,7 @@
     <div class="container">
       <div class="breadcrumb reveal"><a href="./">← Workflows</a></div>
       <h1 class="reveal">AI-Powered Development 🤖</h1>
-      <p class="subtitle reveal">The guide to using AI coding tools together without chaos. Each tool has a specific job — here's when to use which, and how they fit together.</p>
+      <p class="subtitle reveal">The guide to using AI coding tools together without chaos. Each tool has a specific job, here's when to use which, and how they fit together.</p>
     </div>
   </section>
 
@@ -129,46 +129,46 @@
       </div>
 
       <h2 class="reveal">The problem with AI tools</h2>
-      <p class="reveal">Everyone's using AI coding tools now. The problem isn't access — it's chaos. You're switching between ChatGPT, Claude, Copilot, Cursor, v0, and Bolt for different tasks with no system. You paste the same context five times. You get conflicting suggestions. You spend more time wrangling AI than writing code.</p>
+      <p class="reveal">Everyone's using AI coding tools now. The problem isn't access, it's chaos. You're switching between ChatGPT, Claude, Copilot, Cursor, v0, and Bolt for different tasks with no system. You paste the same context five times. You get conflicting suggestions. You spend more time wrangling AI than writing code.</p>
       <p class="reveal">This workflow gives every AI tool a specific role. No overlap, no confusion, no context-switching tax.</p>
 
       <h2 class="reveal">The Workflow</h2>
 
       <div class="step reveal">
         <div class="step-number">1</div>
-        <h3>Plan with Claude — Spec & Architecture</h3>
+        <h3>Plan with Claude. Spec & Architecture</h3>
         <p>Before you write a single line of code, spend 30-60 minutes in Claude. This is your thinking partner, not your code monkey. Use it to:</p>
         <ul style="margin-top: 12px">
-          <li><strong>Define the spec</strong> — describe your idea, let Claude challenge it, narrow the scope</li>
-          <li><strong>Design the architecture</strong> — database schema, API routes, data flow, component tree</li>
-          <li><strong>Identify the risks</strong> — what's the hardest part? What might you get stuck on?</li>
-          <li><strong>Write the PRD</strong> — a 1-page product requirements doc you'll reference throughout</li>
+          <li><strong>Define the spec</strong>, describe your idea, let Claude challenge it, narrow the scope</li>
+          <li><strong>Design the architecture</strong>, database schema, API routes, data flow, component tree</li>
+          <li><strong>Identify the risks</strong>, what's the hardest part? What might you get stuck on?</li>
+          <li><strong>Write the PRD</strong>, a 1-page product requirements doc you'll reference throughout</li>
         </ul>
-        <p style="margin-top: 12px">Claude's strength is long-form reasoning and conversation. Don't ask it to generate files — ask it to think with you.</p>
+        <p style="margin-top: 12px">Claude's strength is long-form reasoning and conversation. Don't ask it to generate files, ask it to think with you.</p>
         <span class="tool-badge"><img src="https://cdn.simpleicons.org/anthropic/191919" alt="Prototype UI with v0 or Bolt icon">Claude · Best for planning & reasoning</span>
       </div>
 
       <div class="step reveal">
         <div class="step-number">2</div>
         <h3>Prototype UI with v0 or Bolt</h3>
-        <p>Take your spec and generate the UI. This isn't about perfect code — it's about seeing your idea visually in 30 minutes instead of 3 hours.</p>
+        <p>Take your spec and generate the UI. This isn't about perfect code, it's about seeing your idea visually in 30 minutes instead of 3 hours.</p>
         <ul style="margin-top: 12px">
-          <li><strong>v0 (Vercel)</strong> — generates React + Tailwind components. Best for individual UI components and pages. The code is clean and production-usable.</li>
-          <li><strong>Bolt (StackBlitz)</strong> — generates full applications in-browser. Best when you want a working prototype with routing, state, and multiple pages.</li>
+          <li><strong>v0 (Vercel)</strong>, generates React + Tailwind components. Best for individual UI components and pages. The code is clean and production-usable.</li>
+          <li><strong>Bolt (StackBlitz)</strong>, generates full applications in-browser. Best when you want a working prototype with routing, state, and multiple pages.</li>
         </ul>
         <p style="margin-top: 12px">Paste your Claude spec into the prompt. Iterate 2-3 times on the design. Download the components you like. Throw away the rest.</p>
-        <span class="tool-badge"><img src="https://cdn.simpleicons.org/vercel/000000" alt="Build with Cursor — Full Codebase Context icon">v0 / Bolt · Best for rapid UI prototyping</span>
+        <span class="tool-badge"><img src="https://cdn.simpleicons.org/vercel/000000" alt="Build with Cursor. Full Codebase Context icon">v0 / Bolt · Best for rapid UI prototyping</span>
       </div>
 
       <div class="step reveal">
         <div class="step-number">3</div>
-        <h3>Build with Cursor — Full Codebase Context</h3>
-        <p>Now you're in the real code editor. Cursor is your main builder because it understands your entire project — not just the file you're looking at. Here's how to use it well:</p>
+        <h3>Build with Cursor. Full Codebase Context</h3>
+        <p>Now you're in the real code editor. Cursor is your main builder because it understands your entire project, not just the file you're looking at. Here's how to use it well:</p>
         <ul style="margin-top: 12px">
-          <li><strong>Add your Claude spec as a file</strong> — put `SPEC.md` in your project root. Cursor reads it for context.</li>
-          <li><strong>Use Composer mode</strong> for multi-file changes — "add authentication to the app" and it edits routes, middleware, and components together</li>
-          <li><strong>Use Chat mode</strong> for questions — "why is this API route returning 500?" with full project awareness</li>
-          <li><strong>Use Cmd+K</strong> for inline edits — highlight code, describe the change, done</li>
+          <li><strong>Add your Claude spec as a file</strong>, put `SPEC.md` in your project root. Cursor reads it for context.</li>
+          <li><strong>Use Composer mode</strong> for multi-file changes, "add authentication to the app" and it edits routes, middleware, and components together</li>
+          <li><strong>Use Chat mode</strong> for questions, "why is this API route returning 500?" with full project awareness</li>
+          <li><strong>Use Cmd+K</strong> for inline edits, highlight code, describe the change, done</li>
         </ul>
         <p style="margin-top: 12px">This is where 80% of your coding time goes. Cursor replaces GPT-in-a-browser because it has your codebase, not just a chat window.</p>
         <span class="tool-badge"><img src="https://cdn.simpleicons.org/cursor/000000" alt="Copilot for In-Line Suggestions icon">Cursor · Best for building features</span>
@@ -179,18 +179,18 @@
         <h3>Copilot for In-Line Suggestions</h3>
         <p>While Cursor handles big tasks, Copilot handles the small ones. It lives in your editor and autocompletes as you type. Think of it as predictive text for code:</p>
         <ul style="margin-top: 12px">
-          <li><strong>Writing repetitive code</strong> — map functions, type definitions, test cases</li>
-          <li><strong>Completing patterns</strong> — start a function, Copilot finishes it based on the pattern</li>
-          <li><strong>Import statements</strong> — it knows what you need before you type it</li>
-          <li><strong>Boilerplate</strong> — API handlers, form validation, config files</li>
+          <li><strong>Writing repetitive code</strong>, map functions, type definitions, test cases</li>
+          <li><strong>Completing patterns</strong>, start a function, Copilot finishes it based on the pattern</li>
+          <li><strong>Import statements</strong>, it knows what you need before you type it</li>
+          <li><strong>Boilerplate</strong>. API handlers, form validation, config files</li>
         </ul>
         <p style="margin-top: 12px">Copilot + Cursor work together. Cursor is the architect; Copilot is the fast typist. Use both.</p>
-        <span class="tool-badge"><img src="https://cdn.simpleicons.org/githubcopilot/000000" alt="When to Use Which — The Honest Comparison icon">GitHub Copilot · Best for inline autocomplete</span>
+        <span class="tool-badge"><img src="https://cdn.simpleicons.org/githubcopilot/000000" alt="When to Use Which. The Honest Comparison icon">GitHub Copilot · Best for inline autocomplete</span>
       </div>
 
       <div class="step reveal">
         <div class="step-number">5</div>
-        <h3>When to Use Which — The Honest Comparison</h3>
+        <h3>When to Use Which. The Honest Comparison</h3>
         <p>Here's the cheat sheet. Bookmark this.</p>
       </div>
 
@@ -213,7 +213,7 @@
       </table>
 
       <div class="pro-tip reveal">
-        <p><strong>💡 Pro tip:</strong> Don't use AI to generate code you don't understand. If you can't review what it wrote, you can't debug it when it breaks. Use AI to go faster on things you could do yourself — not to skip learning.</p>
+        <p><strong>💡 Pro tip:</strong> Don't use AI to generate code you don't understand. If you can't review what it wrote, you can't debug it when it breaks. Use AI to go faster on things you could do yourself, not to skip learning.</p>
       </div>
 
       <h2 class="reveal">Total cost for this workflow</h2>

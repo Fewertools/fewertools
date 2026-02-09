@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://fewertools.com/ai-use-guide/">
-  <title>Using AI Tools Responsibly — A Practical Guide — Fewer Tools</title>
-  <meta name="description" content="A practical guide to getting real value from AI — without the blind spots. Verify output, avoid hallucinations, cite properly, and use AI to think better.">
+  <title>Using AI Tools Responsibly. A Practical Guide - Fewer Tools</title>
+  <meta name="description" content="A practical guide to getting real value from AI, without the blind spots. Verify output, avoid hallucinations, cite properly, and use AI to think better.">
   <meta name="google-site-verification" content="djODkIufikulfN-HqVngIFNu3ITlUAIJCu8s1BbVKs4" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://fewertools.com/ai-use-guide/">
-  <meta property="og:title" content="Using AI Tools Responsibly — Fewer Tools">
-  <meta property="og:description" content="A practical guide to getting real value from AI — without the blind spots.">
+  <meta property="og:title" content="Using AI Tools Responsibly - Fewer Tools">
+  <meta property="og:description" content="A practical guide to getting real value from AI, without the blind spots.">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +28,7 @@
       --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.6; }
     h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
     a { color: inherit; text-decoration: none; }
@@ -139,8 +139,8 @@
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Using AI Tools Responsibly — A Practical Guide",
-    "description": "A practical guide to getting real value from AI — without the blind spots. Covers verification, hallucinations, citation, and responsible use.",
+    "headline": "Using AI Tools Responsibly. A Practical Guide",
+    "description": "A practical guide to getting real value from AI, without the blind spots. Covers verification, hallucinations, citation, and responsible use.",
     "author": {
       "@type": "Organization",
       "name": "Fewer Tools",
@@ -179,7 +179,7 @@
     <div class="container">
       <span class="eyebrow reveal">Trust anchor</span>
       <h1 class="reveal">Using AI Tools Responsibly</h1>
-      <p class="subtitle reveal">A practical guide to getting real value from AI — without the blind spots.</p>
+      <p class="subtitle reveal">A practical guide to getting real value from AI, without the blind spots.</p>
     </div>
   </section>
 
@@ -191,12 +191,12 @@
         <section class="guide-section reveal" id="verify">
           <div class="section-number">1</div>
           <h2>How to Verify AI Output</h2>
-          <p>AI tools are confident by design. They produce polished, well-structured answers — even when they're wrong. This is the core challenge: the output <em>looks</em> right whether or not it <em>is</em> right.</p>
-          <p>The fix isn't to distrust AI entirely. It's to treat every AI output as a first draft — a starting point that needs your judgment before it becomes final.</p>
+          <p>AI tools are confident by design. They produce polished, well-structured answers, even when they're wrong. This is the core challenge: the output <em>looks</em> right whether or not it <em>is</em> right.</p>
+          <p>The fix isn't to distrust AI entirely. It's to treat every AI output as a first draft, a starting point that needs your judgment before it becomes final.</p>
           <p><strong>Practical verification strategies:</strong></p>
           <ul>
             <li><strong>Check facts against primary sources.</strong> If AI cites a study, find that study. If it quotes a price, check the vendor's site. If it names a date, verify it.</li>
-            <li><strong>Test code before shipping it.</strong> AI-generated code often looks correct but has subtle bugs — edge cases, wrong library versions, deprecated methods. Run it. Review it like you'd review a teammate's pull request.</li>
+            <li><strong>Test code before shipping it.</strong> AI-generated code often looks correct but has subtle bugs, edge cases, wrong library versions, deprecated methods. Run it. Review it like you'd review a teammate's pull request.</li>
             <li><strong>Question the logic, not just the facts.</strong> Even when individual facts are correct, the reasoning connecting them might not be. Ask: does this conclusion actually follow from these premises?</li>
             <li><strong>Be extra careful with numbers.</strong> Statistics, percentages, and financial figures are where AI tends to be most unreliable. Always verify quantitative claims independently.</li>
           </ul>
@@ -209,19 +209,19 @@
         <section class="guide-section reveal" id="hallucinations">
           <div class="section-number">2</div>
           <h2>How to Avoid Hallucinations</h2>
-          <p>AI "hallucination" is when a model generates information that sounds plausible but is fabricated. It's not lying — it's pattern-matching without understanding, and sometimes the patterns produce fiction.</p>
+          <p>AI "hallucination" is when a model generates information that sounds plausible but is fabricated. It's not lying, it's pattern-matching without understanding, and sometimes the patterns produce fiction.</p>
           <p><strong>When hallucinations are most likely:</strong></p>
           <ul>
             <li><strong>Niche or specialised topics</strong> where training data is thin</li>
-            <li><strong>Specific numbers</strong> — dates, statistics, measurements, prices</li>
+            <li><strong>Specific numbers</strong>, dates, statistics, measurements, prices</li>
             <li><strong>Recent events</strong> that may post-date the model's training</li>
-            <li><strong>Named references</strong> — book titles, paper citations, URLs, quotes attributed to specific people</li>
+            <li><strong>Named references</strong>, book titles, paper citations, URLs, quotes attributed to specific people</li>
           </ul>
           <p><strong>Prompting strategies that help:</strong></p>
           <ul>
             <li>Ask the AI to flag when it's uncertain: <em>"If you're not sure about something, say so."</em></li>
             <li>Break complex questions into smaller, verifiable pieces</li>
-            <li>Ask for sources — not because AI sources are always real, but because it forces more grounded responses</li>
+            <li>Ask for sources, not because AI sources are always real, but because it forces more grounded responses</li>
             <li>Use tools designed for grounded output (like Perplexity, which shows source links alongside answers)</li>
           </ul>
           <p><strong>Signs an output might be hallucinated:</strong> overly specific numbers with no source, confident claims about obscure topics, citations that look slightly "off," and answers that are too perfect for a messy question.</p>
@@ -231,18 +231,18 @@
         <section class="guide-section reveal" id="cite">
           <div class="section-number">3</div>
           <h2>How to Cite AI-Generated Content</h2>
-          <p>As AI becomes part of everyday workflows, the question isn't whether you've used it — it's whether you're transparent about how.</p>
+          <p>As AI becomes part of everyday workflows, the question isn't whether you've used it, it's whether you're transparent about how.</p>
           <p><strong>When to disclose AI assistance:</strong></p>
           <ul>
             <li><strong>Academic work:</strong> Always. Most institutions now have specific policies. Check yours.</li>
-            <li><strong>Professional content:</strong> When AI substantially shaped the output — not for spell-check, but for drafting, analysis, or code generation.</li>
+            <li><strong>Professional content:</strong> When AI substantially shaped the output, not for spell-check, but for drafting, analysis, or code generation.</li>
             <li><strong>Published work:</strong> Disclose if AI generated or significantly revised the content.</li>
           </ul>
           <p><strong>Common citation formats:</strong></p>
           <ul>
             <li><strong>APA:</strong> OpenAI. (2025). ChatGPT (version) [Large language model]. https://chat.openai.com</li>
             <li><strong>MLA:</strong> "Prompt text" prompt. ChatGPT, version, OpenAI, date. chat.openai.com</li>
-            <li><strong>Chicago:</strong> Include in notes — text generated by [Tool], [Date], in response to [prompt summary]</li>
+            <li><strong>Chicago:</strong> Include in notes, text generated by [Tool], [Date], in response to [prompt summary]</li>
           </ul>
           <div class="callout">
             <p><strong>The comfort test:</strong> Would you be comfortable if someone asked "How did you make this?" The answer to that question is your disclosure policy.</p>
@@ -259,7 +259,7 @@
             <div class="prompt-card good">
               <div class="label">✦ Learning prompts</div>
               <code>"Explain how binary search works and why it's faster than linear search"</code>
-              <code>"I wrote this function — what am I doing wrong?"</code>
+              <code>"I wrote this function, what am I doing wrong?"</code>
               <code>"What are the main arguments for and against UBI? Help me think through this"</code>
             </div>
             <div class="prompt-card risky">
@@ -279,17 +279,17 @@
           <div class="section-number">5</div>
           <h2>Students vs. Professionals</h2>
           <p>The same AI tool means different things depending on who's using it and why. Context changes everything.</p>
-          <p><strong>For students,</strong> AI works best as a tutor, not a ghostwriter. The entire point of assignments is to build understanding. Using AI to skip that process defeats the purpose — not because of rules, but because you're cheating yourself out of the learning you're paying for.</p>
+          <p><strong>For students,</strong> AI works best as a tutor, not a ghostwriter. The entire point of assignments is to build understanding. Using AI to skip that process defeats the purpose, not because of rules, but because you're cheating yourself out of the learning you're paying for.</p>
           <ul>
             <li>Use AI to explain concepts you're stuck on</li>
             <li>Use it to check your reasoning after you've attempted a problem</li>
             <li>Use it to explore different perspectives on a topic</li>
             <li>Don't use it to generate work you haven't engaged with</li>
           </ul>
-          <p><strong>For professionals,</strong> AI is an accelerator. The goal is output quality, not demonstration of learning. Using AI to draft emails, generate code scaffolding, summarise documents, or brainstorm strategies is perfectly reasonable — as long as you verify the output and own the result.</p>
+          <p><strong>For professionals,</strong> AI is an accelerator. The goal is output quality, not demonstration of learning. Using AI to draft emails, generate code scaffolding, summarise documents, or brainstorm strategies is perfectly reasonable, as long as you verify the output and own the result.</p>
           <p><strong>Where the line sits</strong> depends on your context. A coding bootcamp student using Copilot to autocomplete every function is missing the point. A senior engineer using Copilot to move faster through boilerplate is being efficient. Same tool, different purposes.</p>
           <div class="callout">
-            <p><strong>Academic integrity isn't about fear — it's about honesty.</strong> Most institutions are adapting their policies. Check your school's or employer's AI policy. When in doubt, disclose and ask.</p>
+            <p><strong>Academic integrity isn't about fear, it's about honesty.</strong> Most institutions are adapting their policies. Check your school's or employer's AI policy. When in doubt, disclose and ask.</p>
           </div>
         </section>
 
@@ -303,24 +303,24 @@
             <h3>Before you hit send</h3>
             <div class="checklist-item">
               <div class="check">✓</div>
-              <p><strong>Did I verify the key facts?</strong> — Cross-checked important claims against reliable sources, not just AI confidence.</p>
+              <p><strong>Did I verify the key facts?</strong>. Cross-checked important claims against reliable sources, not just AI confidence.</p>
             </div>
             <div class="checklist-item">
               <div class="check">✓</div>
-              <p><strong>Do I understand it well enough to explain it?</strong> — If someone asked you to walk through the output, could you do it without reading from a script?</p>
+              <p><strong>Do I understand it well enough to explain it?</strong>. If someone asked you to walk through the output, could you do it without reading from a script?</p>
             </div>
             <div class="checklist-item">
               <div class="check">✓</div>
-              <p><strong>Would I be comfortable if someone asked how I made this?</strong> — Transparency is easier when you've been thoughtful about the process.</p>
+              <p><strong>Would I be comfortable if someone asked how I made this?</strong>. Transparency is easier when you've been thoughtful about the process.</p>
             </div>
             <div class="checklist-item">
               <div class="check">✓</div>
-              <p><strong>Am I using AI to think better, or to avoid thinking?</strong> — The best AI use amplifies your judgment. The worst replaces it.</p>
+              <p><strong>Am I using AI to think better, or to avoid thinking?</strong>. The best AI use amplifies your judgment. The worst replaces it.</p>
             </div>
           </div>
 
           <p>That's it. No 50-page policy document. If you can check all four boxes honestly, you're using AI well.</p>
-          <p>AI tools are genuinely powerful — they save time, spark ideas, and help you work through complexity faster. The goal isn't to use them less. It's to use them with your eyes open.</p>
+          <p>AI tools are genuinely powerful, they save time, spark ideas, and help you work through complexity faster. The goal isn't to use them less. It's to use them with your eyes open.</p>
         </section>
 
       </article>
