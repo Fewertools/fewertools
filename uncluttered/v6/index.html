@@ -71,90 +71,110 @@
     .reveal-delay-3 { transition-delay: 0.3s; }
     
     /* Declutter Intro Animation */
-    .declutter-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      animation: overlayFade 0.8s ease-out 4.5s forwards;
+    /* ===== INTRO ANIMATION ===== */
+    .intro-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #0a0a0a;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      overflow: hidden;
     }
-    .declutter-overlay.skip { display: none; }
-    @keyframes overlayFade {
-      to { opacity: 0; visibility: hidden; }
+    .intro-overlay.skip { display: none; }
+    .intro-overlay.exit {
+      animation: introExit 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards;
     }
-    .clutter-container {
-      position: relative;
-      width: 100%;
-      max-width: 1000px;
-      height: 500px;
+    @keyframes introExit {
+      0% { clip-path: inset(0 0 0 0); }
+      100% { clip-path: inset(0 0 100% 0); }
     }
-    .clutter-item {
-      position: absolute;
-      padding: 10px 16px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-      font-size: 14px;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      opacity: 0;
-      animation: clutterIn 0.5s ease-out forwards, clutterOut 1s ease-in 3s forwards;
+
+    /* Ambient glow */
+    .intro-glow {
+      position: absolute; width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(13,148,136,0.25) 0%, transparent 70%);
+      filter: blur(60px); opacity: 0;
+      animation: glowPulse 3s ease-in-out 0.3s forwards;
     }
-    .clutter-item img { width: 20px; height: 20px; object-fit: contain; }
-    @keyframes clutterIn {
-      from { opacity: 0; transform: scale(0.3) rotate(-15deg); }
-      to { opacity: 1; transform: scale(1) rotate(0deg); }
+    @keyframes glowPulse {
+      0% { opacity: 0; transform: scale(0.5); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.6; transform: scale(1); }
     }
-    @keyframes clutterOut {
-      0% { opacity: 1; transform: scale(1) rotate(0deg); }
-      100% { opacity: 0; transform: scale(0) rotate(10deg) translateY(50px); filter: blur(8px); }
+
+    /* Logo */
+    .intro-logo {
+      width: 64px; height: 64px; border-radius: 14px; opacity: 0;
+      animation: logoIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+      position: relative; z-index: 1;
     }
-    .clutter-item:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s, 3s; }
-    .clutter-item:nth-child(2) { top: 3%; left: 25%; animation-delay: 0.08s, 3.05s; }
-    .clutter-item:nth-child(3) { top: 8%; left: 50%; animation-delay: 0.16s, 3.1s; }
-    .clutter-item:nth-child(4) { top: 5%; right: 20%; animation-delay: 0.24s, 3.15s; }
-    .clutter-item:nth-child(5) { top: 10%; right: 5%; animation-delay: 0.32s, 3.2s; }
-    .clutter-item:nth-child(6) { top: 25%; left: 8%; animation-delay: 0.4s, 3.25s; }
-    .clutter-item:nth-child(7) { top: 22%; left: 35%; animation-delay: 0.48s, 3.3s; }
-    .clutter-item:nth-child(8) { top: 28%; right: 30%; animation-delay: 0.56s, 3.35s; }
-    .clutter-item:nth-child(9) { top: 25%; right: 8%; animation-delay: 0.64s, 3.4s; }
-    .clutter-item:nth-child(10) { top: 42%; left: 3%; animation-delay: 0.72s, 3.45s; }
-    .clutter-item:nth-child(11) { top: 45%; left: 28%; animation-delay: 0.8s, 3.5s; }
-    .clutter-item:nth-child(12) { top: 40%; left: 52%; animation-delay: 0.88s, 3.55s; }
-    .clutter-item:nth-child(13) { top: 45%; right: 15%; animation-delay: 0.96s, 3.6s; }
-    .clutter-item:nth-child(14) { top: 60%; left: 10%; animation-delay: 1.04s, 3.65s; }
-    .clutter-item:nth-child(15) { top: 62%; left: 38%; animation-delay: 1.12s, 3.7s; }
-    .clutter-item:nth-child(16) { top: 58%; right: 25%; animation-delay: 1.2s, 3.75s; }
-    .clutter-item:nth-child(17) { top: 65%; right: 5%; animation-delay: 1.28s, 3.8s; }
-    .clutter-item:nth-child(18) { top: 78%; left: 5%; animation-delay: 1.36s, 3.85s; }
-    .clutter-item:nth-child(19) { top: 80%; left: 30%; animation-delay: 1.44s, 3.9s; }
-    .clutter-item:nth-child(20) { top: 75%; left: 55%; animation-delay: 1.52s, 3.95s; }
-    .clutter-item:nth-child(21) { top: 82%; right: 18%; animation-delay: 1.6s, 4s; }
-    .declutter-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--font-display);
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--text);
-      opacity: 0;
-      text-align: center;
-      animation: textFadeIn 0.8s ease-out 1.8s forwards, textFadeOut 0.6s ease-in 2.8s forwards;
+    @keyframes logoIn {
+      from { opacity: 0; transform: scale(0.5) rotate(-10deg); filter: blur(8px); }
+      to { opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0); }
     }
-    @keyframes textFadeIn {
-      from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
-      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+    /* Brand text */
+    .intro-brand {
+      font-family: var(--font-display); font-size: 28px; font-weight: 700;
+      color: #fff; letter-spacing: -0.03em;
+      margin-top: 16px; opacity: 0;
+      animation: brandIn 0.5s ease-out 0.6s forwards;
+      position: relative; z-index: 1;
     }
-    @keyframes textFadeOut {
-      to { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
+    @keyframes brandIn {
+      from { opacity: 0; transform: translateY(10px); letter-spacing: 0.1em; }
+      to { opacity: 1; transform: translateY(0); letter-spacing: -0.03em; }
+    }
+
+    /* Tagline */
+    .intro-tagline {
+      font-family: var(--font-body); font-size: 15px; font-weight: 400;
+      color: rgba(255,255,255,0.4); margin-top: 8px; opacity: 0;
+      animation: tagIn 0.5s ease-out 1s forwards;
+      position: relative; z-index: 1;
+    }
+    @keyframes tagIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Loading bar */
+    .intro-bar-track {
+      width: 120px; height: 2px; background: rgba(255,255,255,0.08);
+      border-radius: 2px; margin-top: 32px; overflow: hidden;
+      opacity: 0; animation: barTrackIn 0.3s ease-out 1.2s forwards;
+      position: relative; z-index: 1;
+    }
+    @keyframes barTrackIn { to { opacity: 1; } }
+    .intro-bar-fill {
+      height: 100%; width: 0; background: var(--accent); border-radius: 2px;
+      animation: barFill 1.8s cubic-bezier(0.4, 0, 0.2, 1) 1.3s forwards;
+    }
+    @keyframes barFill { to { width: 100%; } }
+
+    /* Particle dots */
+    .intro-particle {
+      position: absolute; width: 3px; height: 3px; border-radius: 50%;
+      background: rgba(13,148,136,0.5); opacity: 0;
+    }
+    .intro-particle:nth-child(1) { top: 20%; left: 15%; animation: particleFade 2s ease-in-out 0.5s infinite; }
+    .intro-particle:nth-child(2) { top: 70%; left: 25%; animation: particleFade 2s ease-in-out 0.8s infinite; }
+    .intro-particle:nth-child(3) { top: 30%; right: 20%; animation: particleFade 2s ease-in-out 1.1s infinite; }
+    .intro-particle:nth-child(4) { top: 65%; right: 15%; animation: particleFade 2s ease-in-out 0.3s infinite; }
+    .intro-particle:nth-child(5) { top: 45%; left: 10%; animation: particleFade 2s ease-in-out 1.4s infinite; }
+    .intro-particle:nth-child(6) { top: 50%; right: 10%; animation: particleFade 2s ease-in-out 0.7s infinite; }
+    @keyframes particleFade {
+      0%, 100% { opacity: 0; transform: translateY(0); }
+      50% { opacity: 0.8; transform: translateY(-15px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .intro-overlay { display: none; }
+    }
+    @media (max-width: 600px) {
+      .intro-logo { width: 52px; height: 52px; border-radius: 12px; }
+      .intro-brand { font-size: 24px; }
+      .intro-tagline { font-size: 14px; }
+      .intro-glow { width: 200px; height: 200px; }
     }
     
     /* Buttons */
@@ -1211,31 +1231,18 @@
 </head>
 <body>
   <!-- Declutter Intro Animation -->
-  <div class="declutter-overlay" id="declutterOverlay">
-    <div class="clutter-container">
-      <div class="clutter-item">📊 Analytics #1</div>
-      <div class="clutter-item">📧 Email tool</div>
-      <div class="clutter-item">💬 Live chat</div>
-      <div class="clutter-item">📝 Notes app</div>
-      <div class="clutter-item">🎨 Design tool</div>
-      <div class="clutter-item">📈 Analytics #2</div>
-      <div class="clutter-item">🗂️ Project mgmt</div>
-      <div class="clutter-item">💳 Payments</div>
-      <div class="clutter-item">🔔 Notifications</div>
-      <div class="clutter-item">📱 App builder</div>
-      <div class="clutter-item">🤖 AI tool #1</div>
-      <div class="clutter-item">☁️ Cloud storage</div>
-      <div class="clutter-item">📋 Forms builder</div>
-      <div class="clutter-item">🔐 Auth service</div>
-      <div class="clutter-item">📊 Analytics #3</div>
-      <div class="clutter-item">🎯 Marketing tool</div>
-      <div class="clutter-item">💾 Database</div>
-      <div class="clutter-item">🤖 AI tool #2</div>
-      <div class="clutter-item">📞 Video calls</div>
-      <div class="clutter-item">🔄 Automation</div>
-      <div class="clutter-item">📦 Hosting</div>
-      <span class="declutter-text">Too many tools?</span>
-    </div>
+  <div class="intro-overlay" id="introOverlay">
+    <div class="intro-particle"></div>
+    <div class="intro-particle"></div>
+    <div class="intro-particle"></div>
+    <div class="intro-particle"></div>
+    <div class="intro-particle"></div>
+    <div class="intro-particle"></div>
+    <div class="intro-glow"></div>
+    <img src="./logo-new-64.png" alt="" class="intro-logo">
+    <div class="intro-brand">fewertools</div>
+    <div class="intro-tagline">The right tools. Nothing else.</div>
+    <div class="intro-bar-track"><div class="intro-bar-fill"></div></div>
   </div>
   
   <header>
@@ -2110,17 +2117,21 @@
     });
   </script>
   
-  <!-- Declutter Animation Control -->
+  <!-- Intro Animation Control -->
   <script>
     (function() {
-      const overlay = document.getElementById('declutterOverlay');
-      // Skip for returning visitors in same session
-      if (sessionStorage.getItem('declutterSeen')) {
-        overlay.classList.add('skip');
+      var ov = document.getElementById('introOverlay');
+      if (!ov) return;
+      if (sessionStorage.getItem('introSeen')) {
+        ov.classList.add('skip');
       } else {
-        sessionStorage.setItem('declutterSeen', 'true');
-        // Remove from DOM after animation completes
-        setTimeout(() => overlay.remove(), 5500);
+        sessionStorage.setItem('introSeen', 'true');
+        document.body.style.overflow = 'hidden';
+        setTimeout(function() {
+          ov.classList.add('exit');
+          document.body.style.overflow = '';
+        }, 3200);
+        setTimeout(function() { ov.remove(); }, 4200);
       }
     })();
   </script>
