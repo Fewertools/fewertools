@@ -52,6 +52,31 @@
     <lastmod>2026-02-07</lastmod>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://fewertools.com/blog/free-tools-solo-founders/</loc>
+    <lastmod>2025-06-20</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/blog/build-saas-mvp-weekend/</loc>
+    <lastmod>2025-06-18</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/blog/ai-coding-tools-compared/</loc>
+    <lastmod>2025-06-16</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/blog/minimal-newsletter-stack/</loc>
+    <lastmod>2025-06-14</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/blog/too-many-tools/</loc>
+    <lastmod>2025-06-12</lastmod>
+    <priority>0.6</priority>
+  </url>
 
   <!-- Stacks -->
   <url>
@@ -510,5 +535,30 @@
     <loc>https://fewertools.com/jobs/paths/ux-designer.html</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/blog/free-tools-solo-founders/</loc>
+    <lastmod>2026-02-09</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/blog/build-saas-mvp-weekend/</loc>
+    <lastmod>2026-02-09</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/blog/ai-coding-tools-compared/</loc>
+    <lastmod>2026-02-09</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/blog/minimal-newsletter-stack/</loc>
+    <lastmod>2026-02-09</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/blog/too-many-tools/</loc>
+    <lastmod>2026-02-09</lastmod>
+    <priority>0.6</priority>
   </url>
 </urlset>

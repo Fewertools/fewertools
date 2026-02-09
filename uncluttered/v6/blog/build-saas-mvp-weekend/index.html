@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="djODkIufikulfN-HqVngIFNu3ITlUAIJCu8s1BbVKs4" />
+  <link rel="canonical" href="https://fewertools.com/blog/build-saas-mvp-weekend/">
+  <title>How to Build a SaaS MVP in a Weekend - Fewer Tools</title>
+  <meta name="description" content="A practical, hour-by-hour guide to going from idea to deployed SaaS MVP in one weekend using Claude, Cursor, Supabase, and Vercel.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fewertools.com/blog/build-saas-mvp-weekend/">
+  <meta property="og:title" content="How to Build a SaaS MVP in a Weekend">
+  <meta property="og:description" content="A practical, hour-by-hour guide to going from idea to deployed SaaS MVP in one weekend using Claude, Cursor, Supabase, and Vercel.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Build a SaaS MVP in a Weekend">
+  <meta name="twitter:description" content="From idea to deployed MVP in one weekend. The exact tools and timeline.">
+  <meta name="twitter:image" content="https://fewertools.com/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Build a SaaS MVP in a Weekend",
+    "description": "A practical, hour-by-hour guide to going from idea to deployed SaaS MVP in one weekend using Claude, Cursor, Supabase, and Vercel.",
+    "datePublished": "2026-02-09",
+    "dateModified": "2026-02-09",
+    "author": {
+      "@type": "Organization",
+      "name": "Fewer Tools",
+      "url": "https://fewertools.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Fewer Tools",
+      "url": "https://fewertools.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://fewertools.com/blog/build-saas-mvp-weekend/"
+    },
+    "articleSection": "Tools"
+  }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12);
+      --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 600px) { .container { padding: 0 24px; } }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 32px; height: 32px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; overflow: hidden; transition: all 0.3s ease; }
+    .logo-text { font-family: "Outfit", sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; color: var(--text); }
+    .logo-mark .icon-line { width: 12px; height: 2.5px; background: var(--accent); border-radius: 2px; animation: iconGlow 2.5s ease-in-out infinite; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); }
+    @keyframes iconGlow { 0%, 100% { transform: scaleX(1); opacity: 1; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); } 50% { transform: scaleX(0.6); opacity: 0.8; box-shadow: 0 0 12px rgba(13, 148, 136, 0.8); } }
+    .logo:hover .logo-mark { transform: scale(1.08); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    nav { display: flex; align-items: center; gap: 40px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    nav a.active { color: var(--text); }
+    .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; }
+    .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--text); transition: all 0.3s ease; }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-card); flex-direction: column; align-items: flex-start; padding: 100px 32px 32px; gap: 0; box-shadow: -4px 0 24px rgba(0,0,0,0.1); transition: right 0.3s var(--ease-out); }
+      nav.open { right: 0; }
+      nav a { padding: 16px 0; width: 100%; border-bottom: 1px solid var(--border); font-size: 16px; }
+      nav .nav-cta { margin-top: 16px; width: 100%; text-align: center; border-bottom: none; }
+    }
+
+    .article-header { padding: 160px 0 48px; position: relative; overflow: hidden; }
+    .article-header::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; }
+    .article-header .container { position: relative; z-index: 1; }
+    .article-inner { max-width: 720px; margin: 0 auto; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--text-muted); margin-bottom: 32px; transition: color 0.2s, gap 0.2s; }
+    .back-link:hover { color: var(--accent); gap: 12px; }
+    .article-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .article-date { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+    .article-category { display: inline-block; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; }
+    .cat-tools { background: var(--accent-subtle); color: var(--accent); }
+    .article-title { font-size: clamp(32px, 6vw, 44px); margin-bottom: 0; line-height: 1.15; }
+
+    .article-body { padding: 0 0 80px; }
+    .article-body .article-inner { max-width: 720px; margin: 0 auto; }
+    .article-content p { font-size: 17px; line-height: 1.8; color: var(--text-secondary); margin-bottom: 24px; }
+    .article-content h2 { font-size: 28px; margin: 48px 0 16px; color: var(--text); }
+    .article-content h3 { font-size: 22px; margin: 36px 0 12px; color: var(--text); }
+    .article-content strong { color: var(--text); }
+    .article-content ul, .article-content ol { margin: 0 0 24px 24px; font-size: 17px; line-height: 1.8; color: var(--text-secondary); }
+    .article-content li { margin-bottom: 8px; }
+    .article-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(13, 148, 136, 0.3); transition: text-decoration-color 0.2s; }
+    .article-content a:hover { text-decoration-color: var(--accent); }
+    .article-content blockquote { border-left: 3px solid var(--accent); padding: 16px 0 16px 24px; margin: 32px 0; font-size: 18px; font-style: italic; color: var(--text-secondary); }
+    .article-divider { width: 48px; height: 3px; background: var(--accent); border-radius: 3px; margin: 48px 0; opacity: 0.4; }
+
+    .related-section { padding: 0 0 80px; }
+    .related-section .article-inner { max-width: 720px; margin: 0 auto; }
+    .related-heading { font-size: 20px; margin-bottom: 24px; color: var(--text); }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    .related-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; transition: all 0.3s var(--ease-out); display: flex; flex-direction: column; gap: 12px; }
+    .related-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(13, 148, 136, 0.08); }
+    @media (max-width: 600px) { .related-card:hover { transform: none; } }
+    .related-card .post-date { font-size: 12px; }
+    .related-card .post-title { font-size: 18px; }
+    .related-card .post-link { font-size: 13px; font-weight: 600; color: var(--accent); }
+
+    .cat-comparisons { background: #DBEAFE; color: #1D4ED8; }
+    .cat-insights { background: #FEF3C7; color: #B45309; }
+
+    footer { padding: 64px 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    @media (max-width: 600px) {
+      footer { padding: 40px 0; }
+      .footer-content { flex-direction: column; text-align: center; }
+      .article-header { padding: 120px 0 32px; }
+      .article-title { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <a href="../../" class="logo">
+        <div class="logo-mark">
+          <img src="../../logo-new-64.png" alt="Fewer Tools" style="width:100%;height:100%;object-fit:cover;border-radius:6px;">
+        </div>
+        <span class="logo-text">fewertools</span>
+      </a>
+      <nav id="nav">
+        <a href="../../stacks/">Stacks</a>
+        <a href="../../tools/">Tools</a>
+        <a href="../../compare/">Compare</a>
+        <a href="../../students/">Students 🎓</a>
+        <a href="../../jobs/">Jobs 💼</a>
+        <a href="../../gems/">Hidden Gems 💎</a>
+        <a href="../" class="active">Blog</a>
+        <a href="../../build/" class="nav-cta">Find your stack</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="article-header">
+    <div class="container">
+      <div class="article-inner">
+        <a href="../" class="back-link reveal">← Back to all updates</a>
+        <div class="article-meta reveal reveal-delay-1">
+          <span class="article-date">Feb 9, 2026</span>
+          <span class="article-category cat-guides">Guides</span>
+        </div>
+        <h1 class="article-title reveal reveal-delay-2">How to Build a SaaS MVP in a Weekend</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="article-body">
+    <div class="container">
+      <div class="article-inner">
+        <div class="article-content reveal">
+
+          <p>A weekend is 48 hours. That's more than enough to go from idea to a deployed, working SaaS product. We're not talking about a mockup or a landing page. We mean a real app with authentication, a database, and live users.</p>
+
+          <p>Here's the exact timeline we'd follow. No theory, just the steps.</p>
+
+          <h2>Before you start: Friday night prep</h2>
+
+          <p>Don't waste Saturday morning setting up your development environment. Do this Friday night in 30 minutes:</p>
+
+          <ul>
+            <li>Install <strong>Node.js</strong>, <strong>Cursor</strong>, and <strong>Git</strong></li>
+            <li>Create accounts on <strong>Supabase</strong>, <strong>Vercel</strong>, and <strong>GitHub</strong></li>
+            <li>Have your idea written down in one sentence. "A tool that does X for Y people." If you can't write that sentence, you're not ready to build yet</li>
+          </ul>
+
+          <h2>Saturday morning (9am - 1pm): Plan with Claude</h2>
+
+          <p>This is the most important four hours of your weekend. Resist the urge to code. Planning saves you from building the wrong thing.</p>
+
+          <h3>9am - 10am: Define the core loop</h3>
+          <p>Open Claude and have a conversation about your product. Not a vague brainstorm. Ask it to help you define:</p>
+          <ul>
+            <li>The <strong>one thing</strong> your MVP does. Not three features. One</li>
+            <li>The user flow from sign-up to first value. How many clicks? How many screens?</li>
+            <li>What data you need to store. Keep it to two or three database tables maximum</li>
+          </ul>
+
+          <h3>10am - 11:30am: Write the technical spec</h3>
+          <p>Ask Claude to help you write a simple technical document. Include your database schema (tables, columns, relationships), your API routes, and your page structure. This document becomes the instructions you feed to Cursor later. The better this document, the faster you build.</p>
+
+          <h3>11:30am - 1pm: Design the UI</h3>
+          <p>Use <strong>v0</strong> by Vercel to generate your UI components. Describe each screen in plain English and iterate on the output. You're not aiming for pixel-perfect design. You're aiming for functional and clear. Export the components and save them. You'll paste them into your project next.</p>
+
+          <h2>Saturday afternoon (2pm - 7pm): Build the frontend with Cursor</h2>
+
+          <h3>2pm - 2:30pm: Scaffold the project</h3>
+          <p>Run <code>npx create-next-app</code>, connect it to a GitHub repo, and deploy to Vercel immediately. Yes, deploy the empty project. From this point on, every push to main is a live deployment. You'll be able to share a URL with people by Sunday night.</p>
+
+          <h3>2:30pm - 5pm: Build your core screens</h3>
+          <p>Open Cursor with your technical spec loaded as context. Paste in the v0 components you generated earlier. Use Cursor's AI to wire up the pages: landing page, sign-up/login, and the main dashboard. Focus on the one feature that matters. If you're building a habit tracker, build the "add habit" and "mark complete" flow. Nothing else.</p>
+
+          <h3>5pm - 7pm: Polish the flow</h3>
+          <p>Walk through the app as a user. Sign up, do the core action, see the result. Fix anything that feels broken or confusing. Add basic navigation. Make sure it works on mobile. Don't obsess over colours or fonts. Ship ugly, iterate later.</p>
+
+          <h2>Sunday morning (9am - 1pm): Backend with Supabase</h2>
+
+          <h3>9am - 10am: Set up the database</h3>
+          <p>Go to Supabase and create your project. Build your tables using the schema you wrote on Saturday morning. Enable Row Level Security from the start. It's tempting to skip this and "add it later." Don't. Security debt is the worst kind of technical debt.</p>
+
+          <h3>10am - 11:30am: Wire up authentication</h3>
+          <p>Supabase Auth handles email/password, magic links, and social logins out of the box. Use the <code>@supabase/supabase-js</code> client in your Next.js app. Claude can help you write the auth hooks if you get stuck. Don't build your own auth system. Life is too short.</p>
+
+          <h3>11:30am - 1pm: Connect the frontend to real data</h3>
+          <p>Replace any hardcoded data in your frontend with real Supabase queries. This is where Cursor shines. Give it your Supabase schema, tell it to replace the mock data with real queries, and watch it work through your codebase file by file.</p>
+
+          <h2>Sunday afternoon (2pm - 6pm): Deploy and launch</h2>
+
+          <h3>2pm - 3:30pm: Test everything</h3>
+          <p>Create a fresh account on your live Vercel URL. Go through the entire flow. Sign up, use the core feature, check that data persists. Fix the bugs you find. There will be bugs. That's fine.</p>
+
+          <h3>3:30pm - 4:30pm: Add the basics</h3>
+          <p>Add a proper title and meta description. Set up a custom domain if you have one. Add a simple feedback mechanism, even if it's just a "mailto:" link. Make sure error states don't show raw error messages.</p>
+
+          <h3>4:30pm - 6pm: Ship it</h3>
+          <p>Write a short post about what you built. Share it on Twitter, Reddit, or Hacker News. Send it to five people who might actually use it. Their feedback in the next week will tell you more than another month of building would.</p>
+
+          <h2>What you'll have by Sunday night</h2>
+
+          <ul>
+            <li>A <strong>live, deployed SaaS app</strong> with a real URL</li>
+            <li><strong>User authentication</strong> that actually works</li>
+            <li>A <strong>database</strong> storing real user data</li>
+            <li><strong>One core feature</strong> that delivers value</li>
+            <li><strong>Early feedback</strong> from real people</li>
+          </ul>
+
+          <p>That's not a toy project. That's a product. Everything after this is iteration.</p>
+
+          <p>For more detail on the planning phase, check out our <a href="../../workflows/idea-to-mvp.html">Idea to MVP workflow</a>. For the full tool stack breakdown, see our <a href="../../use-cases/build-saas/">Build a SaaS</a> use case. Or jump straight into the <a href="../../build/">Stack Builder</a> and get your personalised tool recommendations.</p>
+
+          <p>Stop planning. Start building.</p>
+
+        </div>
+        <div class="article-divider reveal"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-section">
+    <div class="container">
+      <div class="article-inner">
+        <h3 class="related-heading reveal">Related reading</h3>
+        <div class="related-grid">
+          <a href="../free-tools-solo-founders/" class="related-card reveal">
+            <div class="post-meta">
+              <span class="post-date" style="font-size:12px;color:var(--text-muted)">Feb 9, 2026</span>
+              <span class="article-category cat-tools" style="font-size:11px; padding: 3px 10px;">Tools</span>
+            </div>
+            <h4 class="post-title" style="font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.25;">Best Free Tools for Solo Founders in 2025</h4>
+            <span class="post-link" style="font-size:13px;font-weight:600;color:var(--accent)">Read more →</span>
+          </a>
+          <a href="../ai-coding-tools-compared/" class="related-card reveal reveal-delay-1">
+            <div class="post-meta">
+              <span class="post-date" style="font-size:12px;color:var(--text-muted)">Feb 9, 2026</span>
+              <span class="article-category cat-comparisons" style="font-size:11px; padding: 3px 10px;">Comparisons</span>
+            </div>
+            <h4 class="post-title" style="font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.25;">Cursor vs Copilot vs Claude: Which AI Coding Tool Do You Actually Need?</h4>
+            <span class="post-link" style="font-size:13px;font-weight:600;color:var(--accent)">Read more →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Fewer Tools. Less tools. More building.</p>
+        <div class="footer-links"><a href="../../philosophy/">Philosophy</a><a href="../../tools/">All Tools</a><a href="../../stages/">Stages</a>
+          <a href="../../workflows/">Workflows</a><a href="../../contact/">Contact</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      nav.classList.remove('open');
+    }));
+  </script>
+  <script src="/_vercel/insights/script.js" defer></script>
+  <script src="/_vercel/speed-insights/script.js" defer></script>
+</body>
+</html>
