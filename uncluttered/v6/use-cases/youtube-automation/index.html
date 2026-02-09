@@ -102,10 +102,31 @@
         <a href="../" class="related-link">🎯 All Use Cases</a>
     </div>
   </div></section>
+  
+  <!-- Recommended Workflows -->
+  <section class="related-section" style="background:var(--bg-alt);padding:var(--space-3xl) 0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Recommended workflows</h2>
+        <p>Step-by-step guides to put these tools into action.</p>
+      </div>
+      <div class="related-grid reveal" style="display:flex;flex-wrap:wrap;gap:var(--space-md);justify-content:center;">
+        <a href="../../workflows/content-machine.html" class="related-link reveal" style="display:flex;align-items:center;gap:var(--space-sm);padding:16px 24px;">
+          <span style="font-size:20px;">✍️</span>
+          <span>
+            <strong style="display:block;font-size:14px;">Solo Content Machine</strong>
+            <span style="font-size:12px;color:var(--text-muted);">Create, repurpose, and distribute content consistently.</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="cta-section"><div class="container reveal">
     <h2>Ready to automate?</h2><p>Set up the pipeline, generate your first video, and publish today.</p>
     <div class="cta-actions"><a href="../../stages/" class="btn btn-primary" style="padding:18px 32px;font-size:16px">Find your stage stack →</a><a href="../" class="btn btn-secondary" style="padding:18px 32px;font-size:16px">Browse all use cases</a></div>
   </div></section>
-  <footer><div class="container"><div class="footer-content"><p>© 2026 Fewer Tools. Less tools. More building.</p><div class="footer-links"><a href="../../philosophy/">Philosophy</a><a href="../../tools/">All Tools</a><a href="../../stages/">Stages</a><a href="mailto:clinton@fewertools.com">Contact</a></div></div></div></footer>
+  <footer><div class="container"><div class="footer-content"><p>© 2026 Fewer Tools. Less tools. More building.</p><div class="footer-links"><a href="../../philosophy/">Philosophy</a><a href="../../tools/">All Tools</a><a href="../../stages/">Stages</a>
+          <a href="../../workflows/">Workflows</a><a href="mailto:clinton@fewertools.com">Contact</a></div></div></div></footer>
   <script>const reveals=document.querySelectorAll('.reveal');const observer=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});reveals.forEach(el=>observer.observe(el));window.addEventListener('scroll',()=>{document.querySelector('header').classList.toggle('scrolled',window.scrollY>50)});</script><script src="/_vercel/insights/script.js" defer></script><script src="/_vercel/speed-insights/script.js" defer></script>
 </body></html>
