@@ -63,8 +63,8 @@
     .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-xl); }
     @media (max-width: 600px) { .container { padding: 0 var(--space-lg); } }
     
-    /* Animations */
-    .reveal { opacity: 0; transform: translateY(30px); transition: all var(--duration-slow) var(--ease-out); }
+    /* Animations — subtle reveal: content visible by default, polished on scroll */
+    .reveal { opacity: 0.85; transform: translateY(8px); transition: opacity var(--duration-slow) var(--ease-out), transform var(--duration-slow) var(--ease-out); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
