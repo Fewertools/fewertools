@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://fewertools.com/jobs/paths/career-switch.html">
+  <title>Career Switch into Tech — Step-by-Step Tool Path — Fewer Tools</title>
+  <meta name="description" content="No CS degree needed. The fastest path from where you are to a tech career — with freeCodeCamp, Cursor, ChatGPT, LinkedIn, and Notion.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fewertools.com/jobs/paths/career-switch.html">
+  <meta property="og:title" content="Career Switch into Tech — Fewer Tools">
+  <meta property="og:description" content="No CS degree needed. The fastest path from where you are to a tech career.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12);
+      --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 600px) { .container { padding: 0 24px; } }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 32px; height: 32px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .logo-text { font-family: "Outfit", sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; color: var(--text); }
+    nav { display: flex; align-items: center; gap: 40px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; }
+    .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--text); transition: all 0.3s ease; }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-card); flex-direction: column; align-items: flex-start; padding: 100px 32px 32px; gap: 0; box-shadow: -4px 0 24px rgba(0,0,0,0.1); transition: right 0.3s var(--ease-out); }
+      nav.open { right: 0; }
+      nav a { padding: 16px 0; width: 100%; border-bottom: 1px solid var(--border); font-size: 16px; }
+      nav .nav-cta { margin-top: 16px; width: 100%; text-align: center; border-bottom: none; }
+    }
+
+    /* Breadcrumb */
+    .breadcrumb { padding: 100px 0 0; font-size: 14px; color: var(--text-muted); }
+    .breadcrumb a { color: var(--accent); }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* Hero */
+    .path-hero { padding: 20px 0 0; }
+    .path-hero .category-badge { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-subtle); padding: 6px 14px; border-radius: 100px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .path-hero h1 { font-size: clamp(32px, 6vw, 48px); margin-bottom: 16px; }
+    .path-hero .subtitle { font-size: 18px; color: var(--text-secondary); max-width: 640px; line-height: 1.6; }
+
+    /* Path Steps */
+    .path-section { margin: 56px 0 0; }
+    .path-section h2 { font-size: 28px; margin-bottom: 32px; }
+    .path-timeline { position: relative; display: flex; flex-direction: column; gap: 0; }
+    .path-timeline::before { content: ''; position: absolute; left: 31px; top: 40px; bottom: 40px; width: 3px; background: linear-gradient(to bottom, var(--accent), rgba(13,148,136,0.15)); border-radius: 3px; z-index: 0; }
+    @media (max-width: 600px) { .path-timeline::before { left: 23px; } }
+
+    .step-card { display: flex; gap: 24px; align-items: flex-start; position: relative; z-index: 1; padding: 20px 0; }
+    .step-number { flex-shrink: 0; width: 64px; height: 64px; border-radius: 50%; background: var(--accent); color: white; font-family: var(--font-display); font-weight: 700; font-size: 22px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(13,148,136,0.3); border: 4px solid var(--bg); }
+    @media (max-width: 600px) { .step-number { width: 48px; height: 48px; font-size: 18px; } }
+    .step-content { flex: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; transition: border-color 0.2s, box-shadow 0.2s; }
+    .step-content:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(13,148,136,0.08); }
+    .step-action { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 6px; }
+    .step-tool { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .step-tool img { width: 32px; height: 32px; }
+    .step-tool h3 { font-size: 22px; }
+    .step-tool .free-badge { display: inline-block; font-size: 11px; font-weight: 700; color: #16a34a; background: rgba(22,163,74,0.1); padding: 3px 10px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 8px; }
+    .step-tool .price-badge { display: inline-block; font-size: 11px; font-weight: 700; color: #b45309; background: rgba(180,131,9,0.1); padding: 3px 10px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 8px; }
+    .step-why { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Stack Summary */
+    .stack-summary { margin: 56px 0 0; }
+    .stack-summary h2 { font-size: 28px; margin-bottom: 24px; }
+    .stack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 768px) { .stack-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .stack-grid { grid-template-columns: 1fr; } }
+    .stack-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; display: flex; align-items: center; gap: 14px; transition: border-color 0.2s; }
+    .stack-item:hover { border-color: var(--accent); }
+    .stack-item img { width: 28px; height: 28px; }
+    .stack-item-info h4 { font-family: var(--font-display); font-size: 15px; font-weight: 600; }
+    .stack-item-info p { font-size: 13px; color: var(--text-muted); }
+
+    /* Pro Tips */
+    .pro-tips { margin: 56px 0 0; }
+    .pro-tips h2 { font-size: 28px; margin-bottom: 24px; }
+    .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .tips-grid { grid-template-columns: 1fr; } }
+    .tip-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; }
+    .tip-card .tip-icon { font-size: 24px; margin-bottom: 10px; }
+    .tip-card h4 { font-family: var(--font-display); font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .tip-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Related Paths */
+    .related-paths { margin: 56px 0 0; }
+    .related-paths h3 { font-size: 20px; margin-bottom: 16px; }
+    .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .related-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; transition: all 0.2s; }
+    .related-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* CTA */
+    .path-cta { margin: 56px 0 80px; padding: 40px; background: linear-gradient(135deg, var(--accent), var(--accent-hover)); border-radius: var(--radius-lg); color: white; text-align: center; }
+    .path-cta h2 { font-size: clamp(24px, 4vw, 32px); color: white; margin-bottom: 12px; }
+    .path-cta p { font-size: 16px; opacity: 0.9; margin-bottom: 24px; }
+    .path-cta a { display: inline-block; padding: 14px 32px; background: white; color: var(--accent-hover); font-weight: 700; font-family: var(--font-display); border-radius: var(--radius-sm); font-size: 16px; transition: transform 0.2s, box-shadow 0.2s; }
+    .path-cta a:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* Footer */
+    footer { padding: 64px 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    @media (max-width: 600px) { footer { padding: 40px 0; } .footer-content { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../../" class="logo"><div class="logo-mark"><img src="../../logo-new-64.png" alt="Fewer Tools" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"></div><span class="logo-text">fewertools</span></a>
+      <nav id="nav">
+        <a href="../../stacks/">Stacks</a>
+        <a href="../../tools/">Tools</a>
+        <a href="../../compare/">Compare</a>
+        <a href="../../students/">Students 🎓</a>
+        <a href="../../gems/">Hidden Gems 💎</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../stages/" class="nav-cta">Find your stack</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="breadcrumb reveal">
+      <a href="../../jobs/">Jobs</a> &nbsp;/&nbsp; <a href="./">Paths</a> &nbsp;/&nbsp; Career Switch
+    </div>
+
+    <section class="path-hero reveal">
+      <span class="category-badge">🔄 Career Switch Path</span>
+      <h1>Career Switch into Tech</h1>
+      <p class="subtitle">No CS degree needed. The fastest path from where you are to a tech career.</p>
+    </section>
+
+    <section class="path-section reveal">
+      <h2>Your Path</h2>
+      <div class="path-timeline">
+
+        <div class="step-card reveal">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-action">Pick your lane</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn">
+              <h3>LinkedIn</h3>
+              <span class="free-badge">Free</span>
+            </div>
+            <p class="step-why">Don't try everything. Pick ONE: frontend dev, UX design, data analyst, product management, or marketing. Research real job listings to understand what each role actually looks like.</p>
+          </div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-action">Learn the basics</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/freecodecamp/0A0A23" alt="freeCodeCamp">
+              <h3>freeCodeCamp / Coursera</h3>
+              <span class="free-badge">Free</span>
+            </div>
+            <p class="step-why">3-6 months of focused learning. Don't pay for bootcamps yet. Free resources are enough to start. freeCodeCamp for coding, Coursera for broader tech skills.</p>
+          </div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-action">Build with AI help</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/cursor/000000" alt="Cursor">
+              <h3>Cursor / ChatGPT</h3>
+              <span class="free-badge">Free tier</span>
+            </div>
+            <p class="step-why">AI accelerates learning dramatically. Ask it to explain concepts, review your code, suggest improvements. It's like having a patient mentor available 24/7.</p>
+          </div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <div class="step-action">Build real projects</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub">
+              <h3>Pick tools for your lane</h3>
+              <span class="free-badge">Mostly free</span>
+            </div>
+            <p class="step-why">Not tutorials. Real projects that solve real problems. This is your proof of competence. A weather app tutorial means nothing — a tool that solves your own problem means everything.</p>
+          </div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <div class="step-action">Document the journey</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/x/000000" alt="X/Twitter">
+              <h3>Twitter/X + LinkedIn</h3>
+              <span class="free-badge">Free</span>
+            </div>
+            <p class="step-why">Share what you're learning publicly. "Learning in public" attracts opportunities. People root for career switchers — let them follow your story.</p>
+          </div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <div class="step-action">Network</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord">
+              <h3>LinkedIn + Discord communities</h3>
+              <span class="free-badge">Free</span>
+            </div>
+            <p class="step-why">Join communities in your target field. Help others. Ask genuine questions. Build relationships before you need them. Your network is your net worth in tech.</p>
+          </div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">7</div>
+          <div class="step-content">
+            <div class="step-action">Apply strategically</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/notion/000000" alt="Notion">
+              <h3>Notion</h3>
+              <span class="free-badge">Free</span>
+            </div>
+            <p class="step-why">Track applications, follow up, iterate on your approach. Apply to 5-10 targeted roles, not 100 random ones. Quality applications with tailored cover letters win.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="stack-summary reveal">
+      <h2>Your Complete Stack</h2>
+      <div class="stack-grid">
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn">
+          <div class="stack-item-info">
+            <h4>LinkedIn</h4>
+            <p>Research & networking — Free</p>
+          </div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/freecodecamp/0A0A23" alt="freeCodeCamp">
+          <div class="stack-item-info">
+            <h4>freeCodeCamp</h4>
+            <p>Learning platform — Free</p>
+          </div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/cursor/000000" alt="Cursor">
+          <div class="stack-item-info">
+            <h4>Cursor</h4>
+            <p>AI coding — Free tier</p>
+          </div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/openai/412991" alt="ChatGPT">
+          <div class="stack-item-info">
+            <h4>ChatGPT</h4>
+            <p>AI assistant — Free</p>
+          </div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord">
+          <div class="stack-item-info">
+            <h4>Discord</h4>
+            <p>Communities — Free</p>
+          </div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/notion/000000" alt="Notion">
+          <div class="stack-item-info">
+            <h4>Notion</h4>
+            <p>Tracking & planning — Free</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pro-tips reveal">
+      <h2>Pro Tips</h2>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">💡</div>
+          <h4>Your previous career is an ASSET</h4>
+          <p>Marketing + tech = growth hacker. Finance + tech = fintech PM. Teaching + tech = DevRel. Don't erase your past — leverage it as your superpower.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🚀</div>
+          <h4>Don't wait until you feel ready</h4>
+          <p>You won't. Imposter syndrome never fully goes away. Start applying when you have 2-3 projects and can explain what you built and why.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">⏱️</div>
+          <h4>6 months focused > 4 years unfocused</h4>
+          <p>Don't bounce between languages, frameworks, and tutorials. Pick one path, go deep, build things. Focused intensity beats scattered effort every time.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">👥</div>
+          <h4>Join a community</h4>
+          <p>100Devs, Tech Twitter, local meetups — surround yourself with people on the same journey. Accountability and connections accelerate everything.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-paths reveal">
+      <h3>Related Paths</h3>
+      <div class="related-links">
+        <a href="./build-a-portfolio.html" class="related-link">📁 Build a Portfolio →</a>
+        <a href="./ace-interviews.html" class="related-link">🎯 Ace Technical Interviews →</a>
+        <a href="./go-freelance.html" class="related-link">💼 Go Freelance →</a>
+      </div>
+    </section>
+
+    <div class="path-cta reveal">
+      <h2>Ready to explore more career paths?</h2>
+      <p>Find the right tools for your exact job goal — from building portfolios to acing interviews.</p>
+      <a href="../">Browse all job paths →</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2026 Fewer Tools. Less tools. More building.</p>
+        <div class="footer-links">
+          <a href="../../jobs/">Jobs</a>
+          <a href="../../tools/">All Tools</a>
+          <a href="../../stages/">Stages</a>
+          <a href="mailto:clinton@fewertools.com">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    window.addEventListener('scroll', () => { document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20); });
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('active'); nav.classList.toggle('open'); });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menuToggle.classList.remove('active'); nav.classList.remove('open'); }));
+  </script>
+  <script src="/_vercel/insights/script.js" defer></script>
+  <script src="/_vercel/speed-insights/script.js" defer></script>
+</body>
+</html>

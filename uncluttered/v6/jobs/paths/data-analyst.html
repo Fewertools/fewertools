@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://fewertools.com/jobs/paths/data-analyst.html">
+  <title>Data Analyst Path — SQL, Python, Dashboards — Fewer Tools</title>
+  <meta name="description" content="SQL, Python, dashboards. The exact tools that get data analysts hired — in order. SQLBolt, Google Sheets, VS Code, Tableau, Khan Academy, GitHub, Claude.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fewertools.com/jobs/paths/data-analyst.html">
+  <meta property="og:title" content="Data Analyst Path — Fewer Tools">
+  <meta property="og:description" content="SQL, Python, dashboards. The exact tools that get data analysts hired — in order.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12);
+      --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 600px) { .container { padding: 0 24px; } }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 32px; height: 32px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .logo-text { font-family: "Outfit", sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; color: var(--text); }
+    nav { display: flex; align-items: center; gap: 40px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; }
+    .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--text); transition: all 0.3s ease; }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-card); flex-direction: column; align-items: flex-start; padding: 100px 32px 32px; gap: 0; box-shadow: -4px 0 24px rgba(0,0,0,0.1); transition: right 0.3s var(--ease-out); }
+      nav.open { right: 0; }
+      nav a { padding: 16px 0; width: 100%; border-bottom: 1px solid var(--border); font-size: 16px; }
+      nav .nav-cta { margin-top: 16px; width: 100%; text-align: center; border-bottom: none; }
+    }
+
+    /* Breadcrumb */
+    .breadcrumb { padding: 100px 0 0; font-size: 14px; color: var(--text-muted); }
+    .breadcrumb a { color: var(--accent); }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* Hero */
+    .path-hero { padding: 20px 0 0; }
+    .path-hero .category-badge { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-subtle); padding: 6px 14px; border-radius: 100px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .path-hero h1 { font-size: clamp(32px, 6vw, 48px); margin-bottom: 16px; }
+    .path-hero .subtitle { font-size: 18px; color: var(--text-secondary); max-width: 640px; line-height: 1.6; }
+
+    /* Path Steps */
+    .path-section { margin: 56px 0 0; }
+    .path-section h2 { font-size: 28px; margin-bottom: 32px; }
+    .path-timeline { position: relative; display: flex; flex-direction: column; gap: 0; }
+    .path-timeline::before { content: ''; position: absolute; left: 31px; top: 40px; bottom: 40px; width: 3px; background: linear-gradient(to bottom, var(--accent), rgba(13,148,136,0.15)); border-radius: 3px; z-index: 0; }
+    @media (max-width: 600px) { .path-timeline::before { left: 23px; } }
+
+    .step-card { display: flex; gap: 24px; align-items: flex-start; position: relative; z-index: 1; padding: 20px 0; }
+    .step-number { flex-shrink: 0; width: 64px; height: 64px; border-radius: 50%; background: var(--accent); color: white; font-family: var(--font-display); font-weight: 700; font-size: 22px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(13,148,136,0.3); border: 4px solid var(--bg); }
+    @media (max-width: 600px) { .step-number { width: 48px; height: 48px; font-size: 18px; } }
+    .step-content { flex: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; transition: border-color 0.2s, box-shadow 0.2s; }
+    .step-content:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(13,148,136,0.08); }
+    .step-action { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 6px; }
+    .step-tool { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .step-tool img { width: 32px; height: 32px; }
+    .step-tool h3 { font-size: 22px; }
+    .step-tool .free-badge { display: inline-block; font-size: 11px; font-weight: 700; color: #16a34a; background: rgba(22,163,74,0.1); padding: 3px 10px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 8px; }
+    .step-tool .price-badge { display: inline-block; font-size: 11px; font-weight: 700; color: #b45309; background: rgba(180,131,9,0.1); padding: 3px 10px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 8px; }
+    .step-why { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Stack Summary */
+    .stack-summary { margin: 56px 0 0; }
+    .stack-summary h2 { font-size: 28px; margin-bottom: 24px; }
+    .stack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 768px) { .stack-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .stack-grid { grid-template-columns: 1fr; } }
+    .stack-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; display: flex; align-items: center; gap: 14px; transition: border-color 0.2s; }
+    .stack-item:hover { border-color: var(--accent); }
+    .stack-item img { width: 28px; height: 28px; }
+    .stack-item-info h4 { font-family: var(--font-display); font-size: 15px; font-weight: 600; }
+    .stack-item-info p { font-size: 13px; color: var(--text-muted); }
+
+    /* Pro Tips */
+    .pro-tips { margin: 56px 0 0; }
+    .pro-tips h2 { font-size: 28px; margin-bottom: 24px; }
+    .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .tips-grid { grid-template-columns: 1fr; } }
+    .tip-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; }
+    .tip-card .tip-icon { font-size: 24px; margin-bottom: 10px; }
+    .tip-card h4 { font-family: var(--font-display); font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .tip-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Salary Callout */
+    .salary-callout { margin: 56px 0 0; background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; display: flex; align-items: center; gap: 24px; }
+    .salary-callout .salary-icon { font-size: 40px; flex-shrink: 0; }
+    .salary-callout h3 { font-family: var(--font-display); font-size: 20px; margin-bottom: 6px; }
+    .salary-callout p { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+    .salary-callout .salary-range { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--accent); }
+    @media (max-width: 600px) { .salary-callout { flex-direction: column; text-align: center; } }
+
+    /* Related Paths */
+    .related-paths { margin: 56px 0 0; }
+    .related-paths h3 { font-size: 20px; margin-bottom: 16px; }
+    .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .related-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; transition: all 0.2s; }
+    .related-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* CTA */
+    .path-cta { margin: 56px 0 80px; padding: 40px; background: linear-gradient(135deg, var(--accent), var(--accent-hover)); border-radius: var(--radius-lg); color: white; text-align: center; }
+    .path-cta h2 { font-size: clamp(24px, 4vw, 32px); color: white; margin-bottom: 12px; }
+    .path-cta p { font-size: 16px; opacity: 0.9; margin-bottom: 24px; }
+    .path-cta a { display: inline-block; padding: 14px 32px; background: white; color: var(--accent-hover); font-weight: 700; font-family: var(--font-display); border-radius: var(--radius-sm); font-size: 16px; transition: transform 0.2s, box-shadow 0.2s; }
+    .path-cta a:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* Footer */
+    footer { padding: 64px 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    @media (max-width: 600px) { footer { padding: 40px 0; } .footer-content { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../../" class="logo"><div class="logo-mark"><img src="../../logo-new-64.png" alt="Fewer Tools" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"></div><span class="logo-text">fewertools</span></a>
+      <nav id="nav">
+        <a href="../../stacks/">Stacks</a>
+        <a href="../../tools/">Tools</a>
+        <a href="../../compare/">Compare</a>
+        <a href="../../students/">Students 🎓</a>
+        <a href="../../gems/">Hidden Gems 💎</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../stages/" class="nav-cta">Find your stack</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="breadcrumb reveal">
+      <a href="../../jobs/">Jobs</a> &nbsp;/&nbsp; <a href="./">Paths</a> &nbsp;/&nbsp; Data Analyst
+    </div>
+
+    <section class="path-hero reveal">
+      <span class="category-badge">📊 Data Analyst Path</span>
+      <h1>Data Analyst Path</h1>
+      <p class="subtitle">SQL, Python, dashboards. The exact tools that get data analysts hired — in order.</p>
+    </section>
+
+    <section class="path-section reveal">
+      <h2>Your Path</h2>
+      <div class="path-timeline">
+
+        <div class="step-card reveal">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-action">Learn SQL</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="SQL">
+              <h3>SQLBolt / Mode</h3>
+              <span class="free-badge">Free</span>
+            </div>
+            <p class="step-why">SQL is the #1 skill in every data analyst job listing. Learn it first. SELECT, JOIN, GROUP BY, window functions — this alone makes you hireable.</p>
+          </div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-action">Spreadsheets</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets">
+              <h3>Google Sheets</h3>
+              <span class="free-badge">Free</span>
+            </div>
+            <p class="step-why">Advanced Sheets: VLOOKUP, pivot tables, array formulas, conditional formatting. Still used daily in every data team. Don't skip this — master it.</p>
+          </div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-action">Python basics</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/jupyter/F37626" alt="Jupyter">
+              <h3>VS Code + Jupyter</h3>
+              <span class="free-badge">Free</span>
+            </div>
+            <p class="step-why">pandas, matplotlib, numpy. Google Colab gives you free cloud notebooks. Python takes you from analyst to senior analyst — it's the difference maker.</p>
+          </div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <div class="step-action">Visualization</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/tableau/E97627" alt="Tableau">
+              <h3>Tableau Public / Looker Studio</h3>
+              <span class="free-badge">Free</span>
+            </div>
+            <p class="step-why">Build dashboards that tell stories. Tableau Public lets you publish and share your work publicly — instant portfolio pieces that hiring managers can see.</p>
+          </div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <div class="step-action">Statistics</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/khanacademy/14BF96" alt="Khan Academy">
+              <h3>Khan Academy + Claude</h3>
+              <span class="free-badge">Free</span>
+            </div>
+            <p class="step-why">Understand distributions, hypothesis testing, correlation, regression. Khan Academy teaches the theory, Claude explains it in plain English when you're stuck.</p>
+          </div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <div class="step-action">Portfolio</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub">
+              <h3>GitHub + Notion</h3>
+              <span class="free-badge">Free</span>
+            </div>
+            <p class="step-why">3-5 data projects with real datasets. Kaggle competitions count. GitHub for code, Notion for write-ups. Show your thinking, not just your queries.</p>
+          </div>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">7</div>
+          <div class="step-content">
+            <div class="step-action">AI assistant</div>
+            <div class="step-tool">
+              <img src="https://cdn.simpleicons.org/anthropic/191919" alt="Claude">
+              <h3>ChatGPT / Claude</h3>
+              <span class="free-badge">Free tiers</span>
+            </div>
+            <p class="step-why">Debug SQL queries, explain statistical concepts, help clean messy data. AI is your always-available senior analyst who never gets tired of questions.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="stack-summary reveal">
+      <h2>Your Complete Stack</h2>
+      <div class="stack-grid">
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="SQL">
+          <div class="stack-item-info">
+            <h4>SQLBolt / Mode</h4>
+            <p>SQL practice — Free</p>
+          </div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/googlesheets/34A853" alt="Google Sheets">
+          <div class="stack-item-info">
+            <h4>Google Sheets</h4>
+            <p>Spreadsheets — Free</p>
+          </div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/jupyter/F37626" alt="Jupyter">
+          <div class="stack-item-info">
+            <h4>VS Code + Jupyter</h4>
+            <p>Python &amp; notebooks — Free</p>
+          </div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/tableau/E97627" alt="Tableau">
+          <div class="stack-item-info">
+            <h4>Tableau Public</h4>
+            <p>Visualization — Free</p>
+          </div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/khanacademy/14BF96" alt="Khan Academy">
+          <div class="stack-item-info">
+            <h4>Khan Academy</h4>
+            <p>Statistics — Free</p>
+          </div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub">
+          <div class="stack-item-info">
+            <h4>GitHub + Notion</h4>
+            <p>Portfolio — Free</p>
+          </div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/anthropic/191919" alt="Claude">
+          <div class="stack-item-info">
+            <h4>ChatGPT / Claude</h4>
+            <p>AI assistant — Free tiers</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pro-tips reveal">
+      <h2>What Hiring Managers Actually Look For</h2>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-icon">🌍</div>
+          <h4>Real datasets beat toy examples</h4>
+          <p>Use government open data, Kaggle datasets, or scrape something interesting. Analysing real-world messy data shows you can handle what the job actually requires.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">📖</div>
+          <h4>Tell a STORY with your analysis</h4>
+          <p>Insight matters more than technique. "Sales dropped 15% in Q3 because..." is worth more than a perfect regression model with no explanation.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🎤</div>
+          <h4>Present to non-technical people</h4>
+          <p>The best analysts translate numbers into decisions. Practice explaining your findings to someone who doesn't know what a p-value is. That's the real job.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon">🧹</div>
+          <h4>Show data cleaning skills</h4>
+          <p>80% of a data analyst's job is cleaning and preparing data. Include messy-to-clean transformations in your portfolio — hiring managers know this is the hard part.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="salary-callout reveal">
+      <div class="salary-icon">💰</div>
+      <div>
+        <h3>Average Salary Range</h3>
+        <p class="salary-range">£30–55K UK &nbsp;/&nbsp; $60–100K US</p>
+        <p>Mid-level data analyst. Senior analysts and those who move into data science or analytics engineering can earn significantly more. Python skills push you to the higher end.</p>
+      </div>
+    </section>
+
+    <section class="related-paths reveal">
+      <h3>Related Paths</h3>
+      <div class="related-links">
+        <a href="./product-manager.html" class="related-link">📋 Product Manager Path →</a>
+        <a href="./frontend-developer.html" class="related-link">⚡ Frontend Developer Path →</a>
+        <a href="./ux-designer.html" class="related-link">🎨 UI/UX Designer Path →</a>
+      </div>
+    </section>
+
+    <div class="path-cta reveal">
+      <h2>Explore more career paths</h2>
+      <p>Find the exact tool stack for your target role — step by step, no fluff.</p>
+      <a href="../">Explore more paths →</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2026 Fewer Tools. Less tools. More building.</p>
+        <div class="footer-links">
+          <a href="../../jobs/">Jobs</a>
+          <a href="../../tools/">All Tools</a>
+          <a href="../../stages/">Stages</a>
+          <a href="mailto:clinton@fewertools.com">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    window.addEventListener('scroll', () => { document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20); });
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('active'); nav.classList.toggle('open'); });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menuToggle.classList.remove('active'); nav.classList.remove('open'); }));
+  </script>
+  <script src="/_vercel/insights/script.js" defer></script>
+  <script src="/_vercel/speed-insights/script.js" defer></script>
+</body>
+</html>
