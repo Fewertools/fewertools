@@ -63,6 +63,11 @@ nav a:hover{color:var(--text);background:var(--bg-alt)}
 .search-clear:hover{background:var(--border);color:var(--text)}
 .search-clear.visible{display:flex}
 
+/* ─── Problem Pills ─── */
+.problem-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:32px}
+.problem-pill{padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-secondary);cursor:pointer;transition:all .2s;font-family:"Inter",sans-serif}
+.problem-pill:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-subtle)}
+
 /* ─── Category Pills ─── */
 .category-filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:40px;padding:0 24px}
 .cat-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:99px;font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid var(--border);background:var(--bg-card);color:var(--text-secondary);transition:all .2s;white-space:nowrap;user-select:none}
@@ -126,10 +131,30 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:40px}
   nav a{padding:12px 16px;font-size:16px;border-radius:var(--radius-sm)}
   .nav-cta{text-align:center;margin-top:12px}
   .menu-toggle{display:block}
-  .tools-grid{grid-template-columns:1fr}
-  .hero h1{font-size:32px}
-  .hero{padding:100px 0 32px}
-  .category-filters{padding:0;justify-content:flex-start}
+  .tools-grid{grid-template-columns:1fr;gap:12px}
+  .hero h1{font-size:28px;letter-spacing:-1px}
+  .hero p{font-size:15px}
+  .hero{padding:88px 0 24px}
+  .hero-badge{font-size:12px;padding:5px 12px}
+  .container{padding:0 16px}
+  .search-section{margin-bottom:20px}
+  #searchInput{padding:14px 44px 14px 44px;font-size:15px}
+  .category-filters{padding:0;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:6px;margin-bottom:24px}
+  .category-filters::-webkit-scrollbar{display:none}
+  .cat-pill{flex-shrink:0;padding:6px 12px;font-size:12px}
+  .tool-card{padding:16px;gap:10px}
+  .tool-card-top{gap:10px}
+  .tool-logo,.tool-logo-letter{width:36px;height:36px}
+  .tool-name{font-size:15px}
+  .tool-desc{font-size:13px}
+  .tool-badges{gap:4px}
+  .badge{font-size:10px;padding:2px 8px}
+  .tool-decision{margin-top:6px;padding-top:6px}
+  .decision-use,.decision-avoid{font-size:11px}
+  .tool-count{font-size:13px}
+  .problem-pills{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;justify-content:flex-start;gap:6px;margin-bottom:20px;padding-bottom:4px}
+  .problem-pills::-webkit-scrollbar{display:none}
+  .problem-pill{flex-shrink:0;padding:6px 12px;font-size:12px}
   .footer-content{flex-direction:column;gap:16px;text-align:center}
 }
 </style>
@@ -163,13 +188,13 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:40px}
 </section>
 
 <div class="container">
-  <div class="reveal" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:32px">
-    <button class="problem-pill" data-q="ai" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:Inter,sans-serif">🧠 AI-powered tools</button>
-    <button class="problem-pill" data-q="writing" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:Inter,sans-serif">✍️ Writing &amp; content</button>
-    <button class="problem-pill" data-q="code" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:Inter,sans-serif">🚀 Coding &amp; shipping</button>
-    <button class="problem-pill" data-q="free" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:Inter,sans-serif">💸 Free tools only</button>
-    <button class="problem-pill" data-q="design" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:Inter,sans-serif">🎨 Design &amp; visuals</button>
-    <button class="problem-pill" data-q="automation" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:Inter,sans-serif">🤖 Automation</button>
+  <div class="problem-pills reveal">
+    <button class="problem-pill" data-q="ai">🧠 AI-powered tools</button>
+    <button class="problem-pill" data-q="writing">✍️ Writing &amp; content</button>
+    <button class="problem-pill" data-q="code">🚀 Coding &amp; shipping</button>
+    <button class="problem-pill" data-q="free">💸 Free tools only</button>
+    <button class="problem-pill" data-q="design">🎨 Design &amp; visuals</button>
+    <button class="problem-pill" data-q="automation">🤖 Automation</button>
   </div>
   <div class="search-section reveal">
     <div class="search-wrap">
@@ -193,7 +218,6 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:40px}
 
 <script>
 (function(){
-try{
 // Mobile menu
 var menuToggle = document.getElementById('menuToggle');
 var nav = document.getElementById('nav');
@@ -722,7 +746,6 @@ filtersEl.addEventListener('click', function(e) {
 
 // Apply featured filter on page load
 filterTools();
-}catch(err){console.error('FewerTools script error:',err);}
 })();
 </script>
 </body>
