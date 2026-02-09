@@ -82,7 +82,7 @@ nav a:hover{color:var(--text);background:var(--bg-alt)}
 .tool-card:hover{border-color:rgba(13,148,136,0.3);box-shadow:0 4px 24px rgba(0,0,0,0.06);transform:translateY(-2px)}
 .tool-card-top{display:flex;align-items:center;gap:12px}
 .tool-logo{width:40px;height:40px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;background:var(--bg-alt)}
-.tool-logo img{width:24px;height:24px;object-fit:contain}
+.tool-logo img{width:28px;height:28px;object-fit:contain;border-radius:4px}
 .tool-logo-letter{width:40px;height:40px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-family:"Space Grotesk";font-weight:700;font-size:18px;color:#fff;flex-shrink:0}
 .tool-info{flex:1;min-width:0}
 .tool-name{font-family:"Space Grotesk";font-weight:600;font-size:16px;line-height:1.2;display:flex;align-items:center;gap:6px}
@@ -164,12 +164,12 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:40px}
 
 <div class="container">
   <div class="reveal" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:32px">
-    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="overwhelmed" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--font-body)">😵 Overwhelmed by tools</button>
-    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="writing clarity" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--font-body)">✍️ Need writing clarity</button>
-    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="ship fast" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--font-body)">🚀 Need to ship fast</button>
-    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="free" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--font-body)">💸 Free tools only</button>
-    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="analytics" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--font-body)">📊 Understand my users</button>
-    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="automate" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--font-body)">🤖 Automate repetitive work</button>
+    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="ai" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:Inter,sans-serif">🧠 AI-powered tools</button>
+    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="writing" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:Inter,sans-serif">✍️ Writing &amp; content</button>
+    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="code" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:Inter,sans-serif">🚀 Coding &amp; shipping</button>
+    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="free" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:Inter,sans-serif">💸 Free tools only</button>
+    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="design" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:Inter,sans-serif">🎨 Design &amp; visuals</button>
+    <button class="problem-pill" onclick="document.getElementById('searchInput').value=this.dataset.q;document.getElementById('searchInput').dispatchEvent(new Event('input'))" data-q="automation" style="padding:8px 16px;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:Inter,sans-serif">🤖 Automation</button>
   </div>
   <div class="search-section reveal">
     <div class="search-wrap">
@@ -584,17 +584,17 @@ featuredTools.forEach(function(name){ featuredSet[name] = true; });
 // ─── Build Category Filter Pills ───
 var filtersEl = document.getElementById('categoryFilters');
 
-var featuredPill = document.createElement('button');
-featuredPill.className = 'cat-pill active';
-featuredPill.dataset.cat = 'featured';
-featuredPill.innerHTML = '<span class="cat-emoji">⭐</span> Featured <span class="cat-count">' + featuredTools.length + '</span>';
-filtersEl.appendChild(featuredPill);
-
 var allPill = document.createElement('button');
-allPill.className = 'cat-pill';
+allPill.className = 'cat-pill active';
 allPill.dataset.cat = 'all';
 allPill.innerHTML = '<span class="cat-emoji">\u{1F525}</span> All tools <span class="cat-count">' + tools.length + '</span>';
 filtersEl.appendChild(allPill);
+
+var featuredPill = document.createElement('button');
+featuredPill.className = 'cat-pill';
+featuredPill.dataset.cat = 'featured';
+featuredPill.innerHTML = '<span class="cat-emoji">⭐</span> Featured <span class="cat-count">' + featuredTools.length + '</span>';
+filtersEl.appendChild(featuredPill);
 
 categories.forEach(function(cat) {
   var count = tools.filter(function(t){ return t.c === cat.id; }).length;
@@ -629,20 +629,11 @@ tools.forEach(function(t) {
   card.dataset.search = (t.n + ' ' + t.d + ' ' + cat.name + ' ' + t.p + ' ' + (t.s||'') + ' ' + (t.v||'') + ' ' + (t.uw||'') + ' ' + (t.av||'')).toLowerCase();
 
   var logoHTML;
-  if (t.i) {
-    var iconSlug = t.i;
-    // Fix known Simple Icons renames
-    var slugFixes = {nuxtdotjs:'nuxt',convertkit:'kit',plausible:'plausibleanalytics'};
-    if (slugFixes[iconSlug]) iconSlug = slugFixes[iconSlug];
-    // Icons that don't exist in Simple Icons - use site favicon instead
-    var noSI = {adobe:1,ahrefs:1,amplitude:1,awsamplify:1,browserstack:1,bubble:1,descript:1,jasper:1,logrocket:1,neon:1,pipedream:1,pipedrive:1};
-    if (noSI[t.i]) {
-      var domain = t.u ? t.u.replace(/^https?:\/\//, '').replace(/\/.*$/, '') : '';
-      logoHTML = '<div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=' + domain + '&sz=64" alt="' + t.n + ' logo" loading="lazy" onerror="this.parentElement.outerHTML=\'<div class=tool-logo-letter style=background:' + cat.color + '>' + t.n[0] + '</div>\'"></div>';
-    } else {
-      // Try with color first, fallback to no-color, then letter
-      logoHTML = '<div class="tool-logo"><img src="https://cdn.simpleicons.org/' + iconSlug + '/' + (t.ic || '555') + '" alt="' + t.n + ' logo" loading="lazy" onerror="var img=this;var nc=\'https://cdn.simpleicons.org/' + iconSlug + '\';if(img.src.indexOf(\'/\'+\'' + (t.ic||'555') + '\')>-1){img.src=nc;}else{img.parentElement.outerHTML=\'<div class=tool-logo-letter style=background:' + cat.color + '>' + t.n[0] + '</div>\';}"></div>';
-    }
+  var domain = t.u ? t.u.replace(/^https?:\/\//, '').replace(/\/.*$/, '') : '';
+  if (domain) {
+    var faviconUrl = 'https://www.google.com/s2/favicons?domain=' + domain + '&sz=128';
+    var letterFallback = '<div class=tool-logo-letter style=background:' + cat.color + '>' + t.n[0] + '</div>';
+    logoHTML = '<div class="tool-logo"><img src="' + faviconUrl + '" alt="' + t.n + '" loading="lazy" onerror="this.parentElement.outerHTML=\'' + letterFallback + '\'"></div>';
   } else {
     logoHTML = '<div class="tool-logo-letter" style="background:' + cat.color + '">' + t.n[0] + '</div>';
   }
@@ -674,7 +665,7 @@ tools.forEach(function(t) {
 // ─── Search & Filter ───
 var searchInput = document.getElementById('searchInput');
 var searchClear = document.getElementById('searchClear');
-var activeCategory = 'featured';
+var activeCategory = 'all';
 
 function filterTools() {
   var query = searchInput.value.toLowerCase().trim();

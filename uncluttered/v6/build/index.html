@@ -460,7 +460,7 @@
       <div class="step" id="studentQ1">
         <span class="step-emoji">📚</span>
         <h2>What are you studying?</h2>
-        <p class="subtitle">Pick the closest match — this shapes your tool recommendations.</p>
+        <p class="subtitle">Pick the closest match - this shapes your tool recommendations.</p>
         <div class="options" data-key="subject">
           <div class="option" data-value="cs"><span class="option-icon">💻</span><span class="option-text">Computer Science / IT</span><span class="option-check">✓</span></div>
           <div class="option" data-value="stem"><span class="option-icon">🔬</span><span class="option-text">STEM (Science, Maths, Engineering)</span><span class="option-check">✓</span></div>
@@ -481,7 +481,7 @@
       <div class="step" id="studentQ2">
         <span class="step-emoji">😩</span>
         <h2>What's your biggest struggle?</h2>
-        <p class="subtitle">Be honest — we've all been there.</p>
+        <p class="subtitle">Be honest - we've all been there.</p>
         <div class="options" data-key="struggle">
           <div class="option" data-value="writing"><span class="option-icon">✍️</span><span class="option-text">Writing essays and assignments</span><span class="option-check">✓</span></div>
           <div class="option" data-value="research"><span class="option-icon">🔍</span><span class="option-text">Finding and organising sources</span><span class="option-check">✓</span></div>
@@ -536,9 +536,9 @@
       <div class="step" id="studentQ5">
         <span class="step-emoji">💰</span>
         <h2>What's your budget for tools?</h2>
-        <p class="subtitle">No judgement — most of our picks are free anyway.</p>
+        <p class="subtitle">No judgement - most of our picks are free anyway.</p>
         <div class="options" data-key="studentBudget">
-          <div class="option" data-value="free"><span class="option-icon">🆓</span><span class="option-text">£0 — free tools only</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="free"><span class="option-icon">🆓</span><span class="option-text">£0 - free tools only</span><span class="option-check">✓</span></div>
           <div class="option" data-value="low"><span class="option-icon">🪙</span><span class="option-text">Up to £5/month</span><span class="option-check">✓</span></div>
           <div class="option" data-value="medium"><span class="option-icon">💳</span><span class="option-text">Up to £15/month</span><span class="option-check">✓</span></div>
           <div class="option" data-value="any"><span class="option-icon">💎</span><span class="option-text">Whatever works best</span><span class="option-check">✓</span></div>
@@ -1165,7 +1165,7 @@ function getJobRecommendations() {
     devops: {
       core: [
         { key: 'docker', reason: 'Containerisation is non-negotiable for DevOps roles' },
-        { key: 'aws', reason: 'AWS or Cloudflare — learn one cloud platform deeply' },
+        { key: 'aws', reason: 'AWS or Cloudflare - learn one cloud platform deeply' },
         { key: 'terraform', reason: 'Infrastructure as code. Used everywhere' },
         { key: 'ghactions', reason: 'CI/CD pipelines. GitHub Actions is free and powerful' },
       ],
@@ -1224,7 +1224,7 @@ function getJobRecommendations() {
       ],
       learn: [{ key: 'claude', reason: 'Get SQL query help and learn data concepts' }],
       portfolio: [{ key: 'github', reason: 'Share analysis projects and notebooks on GitHub' }, { key: 'notion_job', reason: 'Document your analysis process and findings' }],
-      interview: [{ key: 'sql', reason: 'Practice SQL challenges — they dominate interviews' }],
+      interview: [{ key: 'sql', reason: 'Practice SQL challenges - they dominate interviews' }],
     },
     marketing: {
       core: [
@@ -1607,7 +1607,7 @@ function showBuilderResults() {
   document.getElementById('stackBadge').textContent = '🛠️ ' + stackName;
   document.getElementById('stackTitle').textContent = stackName;
   document.getElementById('stackSubtitle').textContent = isStudent
-    ? "Here are essential free tools for students — plus we've got a dedicated section for you."
+    ? "Here are essential free tools for students - plus we've got a dedicated section for you."
     : "Based on your project and preferences, here's exactly what you need.";
   document.getElementById('studentSpecial').style.display = isStudent ? 'block' : 'none';
   document.getElementById('emailCaptureSection').style.display = 'none';
@@ -1787,11 +1787,11 @@ function shareTwitter() {
 function shareWhatsApp() {
   let text;
   if (state.persona === 'student') {
-    text = `Found this quiz that gives you a personalised AI tool stack for uni — mine was spot on 👀\n\nhttps://fewertools.com/build/?path=student`;
+    text = `Found this quiz that gives you a personalised AI tool stack for uni - mine was spot on 👀\n\nhttps://fewertools.com/build/?path=student`;
   } else if (state.persona === 'jobs') {
     text = `Found this tool that gives you a personalised career toolkit based on what role you're targeting 💼\n\nhttps://fewertools.com/build/?path=jobs`;
   } else {
-    text = `Check this out — I got a personalised tool stack recommendation for my project 🚀\n\n${window.location.href}`;
+    text = `Check this out - I got a personalised tool stack recommendation for my project 🚀\n\n${window.location.href}`;
   }
   window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
 }
