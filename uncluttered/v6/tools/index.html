@@ -686,8 +686,10 @@ function filterTools() {
   document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
 }
 
-searchInput.addEventListener('input', filterTools);
-searchInput.addEventListener('keyup', filterTools);
+// Bind search - use multiple events for max compatibility
+['input','keyup','change','search'].forEach(function(evt){
+  searchInput.addEventListener(evt, filterTools);
+});
 searchClear.addEventListener('click', function() {
   searchInput.value = '';
   filterTools();
@@ -695,13 +697,12 @@ searchClear.addEventListener('click', function() {
 });
 
 // Support ?q= URL parameter
-var urlQ = new URLSearchParams(window.location.search).get('q');
-if (urlQ) {
-  searchInput.value = urlQ;
-  filterTools();
-}
+try {
+  var urlQ = new URLSearchParams(window.location.search).get('q');
+  if (urlQ) { searchInput.value = urlQ; }
+} catch(e){}
 
-// Wire up problem pills (above search) via delegation
+// Wire up problem pills
 document.querySelectorAll('.problem-pill').forEach(function(pill) {
   pill.addEventListener('click', function() {
     searchInput.value = this.dataset.q || '';
