@@ -43,10 +43,13 @@
     .preloader-text{display:flex;gap:0;font-family:'Outfit',sans-serif;font-weight:600;font-size:28px;letter-spacing:-0.5px;color:var(--text)}
     .preloader-text span{display:inline-block;opacity:0;filter:blur(10px);transform:translateY(8px) scale(0.9);animation:letterIn 0.4s var(--ease) forwards}
     @keyframes letterIn{to{opacity:1;filter:blur(0);transform:translateY(0) scale(1)}}
-    .preloader-line{width:0;height:2px;background:var(--accent);border-radius:2px;animation:lineGrow 0.8s var(--ease) 0.7s forwards}
+    .preloader-tagline{font-size:14px;color:var(--text-muted);letter-spacing:0.02em;font-weight:400;opacity:0;transform:translateY(6px);animation:tagIn 0.5s var(--ease) 0.9s forwards}
+    @keyframes tagIn{to{opacity:1;transform:translateY(0)}}
+    .preloader-line{width:0;height:2px;background:var(--accent);border-radius:2px;animation:lineGrow 0.8s var(--ease) 1.0s forwards}
     @keyframes lineGrow{to{width:60px}}
     .preloader.exit .preloader-logo{animation:logoExit 0.6s var(--ease) forwards}
     .preloader.exit .preloader-text span{animation:letterExit 0.3s var(--ease) forwards}
+    .preloader.exit .preloader-tagline{animation:letterExit 0.3s var(--ease) 0.05s forwards}
     .preloader.exit .preloader-line{animation:lineExit 0.3s var(--ease) forwards}
     @keyframes logoExit{to{opacity:0;transform:scale(0.5) translateY(-30px)}}
     @keyframes letterExit{to{opacity:0;filter:blur(6px);transform:translateY(-10px)}}
@@ -404,6 +407,7 @@
   <div class="preloader" id="preloader">
     <div class="preloader-logo"><img src="./logo-new-64.png" alt=""></div>
     <div class="preloader-text" id="preloaderText"></div>
+    <div class="preloader-tagline">The right tools. Nothing else.</div>
     <div class="preloader-line"></div>
   </div>
 
