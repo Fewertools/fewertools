@@ -1,7 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://fewertools.com/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/philosophy/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/tools/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/stages/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/gems/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/ai-use-guide/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/contact/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/build/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog -->
+  <url>
+    <loc>https://fewertools.com/blog/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/blog/student-tool-stacks/</loc>
+    <lastmod>2026-02-07</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Stacks -->
+  <url>
+    <loc>https://fewertools.com/stacks/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/stacks/building.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/stacks/building-guide.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/stacks/growing.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/stacks/simplifying.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/stacks/starting.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Compare -->
+  <url>
+    <loc>https://fewertools.com/compare/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/compare/beehiiv-vs-substack.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/compare/claude-vs-chatgpt.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/compare/clerk-vs-auth0.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/compare/cloudflare-vs-aws.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://fewertools.com/compare/cursor-vs-copilot.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/compare/descript-vs-premiere.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/compare/figma-vs-canva.html</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.6</priority>
   </url>
@@ -11,12 +132,27 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://fewertools.com/compare/</loc>
+    <loc>https://fewertools.com/compare/ghost-vs-wordpress.html</loc>
     <lastmod>2026-02-08</lastmod>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/compare/hono-vs-express.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/compare/linear-vs-jira.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://fewertools.com/compare/make-vs-zapier.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/compare/neon-vs-planetscale.html</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.6</priority>
   </url>
@@ -26,7 +162,22 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://fewertools.com/compare/notion-vs-obsidian.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://fewertools.com/compare/posthog-vs-mixpanel.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/compare/resend-vs-sendgrid.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/compare/shopify-vs-gumroad.html</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.6</priority>
   </url>
@@ -41,97 +192,19 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://fewertools.com/compare/tailwind-vs-bootstrap.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://fewertools.com/compare/vercel-vs-netlify.html</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.6</priority>
   </url>
+
+  <!-- Use Cases -->
   <url>
-    <loc>https://fewertools.com/gems/</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/philosophy/</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/products/builders-launch-kit.html</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/products/growth-dashboard.html</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/products/</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/products/simplifiers-audit.html</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/products/starters-playbook.html</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/stacks/building-guide.html</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/stacks/building.html</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/stacks/growing.html</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/stacks/</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/stacks/simplifying.html</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/stacks/starting.html</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/stages/</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/students/</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/students/quiz/</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/tools/</loc>
+    <loc>https://fewertools.com/use-cases/</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
   </url>
@@ -149,11 +222,6 @@
     <loc>https://fewertools.com/use-cases/content-agency/</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://fewertools.com/use-cases/</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://fewertools.com/use-cases/launch-mobile-app/</loc>
@@ -200,6 +268,13 @@
     <lastmod>2026-02-08</lastmod>
     <priority>0.6</priority>
   </url>
+
+  <!-- Workflows -->
+  <url>
+    <loc>https://fewertools.com/workflows/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://fewertools.com/workflows/ai-dev-workflow.html</loc>
     <lastmod>2026-02-08</lastmod>
@@ -226,33 +301,214 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://fewertools.com/workflows/</loc>
-    <lastmod>2026-02-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://fewertools.com/workflows/launch-day.html</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.6</priority>
   </url>
+
+  <!-- Products -->
   <url>
-    <loc>https://fewertools.com/blog/</loc>
+    <loc>https://fewertools.com/products/</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fewertools.com/blog/student-tool-stacks/</loc>
-    <lastmod>2026-02-07</lastmod>
+    <loc>https://fewertools.com/products/builders-launch-kit.html</loc>
+    <lastmod>2026-02-08</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://fewertools.com/ai-use-guide/</loc>
+    <loc>https://fewertools.com/products/growth-dashboard.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/products/simplifiers-audit.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/products/starters-playbook.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Students -->
+  <url>
+    <loc>https://fewertools.com/students/</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fewertools.com/contact/</loc>
+    <loc>https://fewertools.com/students/quiz/</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/students/paths/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/students/paths/ace-your-exams.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/students/paths/business-marketing.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/students/paths/computer-science.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/students/paths/design.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/students/paths/humanities.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/students/paths/land-an-internship.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/students/paths/law.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/students/paths/start-a-side-project.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/students/paths/stem.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/students/paths/write-better-essays.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Jobs -->
+  <url>
+    <loc>https://fewertools.com/jobs/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/ace-interviews.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/build-a-portfolio.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/business-analyst.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/career-switch.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/content-writer.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/customer-success.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/data-analyst.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/devops-engineer.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/digital-marketing.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/executive-assistant.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/finance-accounting.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/frontend-developer.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/fullstack-developer.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/go-freelance.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/graphic-designer.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/human-resources.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/product-manager.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/project-manager.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/sales.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://fewertools.com/jobs/paths/ux-designer.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.5</priority>
   </url>
 </urlset>
