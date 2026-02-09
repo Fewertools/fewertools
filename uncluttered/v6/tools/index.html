@@ -568,12 +568,32 @@ var tools = [
   {n:'Upwork',c:'crm',i:null,ic:'14A800',d:'The largest freelance marketplace. Find clients, build a reputation, earn while you learn.',p:'Free',pk:false,u:'https://upwork.com'}
 ];
 
+// ─── Featured Tools (curated picks) ───
+var featuredTools = [
+  'Claude','ChatGPT','Perplexity','Cursor','GitHub Copilot','v0',
+  'Notion','Linear','Figma','Canva','Framer','Webflow',
+  'Next.js','Vercel','Supabase','Stripe','Shopify',
+  'Midjourney','ElevenLabs','Descript',
+  'PostHog','Sentry','Zapier',
+  'VS Code','GitHub','Slack','Discord',
+  'Resend','1Password'
+];
+var featuredSet = {};
+featuredTools.forEach(function(name){ featuredSet[name] = true; });
+
 // ─── Build Category Filter Pills ───
 var filtersEl = document.getElementById('categoryFilters');
+
+var featuredPill = document.createElement('button');
+featuredPill.className = 'cat-pill active';
+featuredPill.dataset.cat = 'featured';
+featuredPill.innerHTML = '<span class="cat-emoji">⭐</span> Featured <span class="cat-count">' + featuredTools.length + '</span>';
+filtersEl.appendChild(featuredPill);
+
 var allPill = document.createElement('button');
-allPill.className = 'cat-pill active';
+allPill.className = 'cat-pill';
 allPill.dataset.cat = 'all';
-allPill.innerHTML = '<span class="cat-emoji">\u{1F525}</span> All <span class="cat-count">' + tools.length + '</span>';
+allPill.innerHTML = '<span class="cat-emoji">\u{1F525}</span> All tools <span class="cat-count">' + tools.length + '</span>';
 filtersEl.appendChild(allPill);
 
 categories.forEach(function(cat) {
@@ -605,6 +625,7 @@ tools.forEach(function(t) {
   card.rel = t.u ? 'noopener' : '';
   card.className = 'tool-card';
   card.dataset.cat = t.c;
+  if (featuredSet[t.n]) card.dataset.featured = '1';
   card.dataset.search = (t.n + ' ' + t.d + ' ' + cat.name + ' ' + t.p + ' ' + (t.s||'') + ' ' + (t.v||'') + ' ' + (t.uw||'') + ' ' + (t.av||'')).toLowerCase();
 
   var logoHTML;
@@ -653,7 +674,7 @@ tools.forEach(function(t) {
 // ─── Search & Filter ───
 var searchInput = document.getElementById('searchInput');
 var searchClear = document.getElementById('searchClear');
-var activeCategory = 'all';
+var activeCategory = 'featured';
 
 function filterTools() {
   var query = searchInput.value.toLowerCase().trim();
@@ -661,7 +682,7 @@ function filterTools() {
   var cards = grid.querySelectorAll('.tool-card');
   var visible = 0;
   cards.forEach(function(card) {
-    var matchesCat = activeCategory === 'all' || card.dataset.cat === activeCategory;
+    var matchesCat = activeCategory === 'all' || (activeCategory === 'featured' ? card.dataset.featured === '1' : card.dataset.cat === activeCategory);
     var matchesSearch = !query || card.dataset.search.indexOf(query) !== -1;
     if (matchesCat && matchesSearch) {
       card.style.display = '';
@@ -689,6 +710,9 @@ filtersEl.addEventListener('click', function(e) {
   activeCategory = pill.dataset.cat;
   filterTools();
 });
+
+// Apply featured filter on page load
+filterTools();
 })();
 </script>
 </body>
