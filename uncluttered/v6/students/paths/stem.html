@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://fewertools.com/students/paths/stem.html">
+  <title>STEM Student Path (Science & Engineering) — Fewer Tools</title>
+  <meta name="description" content="The complete STEM student toolkit: LaTeX, Python, Zotero, Wolfram Alpha, and more. Step-by-step tools for lab reports, data analysis, and research papers.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fewertools.com/students/paths/stem.html">
+  <meta property="og:title" content="STEM Student Path — Fewer Tools">
+  <meta property="og:description" content="Lab reports, data analysis, simulations, and research papers. Tools that handle the heavy lifting.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12);
+      --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 600px) { .container { padding: 0 24px; } }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 32px; height: 32px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .logo-text { font-family: "Outfit", sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; color: var(--text); }
+    nav { display: flex; align-items: center; gap: 40px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; }
+    .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--text); transition: all 0.3s ease; }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-card); flex-direction: column; align-items: flex-start; padding: 100px 32px 32px; gap: 0; box-shadow: -4px 0 24px rgba(0,0,0,0.1); transition: right 0.3s var(--ease-out); }
+      nav.open { right: 0; }
+      nav a { padding: 16px 0; width: 100%; border-bottom: 1px solid var(--border); font-size: 16px; }
+      nav .nav-cta { margin-top: 16px; width: 100%; text-align: center; border-bottom: none; }
+    }
+
+    /* Breadcrumb */
+    .breadcrumb { padding: 100px 0 0; font-size: 14px; color: var(--text-muted); }
+    .breadcrumb a { color: var(--accent); }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    /* Hero */
+    .path-hero { padding: 20px 0 0; }
+    .path-hero .category-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-subtle); padding: 6px 14px; border-radius: 100px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .path-hero .category-badge .emoji { font-size: 16px; }
+    .path-hero h1 { font-size: clamp(32px, 6vw, 48px); margin-bottom: 16px; }
+    .path-hero .subtitle { font-size: 18px; color: var(--text-secondary); max-width: 640px; line-height: 1.6; }
+
+    /* Path Steps */
+    .path-section { margin: 56px 0; }
+    .path-section h2 { font-size: 28px; margin-bottom: 32px; }
+    .path-steps { position: relative; padding-left: 48px; }
+    .path-steps::before { content: ''; position: absolute; left: 20px; top: 40px; bottom: 40px; width: 2px; background: linear-gradient(to bottom, var(--accent), rgba(13,148,136,0.15)); border-radius: 2px; }
+    .step-card { position: relative; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 28px 28px 32px; margin-bottom: 20px; transition: border-color 0.2s, box-shadow 0.2s; }
+    .step-card:hover { border-color: var(--accent); box-shadow: 0 4px 24px rgba(13,148,136,0.08); }
+    .step-card:last-child { margin-bottom: 0; }
+    .step-number { position: absolute; left: -48px; top: 28px; width: 40px; height: 40px; background: var(--accent); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 16px; box-shadow: 0 2px 8px rgba(13,148,136,0.3); }
+    .step-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+    .step-action { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .step-tool { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text); }
+    .step-tool img { width: 22px; height: 22px; }
+    .free-badge { display: inline-block; font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accent-subtle); padding: 3px 10px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .step-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-top: 4px; }
+    @media (max-width: 600px) {
+      .path-steps { padding-left: 36px; }
+      .path-steps::before { left: 14px; }
+      .step-number { left: -36px; width: 32px; height: 32px; font-size: 14px; top: 24px; }
+      .step-card { padding: 20px 20px 20px 24px; }
+    }
+
+    /* Stack Summary */
+    .stack-summary { margin: 56px 0; }
+    .stack-summary h2 { font-size: 28px; margin-bottom: 24px; }
+    .stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .stack-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; text-align: center; transition: border-color 0.2s; }
+    .stack-item:hover { border-color: var(--accent); }
+    .stack-item img { width: 28px; height: 28px; margin-bottom: 8px; }
+    .stack-item .tool-name { font-family: var(--font-display); font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+    .stack-item .tool-use { font-size: 12px; color: var(--text-muted); }
+
+    /* Pro Tips */
+    .pro-tips { margin: 56px 0; padding: 32px; background: var(--bg-alt); border-radius: var(--radius-lg); border: 1px solid var(--border); }
+    .pro-tips h2 { font-size: 24px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .pro-tips ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .pro-tips li { font-size: 15px; color: var(--text-secondary); line-height: 1.6; padding-left: 24px; position: relative; }
+    .pro-tips li::before { content: "💡"; position: absolute; left: 0; }
+
+    /* Related Paths */
+    .related { margin: 48px 0; }
+    .related h3 { font-size: 20px; margin-bottom: 16px; }
+    .related-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .related-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; transition: all 0.2s; }
+    .related-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* CTA */
+    .path-cta { margin: 48px 0 80px; padding: 40px; background: linear-gradient(135deg, var(--accent), var(--accent-hover)); border-radius: var(--radius-lg); text-align: center; color: white; }
+    .path-cta h2 { font-size: clamp(24px, 4vw, 32px); color: white; margin-bottom: 12px; }
+    .path-cta p { font-size: 16px; opacity: 0.9; margin-bottom: 24px; }
+    .path-cta a { display: inline-block; padding: 14px 32px; background: white; color: var(--accent-hover); font-family: var(--font-display); font-weight: 700; font-size: 16px; border-radius: var(--radius-sm); transition: transform 0.2s, box-shadow 0.2s; }
+    .path-cta a:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+    footer { padding: 64px 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    @media (max-width: 600px) { footer { padding: 40px 0; } .footer-content { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../../" class="logo"><div class="logo-mark"><img src="../../logo-new-64.png" alt="Fewer Tools" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"></div><span class="logo-text">fewertools</span></a>
+      <nav id="nav">
+        <a href="../../stacks/">Stacks</a>
+        <a href="../../tools/">Tools</a>
+        <a href="../../compare/">Compare</a>
+        <a href="../../students/">Students 🎓</a>
+        <a href="../../gems/">Hidden Gems 💎</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../stages/" class="nav-cta">Find your stack</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="breadcrumb reveal">
+      <a href="../../students/">Students</a> &nbsp;/&nbsp; <a href="./">Paths</a> &nbsp;/&nbsp; STEM
+    </div>
+
+    <section class="path-hero reveal">
+      <span class="category-badge"><span class="emoji">🔬</span> STEM Path</span>
+      <h1>STEM Student Path<br>(Science & Engineering)</h1>
+      <p class="subtitle">Lab reports, data analysis, simulations, and research papers. Tools that handle the heavy lifting.</p>
+    </section>
+
+    <section class="path-section reveal">
+      <h2>Your Path</h2>
+      <div class="path-steps">
+
+        <div class="step-card reveal">
+          <div class="step-number">1</div>
+          <div class="step-header">
+            <span class="step-action">Lab reports & papers →</span>
+          </div>
+          <div class="step-header">
+            <span class="step-tool"><img src="https://cdn.simpleicons.org/overleaf/47A141" alt="Overleaf"> Overleaf</span>
+            <span class="free-badge">Free</span>
+          </div>
+          <p class="step-desc">LaTeX in the browser. Beautiful formatting for equations, figures, and citations. No local install needed — just open and start writing.</p>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">2</div>
+          <div class="step-header">
+            <span class="step-action">Data analysis →</span>
+          </div>
+          <div class="step-header">
+            <span class="step-tool"><img src="https://cdn.simpleicons.org/python/3776AB" alt="Python"> Python + Jupyter Notebooks</span>
+            <span class="free-badge">Free</span>
+          </div>
+          <p class="step-desc">The standard for scientific computing. Google Colab gives you free cloud notebooks with GPU access — no setup required.</p>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">3</div>
+          <div class="step-header">
+            <span class="step-action">Reference management →</span>
+          </div>
+          <div class="step-header">
+            <span class="step-tool"><img src="https://cdn.simpleicons.org/zotero/CC2936" alt="Zotero"> Zotero</span>
+            <span class="free-badge">Free</span>
+          </div>
+          <p class="step-desc">One-click paper saving from any browser. Auto-generates citations in any format. Integrates with Overleaf and Google Docs.</p>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">4</div>
+          <div class="step-header">
+            <span class="step-action">Math & calculations →</span>
+          </div>
+          <div class="step-header">
+            <span class="step-tool"><img src="https://cdn.simpleicons.org/wolframmathematica/DD1100" alt="Wolfram Alpha"> Wolfram Alpha</span>
+            <span class="free-badge">Free tier</span>
+          </div>
+          <p class="step-desc">Step-by-step solutions for calculus, linear algebra, differential equations. Like having a maths tutor available 24/7.</p>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">5</div>
+          <div class="step-header">
+            <span class="step-action">AI assistant →</span>
+          </div>
+          <div class="step-header">
+            <span class="step-tool"><img src="https://cdn.simpleicons.org/claude/D97757" alt="Claude"> Claude</span>
+            <span class="free-badge">Free tier</span>
+          </div>
+          <p class="step-desc">Explain complex concepts, debug code, help structure research papers. Great at breaking down dense academic material into clear explanations.</p>
+        </div>
+
+        <div class="step-card reveal">
+          <div class="step-number">6</div>
+          <div class="step-header">
+            <span class="step-action">Collaboration →</span>
+          </div>
+          <div class="step-header">
+            <span class="step-tool"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub"> GitHub + Google Docs</span>
+            <span class="free-badge">Free</span>
+          </div>
+          <p class="step-desc">GitHub for code projects and version control. Google Docs for collaborative writing. Together they cover every group project scenario.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="stack-summary reveal">
+      <h2>Complete Stack Summary</h2>
+      <div class="stack-grid">
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/overleaf/47A141" alt="Overleaf">
+          <div class="tool-name">Overleaf</div>
+          <div class="tool-use">Writing</div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python">
+          <div class="tool-name">Python</div>
+          <div class="tool-use">Data analysis</div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/googlecolab/F9AB00" alt="Colab">
+          <div class="tool-name">Google Colab</div>
+          <div class="tool-use">Notebooks</div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/zotero/CC2936" alt="Zotero">
+          <div class="tool-name">Zotero</div>
+          <div class="tool-use">References</div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/wolframmathematica/DD1100" alt="Wolfram">
+          <div class="tool-name">Wolfram Alpha</div>
+          <div class="tool-use">Calculations</div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/claude/D97757" alt="Claude">
+          <div class="tool-name">Claude</div>
+          <div class="tool-use">AI assistant</div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub">
+          <div class="tool-name">GitHub</div>
+          <div class="tool-use">Code collab</div>
+        </div>
+        <div class="stack-item">
+          <img src="https://cdn.simpleicons.org/googledocs/4285F4" alt="Docs">
+          <div class="tool-name">Google Docs</div>
+          <div class="tool-use">Writing collab</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="pro-tips reveal">
+      <h2>💡 Pro Tips</h2>
+      <ul>
+        <li>Learn Python early — it's used in every STEM field, from biology to aerospace engineering.</li>
+        <li>Google Colab gives you free GPU computing. Perfect for machine learning coursework without buying hardware.</li>
+        <li>Always back up lab data in multiple places. Cloud + local. Data loss = wasted months.</li>
+        <li>LaTeX skills impress professors and look great on CVs. Start with Overleaf templates, don't write from scratch.</li>
+        <li>Use Zotero from day one. Manually formatting a bibliography at 2am before a deadline is pain you can avoid.</li>
+      </ul>
+    </div>
+
+    <div class="related reveal">
+      <h3>Related Paths</h3>
+      <div class="related-links">
+        <a href="./computer-science.html" class="related-link">💻 Computer Science →</a>
+        <a href="./ace-your-exams.html" class="related-link">📝 Ace Your Exams →</a>
+        <a href="./land-an-internship.html" class="related-link">💼 Land an Internship →</a>
+      </div>
+    </div>
+
+    <div class="path-cta reveal">
+      <h2>Not sure this path fits you?</h2>
+      <p>Take our 2-minute quiz and get a personalised tool stack for your course and goals.</p>
+      <a href="../../students/quiz/">Take the student quiz →</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2026 Fewer Tools. Less tools. More building.</p>
+        <div class="footer-links">
+          <a href="../../students/">Students 🎓</a>
+          <a href="../../tools/">All Tools</a>
+          <a href="../../stages/">Stages</a>
+          <a href="mailto:clinton@fewertools.com">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+    window.addEventListener('scroll', () => { document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20); });
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('active'); nav.classList.toggle('open'); });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menuToggle.classList.remove('active'); nav.classList.remove('open'); }));
+  </script>
+  <script src="/_vercel/insights/script.js" defer></script>
+  <script src="/_vercel/speed-insights/script.js" defer></script>
+</body>
+</html>
