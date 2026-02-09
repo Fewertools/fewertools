@@ -6,17 +6,21 @@
 
 ## Active Projects
 
-### Uncluttered.com 🧹
-**Location:** `~/clawd/uncluttered/`
+### Fewertools.com 🧹
+**Location:** `~/clawd/uncluttered/v6/`
+**Live:** fewertools.com (Vercel, auto-deploys from GitHub main branch)
+**Repo:** github.com/Fewertools/fewertools
 
-Curated stack site for solo builders. "Stop researching. Start building."
+Curated tool recommendation site. Outcome-first, not tool-first. "The right tools. Nothing else."
 
-- **Concept:** 4 stages (Idea → Building → Launching → Growing)
-- **Each stage:** THE stack, not 50 options
-- **Per tool:** "Why this one" + "What to ignore"
-- **Design:** Dark, minimal, cinematic
-- **Expansion:** Workflows section (social media, customer support, email onboarding, content repurposing)
-- **Versions:** v1 (index.html), v2, v3 folders
+- **Content:** 106 HTML pages — Tools directory (172+), Compare (22), Students (10+ paths), Jobs (16 paths), Stacks, Use Cases (12+), Gems, AI Stack Builder, Blog, Workflows
+- **Design:** Light (#FAFAF8), Space Grotesk + Inter, teal accent (#0D9488)
+- **Known issue:** 27 pages missing mobile hamburger menu (pre-existing, different nav variants across pages)
+- **TODO:** Build shared `nav.js` on a BRANCH first, test on preview URL before merging
+- **Product Hunt launch:** Planned for Feb 10, 2026
+- **Reddit marketing:** Active via u/Equivalent_Ad6915
+
+**⚠️ LESSON LEARNED (2026-02-09):** Never bulk-edit nav/structure across 100+ static HTML pages live. Always branch → preview → approve → merge. The pages have 3+ different nav variants and the cascade conflicts are brutal.
 
 ### Stock Watcher App 📈
 **Location:** `~/clawd/projects/stock-watcher/`

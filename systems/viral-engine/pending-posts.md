@@ -108,3 +108,21 @@ https://x.com/MobilePunch/status/2019394645902372948
 **Account:** @Unserious_boy
 **Action needed:** ⚠️ AUTH CONSISTENTLY BLOCKED — 6th total failure since Feb 2. CLI user-agent likely flagged. Consider: (1) fresh tokens, (2) manual posting from this file, (3) alternative posting method
 
+---
+
+## 2026-02-09 11:00 (UK) — Failed to Post
+
+**Tweet (Quote Tweet):**
+```
+Wizkid telling someone to make peace with their family is CRAZY work 😭
+
+https://x.com/DavidoPolice/status/2020550111437173066
+```
+
+**Context:** 2Baba said Burna Boy is ahead of Wizkid & Davido globally. Wizkid clapped back on Snapchat: "Old man, make peace with your family first before having opinions about music." The irony — Wizkid's own family situation is well-documented. Tweet is massively viral (8K+ likes, 944 replies).
+**Pattern:** Hypocrisy Callout — pointing out the irony of Wizkid's own family drama while telling 2Baba to fix his
+**Length:** 72 chars ✅ (single observation, punchy)
+**QT Target:** @DavidoPolice (8K likes, 713 RTs — massive borrowed audience)
+**Error:** Authorization 226 — Twitter flagged as automated + 403
+**Account:** @Unserious_boy
+**Action needed:** ⚠️ AUTH STILL BLOCKED — 7th total failure since Feb 2. Manual post or completely new auth approach needed.

@@ -314,4 +314,32 @@ Do NOT post standalone original tweets until engagement recovers. The algo needs
 
 ---
 
+### 2026-02-09 | Midday Post (11 AM UK)
+
+**Account:** @Unserious_boy  
+**Status:** ❌ FAILED (auth blocked — 226/403 recurring)
+
+**Tweet (QT):** "Wizkid telling someone to make peace with their family is CRAZY work 😭" + DavidoPolice viral tweet (8K likes)  
+**QT Target:** https://x.com/DavidoPolice/status/2020550111437173066
+
+**Why this should work:**
+- 2Baba vs Wizkid beef is THE trending topic on Nigerian Twitter right now (35K+ posts)
+- Wizkid calling 2Baba "old man" and telling him to fix his family — while Wizkid's own family situation is well documented — is peak hypocrisy callout
+- Short (72 chars) — single observation, punchy
+- QT format (8K+ likes on target = massive borrowed audience)
+- High emotion: humor + "finally someone said it" energy
+- 12 PM WAT = lunch break Nigerian audience peak
+
+**Error:** Twitter 226 (automated detection) + 403  
+**Notes:** 7th total auth failure since Feb 2. The bird CLI is effectively blocked for posting on this account. 4-day gap since last post (Feb 4).
+
+**⚠️ AUTH STATUS:** Dead. Account is now in severe dormancy — 4+ days without a post. Per our Post-Dormancy Recovery Protocol, when auth is restored the first tweets MUST be QTs of viral content to rebuild algo presence.
+
+**⚠️ RECOMMENDATION:** This cron job is burning tokens researching and composing tweets that can't be posted. Clinton should either:
+1. Refresh tokens and manually post from the pending-posts.md backlog
+2. Pause the viral engine cron jobs until auth is fixed
+3. Set up browser-based posting as a fallback
+
+---
+
 *Updated nightly by viral-learn cron job*
