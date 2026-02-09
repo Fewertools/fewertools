@@ -60,41 +60,39 @@
     .step .subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; }
     .step-emoji { font-size: 40px; margin-bottom: 16px; display: block; }
 
-    /* Textarea */
-    .build-textarea {
-      width: 100%;
-      min-height: 120px;
-      padding: 18px 20px;
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--text);
+    /* Persona cards */
+    .persona-cards { display: flex; flex-direction: column; gap: 14px; }
+    .persona-card {
+      display: flex; align-items: center; gap: 18px;
+      padding: 24px 28px;
       background: var(--bg-card);
       border: 2px solid var(--border);
-      border-radius: var(--radius-md);
-      resize: vertical;
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: all 0.25s var(--ease-out);
     }
-    .build-textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-subtle);
+    .persona-card:hover { border-color: var(--accent); transform: translateX(4px); box-shadow: 0 8px 24px rgba(13, 148, 136, 0.08); }
+    .persona-card .persona-icon { font-size: 36px; flex-shrink: 0; }
+    .persona-card .persona-info { flex: 1; }
+    .persona-card .persona-title { font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-bottom: 4px; }
+    .persona-card .persona-desc { font-size: 14px; color: var(--text-muted); }
+
+    /* Textarea */
+    .build-textarea {
+      width: 100%; min-height: 120px; padding: 18px 20px;
+      font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text);
+      background: var(--bg-card); border: 2px solid var(--border); border-radius: var(--radius-md);
+      resize: vertical; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
+    .build-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-subtle); }
     .build-textarea::placeholder { color: var(--text-muted); }
 
     /* Chips */
     .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; margin-bottom: 32px; }
     .chip {
-      padding: 8px 16px;
-      background: var(--bg-card);
-      border: 1.5px solid var(--border-strong);
-      border-radius: 100px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      white-space: nowrap;
+      padding: 8px 16px; background: var(--bg-card); border: 1.5px solid var(--border-strong);
+      border-radius: 100px; font-size: 14px; font-weight: 500; color: var(--text-secondary);
+      cursor: pointer; transition: all 0.2s ease; white-space: nowrap;
     }
     .chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-subtle); }
     .chip.active { border-color: var(--accent); color: var(--accent); background: var(--accent-subtle); }
@@ -103,12 +101,8 @@
     .options { display: flex; flex-direction: column; gap: 10px; }
     .option {
       display: flex; align-items: center; gap: 14px;
-      padding: 16px 20px;
-      background: var(--bg-card);
-      border: 2px solid var(--border);
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all 0.2s ease;
+      padding: 16px 20px; background: var(--bg-card); border: 2px solid var(--border);
+      border-radius: var(--radius-md); cursor: pointer; transition: all 0.2s ease;
       font-size: 15px; font-weight: 500;
     }
     .option:hover { border-color: var(--accent); transform: translateX(4px); }
@@ -117,22 +111,17 @@
     .option-text { flex: 1; }
     .option-desc { font-size: 13px; color: var(--text-muted); font-weight: 400; margin-top: 2px; }
     .option-check {
-      width: 22px; height: 22px;
-      border: 2px solid var(--border-strong);
-      border-radius: 50%; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.2s ease;
-      font-size: 12px; color: transparent;
+      width: 22px; height: 22px; border: 2px solid var(--border-strong); border-radius: 50%;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s ease; font-size: 12px; color: transparent;
     }
     .option.selected .option-check { border-color: var(--accent); background: var(--accent); color: white; }
 
     /* Buttons */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 14px 28px;
-      font-family: var(--font-body); font-size: 15px; font-weight: 600;
-      border-radius: var(--radius-md); border: none; cursor: pointer;
-      transition: all 0.2s ease;
+      padding: 14px 28px; font-family: var(--font-body); font-size: 15px; font-weight: 600;
+      border-radius: var(--radius-md); border: none; cursor: pointer; transition: all 0.2s ease;
     }
     .btn-primary { background: var(--bg-dark); color: var(--text-inverse); }
     .btn-primary:hover { background: #222; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
@@ -152,77 +141,50 @@
     .results-header h1 { font-size: clamp(28px, 5vw, 40px); margin-bottom: 8px; }
     .results-header .stack-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 8px 20px;
-      background: var(--accent-subtle);
-      border: 1px solid var(--accent);
-      border-radius: 100px;
-      font-size: 14px; font-weight: 600; color: var(--accent);
-      margin-bottom: 16px;
+      padding: 8px 20px; background: var(--accent-subtle); border: 1px solid var(--accent);
+      border-radius: 100px; font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 16px;
     }
     .results-subtitle { font-size: 16px; color: var(--text-secondary); }
 
     /* Student special card */
     .student-special {
       background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(13, 148, 136, 0.06) 100%);
-      border: 1px solid rgba(139, 92, 246, 0.15);
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      text-align: center;
-      margin-bottom: 24px;
+      border: 1px solid rgba(139, 92, 246, 0.15); border-radius: var(--radius-xl);
+      padding: 32px; text-align: center; margin-bottom: 24px;
     }
     .student-special h3 { font-size: 22px; margin-bottom: 8px; }
     .student-special p { color: var(--text-secondary); margin-bottom: 20px; }
 
     /* Stack category */
     .stack-category {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      margin-bottom: 16px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); overflow: hidden; margin-bottom: 16px;
     }
-    .stack-category-header {
-      padding: 18px 24px 12px;
-      border-bottom: 1px solid var(--border);
-    }
+    .stack-category-header { padding: 18px 24px 12px; border-bottom: 1px solid var(--border); }
     .stack-category-header h3 {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      font-weight: 700;
+      font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--accent); font-weight: 700;
     }
     .stack-tool {
       display: flex; align-items: center; gap: 14px;
-      padding: 16px 24px;
-      border-bottom: 1px solid var(--border);
-      transition: background 0.2s;
-      opacity: 0;
-      animation: stackItemIn 0.4s var(--ease-out) forwards;
+      padding: 16px 24px; border-bottom: 1px solid var(--border);
+      transition: background 0.2s; opacity: 0; animation: stackItemIn 0.4s var(--ease-out) forwards;
     }
     .stack-tool:last-child { border-bottom: none; }
     .stack-tool:hover { background: var(--bg-alt); }
     @keyframes stackItemIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     .stack-tool-icon {
-      width: 40px; height: 40px;
-      background: var(--bg-alt);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      font-size: 20px;
+      width: 40px; height: 40px; background: var(--bg-alt); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 20px;
     }
     .stack-tool-icon img { width: 28px; height: 28px; object-fit: contain; }
     .stack-tool-info { flex: 1; min-width: 0; }
     .stack-tool-name { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
     .stack-tool-reason { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
     .stack-tool-price {
-      display: inline-flex;
-      padding: 3px 10px;
-      border-radius: 100px;
-      font-size: 11px; font-weight: 600;
-      flex-shrink: 0;
-      white-space: nowrap;
+      display: inline-flex; padding: 3px 10px; border-radius: 100px;
+      font-size: 11px; font-weight: 600; flex-shrink: 0; white-space: nowrap;
     }
     .price-free { background: rgba(34, 197, 94, 0.1); color: #16A34A; }
     .price-freemium { background: rgba(13, 148, 136, 0.1); color: var(--accent); }
@@ -230,59 +192,63 @@
 
     /* Cost estimate */
     .cost-estimate {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: 24px;
-      margin-top: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl);
+      padding: 24px; margin-top: 24px; display: flex; justify-content: space-between; align-items: center;
     }
     .cost-label { font-size: 14px; color: var(--text-secondary); }
     .cost-label strong { display: block; font-size: 15px; color: var(--text); }
-    .cost-amount {
-      font-family: var(--font-display);
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--accent);
-    }
+    .cost-amount { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--accent); }
 
     /* Actions */
-    .results-actions {
-      display: flex; gap: 10px; justify-content: center;
-      margin-top: 32px; flex-wrap: wrap;
-    }
+    .results-actions { display: flex; gap: 10px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
     .share-btn {
-      padding: 12px 24px;
-      border: 1.5px solid var(--border-strong);
-      border-radius: var(--radius-md);
-      font-size: 14px; font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: var(--bg-card);
-      font-family: var(--font-body);
-      color: var(--text);
+      padding: 12px 24px; border: 1.5px solid var(--border-strong); border-radius: var(--radius-md);
+      font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+      background: var(--bg-card); font-family: var(--font-body); color: var(--text);
     }
     .share-btn:hover { border-color: var(--accent); transform: translateY(-2px); }
 
     /* CTA banner */
     .cta-banner {
-      background: var(--bg-dark);
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      text-align: center;
-      color: var(--text-inverse);
-      margin-top: 32px;
+      background: var(--bg-dark); border-radius: var(--radius-xl); padding: 32px;
+      text-align: center; color: var(--text-inverse); margin-top: 32px;
     }
     .cta-banner h3 { font-size: 20px; margin-bottom: 8px; }
     .cta-banner p { color: rgba(255,255,255,0.6); margin-bottom: 20px; font-size: 14px; }
     .cta-banner .btn-accent { padding: 12px 24px; }
 
-    .retake-link {
-      text-align: center;
-      margin-top: 24px;
+    /* Path link */
+    .path-link {
+      display: flex; align-items: center; gap: 10px; padding: 14px 20px;
+      background: var(--accent-subtle); border: 1px solid var(--accent); border-radius: var(--radius-md);
+      margin-top: 12px; font-size: 14px; font-weight: 600; color: var(--accent); transition: all 0.2s;
     }
+    .path-link:hover { background: var(--accent); color: white; }
+
+    /* Email capture */
+    .email-capture {
+      background: var(--bg-dark); border-radius: var(--radius-xl); padding: 40px 32px;
+      text-align: center; color: var(--text-inverse); margin-top: 32px;
+    }
+    .email-capture h3 { font-size: 22px; margin-bottom: 8px; }
+    .email-capture p { color: rgba(255,255,255,0.6); margin-bottom: 24px; font-size: 15px; }
+    .email-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
+    .email-input {
+      flex: 1; padding: 14px 18px; border: 2px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05); border-radius: var(--radius-md);
+      color: white; font-size: 15px; font-family: var(--font-body); outline: none; transition: border-color 0.2s;
+    }
+    .email-input::placeholder { color: rgba(255,255,255,0.3); }
+    .email-input:focus { border-color: var(--accent); }
+    .email-submit {
+      padding: 14px 24px; background: var(--accent); color: white; border: none;
+      border-radius: var(--radius-md); font-size: 15px; font-weight: 600; cursor: pointer;
+      transition: all 0.2s; font-family: var(--font-body); white-space: nowrap;
+    }
+    .email-submit:hover { background: var(--accent-hover); }
+    .email-success { display: none; color: var(--accent); font-weight: 600; font-size: 15px; }
+
+    .retake-link { text-align: center; margin-top: 24px; }
     .retake-link a { color: var(--text-muted); font-size: 14px; text-decoration: underline; }
     .retake-link a:hover { color: var(--text); }
 
@@ -304,6 +270,10 @@
       .cost-estimate { flex-direction: column; gap: 12px; text-align: center; }
       .results-actions { flex-direction: column; align-items: center; }
       .share-btn { width: 100%; max-width: 280px; text-align: center; }
+      .persona-card { padding: 18px 20px; gap: 14px; }
+      .persona-card .persona-icon { font-size: 28px; }
+      .persona-card .persona-title { font-size: 16px; }
+      .email-form { flex-direction: column; }
     }
   </style>
 </head>
@@ -323,17 +293,48 @@
     <div class="container">
       <div class="progress-track"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
       <div class="progress-text">
-        <span id="progressLabel">Step 1 of 3</span>
+        <span id="progressLabel">Step 1 of 4</span>
         <span id="progressTime">⏱ ~30 seconds</span>
       </div>
     </div>
   </div>
 
-  <!-- ===== STEP 1: What are you building? ===== -->
+  <!-- ===== ALL STEPS ===== -->
   <div class="step-wrapper" id="stepWrapper">
     <div class="container">
 
-      <div class="step active" id="step1">
+      <!-- ===== STEP 0: Who are you? (Persona selector) ===== -->
+      <div class="step active" id="stepPersona">
+        <span class="step-emoji">👋</span>
+        <h2>What brings you here?</h2>
+        <p class="subtitle">Pick the one that fits best. We'll tailor your experience.</p>
+        <div class="persona-cards">
+          <div class="persona-card" onclick="selectPersona('builder')">
+            <span class="persona-icon">🚀</span>
+            <div class="persona-info">
+              <div class="persona-title">Building something</div>
+              <div class="persona-desc">I need the right tools to build and ship</div>
+            </div>
+          </div>
+          <div class="persona-card" onclick="selectPersona('student')">
+            <span class="persona-icon">🎓</span>
+            <div class="persona-info">
+              <div class="persona-title">Student</div>
+              <div class="persona-desc">I need tools for studying, research, and coursework</div>
+            </div>
+          </div>
+          <div class="persona-card" onclick="selectPersona('jobs')">
+            <span class="persona-icon">💼</span>
+            <div class="persona-info">
+              <div class="persona-title">Job seeker</div>
+              <div class="persona-desc">I need tools to land my dream role</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BUILDER: Step 1 - What are you building? ===== -->
+      <div class="step" id="builderStep1">
         <span class="step-emoji">🚀</span>
         <h2>What are you building?</h2>
         <p class="subtitle">Describe your project in a sentence or two. Or pick a quick-start below.</p>
@@ -351,13 +352,13 @@
           <span class="chip" data-template="digital">📦 Digital Products</span>
         </div>
         <div class="step-nav">
-          <div></div>
-          <button class="btn btn-primary" id="buildBtn" disabled onclick="goToQuestions()">Build my stack →</button>
+          <button class="btn btn-secondary" onclick="goBackToPersona()">← Back</button>
+          <button class="btn btn-primary" id="buildBtn" disabled onclick="goToBuilderQuestions()">Build my stack →</button>
         </div>
       </div>
 
-      <!-- ===== STEP 2: Questions (one at a time) ===== -->
-      <div class="step" id="step2q1">
+      <!-- ===== BUILDER: Q1 Stage ===== -->
+      <div class="step" id="builderQ1">
         <span class="step-emoji">📍</span>
         <h2>What stage are you at?</h2>
         <p class="subtitle">This helps us pick the right complexity level.</p>
@@ -384,12 +385,13 @@
           </div>
         </div>
         <div class="step-nav">
-          <button class="btn btn-secondary" onclick="goBackTo('step1')">← Back</button>
-          <button class="btn btn-primary" id="nextQ1" disabled onclick="goToStep('step2q2')">Continue →</button>
+          <button class="btn btn-secondary" onclick="navigateTo('builderStep1')">← Back</button>
+          <button class="btn btn-primary" disabled onclick="navigateTo('builderQ2')">Continue →</button>
         </div>
       </div>
 
-      <div class="step" id="step2q2">
+      <!-- ===== BUILDER: Q2 Budget ===== -->
+      <div class="step" id="builderQ2">
         <span class="step-emoji">💰</span>
         <h2>What's your budget?</h2>
         <p class="subtitle">No judgement, great tools exist at every price.</p>
@@ -416,12 +418,13 @@
           </div>
         </div>
         <div class="step-nav">
-          <button class="btn btn-secondary" onclick="goBackTo('step2q1')">← Back</button>
-          <button class="btn btn-primary" id="nextQ2" disabled onclick="goToStep('step2q3')">Continue →</button>
+          <button class="btn btn-secondary" onclick="navigateTo('builderQ1')">← Back</button>
+          <button class="btn btn-primary" disabled onclick="navigateTo('builderQ3')">Continue →</button>
         </div>
       </div>
 
-      <div class="step" id="step2q3">
+      <!-- ===== BUILDER: Q3 Priority ===== -->
+      <div class="step" id="builderQ3">
         <span class="step-emoji">🎯</span>
         <h2>What matters most?</h2>
         <p class="subtitle">We'll optimise your stack around this priority.</p>
@@ -448,8 +451,225 @@
           </div>
         </div>
         <div class="step-nav">
-          <button class="btn btn-secondary" onclick="goBackTo('step2q2')">← Back</button>
-          <button class="btn btn-accent" id="nextQ3" disabled onclick="showResults()">See my stack 🚀</button>
+          <button class="btn btn-secondary" onclick="navigateTo('builderQ2')">← Back</button>
+          <button class="btn btn-accent" disabled onclick="showBuilderResults()">See my stack 🚀</button>
+        </div>
+      </div>
+
+      <!-- ===== STUDENT: Q1 Subject ===== -->
+      <div class="step" id="studentQ1">
+        <span class="step-emoji">📚</span>
+        <h2>What are you studying?</h2>
+        <p class="subtitle">Pick the closest match — this shapes your tool recommendations.</p>
+        <div class="options" data-key="subject">
+          <div class="option" data-value="cs"><span class="option-icon">💻</span><span class="option-text">Computer Science / IT</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="stem"><span class="option-icon">🔬</span><span class="option-text">STEM (Science, Maths, Engineering)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="medicine"><span class="option-icon">🩺</span><span class="option-text">Medicine / Health Sciences</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="law"><span class="option-icon">⚖️</span><span class="option-text">Law</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="humanities"><span class="option-icon">📖</span><span class="option-text">Humanities (English, History, Philosophy)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="social"><span class="option-icon">🧠</span><span class="option-text">Social Sciences (Psychology, Sociology)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="business"><span class="option-icon">📊</span><span class="option-text">Business / Economics / Finance</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="creative"><span class="option-icon">🎨</span><span class="option-text">Creative Arts / Design / Media</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="goBackToPersona()">← Back</button>
+          <button class="btn btn-primary" disabled onclick="navigateTo('studentQ2')">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ===== STUDENT: Q2 Struggle ===== -->
+      <div class="step" id="studentQ2">
+        <span class="step-emoji">😩</span>
+        <h2>What's your biggest struggle?</h2>
+        <p class="subtitle">Be honest — we've all been there.</p>
+        <div class="options" data-key="struggle">
+          <div class="option" data-value="writing"><span class="option-icon">✍️</span><span class="option-text">Writing essays and assignments</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="research"><span class="option-icon">🔍</span><span class="option-text">Finding and organising sources</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="focus"><span class="option-icon">📱</span><span class="option-text">Staying focused (phone is too tempting)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="revision"><span class="option-icon">📝</span><span class="option-text">Revision and remembering content</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="presentations"><span class="option-icon">🎤</span><span class="option-text">Presentations and group work</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="deadlines"><span class="option-icon">⏰</span><span class="option-text">Managing deadlines and workload</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="maths"><span class="option-icon">🧮</span><span class="option-text">Maths and problem solving</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="navigateTo('studentQ1')">← Back</button>
+          <button class="btn btn-primary" disabled onclick="navigateTo('studentQ3')">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ===== STUDENT: Q3 Learning style ===== -->
+      <div class="step" id="studentQ3">
+        <span class="step-emoji">🧠</span>
+        <h2>How do you learn best?</h2>
+        <p class="subtitle">Everyone's different. This helps us pick the right format of tools.</p>
+        <div class="options" data-key="style">
+          <div class="option" data-value="reading"><span class="option-icon">📄</span><span class="option-text">Reading and taking notes</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="flashcards"><span class="option-icon">🗂️</span><span class="option-text">Flashcards and active recall</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="audio"><span class="option-icon">🎧</span><span class="option-text">Listening (podcasts, audio summaries)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="visual"><span class="option-icon">🖼️</span><span class="option-text">Visual (diagrams, mind maps, videos)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="practice"><span class="option-icon">✏️</span><span class="option-text">Practice problems and past papers</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="navigateTo('studentQ2')">← Back</button>
+          <button class="btn btn-primary" disabled onclick="navigateTo('studentQ4')">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ===== STUDENT: Q4 Year ===== -->
+      <div class="step" id="studentQ4">
+        <span class="step-emoji">🎓</span>
+        <h2>What year are you in?</h2>
+        <p class="subtitle">Final year dissertations need different tools than first year essays.</p>
+        <div class="options" data-key="year">
+          <div class="option" data-value="first"><span class="option-icon">1️⃣</span><span class="option-text">First year</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="second"><span class="option-icon">2️⃣</span><span class="option-text">Second year</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="final"><span class="option-icon">3️⃣</span><span class="option-text">Final year</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="postgrad"><span class="option-icon">🎯</span><span class="option-text">Postgraduate / Masters / PhD</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="navigateTo('studentQ3')">← Back</button>
+          <button class="btn btn-primary" disabled onclick="navigateTo('studentQ5')">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ===== STUDENT: Q5 Budget ===== -->
+      <div class="step" id="studentQ5">
+        <span class="step-emoji">💰</span>
+        <h2>What's your budget for tools?</h2>
+        <p class="subtitle">No judgement — most of our picks are free anyway.</p>
+        <div class="options" data-key="studentBudget">
+          <div class="option" data-value="free"><span class="option-icon">🆓</span><span class="option-text">£0 — free tools only</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="low"><span class="option-icon">🪙</span><span class="option-text">Up to £5/month</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="medium"><span class="option-icon">💳</span><span class="option-text">Up to £15/month</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="any"><span class="option-icon">💎</span><span class="option-text">Whatever works best</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="navigateTo('studentQ4')">← Back</button>
+          <button class="btn btn-primary" disabled onclick="navigateTo('studentQ6')">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ===== STUDENT: Q6 Device ===== -->
+      <div class="step" id="studentQ6">
+        <span class="step-emoji">💻</span>
+        <h2>What do you mainly study on?</h2>
+        <p class="subtitle">Some tools work better on certain devices.</p>
+        <div class="options" data-key="device">
+          <div class="option" data-value="laptop"><span class="option-icon">💻</span><span class="option-text">Laptop / Desktop</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="ipad"><span class="option-icon">📱</span><span class="option-text">iPad / Tablet</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="phone"><span class="option-icon">📲</span><span class="option-text">Phone (mostly)</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="mix"><span class="option-icon">🔄</span><span class="option-text">Mix of everything</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="navigateTo('studentQ5')">← Back</button>
+          <button class="btn btn-accent" disabled onclick="showStudentResults()">See my stack 🚀</button>
+        </div>
+      </div>
+
+      <!-- ===== JOBS: Q1 Role ===== -->
+      <div class="step" id="jobsQ1">
+        <span class="step-emoji">🎯</span>
+        <h2>What role are you targeting?</h2>
+        <p class="subtitle">Pick the career path you're aiming for.</p>
+        <div class="options" data-key="role">
+          <div class="option" data-value="frontend"><span class="option-icon">🖥️</span><span class="option-text">Frontend Developer</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="fullstack"><span class="option-icon">⚙️</span><span class="option-text">Fullstack Developer</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="devops"><span class="option-icon">☁️</span><span class="option-text">DevOps Engineer</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="ux"><span class="option-icon">🎨</span><span class="option-text">UX Designer</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="graphic"><span class="option-icon">🖌️</span><span class="option-text">Graphic Designer</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="product"><span class="option-icon">📋</span><span class="option-text">Product Manager</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="project"><span class="option-icon">📊</span><span class="option-text">Project Manager</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="data"><span class="option-icon">📈</span><span class="option-text">Data Analyst</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="marketing"><span class="option-icon">📣</span><span class="option-text">Digital Marketing</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="writer"><span class="option-icon">✍️</span><span class="option-text">Content Writer</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="sales"><span class="option-icon">🤝</span><span class="option-text">Sales</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="ba"><span class="option-icon">🔍</span><span class="option-text">Business Analyst</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="hr"><span class="option-icon">👥</span><span class="option-text">HR</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="cs"><span class="option-icon">💬</span><span class="option-text">Customer Success</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="ea"><span class="option-icon">📅</span><span class="option-text">Executive Assistant</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="finance"><span class="option-icon">💷</span><span class="option-text">Finance / Accounting</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="goBackToPersona()">← Back</button>
+          <button class="btn btn-primary" disabled onclick="navigateTo('jobsQ2')">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ===== JOBS: Q2 Experience ===== -->
+      <div class="step" id="jobsQ2">
+        <span class="step-emoji">📍</span>
+        <h2>What's your experience level?</h2>
+        <p class="subtitle">This helps us calibrate the right tools and resources.</p>
+        <div class="options" data-key="experience">
+          <div class="option" data-value="beginner">
+            <span class="option-icon">🌱</span>
+            <span class="option-text">Complete beginner<div class="option-desc">Career switching, starting from scratch</div></span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="some">
+            <span class="option-icon">📚</span>
+            <span class="option-text">Some experience<div class="option-desc">Looking to level up</div></span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="experienced">
+            <span class="option-icon">🏆</span>
+            <span class="option-text">Experienced<div class="option-desc">Need the right tools for the job</div></span>
+            <span class="option-check">✓</span>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="navigateTo('jobsQ1')">← Back</button>
+          <button class="btn btn-primary" disabled onclick="navigateTo('jobsQ3')">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ===== JOBS: Q3 Goal ===== -->
+      <div class="step" id="jobsQ3">
+        <span class="step-emoji">🎯</span>
+        <h2>What's your main goal?</h2>
+        <p class="subtitle">We'll focus your toolkit around this.</p>
+        <div class="options" data-key="goal">
+          <div class="option" data-value="learn">
+            <span class="option-icon">📖</span>
+            <span class="option-text">Learn the skills I need</span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="portfolio">
+            <span class="option-icon">💼</span>
+            <span class="option-text">Build a portfolio to show employers</span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="interview">
+            <span class="option-icon">🎤</span>
+            <span class="option-text">Prepare for interviews</span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="all">
+            <span class="option-icon">🚀</span>
+            <span class="option-text">All of the above</span>
+            <span class="option-check">✓</span>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="navigateTo('jobsQ2')">← Back</button>
+          <button class="btn btn-primary" disabled onclick="navigateTo('jobsQ4')">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ===== JOBS: Q4 Budget ===== -->
+      <div class="step" id="jobsQ4">
+        <span class="step-emoji">💰</span>
+        <h2>What's your budget?</h2>
+        <p class="subtitle">Most career tools have generous free tiers.</p>
+        <div class="options" data-key="jobBudget">
+          <div class="option" data-value="free"><span class="option-icon">🆓</span><span class="option-text">Free only</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="10"><span class="option-icon">🪙</span><span class="option-text">Under $10/mo</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="30"><span class="option-icon">💳</span><span class="option-text">Under $30/mo</span><span class="option-check">✓</span></div>
+          <div class="option" data-value="any"><span class="option-icon">💎</span><span class="option-text">Whatever works best</span><span class="option-check">✓</span></div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="navigateTo('jobsQ3')">← Back</button>
+          <button class="btn btn-accent" disabled onclick="showJobResults()">See my toolkit 🚀</button>
         </div>
       </div>
 
@@ -481,6 +701,22 @@
         <div class="cost-amount" id="costAmount">$0/mo</div>
       </div>
 
+      <!-- Job path link (shown for jobs persona) -->
+      <div id="jobPathLink" style="display:none;"></div>
+
+      <!-- Email capture (shown for student persona) -->
+      <div id="emailCaptureSection" style="display:none;">
+        <div class="email-capture">
+          <h3>Save your stack + get weekly tips</h3>
+          <p>We'll send your personalised stack and one useful tool recommendation every week. No spam.</p>
+          <div class="email-form" id="emailForm">
+            <input type="email" class="email-input" id="emailInput" placeholder="your@university.ac.uk">
+            <button class="email-submit" onclick="submitEmail()">Save my stack →</button>
+          </div>
+          <div class="email-success" id="emailSuccess">✅ Saved! Check your inbox for your stack.</div>
+        </div>
+      </div>
+
       <div class="results-actions">
         <button class="share-btn" onclick="saveShare()">🔗 Save & Share</button>
         <button class="share-btn" onclick="shareTwitter()">𝕏 Share on X</button>
@@ -510,11 +746,23 @@
 <script>
 // ===== STATE =====
 const state = {
-  project: '',
-  projectType: '',
-  stage: '',
-  budget: '',
-  priority: ''
+  persona: '', // 'builder', 'student', 'jobs'
+  // Builder state
+  project: '', projectType: '', stage: '', budget: '', priority: '',
+  // Student state
+  subject: '', struggle: '', style: '', year: '', studentBudget: '', device: '',
+  // Jobs state
+  role: '', experience: '', goal: '', jobBudget: ''
+};
+
+// Total steps per persona (for progress bar)
+const TOTAL_STEPS = { builder: 4, student: 7, jobs: 5 };
+
+// Step sequences per persona
+const STEP_ORDER = {
+  builder: ['stepPersona', 'builderStep1', 'builderQ1', 'builderQ2', 'builderQ3'],
+  student: ['stepPersona', 'studentQ1', 'studentQ2', 'studentQ3', 'studentQ4', 'studentQ5', 'studentQ6'],
+  jobs: ['stepPersona', 'jobsQ1', 'jobsQ2', 'jobsQ3', 'jobsQ4']
 };
 
 // ===== CHIP TEMPLATES =====
@@ -549,12 +797,11 @@ function detectProjectType(text) {
   for (const [type, regex] of Object.entries(patterns)) {
     if (regex.test(text)) return type;
   }
-  return 'saas'; // default
+  return 'saas';
 }
 
-// ===== TOOL DATABASE =====
+// ===== BUILDER TOOL DATABASE =====
 const TOOLS = {
-  // Dev / SaaS
   nextjs: { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/000000', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://nextjs.org' },
   astro: { name: 'Astro', icon: 'https://cdn.simpleicons.org/astro/BC52EE', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://astro.build' },
   supabase: { name: 'Supabase', icon: 'https://cdn.simpleicons.org/supabase/3FCF8E', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://supabase.com' },
@@ -571,8 +818,6 @@ const TOOLS = {
   notion: { name: 'Notion', icon: 'https://cdn.simpleicons.org/notion/000000', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://notion.so' },
   figma: { name: 'Figma', icon: 'https://cdn.simpleicons.org/figma/F24E1E', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://figma.com' },
   cursor: { name: 'Cursor', icon: 'https://cdn.simpleicons.org/cursor/000000', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://cursor.sh' },
-
-  // YouTube
   obs: { name: 'OBS Studio', icon: 'https://cdn.simpleicons.org/obsstudio/302E31', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://obsproject.com' },
   screenflow: { name: 'ScreenFlow', icon: 'https://www.google.com/s2/favicons?domain=telestream.net&sz=128', price: '$169 once', priceType: 'paid', monthlyCost: 0, url: 'https://www.telestream.net/screenflow/' },
   davinci: { name: 'DaVinci Resolve', icon: 'https://www.google.com/s2/favicons?domain=blackmagicdesign.com&sz=128', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://www.blackmagicdesign.com/products/davinciresolve' },
@@ -581,25 +826,17 @@ const TOOLS = {
   tubebuddy: { name: 'TubeBuddy', icon: 'https://www.google.com/s2/favicons?domain=tubebuddy.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://tubebuddy.com' },
   vidiq: { name: 'vidIQ', icon: 'https://www.google.com/s2/favicons?domain=vidiq.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://vidiq.com' },
   epidemic: { name: 'Epidemic Sound', icon: 'https://www.google.com/s2/favicons?domain=epidemicsound.com&sz=128', price: 'From $13/mo', priceType: 'paid', monthlyCost: 13, url: 'https://epidemicsound.com' },
-
-  // Newsletter
   beehiiv: { name: 'Beehiiv', icon: 'https://www.google.com/s2/favicons?domain=beehiiv.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://beehiiv.com' },
   grammarly: { name: 'Grammarly', icon: 'https://cdn.simpleicons.org/grammarly/15C39A', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://grammarly.com' },
   sparkloop: { name: 'SparkLoop', icon: 'https://www.google.com/s2/favicons?domain=sparkloop.app&sz=128', price: 'From $49/mo', priceType: 'paid', monthlyCost: 49, url: 'https://sparkloop.app' },
-
-  // E-commerce
   shopify: { name: 'Shopify', icon: 'https://cdn.simpleicons.org/shopify/7AB55C', price: 'From $29/mo', priceType: 'paid', monthlyCost: 29, url: 'https://shopify.com' },
   gumroad: { name: 'Gumroad', icon: 'https://cdn.simpleicons.org/gumroad/FF90E8', price: 'Pay per txn', priceType: 'freemium', monthlyCost: 0, url: 'https://gumroad.com' },
   ga4: { name: 'Google Analytics', icon: 'https://cdn.simpleicons.org/googleanalytics/E37400', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://analytics.google.com' },
   klaviyo: { name: 'Klaviyo', icon: 'https://www.google.com/s2/favicons?domain=klaviyo.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://klaviyo.com' },
   mailchimp: { name: 'Mailchimp', icon: 'https://cdn.simpleicons.org/mailchimp/FFE01B', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://mailchimp.com' },
-
-  // Mobile
   expo: { name: 'Expo (React Native)', icon: 'https://cdn.simpleicons.org/expo/000020', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://expo.dev' },
   onesignal: { name: 'OneSignal', icon: 'https://cdn.simpleicons.org/onesignal/E54B4D', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://onesignal.com' },
   amplitude: { name: 'Amplitude', icon: 'https://www.google.com/s2/favicons?domain=amplitude.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://amplitude.com' },
-
-  // Podcast
   riverside: { name: 'Riverside.fm', icon: 'https://www.google.com/s2/favicons?domain=riverside.fm&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://riverside.fm' },
   zencastr: { name: 'Zencastr', icon: 'https://www.google.com/s2/favicons?domain=zencastr.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://zencastr.com' },
   descript: { name: 'Descript', icon: 'https://www.google.com/s2/favicons?domain=descript.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://descript.com' },
@@ -608,8 +845,6 @@ const TOOLS = {
   transistor: { name: 'Transistor', icon: 'https://www.google.com/s2/favicons?domain=transistor.fm&sz=128', price: 'From $19/mo', priceType: 'paid', monthlyCost: 19, url: 'https://transistor.fm' },
   opusclip: { name: 'Opus Clip', icon: 'https://www.google.com/s2/favicons?domain=opus.pro&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://opus.pro' },
   podpage: { name: 'Podpage', icon: 'https://www.google.com/s2/favicons?domain=podpage.com&sz=128', price: 'From $8/mo', priceType: 'paid', monthlyCost: 8, url: 'https://podpage.com' },
-
-  // Freelance
   framer: { name: 'Framer', icon: 'https://cdn.simpleicons.org/framer/0055FF', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://framer.com' },
   typedream: { name: 'Typedream', icon: 'https://www.google.com/s2/favicons?domain=typedream.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://typedream.com' },
   wave: { name: 'Wave', icon: 'https://www.google.com/s2/favicons?domain=waveapps.com&sz=128', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://waveapps.com' },
@@ -617,46 +852,502 @@ const TOOLS = {
   toggl: { name: 'Toggl', icon: 'https://cdn.simpleicons.org/toggl/E57CD8', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://toggl.com' },
   slack: { name: 'Slack', icon: 'https://cdn.simpleicons.org/slack/4A154B', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://slack.com' },
   discord: { name: 'Discord', icon: 'https://cdn.simpleicons.org/discord/5865F2', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://discord.com' },
-
-  // No-code / Vibe coding
   lovable: { name: 'Lovable', icon: 'https://www.google.com/s2/favicons?domain=lovable.dev&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://lovable.dev' },
   bolt: { name: 'Bolt.new', icon: 'https://www.google.com/s2/favicons?domain=bolt.new&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://bolt.new' },
   v0: { name: 'v0 by Vercel', icon: 'https://www.google.com/s2/favicons?domain=v0.dev&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://v0.dev' },
   replit: { name: 'Replit', icon: 'https://cdn.simpleicons.org/replit/F26207', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://replit.com' },
   bubble: { name: 'Bubble', icon: 'https://www.google.com/s2/favicons?domain=bubble.io&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://bubble.io' },
   carrd: { name: 'Carrd', icon: 'https://www.google.com/s2/favicons?domain=carrd.co&sz=128', price: 'From $9/yr', priceType: 'freemium', monthlyCost: 1, url: 'https://carrd.co' },
-
-  // Better YouTube/content tools
   capcut: { name: 'CapCut', icon: 'https://www.google.com/s2/favicons?domain=capcut.com&sz=128', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://capcut.com' },
   screenpal: { name: 'ScreenPal', icon: 'https://www.google.com/s2/favicons?domain=screenpal.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://screenpal.com' },
-
-  // Better e-commerce
   stan: { name: 'Stan Store', icon: 'https://www.google.com/s2/favicons?domain=stan.store&sz=128', price: 'From $29/mo', priceType: 'paid', monthlyCost: 29, url: 'https://stan.store' },
-
-  // Better freelance
   contra: { name: 'Contra', icon: 'https://www.google.com/s2/favicons?domain=contra.com&sz=128', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://contra.com' },
-
-  // Better newsletter
   substack: { name: 'Substack', icon: 'https://cdn.simpleicons.org/substack/FF6719', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://substack.com' },
-
-  // Student
   notebooklm: { name: 'NotebookLM', icon: 'https://cdn.simpleicons.org/google/4285F4', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://notebooklm.google.com' },
   perplexity: { name: 'Perplexity', icon: 'https://cdn.simpleicons.org/perplexity/1FB8CD', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://perplexity.ai' },
   anki: { name: 'Anki', icon: 'https://cdn.simpleicons.org/anki/236BFF', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://apps.ankiweb.net' },
-
-  // Blog
   ghost: { name: 'Ghost', icon: 'https://cdn.simpleicons.org/ghost/15171A', price: 'From $9/mo', priceType: 'paid', monthlyCost: 9, url: 'https://ghost.org' },
   iawriter: { name: 'iA Writer', icon: 'https://www.google.com/s2/favicons?domain=ia.net&sz=128', price: '$49 once', priceType: 'paid', monthlyCost: 0, url: 'https://ia.net/writer' },
   ahrefs: { name: 'Ahrefs', icon: 'https://cdn.simpleicons.org/ahrefs/FF8F00', price: 'From $29/mo', priceType: 'paid', monthlyCost: 29, url: 'https://ahrefs.com' },
   ubersuggest: { name: 'Ubersuggest', icon: 'https://www.google.com/s2/favicons?domain=ubersuggest.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://ubersuggest.com' },
   unsplash: { name: 'Unsplash', icon: 'https://cdn.simpleicons.org/unsplash/000000', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://unsplash.com' },
-
-  // Digital products
   convertkit: { name: 'ConvertKit', icon: 'https://www.google.com/s2/favicons?domain=convertkit.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://convertkit.com' },
 };
 
-// ===== STACK RECOMMENDATION ENGINE =====
-// Philosophy: Recommend the EASIEST, FASTEST path. Don't recommend Next.js to someone who's never coded.
+// ===== STUDENT TOOL DATABASE =====
+const STUDENT_TOOLS = {
+  grammarly: { name: 'Grammarly', icon: 'https://cdn.simpleicons.org/grammarly/15C39A', url: 'https://grammarly.com', free: true, safe: true },
+  perplexity: { name: 'Perplexity', icon: 'https://cdn.simpleicons.org/perplexity/1FB8CD', url: 'https://perplexity.ai', free: true, safe: true },
+  notebooklm: { name: 'NotebookLM', icon: 'https://cdn.simpleicons.org/google/4285F4', url: 'https://notebooklm.google.com', free: true, safe: true },
+  notion: { name: 'Notion', icon: 'https://cdn.simpleicons.org/notion/000000', url: 'https://notion.so/students', free: true, safe: true },
+  copilot: { name: 'GitHub Copilot', icon: 'https://cdn.simpleicons.org/github/181717', url: 'https://education.github.com', free: true, safe: true },
+  gamma: { name: 'Gamma', icon: 'https://www.google.com/s2/favicons?domain=gamma.app&sz=128', url: 'https://gamma.app', free: true, safe: true },
+  wolfram: { name: 'Wolfram Alpha', icon: 'https://cdn.simpleicons.org/wolframmathematica/DD1100', url: 'https://wolframalpha.com', free: true, safe: true },
+  zotero: { name: 'Zotero', icon: 'https://cdn.simpleicons.org/zotero/CC2936', url: 'https://zotero.org', free: true, safe: true },
+  forest: { name: 'Forest', icon: 'https://www.google.com/s2/favicons?domain=forestapp.cc&sz=128', url: 'https://forestapp.cc', free: true, safe: true },
+  quillbot: { name: 'QuillBot', icon: 'https://www.google.com/s2/favicons?domain=quillbot.com&sz=128', url: 'https://quillbot.com', free: true, safe: true },
+  anki: { name: 'Anki', icon: 'https://cdn.simpleicons.org/anki/236BFF', url: 'https://apps.ankiweb.net', free: true, safe: true },
+  photomath: { name: 'Photomath', icon: 'https://www.google.com/s2/favicons?domain=photomath.com&sz=128', url: 'https://photomath.com', free: true, safe: true },
+  consensus: { name: 'Consensus', icon: 'https://www.google.com/s2/favicons?domain=consensus.app&sz=128', url: 'https://consensus.app', free: true, safe: true },
+  canva: { name: 'Canva', icon: 'https://www.google.com/s2/favicons?domain=canva.com&sz=128', url: 'https://canva.com/education', free: true, safe: true },
+  otterai: { name: 'Otter.ai', icon: 'https://www.google.com/s2/favicons?domain=otter.ai&sz=128', url: 'https://otter.ai', free: true, safe: true },
+  chatpdf: { name: 'ChatPDF', icon: 'https://www.google.com/s2/favicons?domain=chatpdf.com&sz=128', url: 'https://chatpdf.com', free: true, safe: true },
+  symbolab: { name: 'Symbolab', icon: 'https://cdn.simpleicons.org/symbolab/FF6F00', url: 'https://symbolab.com', free: true, safe: true },
+  cursor: { name: 'Cursor', icon: 'https://cdn.simpleicons.org/cursor/000000', url: 'https://cursor.sh', free: true, safe: true },
+  figma: { name: 'Figma', icon: 'https://cdn.simpleicons.org/figma/F24E1E', url: 'https://figma.com/education', free: true, safe: true },
+  todoist: { name: 'Todoist', icon: 'https://cdn.simpleicons.org/todoist/E44332', url: 'https://todoist.com', free: true, safe: true },
+  mendeley: { name: 'Mendeley', icon: 'https://cdn.simpleicons.org/mendeley/9D1620', url: 'https://mendeley.com', free: true, safe: true },
+  pomofocus: { name: 'Pomofocus', icon: 'https://www.google.com/s2/favicons?domain=pomofocus.io&sz=128', url: 'https://pomofocus.io', free: true, safe: true },
+  completeanatomy: { name: 'Complete Anatomy', icon: 'https://www.google.com/s2/favicons?domain=3d4medical.com&sz=128', url: 'https://3d4medical.com', free: false, safe: true },
+  amboss: { name: 'Amboss', icon: 'https://www.google.com/s2/favicons?domain=amboss.com&sz=128', url: 'https://amboss.com', free: false, safe: true },
+  osmosis: { name: 'Osmosis', icon: 'https://www.google.com/s2/favicons?domain=osmosis.org&sz=128', url: 'https://osmosis.org', free: true, safe: true },
+  overleaf: { name: 'Overleaf', icon: 'https://cdn.simpleicons.org/overleaf/47A141', url: 'https://overleaf.com', free: true, safe: true },
+  matlab: { name: 'MATLAB', icon: 'https://www.google.com/s2/favicons?domain=mathworks.com&sz=128', url: 'https://mathworks.com/academia/students.html', free: false, safe: true },
+  casetext: { name: 'Casetext (CoCounsel)', icon: 'https://www.google.com/s2/favicons?domain=casetext.com&sz=128', url: 'https://casetext.com', free: false, safe: true },
+  westlaw: { name: 'Westlaw', icon: 'https://www.google.com/s2/favicons?domain=westlaw.com&sz=128', url: 'https://legal.thomsonreuters.com/en/products/westlaw', free: false, safe: true },
+  tableau: { name: 'Tableau', icon: 'https://www.google.com/s2/favicons?domain=tableau.com&sz=128', url: 'https://tableau.com/academic/students', free: true, safe: true },
+  procreate: { name: 'Procreate', icon: 'https://www.google.com/s2/favicons?domain=procreate.com&sz=128', url: 'https://procreate.com', free: false, safe: true },
+  behance: { name: 'Behance', icon: 'https://cdn.simpleicons.org/behance/1769FF', url: 'https://behance.net', free: true, safe: true },
+  spss: { name: 'SPSS / JASP', icon: 'https://www.google.com/s2/favicons?domain=jasp-stats.org&sz=128', url: 'https://jasp-stats.org', free: true, safe: true },
+  nvivo: { name: 'NVivo', icon: 'https://www.google.com/s2/favicons?domain=lumivero.com&sz=128', url: 'https://lumivero.com/products/nvivo/', free: false, safe: true },
+};
+
+// ===== STUDENT RECOMMENDATION ENGINE (ported from students/quiz) =====
+function getStudentRecommendations() {
+  const { subject, struggle, style, year, studentBudget, device } = state;
+  let tools = [];
+  const reasons = {};
+
+  // Subject-based primary tools
+  if (subject === 'cs') {
+    tools.push('copilot'); reasons.copilot = 'Free for CS students. AI pair programming in VS Code';
+    tools.push('cursor'); reasons.cursor = 'AI-first code editor with chat, debug faster';
+  } else if (subject === 'stem') {
+    tools.push('wolfram'); reasons.wolfram = 'Solve equations, plot graphs, check your working';
+    tools.push('overleaf'); reasons.overleaf = 'Write papers and reports in LaTeX, free and collaborative';
+    if (studentBudget !== 'free') { tools.push('matlab'); reasons.matlab = 'MATLAB student license, essential for engineering and data'; }
+  } else if (subject === 'medicine') {
+    tools.push('anki'); reasons.anki = 'Med students swear by it, spaced repetition for 1000s of facts';
+    tools.push('osmosis'); reasons.osmosis = 'Visual explanations of medical concepts + board prep';
+    tools.push('completeanatomy'); reasons.completeanatomy = '3D anatomy atlas, interactive, detailed, and beautiful';
+    if (studentBudget !== 'free') { tools.push('amboss'); reasons.amboss = 'Clinical knowledge library with integrated Qbank'; }
+  } else if (subject === 'law') {
+    tools.push('perplexity'); reasons.perplexity = 'Research case law and legislation with cited sources';
+    tools.push('zotero'); reasons.zotero = 'Generate OSCOLA citations automatically';
+    tools.push('westlaw'); reasons.westlaw = 'Most unis provide free access, essential for case research';
+  } else if (subject === 'humanities') {
+    tools.push('perplexity'); reasons.perplexity = 'Research with cited sources, perfect for essays';
+    tools.push('grammarly'); reasons.grammarly = 'Polish your writing without changing your voice';
+    tools.push('zotero'); reasons.zotero = 'Manage citations in Harvard, MLA, Chicago, any style';
+  } else if (subject === 'social') {
+    tools.push('perplexity'); reasons.perplexity = 'Find peer-reviewed studies with cited sources';
+    tools.push('spss'); reasons.spss = 'JASP is a free SPSS alternative, stats analysis made easy';
+    if (year === 'final' || year === 'postgrad') { tools.push('nvivo'); reasons.nvivo = 'Qualitative data analysis for dissertations and research'; }
+  } else if (subject === 'business') {
+    tools.push('perplexity'); reasons.perplexity = 'Market research, industry data, with cited sources';
+    tools.push('notion'); reasons.notion = 'Organise case studies, notes, and group projects';
+    tools.push('tableau'); reasons.tableau = 'Free for students, professional data visualisation';
+  } else if (subject === 'creative') {
+    tools.push('canva'); reasons.canva = 'Free Pro with student email, design anything';
+    tools.push('figma'); reasons.figma = 'Free Education plan, industry-standard design tool';
+    tools.push('behance'); reasons.behance = 'Build your portfolio, showcase work to future employers';
+  }
+
+  // Struggle-based
+  if (struggle === 'writing' && !tools.includes('grammarly')) {
+    tools.push('grammarly'); reasons.grammarly = reasons.grammarly || 'Fix grammar, improve clarity, check plagiarism';
+  }
+  if (struggle === 'writing') {
+    if (!tools.includes('quillbot')) { tools.push('quillbot'); reasons.quillbot = 'Paraphrase complex ideas in your own words'; }
+  }
+  if (struggle === 'research') {
+    if (!tools.includes('perplexity')) { tools.push('perplexity'); reasons.perplexity = reasons.perplexity || 'AI-powered research with real citations'; }
+    if (!tools.includes('zotero')) { tools.push('zotero'); reasons.zotero = reasons.zotero || 'Save sources and auto-generate bibliographies'; }
+  }
+  if (struggle === 'revision') {
+    tools.push('notebooklm'); reasons.notebooklm = 'Upload notes → get study guides + audio summaries';
+  }
+  if (struggle === 'focus') {
+    tools.push('forest'); reasons.forest = 'Block distracting apps, grow a tree while you study';
+  }
+  if (struggle === 'deadlines') {
+    if (!tools.includes('notion')) { tools.push('notion'); reasons.notion = reasons.notion || 'Track every deadline, assignment, and reading list'; }
+    tools.push('todoist'); reasons.todoist = 'Simple task management, "Essay due Friday 5pm"';
+  }
+  if (struggle === 'maths') {
+    if (!tools.includes('wolfram')) { tools.push('wolfram'); reasons.wolfram = reasons.wolfram || 'Step-by-step solutions for any equation'; }
+    if (!tools.includes('photomath')) { tools.push('photomath'); reasons.photomath = reasons.photomath || 'Photo → instant solution with explanations'; }
+  }
+  if (struggle === 'presentations') {
+    tools.push('gamma'); reasons.gamma = 'Generate beautiful presentations from a text prompt';
+  }
+
+  // Study style
+  if (style === 'flashcards') {
+    if (!tools.includes('anki')) { tools.push('anki'); reasons.anki = reasons.anki || 'Spaced repetition flashcards, proven to boost retention'; }
+  }
+  if (style === 'audio') {
+    if (!tools.includes('notebooklm')) { tools.push('notebooklm'); reasons.notebooklm = reasons.notebooklm || 'Turns your notes into podcast-style audio summaries'; }
+    tools.push('otterai'); reasons.otterai = 'Auto-transcribe lectures, never miss a word';
+  }
+  if (style === 'reading') {
+    tools.push('chatpdf'); reasons.chatpdf = 'Chat with any PDF, ask questions about dense readings';
+  }
+  if (style === 'visual') {
+    if (!tools.includes('gamma')) { tools.push('gamma'); reasons.gamma = reasons.gamma || 'Create visual presentations and documents'; }
+    if (!tools.includes('canva')) { tools.push('canva'); reasons.canva = reasons.canva || 'Design mind maps, infographics, study materials'; }
+  }
+
+  // Year-based additions
+  if ((year === 'final' || year === 'postgrad') && !tools.includes('zotero')) {
+    tools.push('zotero'); reasons.zotero = reasons.zotero || 'Essential for dissertation, manage 100+ sources effortlessly';
+  }
+  if ((year === 'final' || year === 'postgrad') && !tools.includes('consensus')) {
+    tools.push('consensus'); reasons.consensus = 'Search peer-reviewed papers only, perfect for literature reviews';
+  }
+
+  // Ensure essentials are covered
+  if (!tools.includes('grammarly') && !tools.includes('quillbot')) {
+    tools.push('grammarly'); reasons.grammarly = reasons.grammarly || 'Polish every essay and assignment before submitting';
+  }
+  if (!tools.includes('notion') && !tools.includes('todoist')) {
+    tools.push('notion'); reasons.notion = reasons.notion || 'One app for notes, tasks, and deadlines';
+  }
+  if (!tools.includes('perplexity')) {
+    tools.push('perplexity'); reasons.perplexity = reasons.perplexity || 'AI-powered research, better than Google for academic work';
+  }
+  if (!tools.includes('forest') && !tools.includes('pomofocus')) {
+    tools.push('forest'); reasons.forest = reasons.forest || 'Stay focused during study sessions';
+  }
+
+  // Deduplicate and limit to 7
+  tools = [...new Set(tools)].slice(0, 7);
+  return tools.map(key => ({ ...STUDENT_TOOLS[key], key, reason: reasons[key] || '' }));
+}
+
+function getStudentProfileTitle() {
+  const subjectNames = { stem: 'STEM', cs: 'Computer Science', humanities: 'Humanities', business: 'Business', creative: 'Creative Arts', law: 'Law', medicine: 'Medicine', social: 'Social Sciences' };
+  const yearNames = { first: 'First Year', second: 'Second Year', final: 'Final Year', postgrad: 'Postgrad' };
+  return `${subjectNames[state.subject] || ''}, ${yearNames[state.year] || ''}`;
+}
+
+// ===== JOB SEEKER RECOMMENDATION ENGINE =====
+const JOB_TOOLS = {
+  // Dev tools
+  vscode: { name: 'VS Code', icon: 'https://cdn.simpleicons.org/visualstudiocode/007ACC', url: 'https://code.visualstudio.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  react: { name: 'React / Next.js', icon: 'https://cdn.simpleicons.org/react/61DAFB', url: 'https://react.dev', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  cursor_job: { name: 'Cursor', icon: 'https://cdn.simpleicons.org/cursor/000000', url: 'https://cursor.sh', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  github: { name: 'GitHub', icon: 'https://cdn.simpleicons.org/github/181717', url: 'https://github.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  vercel_job: { name: 'Vercel', icon: 'https://cdn.simpleicons.org/vercel/000000', url: 'https://vercel.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  figma_job: { name: 'Figma', icon: 'https://cdn.simpleicons.org/figma/F24E1E', url: 'https://figma.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  framer_job: { name: 'Framer', icon: 'https://cdn.simpleicons.org/framer/0055FF', url: 'https://framer.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  supabase_job: { name: 'Supabase', icon: 'https://cdn.simpleicons.org/supabase/3FCF8E', url: 'https://supabase.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  nodejs: { name: 'Node.js + Hono', icon: 'https://cdn.simpleicons.org/nodedotjs/339933', url: 'https://nodejs.org', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  docker: { name: 'Docker', icon: 'https://cdn.simpleicons.org/docker/2496ED', url: 'https://docker.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  aws: { name: 'AWS / Cloudflare', icon: 'https://cdn.simpleicons.org/amazonaws/232F3E', url: 'https://aws.amazon.com/free', price: 'Free tier', priceType: 'freemium', monthlyCost: 0 },
+  terraform: { name: 'Terraform', icon: 'https://cdn.simpleicons.org/terraform/844FBA', url: 'https://terraform.io', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  grafana: { name: 'Grafana', icon: 'https://cdn.simpleicons.org/grafana/F46800', url: 'https://grafana.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  ghactions: { name: 'GitHub Actions', icon: 'https://cdn.simpleicons.org/githubactions/2088FF', url: 'https://github.com/features/actions', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  // Design
+  adobe: { name: 'Adobe Creative Suite', icon: 'https://cdn.simpleicons.org/adobe/FF0000', url: 'https://adobe.com', price: 'From $55/mo', priceType: 'paid', monthlyCost: 55 },
+  canva_job: { name: 'Canva', icon: 'https://www.google.com/s2/favicons?domain=canva.com&sz=128', url: 'https://canva.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  behance_job: { name: 'Behance', icon: 'https://cdn.simpleicons.org/behance/1769FF', url: 'https://behance.net', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  mobbin: { name: 'Mobbin', icon: 'https://www.google.com/s2/favicons?domain=mobbin.com&sz=128', url: 'https://mobbin.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  maze: { name: 'Maze', icon: 'https://www.google.com/s2/favicons?domain=maze.co&sz=128', url: 'https://maze.co', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  midjourney: { name: 'Midjourney', icon: 'https://www.google.com/s2/favicons?domain=midjourney.com&sz=128', url: 'https://midjourney.com', price: 'From $10/mo', priceType: 'paid', monthlyCost: 10 },
+  // PM tools
+  linear_job: { name: 'Linear', icon: 'https://cdn.simpleicons.org/linear/5E6AD2', url: 'https://linear.app', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  notion_job: { name: 'Notion', icon: 'https://cdn.simpleicons.org/notion/000000', url: 'https://notion.so', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  posthog_job: { name: 'PostHog', icon: 'https://cdn.simpleicons.org/posthog/1D4AFF', url: 'https://posthog.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  loom: { name: 'Loom', icon: 'https://cdn.simpleicons.org/loom/625DF5', url: 'https://loom.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  claude: { name: 'Claude', icon: 'https://cdn.simpleicons.org/anthropic/191919', url: 'https://claude.ai', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  chatgpt: { name: 'ChatGPT', icon: 'https://cdn.simpleicons.org/openai/412991', url: 'https://chat.openai.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  // Project management
+  asana: { name: 'Asana', icon: 'https://cdn.simpleicons.org/asana/F06A6A', url: 'https://asana.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  slack_job: { name: 'Slack', icon: 'https://cdn.simpleicons.org/slack/4A154B', url: 'https://slack.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  calendly: { name: 'Calendly', icon: 'https://www.google.com/s2/favicons?domain=calendly.com&sz=128', url: 'https://calendly.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  // Data
+  sql: { name: 'SQL (SQLBolt)', icon: 'https://www.google.com/s2/favicons?domain=sqlbolt.com&sz=128', url: 'https://sqlbolt.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  gsheets: { name: 'Google Sheets', icon: 'https://cdn.simpleicons.org/googlesheets/34A853', url: 'https://sheets.google.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  tableau_job: { name: 'Tableau Public', icon: 'https://www.google.com/s2/favicons?domain=tableau.com&sz=128', url: 'https://public.tableau.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  jupyter: { name: 'Jupyter + Python', icon: 'https://cdn.simpleicons.org/jupyter/F37626', url: 'https://jupyter.org', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  // Marketing
+  ga4_job: { name: 'Google Analytics 4', icon: 'https://cdn.simpleicons.org/googleanalytics/E37400', url: 'https://analytics.google.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  gsc: { name: 'Search Console', icon: 'https://cdn.simpleicons.org/googlesearchconsole/458CF5', url: 'https://search.google.com/search-console', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  buffer: { name: 'Buffer', icon: 'https://cdn.simpleicons.org/buffer/231F20', url: 'https://buffer.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  beehiiv_job: { name: 'Beehiiv', icon: 'https://www.google.com/s2/favicons?domain=beehiiv.com&sz=128', url: 'https://beehiiv.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  // Content
+  grammarly_job: { name: 'Grammarly', icon: 'https://cdn.simpleicons.org/grammarly/15C39A', url: 'https://grammarly.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  ahrefs_job: { name: 'Ahrefs Webmaster', icon: 'https://cdn.simpleicons.org/ahrefs/FF8F00', url: 'https://ahrefs.com/webmaster-tools', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  substack_job: { name: 'Substack', icon: 'https://cdn.simpleicons.org/substack/FF6719', url: 'https://substack.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  // Sales
+  hubspot: { name: 'HubSpot CRM', icon: 'https://cdn.simpleicons.org/hubspot/FF7A59', url: 'https://hubspot.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  apollo: { name: 'Apollo.io', icon: 'https://www.google.com/s2/favicons?domain=apollo.io&sz=128', url: 'https://apollo.io', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  linkedin: { name: 'LinkedIn', icon: 'https://cdn.simpleicons.org/linkedin/0A66C2', url: 'https://linkedin.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  pandadoc: { name: 'PandaDoc', icon: 'https://www.google.com/s2/favicons?domain=pandadoc.com&sz=128', url: 'https://pandadoc.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  // BA
+  miro: { name: 'Miro', icon: 'https://cdn.simpleicons.org/miro/050038', url: 'https://miro.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  jira: { name: 'Jira', icon: 'https://cdn.simpleicons.org/jira/0052CC', url: 'https://atlassian.com/software/jira', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  // HR
+  bamboohr: { name: 'BambooHR', icon: 'https://www.google.com/s2/favicons?domain=bamboohr.com&sz=128', url: 'https://bamboohr.com', price: 'Paid', priceType: 'paid', monthlyCost: 0 },
+  typeform: { name: 'Typeform', icon: 'https://cdn.simpleicons.org/typeform/262627', url: 'https://typeform.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  // CS
+  zendesk: { name: 'Zendesk', icon: 'https://cdn.simpleicons.org/zendesk/03363D', url: 'https://zendesk.com', price: 'Paid', priceType: 'paid', monthlyCost: 0 },
+  intercom: { name: 'Intercom', icon: 'https://cdn.simpleicons.org/intercom/6AFDEF', url: 'https://intercom.com', price: 'Paid', priceType: 'paid', monthlyCost: 0 },
+  // EA
+  gcalendar: { name: 'Google Calendar', icon: 'https://cdn.simpleicons.org/googlecalendar/4285F4', url: 'https://calendar.google.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  todoist_job: { name: 'Todoist', icon: 'https://cdn.simpleicons.org/todoist/E44332', url: 'https://todoist.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  tripit: { name: 'TripIt', icon: 'https://www.google.com/s2/favicons?domain=tripit.com&sz=128', url: 'https://tripit.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  // Finance
+  excel: { name: 'Excel / Google Sheets', icon: 'https://cdn.simpleicons.org/microsoftexcel/217346', url: 'https://sheets.google.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+  xero: { name: 'Xero', icon: 'https://cdn.simpleicons.org/xero/13B5EA', url: 'https://xero.com', price: 'From $15/mo', priceType: 'paid', monthlyCost: 15 },
+  powerbi: { name: 'Power BI', icon: 'https://cdn.simpleicons.org/powerbi/F2C811', url: 'https://powerbi.microsoft.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  // Interview prep
+  leetcode: { name: 'LeetCode', icon: 'https://cdn.simpleicons.org/leetcode/FFA116', url: 'https://leetcode.com', price: 'Freemium', priceType: 'freemium', monthlyCost: 0 },
+  pramp: { name: 'Pramp', icon: 'https://www.google.com/s2/favicons?domain=pramp.com&sz=128', url: 'https://pramp.com', price: 'Free', priceType: 'free', monthlyCost: 0 },
+};
+
+// Role → path file mapping
+const ROLE_PATHS = {
+  frontend: { name: 'Frontend Developer', file: 'frontend-developer.html' },
+  fullstack: { name: 'Fullstack Developer', file: 'fullstack-developer.html' },
+  devops: { name: 'DevOps Engineer', file: 'devops-engineer.html' },
+  ux: { name: 'UX Designer', file: 'ux-designer.html' },
+  graphic: { name: 'Graphic Designer', file: 'graphic-designer.html' },
+  product: { name: 'Product Manager', file: 'product-manager.html' },
+  project: { name: 'Project Manager', file: 'project-manager.html' },
+  data: { name: 'Data Analyst', file: 'data-analyst.html' },
+  marketing: { name: 'Digital Marketing', file: 'digital-marketing.html' },
+  writer: { name: 'Content Writer', file: 'content-writer.html' },
+  sales: { name: 'Sales', file: 'sales.html' },
+  ba: { name: 'Business Analyst', file: 'business-analyst.html' },
+  hr: { name: 'HR', file: 'human-resources.html' },
+  cs: { name: 'Customer Success', file: 'customer-success.html' },
+  ea: { name: 'Executive Assistant', file: 'executive-assistant.html' },
+  finance: { name: 'Finance / Accounting', file: 'finance-accounting.html' },
+};
+
+function getJobRecommendations() {
+  const { role, experience, goal, jobBudget } = state;
+  const isFree = jobBudget === 'free';
+  const isBeginner = experience === 'beginner';
+  const wantsLearn = goal === 'learn' || goal === 'all';
+  const wantsPortfolio = goal === 'portfolio' || goal === 'all';
+  const wantsInterview = goal === 'interview' || goal === 'all';
+
+  let categories = []; // { category, tools: [{ key, reason }] }
+
+  // Role-specific tools
+  const roleTools = {
+    frontend: {
+      core: [
+        { key: 'vscode', reason: 'Free, extensible, industry standard code editor' },
+        { key: 'react', reason: 'In 80%+ of frontend job listings. Learn React, then Next.js' },
+        { key: 'cursor_job', reason: 'AI-first code editor. Write and debug code faster' },
+        { key: 'figma_job', reason: 'Read design specs and collaborate with designers' },
+      ],
+      learn: [{ key: 'github', reason: 'Learn Git, contribute to open source, build your profile' }],
+      portfolio: [{ key: 'vercel_job', reason: 'Deploy portfolio projects instantly. Free hosting' }, { key: 'framer_job', reason: 'Build a stunning portfolio site without a designer' }],
+      interview: [{ key: 'leetcode', reason: 'Practice coding challenges for technical interviews' }, { key: 'pramp', reason: 'Free mock interviews with peers' }],
+    },
+    fullstack: {
+      core: [
+        { key: 'vscode', reason: 'Free, extensible, industry standard editor' },
+        { key: 'react', reason: 'React + Next.js for the frontend, the most in-demand stack' },
+        { key: 'nodejs', reason: 'Node.js backend with Hono or Express for APIs' },
+        { key: 'supabase_job', reason: 'Database + auth + realtime. One backend for everything' },
+        { key: 'cursor_job', reason: 'AI-first code editor. Ship full-stack features faster' },
+      ],
+      learn: [{ key: 'github', reason: 'Version control, collaboration, open source contributions' }],
+      portfolio: [{ key: 'vercel_job', reason: 'Deploy full-stack apps with one push. Free tier' }],
+      interview: [{ key: 'leetcode', reason: 'Algorithmic challenges for technical rounds' }, { key: 'pramp', reason: 'Free mock interviews with other developers' }],
+    },
+    devops: {
+      core: [
+        { key: 'docker', reason: 'Containerisation is non-negotiable for DevOps roles' },
+        { key: 'aws', reason: 'AWS or Cloudflare — learn one cloud platform deeply' },
+        { key: 'terraform', reason: 'Infrastructure as code. Used everywhere' },
+        { key: 'ghactions', reason: 'CI/CD pipelines. GitHub Actions is free and powerful' },
+      ],
+      learn: [{ key: 'github', reason: 'Git workflows, branching strategies, PRs' }, { key: 'grafana', reason: 'Monitoring and observability, key DevOps skill' }],
+      portfolio: [{ key: 'github', reason: 'Document your infrastructure projects on GitHub' }],
+      interview: [{ key: 'claude', reason: 'Practice system design questions and scenarios' }],
+    },
+    ux: {
+      core: [
+        { key: 'figma_job', reason: 'Industry-standard design tool. Used by 90%+ of teams' },
+        { key: 'mobbin', reason: 'Study real app designs for inspiration and patterns' },
+        { key: 'maze', reason: 'User testing and research made simple' },
+        { key: 'notion_job', reason: 'Document research, user personas, and design decisions' },
+      ],
+      learn: [{ key: 'figma_job', reason: 'Master components, auto-layout, and design systems' }],
+      portfolio: [{ key: 'framer_job', reason: 'Build an interactive portfolio that shows your skills' }, { key: 'behance_job', reason: 'Showcase case studies to hiring managers' }],
+      interview: [{ key: 'loom', reason: 'Record design walkthroughs for take-home challenges' }],
+    },
+    graphic: {
+      core: [
+        { key: 'canva_job', reason: 'Quick designs, social media, presentations' },
+        { key: 'figma_job', reason: 'Collaborative design for teams and web projects' },
+      ],
+      learn: [{ key: 'midjourney', reason: 'AI image generation, expand your creative toolkit' }],
+      portfolio: [{ key: 'behance_job', reason: 'The portfolio platform for creative professionals' }, { key: 'framer_job', reason: 'Build a beautiful portfolio website' }],
+      interview: [{ key: 'loom', reason: 'Walk through your design process in presentations' }],
+    },
+    product: {
+      core: [
+        { key: 'linear_job', reason: 'Modern project tracking. Used by top product teams' },
+        { key: 'notion_job', reason: 'PRDs, roadmaps, meeting notes, all in one' },
+        { key: 'posthog_job', reason: 'Product analytics, feature flags, session replay' },
+        { key: 'figma_job', reason: 'Collaborate with designers on wireframes and specs' },
+      ],
+      learn: [{ key: 'claude', reason: 'Practice writing PRDs and strategy docs with AI feedback' }],
+      portfolio: [{ key: 'notion_job', reason: 'Document case studies of product decisions' }],
+      interview: [{ key: 'loom', reason: 'Record product presentations for interview prep' }],
+    },
+    project: {
+      core: [
+        { key: 'asana', reason: 'Industry-standard project management. Free tier is solid' },
+        { key: 'notion_job', reason: 'Documentation, meeting notes, project wikis' },
+        { key: 'slack_job', reason: 'Team communication and async updates' },
+        { key: 'calendly', reason: 'Schedule meetings without the back-and-forth' },
+      ],
+      learn: [{ key: 'chatgpt', reason: 'Practice stakeholder communications and PM scenarios' }],
+      portfolio: [{ key: 'canva_job', reason: 'Create visual project case studies' }],
+      interview: [{ key: 'loom', reason: 'Record yourself presenting project plans' }],
+    },
+    data: {
+      core: [
+        { key: 'sql', reason: 'SQL is the #1 skill for data analyst roles. Start here' },
+        { key: 'gsheets', reason: 'Data manipulation, pivot tables, basic analysis' },
+        { key: 'jupyter', reason: 'Python + Jupyter for advanced analysis and visualization' },
+        { key: 'tableau_job', reason: 'Tableau Public is free. Build dashboards for your portfolio' },
+      ],
+      learn: [{ key: 'claude', reason: 'Get SQL query help and learn data concepts' }],
+      portfolio: [{ key: 'github', reason: 'Share analysis projects and notebooks on GitHub' }, { key: 'notion_job', reason: 'Document your analysis process and findings' }],
+      interview: [{ key: 'sql', reason: 'Practice SQL challenges — they dominate interviews' }],
+    },
+    marketing: {
+      core: [
+        { key: 'ga4_job', reason: 'Google Analytics is in every marketing job listing' },
+        { key: 'gsc', reason: 'Understand SEO performance and search visibility' },
+        { key: 'canva_job', reason: 'Design social posts, ads, and marketing materials' },
+        { key: 'buffer', reason: 'Schedule and manage social media content' },
+      ],
+      learn: [{ key: 'beehiiv_job', reason: 'Start a newsletter to practice email marketing' }],
+      portfolio: [{ key: 'framer_job', reason: 'Build a marketing portfolio site' }],
+      interview: [{ key: 'chatgpt', reason: 'Practice campaign strategy and analytics questions' }],
+    },
+    writer: {
+      core: [
+        { key: 'notion_job', reason: 'Write, plan, and organise all content in one place' },
+        { key: 'grammarly_job', reason: 'Polish every piece. Grammar, tone, and clarity' },
+        { key: 'ahrefs_job', reason: 'Free SEO tools to understand what content ranks' },
+        { key: 'claude', reason: 'Brainstorm ideas, outline drafts, get feedback' },
+      ],
+      learn: [{ key: 'gsc', reason: 'Learn how search works by analysing real data' }],
+      portfolio: [{ key: 'substack_job', reason: 'Publish your work and build an audience' }, { key: 'framer_job', reason: 'Build a writer portfolio site' }],
+      interview: [{ key: 'notion_job', reason: 'Prepare writing samples and case studies' }],
+    },
+    sales: {
+      core: [
+        { key: 'hubspot', reason: 'Free CRM. Track contacts, deals, and pipeline' },
+        { key: 'apollo', reason: 'Find leads and automate outreach sequences' },
+        { key: 'linkedin', reason: 'Prospect research and social selling' },
+        { key: 'loom', reason: 'Send personalised video messages to prospects' },
+      ],
+      learn: [{ key: 'chatgpt', reason: 'Practice cold emails, objection handling, pitches' }],
+      portfolio: [{ key: 'pandadoc', reason: 'Create professional proposals and contracts' }],
+      interview: [{ key: 'hubspot', reason: 'Get HubSpot certified to stand out to employers' }],
+    },
+    ba: {
+      core: [
+        { key: 'notion_job', reason: 'Document requirements, user stories, and process maps' },
+        { key: 'gsheets', reason: 'Data analysis, modelling, and reporting' },
+        { key: 'miro', reason: 'Whiteboarding, process mapping, stakeholder workshops' },
+        { key: 'figma_job', reason: 'Wireframe solutions and collaborate with designers' },
+      ],
+      learn: [{ key: 'sql', reason: 'SQL skills set you apart as a BA. Start with SQLBolt' }],
+      portfolio: [{ key: 'canva_job', reason: 'Create visual case studies of your analysis work' }],
+      interview: [{ key: 'claude', reason: 'Practice requirements gathering and scenario questions' }],
+    },
+    hr: {
+      core: [
+        { key: 'notion_job', reason: 'Document processes, org charts, employee handbooks' },
+        { key: 'linkedin', reason: 'Source candidates and build employer brand' },
+        { key: 'slack_job', reason: 'Internal communications and team engagement' },
+        { key: 'typeform', reason: 'Employee surveys, feedback forms, onboarding' },
+      ],
+      learn: [{ key: 'chatgpt', reason: 'Draft job descriptions, policies, communications' }],
+      portfolio: [{ key: 'linkedin', reason: 'Build your personal brand as an HR professional' }],
+      interview: [{ key: 'loom', reason: 'Practice presenting HR initiatives and proposals' }],
+    },
+    cs: {
+      core: [
+        { key: 'zendesk', reason: 'Industry-standard support platform. Learn it well' },
+        { key: 'hubspot', reason: 'Track customer health, upsells, and renewals' },
+        { key: 'slack_job', reason: 'Customer communication and team coordination' },
+        { key: 'loom', reason: 'Create tutorials and walkthrough videos for customers' },
+      ],
+      learn: [{ key: 'notion_job', reason: 'Build knowledge bases and playbooks' }],
+      portfolio: [{ key: 'notion_job', reason: 'Document customer success stories and metrics' }],
+      interview: [{ key: 'chatgpt', reason: 'Practice customer scenarios and escalation handling' }],
+    },
+    ea: {
+      core: [
+        { key: 'gcalendar', reason: 'Calendar management is the #1 EA skill' },
+        { key: 'notion_job', reason: 'Meeting notes, SOPs, project tracking' },
+        { key: 'slack_job', reason: 'Manage exec communications and channels' },
+        { key: 'todoist_job', reason: 'Task management and prioritisation' },
+      ],
+      learn: [{ key: 'chatgpt', reason: 'Draft emails, agendas, and briefing documents' }],
+      portfolio: [{ key: 'notion_job', reason: 'Create a portfolio of systems and processes' }],
+      interview: [{ key: 'calendly', reason: 'Show scheduling skills by setting up your own' }],
+    },
+    finance: {
+      core: [
+        { key: 'excel', reason: 'Advanced Excel/Sheets is non-negotiable in finance' },
+        { key: 'xero', reason: 'Learn cloud accounting. Xero or QuickBooks' },
+        { key: 'powerbi', reason: 'Financial dashboards and data visualisation' },
+        { key: 'notion_job', reason: 'Document processes and financial procedures' },
+      ],
+      learn: [{ key: 'claude', reason: 'Practice financial modelling questions and concepts' }],
+      portfolio: [{ key: 'gsheets', reason: 'Build sample financial models and analyses' }],
+      interview: [{ key: 'excel', reason: 'Excel tests are common. Practice advanced formulas' }],
+    },
+  };
+
+  const rt = roleTools[role] || roleTools.frontend;
+
+  // Always add core tools
+  categories.push({ category: `🎯 Core tools for ${ROLE_PATHS[role]?.name || 'your role'}`, tools: rt.core });
+
+  // Add based on goal
+  if (wantsLearn && rt.learn) {
+    categories.push({ category: '📚 Learning resources', tools: rt.learn });
+  }
+  if (wantsPortfolio && rt.portfolio) {
+    categories.push({ category: '💼 Portfolio building', tools: rt.portfolio });
+  }
+  if (wantsInterview && rt.interview) {
+    categories.push({ category: '🎤 Interview prep', tools: rt.interview });
+  }
+
+  // Filter paid tools if budget is free
+  if (isFree) {
+    categories = categories.map(cat => ({
+      ...cat,
+      tools: cat.tools.filter(t => {
+        const tool = JOB_TOOLS[t.key];
+        return tool && (tool.priceType === 'free' || tool.priceType === 'freemium');
+      })
+    })).filter(cat => cat.tools.length > 0);
+  }
+
+  return categories;
+}
+
+
+// ===== BUILDER STACK ENGINE (original) =====
 function buildStack() {
   const { projectType, stage, budget, priority } = state;
   const isFree = budget === 'free';
@@ -674,904 +1365,122 @@ function buildStack() {
   switch (projectType) {
     case 'saas':
       if (isStarting && (wantsSpeed || wantsSimplicity)) {
-        // Easiest path: no-code vibe coding
-        categories.push({
-          name: '🚀 Build Your App',
-          tool: 'lovable',
-          reason: 'Lovable. Describe your app in plain English and get a working product deployed in minutes. No coding needed.'
-        });
-        categories.push({
-          name: '💳 Payments',
-          tool: 'lemonsqueezy',
-          reason: 'Lemon Squeezy. Handles taxes, billing pages, and checkout. Ship payments in an hour, not a week.'
-        });
-        categories.push({
-          name: '📋 Planning',
-          tool: 'notion',
-          reason: 'Notion. Notes, tasks, docs, wiki, all in one. Perfect for solo builders getting started.'
-        });
+        categories.push({ name: '🚀 Build Your App', tool: 'lovable', reason: 'Lovable. Describe your app in plain English and get a working product deployed in minutes. No coding needed.' });
+        categories.push({ name: '💳 Payments', tool: 'lemonsqueezy', reason: 'Lemon Squeezy. Handles taxes, billing pages, and checkout. Ship payments in an hour, not a week.' });
+        categories.push({ name: '📋 Planning', tool: 'notion', reason: 'Notion. Notes, tasks, docs, wiki, all in one. Perfect for solo builders getting started.' });
       } else if (isStarting && wantsQuality) {
-        // Quality-focused starting path
-        categories.push({
-          name: '🎨 UI Builder',
-          tool: 'v0',
-          reason: 'v0 by Vercel. Generate beautiful UI components with AI. Paste into your codebase and customise.'
-        });
-        categories.push({
-          name: '⚙️ Framework',
-          tool: 'nextjs',
-          reason: 'Next.js. Full-stack React. API routes, SSR, and the biggest ecosystem for building quality apps.'
-        });
-        categories.push({
-          name: '🗄️ Database + Auth',
-          tool: 'supabase',
-          reason: 'Supabase. Postgres + auth + realtime in one. Skip stitching 3 services together.'
-        });
-        categories.push({
-          name: '☁️ Hosting',
-          tool: 'vercel',
-          reason: 'Vercel. Push to deploy. Preview URLs. Zero config. Just works.'
-        });
+        categories.push({ name: '🎨 UI Builder', tool: 'v0', reason: 'v0 by Vercel. Generate beautiful UI components with AI. Paste into your codebase and customise.' });
+        categories.push({ name: '⚙️ Framework', tool: 'nextjs', reason: 'Next.js. Full-stack React. API routes, SSR, and the biggest ecosystem for building quality apps.' });
+        categories.push({ name: '🗄️ Database + Auth', tool: 'supabase', reason: 'Supabase. Postgres + auth + realtime in one. Skip stitching 3 services together.' });
+        categories.push({ name: '☁️ Hosting', tool: 'vercel', reason: 'Vercel. Push to deploy. Preview URLs. Zero config. Just works.' });
       } else if (isStarting && (wantsCost || isFree)) {
-        // Free/cheap starting path
-        categories.push({
-          name: '🚀 Build Your App',
-          tool: isFree ? 'replit' : 'bolt',
-          reason: isFree
-            ? 'Replit. Code, deploy, and share. All in your browser, completely free. No setup needed.'
-            : 'Bolt.new. Describe what you want, get a working app. Iterate by chatting with AI.'
-        });
-        categories.push({
-          name: '🗄️ Database + Auth',
-          tool: 'supabase',
-          reason: 'Supabase. Generous free tier covers auth, database, and storage. Everything you need to start.'
-        });
-        categories.push({
-          name: '📋 Planning',
-          tool: 'notion',
-          reason: 'Notion. Free for personal use. Notes, tasks, and project tracking in one place.'
-        });
+        categories.push({ name: '🚀 Build Your App', tool: isFree ? 'replit' : 'bolt', reason: isFree ? 'Replit. Code, deploy, and share. All in your browser, completely free. No setup needed.' : 'Bolt.new. Describe what you want, get a working app. Iterate by chatting with AI.' });
+        categories.push({ name: '🗄️ Database + Auth', tool: 'supabase', reason: 'Supabase. Generous free tier covers auth, database, and storage. Everything you need to start.' });
+        categories.push({ name: '📋 Planning', tool: 'notion', reason: 'Notion. Free for personal use. Notes, tasks, and project tracking in one place.' });
       } else if (isBuilding) {
-        // Developer building path
-        categories.push({
-          name: '⚙️ Framework',
-          tool: 'nextjs',
-          reason: 'Next.js. Full-stack React. API routes, SSR, and the biggest ecosystem.'
-        });
-        categories.push({
-          name: '🗄️ Database + Auth',
-          tool: 'supabase',
-          reason: 'Supabase. Postgres + auth + realtime in one. Skip stitching 3 services together.'
-        });
-        categories.push({
-          name: '☁️ Hosting',
-          tool: 'vercel',
-          reason: 'Vercel. Push to deploy. Preview URLs. Zero config. Just works.'
-        });
-        categories.push({
-          name: '💳 Payments',
-          tool: 'stripe',
-          reason: 'Stripe. The gold standard. Flexible APIs for any billing model you can dream up.'
-        });
-        categories.push({
-          name: '🤖 AI Editor',
-          tool: 'cursor',
-          reason: 'Cursor. AI-first code editor. Write, refactor, and debug with AI baked in. Ship 3x faster.'
-        });
+        categories.push({ name: '⚙️ Framework', tool: 'nextjs', reason: 'Next.js. Full-stack React. API routes, SSR, and the biggest ecosystem.' });
+        categories.push({ name: '🗄️ Database + Auth', tool: 'supabase', reason: 'Supabase. Postgres + auth + realtime in one. Skip stitching 3 services together.' });
+        categories.push({ name: '☁️ Hosting', tool: 'vercel', reason: 'Vercel. Push to deploy. Preview URLs. Zero config. Just works.' });
+        categories.push({ name: '💳 Payments', tool: 'stripe', reason: 'Stripe. The gold standard. Flexible APIs for any billing model you can dream up.' });
+        categories.push({ name: '🤖 AI Editor', tool: 'cursor', reason: 'Cursor. AI-first code editor. Write, refactor, and debug with AI baked in. Ship 3x faster.' });
       } else if (isGrowing) {
-        // Growth path
-        categories.push({
-          name: '⚙️ Framework',
-          tool: 'nextjs',
-          reason: 'Next.js. Full-stack React. API routes, SSR, and the biggest ecosystem.'
-        });
-        categories.push({
-          name: '🗄️ Database + Auth',
-          tool: 'supabase',
-          reason: 'Supabase. Postgres + auth + realtime in one. Scales with you.'
-        });
-        categories.push({
-          name: '☁️ Hosting',
-          tool: 'vercel',
-          reason: 'Vercel. Push to deploy. Preview URLs. Edge functions. Scales automatically.'
-        });
-        categories.push({
-          name: '💳 Payments',
-          tool: 'stripe',
-          reason: 'Stripe. The gold standard. Subscriptions, usage billing, invoicing, all of it.'
-        });
-        categories.push({
-          name: '📊 Analytics',
-          tool: 'posthog',
-          reason: 'PostHog. Analytics + session replay + feature flags. One tool replaces three.'
-        });
-        categories.push({
-          name: '📋 Project Tracking',
-          tool: 'linear',
-          reason: 'Linear. Fast, opinionated project tracking. Built for teams that ship.'
-        });
-        categories.push({
-          name: '📧 Email',
-          tool: 'resend',
-          reason: 'Resend. Modern transactional email. Great DX, generous free tier.'
-        });
+        categories.push({ name: '⚙️ Framework', tool: 'nextjs', reason: 'Next.js. Full-stack React.' }); categories.push({ name: '🗄️ Database + Auth', tool: 'supabase', reason: 'Supabase. Scales with you.' }); categories.push({ name: '☁️ Hosting', tool: 'vercel', reason: 'Vercel. Edge functions. Scales automatically.' }); categories.push({ name: '💳 Payments', tool: 'stripe', reason: 'Stripe. Subscriptions, usage billing, invoicing.' }); categories.push({ name: '📊 Analytics', tool: 'posthog', reason: 'PostHog. Analytics + session replay + feature flags.' }); categories.push({ name: '📋 Project Tracking', tool: 'linear', reason: 'Linear. Built for teams that ship.' }); categories.push({ name: '📧 Email', tool: 'resend', reason: 'Resend. Modern transactional email.' });
       } else if (isSimplifying) {
-        // Simplification audit
-        categories.push({
-          name: '🗄️ Replace DB + Auth + Realtime',
-          tool: 'supabase',
-          reason: 'Supabase. Replace your separate database, auth, and realtime services with one tool. Fewer bills, fewer configs.'
-        });
-        categories.push({
-          name: '☁️ Consolidate Hosting',
-          tool: 'vercel',
-          reason: 'Vercel. Consolidate frontend hosting, serverless functions, and edge caching. One platform, one bill.'
-        });
-        categories.push({
-          name: '💳 Simplify Payments',
-          tool: 'lemonsqueezy',
-          reason: 'Lemon Squeezy. Replace Stripe + tax service + billing portal. Handles everything in one.'
-        });
-        categories.push({
-          name: '📋 One Workspace',
-          tool: 'notion',
-          reason: 'Notion. Replace separate docs, wiki, tasks, and notes tools. Everything in one place.'
-        });
+        categories.push({ name: '🗄️ Replace DB + Auth + Realtime', tool: 'supabase', reason: 'Supabase. Replace separate database, auth, and realtime services.' }); categories.push({ name: '☁️ Consolidate Hosting', tool: 'vercel', reason: 'Vercel. One platform, one bill.' }); categories.push({ name: '💳 Simplify Payments', tool: 'lemonsqueezy', reason: 'Lemon Squeezy. Replace Stripe + tax service + billing portal.' }); categories.push({ name: '📋 One Workspace', tool: 'notion', reason: 'Notion. Replace separate docs, wiki, tasks, and notes tools.' });
       }
       break;
-
     case 'youtube':
       if (isStarting && (wantsSpeed || wantsSimplicity)) {
-        // Easiest path: just start recording
-        categories.push({
-          name: '🎥 Recording',
-          tool: 'screenpal',
-          reason: 'ScreenPal. Record your screen or webcam in one click. Way simpler than OBS for getting started.'
-        });
-        categories.push({
-          name: '✂️ Editing',
-          tool: 'capcut',
-          reason: 'CapCut. Edit videos with templates, auto-captions, and effects. Way easier than professional editors.'
-        });
-        categories.push({
-          name: '🖼️ Thumbnails',
-          tool: 'canva',
-          reason: 'Canva. Drag-and-drop thumbnails in minutes. YouTube-sized templates ready to go.'
-        });
+        categories.push({ name: '🎥 Recording', tool: 'screenpal', reason: 'ScreenPal. Record your screen or webcam in one click.' }); categories.push({ name: '✂️ Editing', tool: 'capcut', reason: 'CapCut. Edit videos with templates, auto-captions, and effects.' }); categories.push({ name: '🖼️ Thumbnails', tool: 'canva', reason: 'Canva. YouTube-sized templates ready to go.' });
       } else if (isStarting && (wantsCost || isFree)) {
-        // Free path: phone + free tools
-        categories.push({
-          name: '✂️ Editing',
-          tool: 'capcut',
-          reason: 'CapCut. Completely free video editor with templates, auto-captions, and effects. Works on phone too.'
-        });
-        categories.push({
-          name: '🖼️ Thumbnails',
-          tool: 'canva',
-          reason: 'Canva. Free thumbnail templates. Drag, drop, done. No design skills needed.'
-        });
-        categories.push({
-          name: '📝 Scripts & Ideas',
-          tool: 'notion',
-          reason: 'Notion. Free. Script templates, content calendar, and video ideas all in one workspace.'
-        });
+        categories.push({ name: '✂️ Editing', tool: 'capcut', reason: 'CapCut. Completely free video editor with templates.' }); categories.push({ name: '🖼️ Thumbnails', tool: 'canva', reason: 'Canva. Free thumbnail templates.' }); categories.push({ name: '📝 Scripts & Ideas', tool: 'notion', reason: 'Notion. Script templates and content calendar.' });
       } else if (isStarting && wantsQuality) {
-        // Quality starting path
-        categories.push({
-          name: '🎥 Recording',
-          tool: 'obs',
-          reason: 'OBS Studio. Free, powerful, industry standard. More control when you want professional quality.'
-        });
-        categories.push({
-          name: '✂️ Editing',
-          tool: 'davinci',
-          reason: 'DaVinci Resolve. Hollywood-grade editing and colour grading. Completely free.'
-        });
-        categories.push({
-          name: '🖼️ Thumbnails',
-          tool: 'canva',
-          reason: 'Canva. Quick thumbnails while you focus on content quality. Upgrade to Figma later.'
-        });
-        categories.push({
-          name: '🔍 SEO / Growth',
-          tool: 'tubebuddy',
-          reason: 'TubeBuddy. A/B test thumbnails, find keywords, track rankings. Free tier to start.'
-        });
+        categories.push({ name: '🎥 Recording', tool: 'obs', reason: 'OBS Studio. Free, powerful, industry standard.' }); categories.push({ name: '✂️ Editing', tool: 'davinci', reason: 'DaVinci Resolve. Hollywood-grade editing.' }); categories.push({ name: '🖼️ Thumbnails', tool: 'canva', reason: 'Canva. Quick thumbnails while you focus on content.' }); categories.push({ name: '🔍 SEO / Growth', tool: 'tubebuddy', reason: 'TubeBuddy. A/B test thumbnails, find keywords.' });
       } else if (isBuilding) {
-        // Active creator path
-        categories.push({
-          name: '🎥 Recording',
-          tool: 'obs',
-          reason: 'OBS Studio. Free, powerful, customisable. Scenes, overlays, and streaming built in.'
-        });
-        categories.push({
-          name: '✂️ Editing',
-          tool: 'davinci',
-          reason: 'DaVinci Resolve. Professional editing and colour grading. The free version has everything you need.'
-        });
-        categories.push({
-          name: '🖼️ Thumbnails',
-          tool: 'canva',
-          reason: 'Canva. Fast thumbnails and social graphics. Templates for every format.'
-        });
-        categories.push({
-          name: '🔍 SEO / Growth',
-          tool: 'tubebuddy',
-          reason: 'TubeBuddy. A/B test thumbnails, find keywords, and track your rankings.'
-        });
-        categories.push({
-          name: '📝 Scripts & Notes',
-          tool: 'notion',
-          reason: 'Notion. Script templates, content calendar, video ideas all in one workspace.'
-        });
-      } else if (isGrowing || isSimplifying) {
-        // Pro creator path
-        categories.push({
-          name: '🎥 Recording',
-          tool: wantsQuality ? 'screenflow' : 'obs',
-          reason: wantsQuality
-            ? 'ScreenFlow. Clean Mac-native recording + editing. Professional output, less fiddling.'
-            : 'OBS Studio. Free, powerful, industry standard. You know it, it works.'
-        });
-        categories.push({
-          name: '✂️ Editing',
-          tool: wantsQuality ? 'finalcut' : 'davinci',
-          reason: wantsQuality
-            ? 'Final Cut Pro. Fast rendering on Mac. Magnetic timeline saves hours per video.'
-            : 'DaVinci Resolve. Professional editing and colour grading. Hard to beat for free.'
-        });
-        categories.push({
-          name: '🔍 SEO / Growth',
-          tool: 'vidiq',
-          reason: 'vidIQ. Keyword research, competitor tracking, AI title suggestions. Level up your discoverability.'
-        });
-        categories.push({
-          name: '🎵 Music',
-          tool: 'epidemic',
-          reason: 'Epidemic Sound. Copyright-free music and SFX. No claims, ever. Worth it at scale.'
-        });
+        categories.push({ name: '🎥 Recording', tool: 'obs', reason: 'OBS Studio. Scenes, overlays, and streaming.' }); categories.push({ name: '✂️ Editing', tool: 'davinci', reason: 'DaVinci Resolve. Professional editing and colour grading.' }); categories.push({ name: '🖼️ Thumbnails', tool: 'canva', reason: 'Canva. Templates for every format.' }); categories.push({ name: '🔍 SEO / Growth', tool: 'tubebuddy', reason: 'TubeBuddy. Track your rankings.' }); categories.push({ name: '📝 Scripts & Notes', tool: 'notion', reason: 'Notion. Content calendar and video ideas.' });
+      } else {
+        categories.push({ name: '🎥 Recording', tool: wantsQuality ? 'screenflow' : 'obs', reason: wantsQuality ? 'ScreenFlow. Professional output, less fiddling.' : 'OBS Studio. Industry standard.' }); categories.push({ name: '✂️ Editing', tool: wantsQuality ? 'finalcut' : 'davinci', reason: wantsQuality ? 'Final Cut Pro. Magnetic timeline saves hours.' : 'DaVinci Resolve. Hard to beat for free.' }); categories.push({ name: '🔍 SEO / Growth', tool: 'vidiq', reason: 'vidIQ. Keyword research, competitor tracking.' }); categories.push({ name: '🎵 Music', tool: 'epidemic', reason: 'Epidemic Sound. Copyright-free music and SFX.' });
       }
       break;
-
     case 'newsletter':
-      if (isStarting && (wantsSpeed || wantsSimplicity)) {
-        // Easiest path: just start writing
-        categories.push({
-          name: '📧 Platform',
-          tool: 'substack',
-          reason: 'Substack. Start writing and building an audience in 5 minutes. Payments, design, and distribution built in.'
-        });
-        categories.push({
-          name: '📋 Planning',
-          tool: 'notion',
-          reason: 'Notion. Editorial calendar, idea bank, and research notes. Your writing companion.'
-        });
-      } else if (isStarting && (wantsCost || isFree)) {
-        // Free path
-        categories.push({
-          name: '📧 Platform',
-          tool: 'substack',
-          reason: 'Substack. Completely free to use. Built-in audience discovery, payments when you\'re ready.'
-        });
-        categories.push({
-          name: '📋 Planning',
-          tool: 'notion',
-          reason: 'Notion. Free. Plan your editorial calendar and store research in one place.'
-        });
-      } else if (isStarting && wantsQuality) {
-        // Quality starting path
-        categories.push({
-          name: '📧 Platform',
-          tool: 'substack',
-          reason: 'Substack. Beautiful default design, built-in audience. Start writing now, customise later.'
-        });
-        categories.push({
-          name: '✍️ Writing',
-          tool: 'grammarly',
-          reason: 'Grammarly. Polish every issue. Catches tone, clarity, and grammar before you hit send.'
-        });
-        categories.push({
-          name: '📋 Planning',
-          tool: 'notion',
-          reason: 'Notion. Editorial calendar, idea bank, and research notes in one place.'
-        });
+      if (isStarting) {
+        categories.push({ name: '📧 Platform', tool: 'substack', reason: 'Substack. Start writing and building an audience in 5 minutes.' }); categories.push({ name: '📋 Planning', tool: 'notion', reason: 'Notion. Editorial calendar and idea bank.' });
+        if (wantsQuality) { categories.push({ name: '✍️ Writing', tool: 'grammarly', reason: 'Grammarly. Polish every issue.' }); }
       } else if (isBuilding) {
-        // Building audience
-        categories.push({
-          name: '📧 Platform',
-          tool: 'beehiiv',
-          reason: 'Beehiiv. Custom design, referral programs, and advanced analytics. Level up from Substack.'
-        });
-        categories.push({
-          name: '✍️ Writing',
-          tool: 'grammarly',
-          reason: 'Grammarly. Polish every issue. Catches tone, clarity, and grammar.'
-        });
-        categories.push({
-          name: '🎨 Design',
-          tool: 'canva',
-          reason: 'Canva. Headers, social cards, and lead magnets. Templates for everything.'
-        });
-        categories.push({
-          name: '📋 Planning',
-          tool: 'notion',
-          reason: 'Notion. Editorial calendar, idea bank, and research notes in one place.'
-        });
-      } else if (isGrowing || isSimplifying) {
-        // Growth machine
-        categories.push({
-          name: '📧 Platform',
-          tool: 'beehiiv',
-          reason: 'Beehiiv. When you need custom design, referral programs, and monetisation tools. The growth machine.'
-        });
-        categories.push({
-          name: '✍️ Writing',
-          tool: 'grammarly',
-          reason: 'Grammarly. Polish every issue. Catches tone, clarity, and grammar.'
-        });
-        if (!isFree) {
-          categories.push({
-            name: '📈 Growth',
-            tool: 'sparkloop',
-            reason: 'SparkLoop. Referral system for newsletters. Your readers bring you more readers, automatically.'
-          });
-        }
-        categories.push({
-          name: '🎨 Design',
-          tool: 'canva',
-          reason: 'Canva. Headers, social cards, and lead magnets. Templates for everything.'
-        });
+        categories.push({ name: '📧 Platform', tool: 'beehiiv', reason: 'Beehiiv. Custom design, referral programs, and analytics.' }); categories.push({ name: '✍️ Writing', tool: 'grammarly', reason: 'Grammarly. Catches tone, clarity, and grammar.' }); categories.push({ name: '🎨 Design', tool: 'canva', reason: 'Canva. Headers, social cards, and lead magnets.' }); categories.push({ name: '📋 Planning', tool: 'notion', reason: 'Notion. Editorial calendar and research notes.' });
+      } else {
+        categories.push({ name: '📧 Platform', tool: 'beehiiv', reason: 'Beehiiv. Referral programs and monetisation.' }); categories.push({ name: '✍️ Writing', tool: 'grammarly', reason: 'Grammarly. Polish every issue.' }); if (!isFree) { categories.push({ name: '📈 Growth', tool: 'sparkloop', reason: 'SparkLoop. Readers bring you more readers.' }); } categories.push({ name: '🎨 Design', tool: 'canva', reason: 'Canva. Templates for everything.' });
       }
       break;
-
     case 'ecommerce':
-      if (isStarting && (wantsSpeed || wantsSimplicity)) {
-        // Easiest path: digital = Gumroad, physical = Stan Store
-        categories.push({
-          name: '🏪 Store',
-          tool: 'gumroad',
-          reason: 'Gumroad. Upload your product, set a price, start selling. That\'s literally it. No monthly fee.'
-        });
-        categories.push({
-          name: '🎨 Product Design',
-          tool: 'canva',
-          reason: 'Canva. Product images, social ads, and marketing materials. Fast and professional.'
-        });
-      } else if (isStarting && (wantsCost || isFree)) {
-        // Free path
-        categories.push({
-          name: '🏪 Store',
-          tool: 'gumroad',
-          reason: 'Gumroad. Free to use, takes a small % per sale. Start selling with zero upfront cost.'
-        });
-        categories.push({
-          name: '🎨 Product Design',
-          tool: 'canva',
-          reason: 'Canva. Free templates for product images and social posts. No design skills needed.'
-        });
-        categories.push({
-          name: '📊 Analytics',
-          tool: 'ga4',
-          reason: 'Google Analytics. Free, powerful, and integrates with everything. Track your traffic.'
-        });
+      if (isStarting && (wantsSpeed || wantsSimplicity || wantsCost || isFree)) {
+        categories.push({ name: '🏪 Store', tool: 'gumroad', reason: 'Gumroad. Upload, set a price, start selling. No monthly fee.' }); categories.push({ name: '🎨 Product Design', tool: 'canva', reason: 'Canva. Product images and social ads.' }); if (!(wantsCost || isFree)) { } else { categories.push({ name: '📊 Analytics', tool: 'ga4', reason: 'Google Analytics. Free, powerful.' }); }
       } else if (isStarting && wantsQuality) {
-        // Quality starting path for physical products
-        categories.push({
-          name: '🏪 Store',
-          tool: 'shopify',
-          reason: 'Shopify. The e-commerce standard. Inventory, shipping, payments, all handled professionally.'
-        });
-        categories.push({
-          name: '🎨 Design',
-          tool: 'canva',
-          reason: 'Canva. Product photos, social ads, email headers. Professional results, fast.'
-        });
-        categories.push({
-          name: '📧 Email Marketing',
-          tool: 'mailchimp',
-          reason: 'Mailchimp. Free tier, easy setup. Start building your email list from day one.'
-        });
+        categories.push({ name: '🏪 Store', tool: 'shopify', reason: 'Shopify. The e-commerce standard.' }); categories.push({ name: '🎨 Design', tool: 'canva', reason: 'Canva. Professional results, fast.' }); categories.push({ name: '📧 Email Marketing', tool: 'mailchimp', reason: 'Mailchimp. Start building your email list.' });
       } else if (isBuilding) {
-        // Building path
-        categories.push({
-          name: '🏪 Store',
-          tool: 'shopify',
-          reason: 'Shopify. Inventory, shipping, payments, and a massive app ecosystem. Everything you need.'
-        });
-        categories.push({
-          name: '📧 Email Marketing',
-          tool: 'klaviyo',
-          reason: 'Klaviyo. Built for e-commerce. Abandoned cart emails, segments, and revenue tracking.'
-        });
-        categories.push({
-          name: '🎨 Design',
-          tool: 'canva',
-          reason: 'Canva. Product images, social ads, email headers. Fast and professional.'
-        });
-        categories.push({
-          name: '📊 Analytics',
-          tool: 'ga4',
-          reason: 'Google Analytics. Track where customers come from and what they buy.'
-        });
-      } else if (isGrowing || isSimplifying) {
-        // Growth path
-        categories.push({
-          name: '🏪 Store',
-          tool: 'shopify',
-          reason: 'Shopify. Scales with you. Shopify Plus when you need it, massive app ecosystem.'
-        });
-        categories.push({
-          name: '📧 Email Marketing',
-          tool: 'klaviyo',
-          reason: 'Klaviyo. Advanced segments, abandoned cart flows, revenue attribution. Built for e-commerce growth.'
-        });
-        categories.push({
-          name: '📊 Analytics',
-          tool: 'posthog',
-          reason: 'PostHog. Session recordings + funnels. See exactly where customers drop off and fix it.'
-        });
+        categories.push({ name: '🏪 Store', tool: 'shopify', reason: 'Shopify. Inventory, shipping, payments.' }); categories.push({ name: '📧 Email Marketing', tool: 'klaviyo', reason: 'Klaviyo. Abandoned cart emails and revenue tracking.' }); categories.push({ name: '🎨 Design', tool: 'canva', reason: 'Canva. Fast and professional.' }); categories.push({ name: '📊 Analytics', tool: 'ga4', reason: 'Google Analytics. Track where customers come from.' });
+      } else {
+        categories.push({ name: '🏪 Store', tool: 'shopify', reason: 'Shopify. Scales with you.' }); categories.push({ name: '📧 Email Marketing', tool: 'klaviyo', reason: 'Klaviyo. Advanced segments and revenue attribution.' }); categories.push({ name: '📊 Analytics', tool: 'posthog', reason: 'PostHog. See where customers drop off.' });
       }
       break;
-
     case 'mobile':
       if (isStarting && (wantsSpeed || wantsSimplicity)) {
-        // Easiest path: web app that feels native
-        categories.push({
-          name: '📱 Build Your App',
-          tool: 'lovable',
-          reason: 'Lovable. Build a web app that works on any phone. Deploy instantly, no app store approval needed.'
-        });
-        categories.push({
-          name: '🗄️ Backend',
-          tool: 'supabase',
-          reason: 'Supabase. Auth, database, storage, realtime. One backend for your whole app, generous free tier.'
-        });
+        categories.push({ name: '📱 Build Your App', tool: 'lovable', reason: 'Lovable. Build a web app that works on any phone.' }); categories.push({ name: '🗄️ Backend', tool: 'supabase', reason: 'Supabase. Auth, database, storage, realtime.' });
       } else if (isStarting && (wantsCost || isFree)) {
-        // Free/cheap no-code path
-        categories.push({
-          name: '📱 Build Your App',
-          tool: isFree ? 'replit' : 'bubble',
-          reason: isFree
-            ? 'Replit. Code and deploy in your browser. Completely free to start. Great for learning and building.'
-            : 'Bubble. Build full apps without code. Drag-and-drop logic, database, and UI. Works on mobile.'
-        });
-        categories.push({
-          name: '🗄️ Backend',
-          tool: 'supabase',
-          reason: 'Supabase. Free tier covers auth, database, and storage. Everything your app needs.'
-        });
+        categories.push({ name: '📱 Build Your App', tool: isFree ? 'replit' : 'bubble', reason: isFree ? 'Replit. Code and deploy in your browser.' : 'Bubble. Build full apps without code.' }); categories.push({ name: '🗄️ Backend', tool: 'supabase', reason: 'Supabase. Free tier covers everything.' });
       } else if (isStarting && wantsQuality) {
-        // Quality native path
-        categories.push({
-          name: '📱 Framework',
-          tool: 'expo',
-          reason: 'Expo (React Native). One codebase, both platforms. OTA updates and a huge ecosystem.'
-        });
-        categories.push({
-          name: '🗄️ Backend',
-          tool: 'supabase',
-          reason: 'Supabase. Auth, database, storage, realtime. One backend for your whole app.'
-        });
-        categories.push({
-          name: '🎨 Design',
-          tool: 'figma',
-          reason: 'Figma. Design screens, prototype flows, hand off to dev. The industry standard.'
-        });
+        categories.push({ name: '📱 Framework', tool: 'expo', reason: 'Expo (React Native). One codebase, both platforms.' }); categories.push({ name: '🗄️ Backend', tool: 'supabase', reason: 'Supabase. Auth, database, storage, realtime.' }); categories.push({ name: '🎨 Design', tool: 'figma', reason: 'Figma. Industry-standard design tool.' });
       } else if (isBuilding) {
-        // Developer building path
-        categories.push({
-          name: '📱 Framework',
-          tool: 'expo',
-          reason: 'Expo (React Native). One codebase, both platforms. OTA updates. Huge ecosystem.'
-        });
-        categories.push({
-          name: '🗄️ Backend',
-          tool: 'supabase',
-          reason: 'Supabase. Auth, database, storage, realtime. One backend for your whole app.'
-        });
-        categories.push({
-          name: '🎨 Design',
-          tool: 'figma',
-          reason: 'Figma. Design screens, prototype flows, hand off to dev. The standard.'
-        });
-        categories.push({
-          name: '🤖 AI Editor',
-          tool: 'cursor',
-          reason: 'Cursor. AI-first code editor. Write React Native components faster with AI assistance.'
-        });
-      } else if (isGrowing || isSimplifying) {
-        // Growth path
-        categories.push({
-          name: '📱 Framework',
-          tool: 'expo',
-          reason: 'Expo (React Native). One codebase, both platforms. EAS Build for app store submissions.'
-        });
-        categories.push({
-          name: '🗄️ Backend',
-          tool: 'supabase',
-          reason: 'Supabase. Auth, database, storage, realtime. Scales with your user base.'
-        });
-        categories.push({
-          name: '🔔 Push Notifications',
-          tool: 'onesignal',
-          reason: 'OneSignal. Free tier handles most apps. Segments, scheduling, and automation.'
-        });
-        categories.push({
-          name: '📊 Analytics',
-          tool: 'amplitude',
-          reason: 'Amplitude. Product analytics built for mobile. Cohorts, funnels, and retention curves.'
-        });
+        categories.push({ name: '📱 Framework', tool: 'expo', reason: 'Expo. One codebase, both platforms.' }); categories.push({ name: '🗄️ Backend', tool: 'supabase', reason: 'Supabase. One backend for your whole app.' }); categories.push({ name: '🎨 Design', tool: 'figma', reason: 'Figma. Design screens and prototype flows.' }); categories.push({ name: '🤖 AI Editor', tool: 'cursor', reason: 'Cursor. Write React Native components faster.' });
+      } else {
+        categories.push({ name: '📱 Framework', tool: 'expo', reason: 'Expo. EAS Build for app store submissions.' }); categories.push({ name: '🗄️ Backend', tool: 'supabase', reason: 'Supabase. Scales with your user base.' }); categories.push({ name: '🔔 Push Notifications', tool: 'onesignal', reason: 'OneSignal. Free tier handles most apps.' }); categories.push({ name: '📊 Analytics', tool: 'amplitude', reason: 'Amplitude. Product analytics for mobile.' });
       }
       break;
-
     case 'podcast':
       if (isStarting && (wantsSpeed || wantsSimplicity)) {
-        // Easiest path: just start talking
-        categories.push({
-          name: '📡 Host & Distribute',
-          tool: 'spotify4podcasters',
-          reason: 'Spotify for Podcasters. Free hosting, distribution to all platforms. Upload and you\'re live.'
-        });
-        categories.push({
-          name: '✂️ Edit & Produce',
-          tool: 'descript',
-          reason: 'Descript. Edit audio by editing text. Remove filler words in one click. Record, edit, and publish in one tool.'
-        });
-        categories.push({
-          name: '🖼️ Cover Art',
-          tool: 'canva',
-          reason: 'Canva. Podcast cover art and episode graphics in minutes. Templates ready to go.'
-        });
+        categories.push({ name: '📡 Host & Distribute', tool: 'spotify4podcasters', reason: 'Spotify for Podcasters. Free hosting, all platforms.' }); categories.push({ name: '✂️ Edit & Produce', tool: 'descript', reason: 'Descript. Edit audio by editing text.' }); categories.push({ name: '🖼️ Cover Art', tool: 'canva', reason: 'Canva. Podcast templates ready to go.' });
       } else if (isStarting && (wantsCost || isFree)) {
-        // Free path
-        categories.push({
-          name: '📡 Host & Distribute',
-          tool: 'spotify4podcasters',
-          reason: 'Spotify for Podcasters. Completely free hosting and distribution to every platform.'
-        });
-        categories.push({
-          name: '✂️ Editing',
-          tool: 'audacity',
-          reason: 'Audacity. Free, open source audio editor. Does everything you need for podcast editing.'
-        });
-        categories.push({
-          name: '🖼️ Cover Art',
-          tool: 'canva',
-          reason: 'Canva. Free podcast cover art templates. Look professional without paying a designer.'
-        });
+        categories.push({ name: '📡 Host & Distribute', tool: 'spotify4podcasters', reason: 'Spotify for Podcasters. Completely free.' }); categories.push({ name: '✂️ Editing', tool: 'audacity', reason: 'Audacity. Free, open source audio editor.' }); categories.push({ name: '🖼️ Cover Art', tool: 'canva', reason: 'Canva. Free podcast cover art templates.' });
       } else if (isStarting && wantsQuality) {
-        // Quality starting path
-        categories.push({
-          name: '🎙️ Recording',
-          tool: 'riverside',
-          reason: 'Riverside.fm. Studio-quality remote recording. Local tracks for both audio and video.'
-        });
-        categories.push({
-          name: '✂️ Editing',
-          tool: 'descript',
-          reason: 'Descript. Edit by editing text. Remove filler words, add transitions, export clean audio.'
-        });
-        categories.push({
-          name: '📡 Hosting',
-          tool: 'spotify4podcasters',
-          reason: 'Spotify for Podcasters. Free hosting while you build your audience.'
-        });
+        categories.push({ name: '🎙️ Recording', tool: 'riverside', reason: 'Riverside.fm. Studio-quality remote recording.' }); categories.push({ name: '✂️ Editing', tool: 'descript', reason: 'Descript. Edit by editing text.' }); categories.push({ name: '📡 Hosting', tool: 'spotify4podcasters', reason: 'Free hosting while you build your audience.' });
       } else if (isBuilding) {
-        // Active podcaster
-        categories.push({
-          name: '🎙️ Recording',
-          tool: 'riverside',
-          reason: 'Riverside.fm. Studio-quality remote recording. Separate tracks, video + audio.'
-        });
-        categories.push({
-          name: '✂️ Editing',
-          tool: 'descript',
-          reason: 'Descript. Edit audio by editing text. Remove filler words in one click.'
-        });
-        categories.push({
-          name: '📡 Hosting',
-          tool: 'transistor',
-          reason: 'Transistor. Premium hosting with analytics, multiple shows, and private podcasts.'
-        });
-        categories.push({
-          name: '📝 Show Notes',
-          tool: 'notion',
-          reason: 'Notion. Guest research, episode outlines, and show notes. One workspace for everything.'
-        });
-      } else if (isGrowing || isSimplifying) {
-        // Growth path
-        categories.push({
-          name: '🎙️ Recording',
-          tool: 'riverside',
-          reason: 'Riverside.fm. Studio-quality recording. Your listeners can hear the difference.'
-        });
-        categories.push({
-          name: '✂️ Editing',
-          tool: 'descript',
-          reason: 'Descript. Edit by editing text. Fastest workflow for regular episode production.'
-        });
-        categories.push({
-          name: '📡 Hosting',
-          tool: 'transistor',
-          reason: 'Transistor. Advanced analytics, multiple shows, private feeds. Built for serious podcasters.'
-        });
-        categories.push({
-          name: '📈 Growth',
-          tool: 'opusclip',
-          reason: 'Opus Clip. AI turns episodes into viral short clips for social media. Grow your audience on autopilot.'
-        });
+        categories.push({ name: '🎙️ Recording', tool: 'riverside', reason: 'Riverside.fm. Separate tracks, video + audio.' }); categories.push({ name: '✂️ Editing', tool: 'descript', reason: 'Descript. Edit audio by editing text.' }); categories.push({ name: '📡 Hosting', tool: 'transistor', reason: 'Transistor. Premium hosting with analytics.' }); categories.push({ name: '📝 Show Notes', tool: 'notion', reason: 'Notion. Guest research and episode outlines.' });
+      } else {
+        categories.push({ name: '🎙️ Recording', tool: 'riverside', reason: 'Riverside.fm. Your listeners can hear the difference.' }); categories.push({ name: '✂️ Editing', tool: 'descript', reason: 'Descript. Fastest workflow for regular production.' }); categories.push({ name: '📡 Hosting', tool: 'transistor', reason: 'Transistor. Advanced analytics.' }); categories.push({ name: '📈 Growth', tool: 'opusclip', reason: 'Opus Clip. AI turns episodes into viral short clips.' });
       }
       break;
-
     case 'freelance':
-      if (isStarting && (wantsSpeed || wantsSimplicity)) {
-        // Easiest path: portfolio + invoicing
-        categories.push({
-          name: '🌐 Portfolio',
-          tool: 'carrd',
-          reason: 'Carrd. Build a clean portfolio page in 10 minutes. No design skills needed. From $9/year.'
-        });
-        categories.push({
-          name: '💳 Invoicing',
-          tool: 'wave',
-          reason: 'Wave. Free invoicing, accounting, and receipts. Built for freelancers, zero cost.'
-        });
-        categories.push({
-          name: '📋 Project Management',
-          tool: 'notion',
-          reason: 'Notion. Client projects, task tracking, meeting notes. Your second brain, completely free.'
-        });
-      } else if (isStarting && (wantsCost || isFree)) {
-        // Free path
-        categories.push({
-          name: '🌐 Portfolio',
-          tool: 'carrd',
-          reason: 'Carrd. One-page portfolio site. Free tier available, or $9/year for custom domain.'
-        });
-        categories.push({
-          name: '💳 Invoicing',
-          tool: 'wave',
-          reason: 'Wave. Completely free invoicing and accounting. No catch, no hidden fees.'
-        });
-        categories.push({
-          name: '📋 Project Management',
-          tool: 'notion',
-          reason: 'Notion. Free for personal use. Tasks, notes, client projects, all in one.'
-        });
-        categories.push({
-          name: '🤝 Find Work',
-          tool: 'contra',
-          reason: 'Contra. Find freelance work with zero commission. Built for independents.'
-        });
+      if (isStarting && (wantsSpeed || wantsSimplicity || wantsCost || isFree)) {
+        categories.push({ name: '🌐 Portfolio', tool: 'carrd', reason: 'Carrd. Clean portfolio page in 10 minutes. From $9/year.' }); categories.push({ name: '💳 Invoicing', tool: 'wave', reason: 'Wave. Free invoicing, accounting, and receipts.' }); categories.push({ name: '📋 Project Management', tool: 'notion', reason: 'Notion. Client projects and task tracking.' }); if (isFree || wantsCost) { categories.push({ name: '🤝 Find Work', tool: 'contra', reason: 'Contra. Zero commission freelance work.' }); }
       } else if (isStarting && wantsQuality) {
-        // Quality starting path
-        categories.push({
-          name: '🌐 Portfolio',
-          tool: 'framer',
-          reason: 'Framer. Beautiful, interactive portfolio sites. Impress clients before the first meeting.'
-        });
-        categories.push({
-          name: '💳 Invoicing & Contracts',
-          tool: 'bonsai',
-          reason: 'Bonsai. Contracts, proposals, and invoicing in one place. Built specifically for freelancers.'
-        });
-        categories.push({
-          name: '📋 Project Management',
-          tool: 'notion',
-          reason: 'Notion. Client projects, task tracking, meeting notes. Your second brain.'
-        });
-      } else if (isBuilding || isGrowing || isSimplifying) {
-        // Growth path
-        categories.push({
-          name: '🌐 Portfolio',
-          tool: 'framer',
-          reason: 'Framer. Beautiful, interactive portfolio sites. Stand out from template portfolios.'
-        });
-        categories.push({
-          name: '💳 Invoicing & Contracts',
-          tool: 'bonsai',
-          reason: 'Bonsai. Contracts, proposals, invoicing, and accounting. One tool for all the boring stuff.'
-        });
-        categories.push({
-          name: '⏱️ Time Tracking',
-          tool: 'toggl',
-          reason: 'Toggl. Simple time tracking. One click to start. Know exactly what to bill.'
-        });
-        categories.push({
-          name: '📋 Project Management',
-          tool: 'notion',
-          reason: 'Notion. Client projects, task tracking, meeting notes. Your second brain.'
-        });
+        categories.push({ name: '🌐 Portfolio', tool: 'framer', reason: 'Framer. Beautiful, interactive portfolio sites.' }); categories.push({ name: '💳 Invoicing & Contracts', tool: 'bonsai', reason: 'Bonsai. Contracts, proposals, and invoicing.' }); categories.push({ name: '📋 Project Management', tool: 'notion', reason: 'Notion. Your second brain.' });
+      } else {
+        categories.push({ name: '🌐 Portfolio', tool: 'framer', reason: 'Framer. Stand out from template portfolios.' }); categories.push({ name: '💳 Invoicing & Contracts', tool: 'bonsai', reason: 'Bonsai. One tool for all the boring stuff.' }); categories.push({ name: '⏱️ Time Tracking', tool: 'toggl', reason: 'Toggl. Know exactly what to bill.' }); categories.push({ name: '📋 Project Management', tool: 'notion', reason: 'Notion. Your second brain.' });
       }
       break;
-
     case 'student':
-      // Special case, always simple and free
-      categories.push({
-        name: '🔍 Research',
-        tool: 'perplexity',
-        reason: 'Perplexity. AI research with real citations. Better than Google for academic work.'
-      });
-      categories.push({
-        name: '📚 Study Notes',
-        tool: 'notebooklm',
-        reason: 'NotebookLM. Upload your notes, get study guides + audio summaries. By Google, totally free.'
-      });
-      categories.push({
-        name: '✍️ Writing',
-        tool: 'grammarly',
-        reason: 'Grammarly. Polish essays without changing your voice. Free tier is excellent.'
-      });
-      categories.push({
-        name: '📋 Organisation',
-        tool: 'notion',
-        reason: 'Notion. Free for students. Notes, tasks, deadlines, and project management in one place.'
-      });
-      categories.push({
-        name: '🧠 Revision',
-        tool: 'anki',
-        reason: 'Anki. Spaced repetition flashcards. Proven to boost long-term retention. Free.'
-      });
+      categories.push({ name: '🔍 Research', tool: 'perplexity', reason: 'Perplexity. AI research with real citations.' }); categories.push({ name: '📚 Study Notes', tool: 'notebooklm', reason: 'NotebookLM. Upload notes, get study guides + audio summaries.' }); categories.push({ name: '✍️ Writing', tool: 'grammarly', reason: 'Grammarly. Polish essays without changing your voice.' }); categories.push({ name: '📋 Organisation', tool: 'notion', reason: 'Notion. Free for students. Notes, tasks, deadlines.' }); categories.push({ name: '🧠 Revision', tool: 'anki', reason: 'Anki. Spaced repetition flashcards. Free.' });
       break;
-
     case 'blog':
-      if (isStarting && (wantsSpeed || wantsSimplicity)) {
-        // Easiest path: just start writing
-        categories.push({
-          name: '📝 Platform',
-          tool: 'substack',
-          reason: 'Substack. Start writing and building an audience in 5 minutes. Built-in readers, payments, and SEO.'
-        });
-        categories.push({
-          name: '📋 Planning',
-          tool: 'notion',
-          reason: 'Notion. Draft, outline, and organise all your content in one place. Free.'
-        });
-      } else if (isStarting && (wantsCost || isFree)) {
-        // Free path
-        categories.push({
-          name: '📝 Platform',
-          tool: 'substack',
-          reason: 'Substack. Completely free. Built-in audience discovery means readers find you.'
-        });
-        categories.push({
-          name: '📋 Planning',
-          tool: 'notion',
-          reason: 'Notion. Free. Draft, plan, and organise your content calendar.'
-        });
-      } else if (isStarting && wantsQuality) {
-        // Quality starting path
-        categories.push({
-          name: '📝 Platform',
-          tool: 'ghost',
-          reason: 'Ghost. Beautiful publishing platform. Built-in SEO, newsletters, and memberships.'
-        });
-        categories.push({
-          name: '✍️ Writing',
-          tool: 'iawriter',
-          reason: 'iA Writer. Distraction-free writing. Markdown, focus mode, beautiful typography.'
-        });
-        categories.push({
-          name: '🔍 SEO',
-          tool: 'ubersuggest',
-          reason: 'Ubersuggest. Free keyword ideas and site audits. Great for getting started with SEO.'
-        });
+      if (isStarting) {
+        categories.push({ name: '📝 Platform', tool: 'substack', reason: 'Substack. Start writing in 5 minutes.' }); categories.push({ name: '📋 Planning', tool: 'notion', reason: 'Notion. Draft, outline, and organise.' });
       } else if (isBuilding) {
-        // Developer/builder blog
-        categories.push({
-          name: '📝 Framework',
-          tool: 'astro',
-          reason: 'Astro. Lightning fast static sites. Markdown-based, developer-friendly, perfect for blogs.'
-        });
-        categories.push({
-          name: '☁️ Hosting',
-          tool: 'vercel',
-          reason: 'Vercel. Push to deploy. Your blog is live in seconds after every commit.'
-        });
-        categories.push({
-          name: '✍️ Writing',
-          tool: 'iawriter',
-          reason: 'iA Writer. Distraction-free Markdown writing. Focus mode and beautiful typography.'
-        });
-        categories.push({
-          name: '🔍 SEO',
-          tool: 'ubersuggest',
-          reason: 'Ubersuggest. Free keyword ideas and site audits. Enough to start ranking.'
-        });
-      } else if (isGrowing || isSimplifying) {
-        // Growth path
-        categories.push({
-          name: '📝 Platform',
-          tool: 'ghost',
-          reason: 'Ghost. SEO, newsletters, memberships, and beautiful design. The serious blogging platform.'
-        });
-        categories.push({
-          name: '🔍 SEO',
-          tool: 'ahrefs',
-          reason: 'Ahrefs. Keyword research, backlink tracking, content gap analysis. The gold standard for SEO.'
-        });
-        categories.push({
-          name: '📊 Analytics',
-          tool: 'plausible',
-          reason: 'Plausible. Simple, privacy-first analytics. See what matters without the bloat.'
-        });
-        categories.push({
-          name: '🖼️ Images',
-          tool: 'canva',
-          reason: 'Canva. Blog headers, social cards, and infographics. Unsplash built right in.'
-        });
+        categories.push({ name: '📝 Framework', tool: 'astro', reason: 'Astro. Lightning fast static sites.' }); categories.push({ name: '☁️ Hosting', tool: 'vercel', reason: 'Vercel. Push to deploy.' }); categories.push({ name: '✍️ Writing', tool: 'iawriter', reason: 'iA Writer. Distraction-free Markdown.' }); categories.push({ name: '🔍 SEO', tool: 'ubersuggest', reason: 'Ubersuggest. Free keyword ideas.' });
+      } else {
+        categories.push({ name: '📝 Platform', tool: 'ghost', reason: 'Ghost. SEO, newsletters, memberships.' }); categories.push({ name: '🔍 SEO', tool: 'ahrefs', reason: 'Ahrefs. The gold standard for SEO.' }); categories.push({ name: '📊 Analytics', tool: 'plausible', reason: 'Plausible. Simple, privacy-first analytics.' }); categories.push({ name: '🖼️ Images', tool: 'canva', reason: 'Canva. Blog headers and social cards.' });
       }
       break;
-
     case 'digital':
-      if (isStarting && (wantsSpeed || wantsSimplicity)) {
-        // Easiest path: just start selling
-        categories.push({
-          name: '🏪 Sell Your Product',
-          tool: 'gumroad',
-          reason: 'Gumroad. Upload your product, set a price, start selling. That\'s literally it. No monthly fee.'
-        });
-        categories.push({
-          name: '🎨 Product Design',
-          tool: 'canva',
-          reason: 'Canva. Design product covers, slides, and marketing materials. Templates for everything.'
-        });
-      } else if (isStarting && (wantsCost || isFree)) {
-        // Free path
-        categories.push({
-          name: '🏪 Sell Your Product',
-          tool: 'gumroad',
-          reason: 'Gumroad. Free to use, takes a small percentage per sale. Zero upfront cost to start selling.'
-        });
-        categories.push({
-          name: '🎨 Product Design',
-          tool: 'canva',
-          reason: 'Canva. Free templates for product covers and marketing. No design skills needed.'
-        });
+      if (isStarting && (wantsSpeed || wantsSimplicity || wantsCost || isFree)) {
+        categories.push({ name: '🏪 Sell Your Product', tool: 'gumroad', reason: 'Gumroad. Upload, set a price, start selling.' }); categories.push({ name: '🎨 Product Design', tool: 'canva', reason: 'Canva. Design covers and marketing materials.' });
       } else if (isStarting && wantsQuality) {
-        // Quality starting path
-        categories.push({
-          name: '🏪 Sell Your Product',
-          tool: 'lemonsqueezy',
-          reason: 'Lemon Squeezy. Handles global taxes, license keys, subscriptions. Professional from day one.'
-        });
-        categories.push({
-          name: '🌐 Landing Page',
-          tool: 'framer',
-          reason: 'Framer. Interactive, animated landing pages. Make your product look premium.'
-        });
-        categories.push({
-          name: '📧 Email List',
-          tool: 'beehiiv',
-          reason: 'Beehiiv. Build your email list with newsletter + landing pages + referrals.'
-        });
-      } else if (isBuilding || isGrowing || isSimplifying) {
-        // Growth path
-        categories.push({
-          name: '🏪 Platform',
-          tool: 'lemonsqueezy',
-          reason: 'Lemon Squeezy. Handles global taxes, license keys, subscriptions, and clean checkout pages.'
-        });
-        categories.push({
-          name: '🌐 Landing Page',
-          tool: 'framer',
-          reason: 'Framer. Interactive, animated landing pages. Stand out from template sites.'
-        });
-        categories.push({
-          name: '📧 Email List',
-          tool: 'beehiiv',
-          reason: 'Beehiiv. Newsletter + landing pages + referrals. Grow your audience and sell to them.'
-        });
-        categories.push({
-          name: '🎨 Design',
-          tool: 'canva',
-          reason: 'Canva. Product covers, social graphics, and marketing materials. Fast and professional.'
-        });
+        categories.push({ name: '🏪 Sell Your Product', tool: 'lemonsqueezy', reason: 'Lemon Squeezy. Handles global taxes and license keys.' }); categories.push({ name: '🌐 Landing Page', tool: 'framer', reason: 'Framer. Interactive, animated landing pages.' }); categories.push({ name: '📧 Email List', tool: 'beehiiv', reason: 'Beehiiv. Newsletter + landing pages + referrals.' });
+      } else {
+        categories.push({ name: '🏪 Platform', tool: 'lemonsqueezy', reason: 'Lemon Squeezy. Taxes, license keys, subscriptions.' }); categories.push({ name: '🌐 Landing Page', tool: 'framer', reason: 'Framer. Stand out from template sites.' }); categories.push({ name: '📧 Email List', tool: 'beehiiv', reason: 'Beehiiv. Grow your audience and sell to them.' }); categories.push({ name: '🎨 Design', tool: 'canva', reason: 'Canva. Product covers and social graphics.' });
       }
       break;
   }
 
-  // Apply budget filter, remove paid tools when budget is "free"
   if (isFree) {
     categories = categories.filter(cat => {
       const tool = TOOLS[cat.tool];
@@ -1582,7 +1491,6 @@ function buildStack() {
   return categories;
 }
 
-// ===== STACK NAME GENERATOR =====
 function getStackName(type) {
   const isStarting = state.stage === 'starting';
   const isGrowing = state.stage === 'growing';
@@ -1602,6 +1510,48 @@ function getStackName(type) {
   return names[type] || 'Your Custom Stack';
 }
 
+
+// ===== NAVIGATION =====
+function updateProgress(stepId) {
+  const persona = state.persona || 'builder';
+  const steps = STEP_ORDER[persona] || STEP_ORDER.builder;
+  const total = steps.length;
+  const current = steps.indexOf(stepId);
+  const pct = current <= 0 ? 0 : (current / (total - 1)) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `Step ${Math.max(1, current)} of ${total - 1}`;
+  const remaining = Math.max(0, (total - current) * 8);
+  document.getElementById('progressTime').textContent = remaining > 0 ? `⏱ ~${remaining} seconds` : '⏱ Almost done!';
+}
+
+function showStep(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  updateProgress(id);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function navigateTo(id) {
+  showStep(id);
+}
+
+function selectPersona(persona) {
+  state.persona = persona;
+  if (persona === 'builder') {
+    showStep('builderStep1');
+  } else if (persona === 'student') {
+    showStep('studentQ1');
+  } else if (persona === 'jobs') {
+    showStep('jobsQ1');
+  }
+}
+
+function goBackToPersona() {
+  state.persona = '';
+  showStep('stepPersona');
+}
+
+
 // ===== CHIP SELECTION =====
 const chips = document.querySelectorAll('.chip');
 const projectInput = document.getElementById('projectInput');
@@ -1611,8 +1561,7 @@ chips.forEach(chip => {
   chip.addEventListener('click', () => {
     chips.forEach(c => c.classList.remove('active'));
     chip.classList.add('active');
-    const key = chip.dataset.template;
-    projectInput.value = templates[key];
+    projectInput.value = templates[chip.dataset.template];
     buildBtn.disabled = false;
   });
 });
@@ -1622,6 +1571,7 @@ projectInput.addEventListener('input', () => {
   chips.forEach(c => c.classList.remove('active'));
 });
 
+
 // ===== OPTION SELECTION =====
 document.querySelectorAll('.option').forEach(opt => {
   opt.addEventListener('click', () => {
@@ -1630,54 +1580,23 @@ document.querySelectorAll('.option').forEach(opt => {
     opt.classList.add('selected');
     const key = parent.dataset.key;
     state[key] = opt.dataset.value;
-    // Enable the next button for this question
     const step = opt.closest('.step');
     const btn = step.querySelector('.btn-primary, .btn-accent');
     if (btn) btn.disabled = false;
   });
 });
 
-// ===== NAVIGATION =====
-function updateProgress(stepNum) {
-  const pct = ((stepNum - 1) / 3) * 100;
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressLabel').textContent = `Step ${Math.min(stepNum, 3)} of 3`;
-  const times = ['⏱ ~30 seconds', '⏱ ~20 seconds', '⏱ ~10 seconds', '⏱ Almost done!'];
-  document.getElementById('progressTime').textContent = times[Math.min(stepNum - 1, 3)];
-}
 
-function goToQuestions() {
+// ===== BUILDER FLOW =====
+function goToBuilderQuestions() {
   state.project = projectInput.value.trim();
   state.projectType = detectProjectType(state.project);
-  // also check chips
   const activeChip = document.querySelector('.chip.active');
   if (activeChip) state.projectType = activeChip.dataset.template;
-
-  document.getElementById('step1').classList.remove('active');
-  document.getElementById('step2q1').classList.add('active');
-  updateProgress(2);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  showStep('builderQ1');
 }
 
-function goToStep(id) {
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if (id === 'step2q2') updateProgress(2);
-  if (id === 'step2q3') updateProgress(3);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function goBackTo(id) {
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if (id === 'step1') updateProgress(1);
-  if (id === 'step2q1') updateProgress(2);
-  if (id === 'step2q2') updateProgress(2);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ===== SHOW RESULTS =====
-function showResults() {
+function showBuilderResults() {
   document.getElementById('stepWrapper').style.display = 'none';
   document.getElementById('progressBar').style.display = 'none';
 
@@ -1688,52 +1607,138 @@ function showResults() {
   document.getElementById('stackBadge').textContent = '🛠️ ' + stackName;
   document.getElementById('stackTitle').textContent = stackName;
   document.getElementById('stackSubtitle').textContent = isStudent
-    ? "Here are essential free tools for students, plus we've got a dedicated section for you."
+    ? "Here are essential free tools for students — plus we've got a dedicated section for you."
     : "Based on your project and preferences, here's exactly what you need.";
-
-  // Student special
   document.getElementById('studentSpecial').style.display = isStudent ? 'block' : 'none';
+  document.getElementById('emailCaptureSection').style.display = 'none';
+  document.getElementById('jobPathLink').style.display = 'none';
 
-  // Render stack
   const container = document.getElementById('stackContainer');
   let totalCost = 0;
   let html = '';
-
   stack.forEach((cat, i) => {
     const tool = TOOLS[cat.tool];
     if (!tool) return;
     totalCost += tool.monthlyCost;
     const priceClass = tool.priceType === 'free' ? 'price-free' : tool.priceType === 'freemium' ? 'price-freemium' : 'price-paid';
-    html += `
-      <div class="stack-category" style="animation-delay: ${i * 50}ms;">
-        <div class="stack-category-header"><h3>${cat.name}</h3></div>
-        <a href="${tool.url}" target="_blank" rel="noopener" class="stack-tool" style="animation-delay: ${i * 80}ms; text-decoration: none; color: inherit;">
-          <div class="stack-tool-icon"><img src="${tool.icon}" alt="${tool.name}"></div>
-          <div class="stack-tool-info">
-            <div class="stack-tool-name">${tool.name}</div>
-            <div class="stack-tool-reason">${cat.reason}</div>
-          </div>
-          <span class="stack-tool-price ${priceClass}">${tool.price}</span>
-        </a>
-      </div>`;
+    html += `<div class="stack-category" style="animation-delay: ${i * 50}ms;"><div class="stack-category-header"><h3>${cat.name}</h3></div><a href="${tool.url}" target="_blank" rel="noopener" class="stack-tool" style="animation-delay: ${i * 80}ms; text-decoration: none; color: inherit;"><div class="stack-tool-icon"><img src="${tool.icon}" alt="${tool.name}"></div><div class="stack-tool-info"><div class="stack-tool-name">${tool.name}</div><div class="stack-tool-reason">${cat.reason}</div></div><span class="stack-tool-price ${priceClass}">${tool.price}</span></a></div>`;
   });
   container.innerHTML = html;
+  document.getElementById('costAmount').textContent = totalCost === 0 ? '$0/mo' : `~$${totalCost}/mo`;
 
-  // Cost estimate
-  const costText = totalCost === 0 ? '$0/mo' : `~$${totalCost}/mo`;
-  document.getElementById('costAmount').textContent = costText;
-
-  // Show results
-  const results = document.getElementById('resultsWrapper');
-  results.classList.add('active');
+  document.getElementById('resultsWrapper').classList.add('active');
   document.getElementById('progressFill').style.width = '100%';
-
-  // Update URL hash
   updateHash();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ===== SHAREABLE URL =====
+
+// ===== STUDENT RESULTS =====
+function showStudentResults() {
+  document.getElementById('stepWrapper').style.display = 'none';
+  document.getElementById('progressBar').style.display = 'none';
+
+  const tools = getStudentRecommendations();
+  const profile = getStudentProfileTitle();
+
+  document.getElementById('stackBadge').textContent = '🎓 ' + profile;
+  document.getElementById('stackTitle').textContent = 'Your ' + profile + ' Stack';
+  document.getElementById('stackSubtitle').textContent = 'Based on your answers, here are the tools that\'ll make the biggest difference.';
+  document.getElementById('studentSpecial').style.display = 'none';
+  document.getElementById('emailCaptureSection').style.display = 'block';
+  document.getElementById('jobPathLink').style.display = 'none';
+
+  const container = document.getElementById('stackContainer');
+  container.innerHTML = tools.map((tool, i) => `
+    <div class="stack-category" style="animation-delay: ${i * 50}ms;">
+      <a href="${tool.url}" target="_blank" rel="noopener" class="stack-tool" style="animation-delay: ${i * 80}ms; text-decoration: none; color: inherit;">
+        <div class="stack-tool-icon"><img src="${tool.icon}" alt="${tool.name}"></div>
+        <div class="stack-tool-info">
+          <div class="stack-tool-name">${tool.name}</div>
+          <div class="stack-tool-reason">${tool.reason}</div>
+        </div>
+        <div style="display:flex;gap:4px;flex-shrink:0;">
+          ${tool.free ? '<span class="stack-tool-price price-free">Free</span>' : '<span class="stack-tool-price price-paid">Paid</span>'}
+          ${tool.safe ? '<span class="stack-tool-price price-freemium">Uni-safe</span>' : ''}
+        </div>
+      </a>
+    </div>
+  `).join('');
+
+  document.getElementById('costAmount').textContent = '$0/mo';
+  document.getElementById('resultsWrapper').classList.add('active');
+  document.getElementById('progressFill').style.width = '100%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+// ===== JOB RESULTS =====
+function showJobResults() {
+  document.getElementById('stepWrapper').style.display = 'none';
+  document.getElementById('progressBar').style.display = 'none';
+
+  const categories = getJobRecommendations();
+  const roleName = ROLE_PATHS[state.role]?.name || 'your role';
+  const roleFile = ROLE_PATHS[state.role]?.file;
+
+  document.getElementById('stackBadge').textContent = '💼 ' + roleName + ' Toolkit';
+  document.getElementById('stackTitle').textContent = 'Your ' + roleName + ' Toolkit';
+  document.getElementById('stackSubtitle').textContent = 'Tools, resources, and everything you need to land your ' + roleName + ' role.';
+  document.getElementById('studentSpecial').style.display = 'none';
+  document.getElementById('emailCaptureSection').style.display = 'none';
+
+  // Show path link
+  const pathLinkEl = document.getElementById('jobPathLink');
+  if (roleFile) {
+    pathLinkEl.style.display = 'block';
+    pathLinkEl.innerHTML = `<a href="../jobs/paths/${roleFile}" class="path-link">📄 See the full ${roleName} career path → <span style="flex:1;"></span>Step-by-step guide</a>`;
+  } else {
+    pathLinkEl.style.display = 'none';
+  }
+
+  const container = document.getElementById('stackContainer');
+  let totalCost = 0;
+  let html = '';
+
+  categories.forEach((cat, ci) => {
+    html += `<div class="stack-category" style="animation-delay: ${ci * 60}ms;"><div class="stack-category-header"><h3>${cat.category}</h3></div>`;
+    cat.tools.forEach((t, ti) => {
+      const tool = JOB_TOOLS[t.key];
+      if (!tool) return;
+      totalCost += tool.monthlyCost || 0;
+      const priceClass = tool.priceType === 'free' ? 'price-free' : tool.priceType === 'freemium' ? 'price-freemium' : 'price-paid';
+      html += `<a href="${tool.url}" target="_blank" rel="noopener" class="stack-tool" style="animation-delay: ${(ci * 60) + (ti * 40)}ms; text-decoration: none; color: inherit;"><div class="stack-tool-icon"><img src="${tool.icon}" alt="${tool.name}"></div><div class="stack-tool-info"><div class="stack-tool-name">${tool.name}</div><div class="stack-tool-reason">${t.reason}</div></div><span class="stack-tool-price ${priceClass}">${tool.price}</span></a>`;
+    });
+    html += `</div>`;
+  });
+
+  container.innerHTML = html;
+  document.getElementById('costAmount').textContent = totalCost === 0 ? '$0/mo' : `~$${totalCost}/mo`;
+  document.getElementById('resultsWrapper').classList.add('active');
+  document.getElementById('progressFill').style.width = '100%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+// ===== EMAIL =====
+async function submitEmail() {
+  const email = document.getElementById('emailInput').value;
+  if (!email || !email.includes('@')) { document.getElementById('emailInput').style.borderColor = '#EF4444'; return; }
+  const BEEHIIV_PUB_ID = 'ffe242b4-6337-4480-859c-00fceff08744';
+  try {
+    await fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, utm_source: 'fewertools', utm_medium: 'quiz', utm_campaign: `student_quiz_${state.subject || 'unknown'}_${state.year || 'unknown'}` })
+    });
+  } catch(e) {}
+  const signups = JSON.parse(localStorage.getItem('fewertools_signups') || '[]');
+  if (!signups.includes(email)) { signups.push(email); localStorage.setItem('fewertools_signups', JSON.stringify(signups)); }
+  document.getElementById('emailForm').style.display = 'none';
+  document.getElementById('emailSuccess').style.display = 'block';
+}
+
+
+// ===== SHARING =====
 function updateHash() {
   const params = new URLSearchParams();
   params.set('q', state.project.substring(0, 100));
@@ -1749,75 +1754,92 @@ function loadFromHash() {
   if (!hash) return false;
   try {
     const params = new URLSearchParams(hash);
-    const q = params.get('q');
-    const type = params.get('type');
-    const stage = params.get('stage');
-    const budget = params.get('budget');
-    const priority = params.get('priority');
+    const q = params.get('q'); const type = params.get('type'); const stage = params.get('stage'); const budget = params.get('budget'); const priority = params.get('priority');
     if (q && type && stage && budget && priority) {
-      state.project = q;
-      state.projectType = type;
-      state.stage = stage;
-      state.budget = budget;
-      state.priority = priority;
+      state.persona = 'builder'; state.project = q; state.projectType = type; state.stage = stage; state.budget = budget; state.priority = priority;
       return true;
     }
   } catch (e) {}
   return false;
 }
 
-// ===== SHARING =====
 function saveShare() {
   const url = window.location.href;
   navigator.clipboard.writeText(url).then(() => {
-    const btn = event.target;
-    btn.textContent = '✅ Link copied!';
-    setTimeout(() => btn.textContent = '🔗 Save & Share', 2000);
+    const btn = event.target; btn.textContent = '✅ Link copied!'; setTimeout(() => btn.textContent = '🔗 Save & Share', 2000);
   });
 }
 
 function shareTwitter() {
-  const name = getStackName(state.projectType);
-  const text = `Just built my personalised tool stack on @fewertools 🛠️\n\n${name}, the exact tools I need, nothing else.\n\nBuild yours in 30 seconds:`;
+  let text;
+  if (state.persona === 'student') {
+    text = `Just found my personalised AI study stack on @fewertools 🚀\n\nTake the 60-second quiz:`;
+  } else if (state.persona === 'jobs') {
+    const roleName = ROLE_PATHS[state.role]?.name || 'my dream role';
+    text = `Just got a personalised career toolkit for ${roleName} on @fewertools 💼\n\nBuild yours:`;
+  } else {
+    const name = getStackName(state.projectType);
+    text = `Just built my personalised tool stack on @fewertools 🛠️\n\n${name}\n\nBuild yours in 30 seconds:`;
+  }
   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
 }
 
 function shareWhatsApp() {
-  const name = getStackName(state.projectType);
-  const text = `Check this out. I got a personalised tool stack recommendation for my project 🚀\n\n${name}\n\n${window.location.href}`;
+  let text;
+  if (state.persona === 'student') {
+    text = `Found this quiz that gives you a personalised AI tool stack for uni — mine was spot on 👀\n\nhttps://fewertools.com/build/?path=student`;
+  } else if (state.persona === 'jobs') {
+    text = `Found this tool that gives you a personalised career toolkit based on what role you're targeting 💼\n\nhttps://fewertools.com/build/?path=jobs`;
+  } else {
+    text = `Check this out — I got a personalised tool stack recommendation for my project 🚀\n\n${window.location.href}`;
+  }
   window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
 }
 
+
 // ===== START OVER =====
 function startOver() {
-  state.project = '';
-  state.projectType = '';
-  state.stage = '';
-  state.budget = '';
-  state.priority = '';
+  // Reset all state
+  Object.keys(state).forEach(k => state[k] = '');
   projectInput.value = '';
   buildBtn.disabled = true;
   chips.forEach(c => c.classList.remove('active'));
   document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
   document.querySelectorAll('.step .btn-primary, .step .btn-accent').forEach(b => b.disabled = true);
-  buildBtn.disabled = true;
 
   document.getElementById('resultsWrapper').classList.remove('active');
   document.getElementById('stepWrapper').style.display = 'block';
   document.getElementById('progressBar').style.display = 'block';
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step1').classList.add('active');
-  updateProgress(1);
+  document.getElementById('stepPersona').classList.add('active');
+  updateProgress('stepPersona');
+  document.getElementById('emailForm').style.display = 'flex';
+  document.getElementById('emailSuccess').style.display = 'none';
   history.replaceState(null, '', window.location.pathname);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+
+// ===== URL PARAM AUTO-SELECT =====
+function checkUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+  const path = params.get('path');
+  if (path === 'student') {
+    selectPersona('student');
+    return true;
+  } else if (path === 'jobs') {
+    selectPersona('jobs');
+    return true;
+  }
+  return false;
+}
+
+
 // ===== INIT =====
 if (loadFromHash()) {
-  // Jump straight to results
-  showResults();
-} else {
-  updateProgress(1);
+  showBuilderResults();
+} else if (!checkUrlParams()) {
+  updateProgress('stepPersona');
 }
 </script>
 </body>

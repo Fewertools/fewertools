@@ -954,53 +954,6 @@
     .cta-section p { font-size: 18px; color: var(--text-secondary); margin-bottom: var(--space-xl); }
     .cta-actions { display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap; }
     
-    /* ========== QUIZ MODAL ========== */
-    .quiz-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: var(--space-lg); opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-    .quiz-overlay.active { opacity: 1; visibility: visible; }
-    
-    .quiz-modal { background: var(--bg-card); border-radius: var(--radius-xl); max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; transform: translateY(20px) scale(0.95); transition: all 0.3s var(--ease-out); }
-    .quiz-overlay.active .quiz-modal { transform: translateY(0) scale(1); }
-    
-    .quiz-close { position: absolute; top: var(--space-md); right: var(--space-md); width: 36px; height: 36px; background: var(--bg-alt); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--text-muted); transition: all 0.2s ease; }
-    .quiz-close:hover { background: var(--border-strong); color: var(--text); }
-    
-    .quiz-header { padding: var(--space-xl); padding-bottom: 0; text-align: center; }
-    .quiz-header h3 { font-size: 24px; margin-bottom: var(--space-sm); }
-    .quiz-header p { color: var(--text-muted); font-size: 14px; }
-    
-    .quiz-progress { display: flex; gap: var(--space-sm); padding: var(--space-lg) var(--space-xl); }
-    .quiz-progress-bar { flex: 1; height: 4px; background: var(--bg-alt); border-radius: 2px; overflow: hidden; }
-    .quiz-progress-bar.completed { background: var(--accent); }
-    .quiz-progress-bar.current { background: var(--bg-alt); }
-    .quiz-progress-bar.current::after { content: ''; display: block; width: 50%; height: 100%; background: var(--accent); border-radius: 2px; }
-    
-    .quiz-content { padding: 0 var(--space-xl) var(--space-xl); }
-    
-    .quiz-question { display: none; }
-    .quiz-question.active { display: block; }
-    .quiz-question h4 { font-size: 18px; margin-bottom: var(--space-lg); text-align: center; }
-    
-    .quiz-options { display: flex; flex-direction: column; gap: var(--space-sm); }
-    .quiz-option { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md) var(--space-lg); background: var(--bg); border: 2px solid var(--border); border-radius: var(--radius-md); cursor: pointer; transition: all 0.2s ease; }
-    .quiz-option:hover { border-color: var(--accent); background: var(--accent-subtle); }
-    .quiz-option.selected { border-color: var(--accent); background: var(--accent-subtle); }
-    .quiz-option-icon { font-size: 20px; }
-    .quiz-option-text { font-weight: 500; }
-    
-    .quiz-result { display: none; text-align: center; padding: var(--space-lg) 0; }
-    .quiz-result.active { display: block; }
-    .quiz-result-icon { width: 80px; height: 80px; background: var(--accent); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 40px; margin: 0 auto var(--space-lg); }
-    .quiz-result h4 { font-size: 24px; margin-bottom: var(--space-sm); }
-    .quiz-result p { color: var(--text-secondary); margin-bottom: var(--space-xl); line-height: 1.6; }
-    .quiz-result .btn { width: 100%; }
-    .quiz-result .btn-retake { margin-top: var(--space-sm); background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
-    .quiz-result .btn-retake:hover { border-color: var(--text-muted); color: var(--text); }
-    
-    .quiz-nav { display: flex; justify-content: center; margin-top: var(--space-lg); }
-    .quiz-back { display: inline-flex; align-items: center; gap: 6px; padding: var(--space-sm) var(--space-md); background: none; border: none; color: var(--text-muted); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
-    .quiz-back:hover { color: var(--text); }
-    .quiz-back svg { width: 16px; height: 16px; }
-    
     /* ========== NEWSLETTER - DARK WITH FLOATING ICONS ========== */
     .newsletter-section { 
       padding: var(--space-3xl) 0; 
@@ -1287,7 +1240,7 @@
             Whether you're building an app, starting a channel, or studying for exams, we've picked the exact tools you need. No clutter, no overwhelm.
           </p>
           <div class="hero-actions">
-            <a href="#" class="btn btn-primary btn-lg" data-quiz-trigger>Find your stack →</a>
+            <a href="./build/" class="btn btn-primary btn-lg">Find your stack →</a>
             <a href="./use-cases/" class="btn btn-secondary btn-lg">Browse use cases</a>
           </div>
           
@@ -1697,133 +1650,11 @@
       <h2>Ready to simplify?</h2>
       <p>Stop researching. Start building.</p>
       <div class="cta-actions">
-        <a href="#" class="btn btn-primary btn-lg" data-quiz-trigger>Take the quiz →</a>
+        <a href="./build/" class="btn btn-primary btn-lg">Find your stack →</a>
         <a href="./stacks/" class="btn btn-secondary btn-lg">Browse all stacks</a>
       </div>
     </div>
   </section>
-
-  <!-- Quiz Modal -->
-  <div class="quiz-overlay" id="quizOverlay">
-    <div class="quiz-modal">
-      <button class="quiz-close" id="quizClose">×</button>
-      
-      <div class="quiz-header">
-        <h3>Find Your Stack</h3>
-        <p>Answer 3 quick questions</p>
-      </div>
-      
-      <div class="quiz-progress">
-        <div class="quiz-progress-bar" id="prog1"></div>
-        <div class="quiz-progress-bar" id="prog2"></div>
-        <div class="quiz-progress-bar" id="prog3"></div>
-      </div>
-      
-      <div class="quiz-content">
-        <!-- Question 1 -->
-        <div class="quiz-question active" id="q1">
-          <h4>Have you started building yet?</h4>
-          <div class="quiz-options">
-            <div class="quiz-option" data-value="no-code" onclick="selectOption(1, this, 'no-code')">
-              <span class="quiz-option-icon">💭</span>
-              <span class="quiz-option-text">No, still exploring ideas</span>
-            </div>
-            <div class="quiz-option" data-value="building" onclick="selectOption(1, this, 'building')">
-              <span class="quiz-option-icon">💻</span>
-              <span class="quiz-option-text">Yes, actively writing code</span>
-            </div>
-            <div class="quiz-option" data-value="live" onclick="selectOption(1, this, 'live')">
-              <span class="quiz-option-icon">🚀</span>
-              <span class="quiz-option-text">Yes, product is already live</span>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Question 2 -->
-        <div class="quiz-question" id="q2">
-          <h4>Do you have users or customers?</h4>
-          <div class="quiz-options">
-            <div class="quiz-option" data-value="no-users" onclick="selectOption(2, this, 'no-users')">
-              <span class="quiz-option-icon">🌱</span>
-              <span class="quiz-option-text">Not yet</span>
-            </div>
-            <div class="quiz-option" data-value="some-users" onclick="selectOption(2, this, 'some-users')">
-              <span class="quiz-option-icon">👥</span>
-              <span class="quiz-option-text">A few beta testers</span>
-            </div>
-            <div class="quiz-option" data-value="paying" onclick="selectOption(2, this, 'paying')">
-              <span class="quiz-option-icon">💰</span>
-              <span class="quiz-option-text">Yes, paying customers</span>
-            </div>
-          </div>
-          <div class="quiz-nav">
-            <button class="quiz-back" onclick="goBack(2)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-              Back
-            </button>
-          </div>
-        </div>
-        
-        <!-- Question 3 -->
-        <div class="quiz-question" id="q3">
-          <h4>How's your current tool situation?</h4>
-          <div class="quiz-options">
-            <div class="quiz-option" data-value="no-tools" onclick="selectOption(3, this, 'no-tools')">
-              <span class="quiz-option-icon">🆕</span>
-              <span class="quiz-option-text">Starting fresh, need guidance</span>
-            </div>
-            <div class="quiz-option" data-value="some-tools" onclick="selectOption(3, this, 'some-tools')">
-              <span class="quiz-option-icon">🔧</span>
-              <span class="quiz-option-text">Have some tools, need more</span>
-            </div>
-            <div class="quiz-option" data-value="too-many" onclick="selectOption(3, this, 'too-many')">
-              <span class="quiz-option-icon">🤯</span>
-              <span class="quiz-option-text">Too many tools, overwhelmed</span>
-            </div>
-          </div>
-          <div class="quiz-nav">
-            <button class="quiz-back" onclick="goBack(3)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-              Back
-            </button>
-          </div>
-        </div>
-        
-        <!-- Results -->
-        <div class="quiz-result" id="resultStarting">
-          <div class="quiz-result-icon">💡</div>
-          <h4>You're Starting</h4>
-          <p>You're in exploration mode, and that's perfect. You need tools to think, validate, and plan. Not to build (yet).</p>
-          <a href="./stacks/starting.html" class="btn btn-primary btn-lg">View Starting Stack →</a>
-          <button class="btn btn-retake btn-lg" onclick="resetQuiz()">Retake quiz</button>
-        </div>
-        
-        <div class="quiz-result" id="resultBuilding">
-          <div class="quiz-result-icon">🔨</div>
-          <h4>You're Building</h4>
-          <p>Time to ship. You need a solid foundation, framework, database, hosting, and payments. Everything to go from code to customers.</p>
-          <a href="./stacks/building.html" class="btn btn-primary btn-lg">View Building Stack →</a>
-          <button class="btn btn-retake btn-lg" onclick="resetQuiz()">Retake quiz</button>
-        </div>
-        
-        <div class="quiz-result" id="resultGrowing">
-          <div class="quiz-result-icon">📈</div>
-          <h4>You're Growing</h4>
-          <p>You have traction! Now you need to understand your users, catch issues early, and scale what's working.</p>
-          <a href="./stacks/growing.html" class="btn btn-primary btn-lg">View Growing Stack →</a>
-          <button class="btn btn-retake btn-lg" onclick="resetQuiz()">Retake quiz</button>
-        </div>
-        
-        <div class="quiz-result" id="resultSimplifying">
-          <div class="quiz-result-icon">✨</div>
-          <h4>Time to Simplify</h4>
-          <p>Tool overload is real. You need to audit, cut, and consolidate. Less tools, more focus, better results.</p>
-          <a href="./stacks/simplifying.html" class="btn btn-primary btn-lg">View Simplifying Guide →</a>
-          <button class="btn btn-retake btn-lg" onclick="resetQuiz()">Retake quiz</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Newsletter - Dark with Floating Icons -->
   <section class="newsletter-section" id="newsletter">
@@ -2000,109 +1831,6 @@
         nav.classList.remove('open');
       });
     });
-    
-    // Quiz functionality
-    const quizOverlay = document.getElementById('quizOverlay');
-    const quizClose = document.getElementById('quizClose');
-    let answers = {};
-    
-    // Open quiz
-    document.querySelectorAll('[data-quiz-trigger]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        quizOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-    
-    // Close quiz
-    quizClose.addEventListener('click', closeQuiz);
-    quizOverlay.addEventListener('click', (e) => {
-      if (e.target === quizOverlay) closeQuiz();
-    });
-    
-    function closeQuiz() {
-      quizOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-      // Reset quiz after close
-      setTimeout(resetQuiz, 300);
-    }
-    
-    function resetQuiz() {
-      answers = {};
-      document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
-      document.querySelectorAll('.quiz-result').forEach(r => r.classList.remove('active'));
-      document.getElementById('q1').classList.add('active');
-      document.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
-      document.querySelectorAll('.quiz-progress-bar').forEach(b => {
-        b.classList.remove('completed', 'current');
-      });
-      document.getElementById('prog1').classList.add('current');
-    }
-    
-    function selectOption(questionNum, element, value) {
-      // Mark selected
-      element.parentElement.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
-      element.classList.add('selected');
-      answers[questionNum] = value;
-      
-      // Small delay then move to next
-      setTimeout(() => {
-        if (questionNum < 3) {
-          // Update progress
-          document.getElementById('prog' + questionNum).classList.remove('current');
-          document.getElementById('prog' + questionNum).classList.add('completed');
-          document.getElementById('prog' + (questionNum + 1)).classList.add('current');
-          
-          // Show next question
-          document.getElementById('q' + questionNum).classList.remove('active');
-          document.getElementById('q' + (questionNum + 1)).classList.add('active');
-        } else {
-          // Show result
-          document.getElementById('prog3').classList.remove('current');
-          document.getElementById('prog3').classList.add('completed');
-          document.getElementById('q3').classList.remove('active');
-          showResult();
-        }
-      }, 300);
-    }
-    
-    function goBack(fromQuestion) {
-      const prevQuestion = fromQuestion - 1;
-      
-      // Update progress
-      document.getElementById('prog' + fromQuestion).classList.remove('current');
-      document.getElementById('prog' + prevQuestion).classList.remove('completed');
-      document.getElementById('prog' + prevQuestion).classList.add('current');
-      
-      // Show previous question
-      document.getElementById('q' + fromQuestion).classList.remove('active');
-      document.getElementById('q' + prevQuestion).classList.add('active');
-      
-      // Clear the answer for the question we're leaving
-      delete answers[fromQuestion];
-      document.querySelectorAll('#q' + fromQuestion + ' .quiz-option').forEach(o => o.classList.remove('selected'));
-    }
-    
-    function showResult() {
-      let result = 'Building'; // default
-      
-      // Logic to determine result
-      if (answers[3] === 'too-many') {
-        result = 'Simplifying';
-      } else if (answers[1] === 'no-code') {
-        result = 'Starting';
-      } else if (answers[2] === 'paying' || answers[1] === 'live') {
-        result = 'Growing';
-      } else {
-        result = 'Building';
-      }
-      
-      document.getElementById('result' + result).classList.add('active');
-    }
-    
-    // Initialize progress
-    document.getElementById('prog1').classList.add('current');
     
     // Newsletter form
     const newsletterForm = document.getElementById('newsletterForm');
