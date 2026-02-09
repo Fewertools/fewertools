@@ -342,4 +342,35 @@ Do NOT post standalone original tweets until engagement recovers. The algo needs
 
 ---
 
+### 2026-02-09 | Afternoon Post (2 PM UK)
+
+**Account:** @Unserious_boy  
+**Status:** ❌ FAILED (auth blocked — 226/403, 8th failure since Feb 2)
+
+**Tweet (Standalone):**
+```
+5 days to Valentine's and your plan is still "God will provide"
+```
+
+**Why this should work:**
+- Valentine's Day 5 days away — PEAK anxiety phase per framework
+- "God will provide" = universally funny Nigerian expression with crossover appeal
+- Ultra short (63 chars) — single punch, no stacking
+- Countdown + shade pattern (proven format from tweet bank)
+- 3 PM WAT = Nigerian afternoon scroll, relationship content hits hardest
+- Self-deprecating/observational — speaks for broke boyfriends everywhere
+
+**Error:** Twitter 226 (automated detection) + 403  
+**Notes:** Saved to pending-posts.md. 8th total auth failure since Feb 2. Account now dormant 5 days (last post Feb 4). The bird CLI is functionally dead for this account.
+
+**⚠️ CRITICAL — VIRAL ENGINE STATUS:**
+- **Last successful post:** Feb 4 (5 days ago)
+- **Total auth failures:** 8 (since Feb 2)
+- **Pending posts backlog:** 9 quality tweets ready to go
+- **Account health:** Severe dormancy — algorithm has likely deprioritized @Unserious_boy significantly
+- **Valentine's window closing:** Peak content season (Feb 9-14) is being missed entirely
+- **Recommendation:** Pause cron jobs until auth is resolved. Every failed attempt = wasted tokens + growing frustration. Clinton needs to either refresh tokens from browser or post the backlog manually from pending-posts.md.
+
+---
+
 *Updated nightly by viral-learn cron job*
