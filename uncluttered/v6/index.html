@@ -572,8 +572,9 @@
       opacity: 0.02;
       pointer-events: none;
     }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
-    @media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
+    @media (max-width: 1000px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; } }
     
     .testimonial-card { 
       background: var(--bg-card); 
@@ -1252,7 +1253,7 @@
         <a href="./students/">Students 🎓</a>
         <a href="./gems/">Hidden Gems 💎</a>
         <a href="./blog/">Blog</a>
-        <a href="./stages/" class="nav-cta">Find your stack</a>
+        <a href="./build/" class="nav-cta">🤖 Build your stack</a>
       </nav>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu">
         <span></span>
@@ -1417,28 +1418,36 @@
         <h2>What's inside</h2>
         <p>Not another tool list. Real decisions, real tradeoffs.</p>
       </div>
-      <div class="testimonials-grid">
-        <a href="./compare/" class="testimonial-card reveal" style="text-decoration:none;">
+      <div class="testimonials-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <a href="./build/" class="testimonial-card reveal" style="text-decoration:none; border-color: var(--accent); background: linear-gradient(135deg, rgba(13, 148, 136, 0.04) 0%, rgba(13, 148, 136, 0.01) 100%);">
+          <div style="font-size:32px;margin-bottom:var(--space-md);">🤖</div>
+          <div class="testimonial-content">
+            <p style="font-weight:600;color:var(--text);margin-bottom:8px;">AI Stack Builder</p>
+            <p>Describe what you're building. Get your perfect stack in 30 seconds. Personalized recommendations — no signup needed.</p>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--accent);margin-top:auto;">Build your stack →</div>
+        </a>
+        <a href="./compare/" class="testimonial-card reveal reveal-delay-1" style="text-decoration:none;">
           <div style="font-size:32px;margin-bottom:var(--space-md);">⚔️</div>
           <div class="testimonial-content">
             <p style="font-weight:600;color:var(--text);margin-bottom:8px;">Head-to-Head Comparisons</p>
-            <p>Cursor vs Copilot. Supabase vs Firebase. Stripe vs LemonSqueezy. Side-by-side features, pricing, and honest verdicts — not sponsored opinions.</p>
+            <p>Cursor vs Copilot. Supabase vs Firebase. Stripe vs LemonSqueezy. Side-by-side features, pricing, and honest verdicts.</p>
           </div>
           <div style="font-size:14px;font-weight:600;color:var(--accent);margin-top:auto;">8 comparisons →</div>
         </a>
-        <a href="./gems/" class="testimonial-card reveal reveal-delay-1" style="text-decoration:none;">
+        <a href="./gems/" class="testimonial-card reveal reveal-delay-2" style="text-decoration:none;">
           <div style="font-size:32px;margin-bottom:var(--space-md);">💎</div>
           <div class="testimonial-content">
             <p style="font-weight:600;color:var(--text);margin-bottom:8px;">Hidden Gems</p>
-            <p>Tools most people haven't heard of that deserve attention. Tinybird, Resend, Cal.com, Plausible — the underrated picks that outperform popular alternatives.</p>
+            <p>Tools most people haven't heard of that deserve attention. Tinybird, Resend, Cal.com, Plausible — underrated picks.</p>
           </div>
           <div style="font-size:14px;font-weight:600;color:var(--accent);margin-top:auto;">Discover gems →</div>
         </a>
-        <a href="./students/" class="testimonial-card reveal reveal-delay-2" style="text-decoration:none;">
+        <a href="./students/" class="testimonial-card reveal reveal-delay-3" style="text-decoration:none;">
           <div style="font-size:32px;margin-bottom:var(--space-md);">🎓</div>
           <div class="testimonial-content">
             <p style="font-weight:600;color:var(--text);margin-bottom:8px;">Student Stacks</p>
-            <p>AI tools for every course — medicine, law, STEM, creative arts. Filtered by task, flagged for uni safety, and mostly free. Plus a 60-second quiz.</p>
+            <p>AI tools for every course — medicine, law, STEM, creative arts. Filtered by task, mostly free. Plus a 60-second quiz.</p>
           </div>
           <div style="font-size:14px;font-weight:600;color:var(--accent);margin-top:auto;">Student tools →</div>
         </a>

@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://fewertools.com/build/">
+  <title>AI Stack Builder — Get Your Perfect Tool Stack in 30 Seconds — Fewer Tools</title>
+  <meta name="description" content="Describe what you're building and get a personalized tool stack recommendation in 30 seconds. No signup required. 100% free.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fewertools.com/build/">
+  <meta property="og:title" content="AI Stack Builder — Your Perfect Tool Stack in 30 Seconds">
+  <meta property="og:description" content="Describe what you're building. Get your personalized stack. No signup, no AI API — just smart recommendations.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12);
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    header { padding: 24px 0; border-bottom: 1px solid var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; }
+    .logo { display: flex; align-items: center; gap: 8px; }
+    .logo-mark { width: 32px; height: 32px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .logo-mark img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+    .logo-text { font-family: "Outfit", -apple-system, sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; }
+    .back-link { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
+    .back-link:hover { color: var(--text); }
+
+    /* Progress */
+    .progress-bar { position: sticky; top: 0; z-index: 100; background: var(--bg); padding: 16px 0 12px; border-bottom: 1px solid var(--border); }
+    .progress-track { height: 4px; background: var(--bg-alt); border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.5s var(--ease-out); }
+    .progress-text { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--text-muted); }
+
+    /* Steps */
+    .step-wrapper { padding: 60px 0 100px; min-height: 70vh; }
+    .step { display: none; }
+    .step.active { display: block; animation: fadeSlideIn 0.5s var(--ease-out); }
+    @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    .step h2 { font-size: clamp(24px, 5vw, 36px); margin-bottom: 8px; }
+    .step .subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; }
+    .step-emoji { font-size: 40px; margin-bottom: 16px; display: block; }
+
+    /* Textarea */
+    .build-textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 18px 20px;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .build-textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+    }
+    .build-textarea::placeholder { color: var(--text-muted); }
+
+    /* Chips */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; margin-bottom: 32px; }
+    .chip {
+      padding: 8px 16px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-strong);
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-subtle); }
+    .chip.active { border-color: var(--accent); color: var(--accent); background: var(--accent-subtle); }
+
+    /* Options (quiz-style) */
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 15px; font-weight: 500;
+    }
+    .option:hover { border-color: var(--accent); transform: translateX(4px); }
+    .option.selected { border-color: var(--accent); background: var(--accent-subtle); }
+    .option-icon { font-size: 20px; width: 28px; text-align: center; flex-shrink: 0; }
+    .option-text { flex: 1; }
+    .option-desc { font-size: 13px; color: var(--text-muted); font-weight: 400; margin-top: 2px; }
+    .option-check {
+      width: 22px; height: 22px;
+      border: 2px solid var(--border-strong);
+      border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s ease;
+      font-size: 12px; color: transparent;
+    }
+    .option.selected .option-check { border-color: var(--accent); background: var(--accent); color: white; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 28px;
+      font-family: var(--font-body); font-size: 15px; font-weight: 600;
+      border-radius: var(--radius-md); border: none; cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-primary { background: var(--bg-dark); color: var(--text-inverse); }
+    .btn-primary:hover { background: #222; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn-secondary { background: transparent; color: var(--text-muted); border: 1.5px solid var(--border-strong); }
+    .btn-secondary:hover { border-color: var(--text); color: var(--text); }
+    .btn-accent { background: var(--accent); color: white; }
+    .btn-accent:hover { background: var(--accent-hover); transform: translateY(-2px); }
+
+    .step-nav { display: flex; justify-content: space-between; margin-top: 40px; gap: 12px; }
+
+    /* ===== RESULTS ===== */
+    .results-wrapper { display: none; padding: 60px 0 100px; }
+    .results-wrapper.active { display: block; animation: fadeSlideIn 0.6s var(--ease-out); }
+
+    .results-header { text-align: center; margin-bottom: 40px; }
+    .results-header h1 { font-size: clamp(28px, 5vw, 40px); margin-bottom: 8px; }
+    .results-header .stack-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 20px;
+      background: var(--accent-subtle);
+      border: 1px solid var(--accent);
+      border-radius: 100px;
+      font-size: 14px; font-weight: 600; color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .results-subtitle { font-size: 16px; color: var(--text-secondary); }
+
+    /* Student special card */
+    .student-special {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(13, 148, 136, 0.06) 100%);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .student-special h3 { font-size: 22px; margin-bottom: 8px; }
+    .student-special p { color: var(--text-secondary); margin-bottom: 20px; }
+
+    /* Stack category */
+    .stack-category {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .stack-category-header {
+      padding: 18px 24px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .stack-category-header h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .stack-tool {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+      opacity: 0;
+      animation: stackItemIn 0.4s var(--ease-out) forwards;
+    }
+    .stack-tool:last-child { border-bottom: none; }
+    .stack-tool:hover { background: var(--bg-alt); }
+    @keyframes stackItemIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .stack-tool-icon {
+      width: 40px; height: 40px;
+      background: var(--bg-alt);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 20px;
+    }
+    .stack-tool-icon img { width: 28px; height: 28px; object-fit: contain; }
+    .stack-tool-info { flex: 1; min-width: 0; }
+    .stack-tool-name { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+    .stack-tool-reason { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+    .stack-tool-price {
+      display: inline-flex;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 11px; font-weight: 600;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .price-free { background: rgba(34, 197, 94, 0.1); color: #16A34A; }
+    .price-freemium { background: rgba(13, 148, 136, 0.1); color: var(--accent); }
+    .price-paid { background: rgba(245, 158, 11, 0.1); color: #D97706; }
+
+    /* Cost estimate */
+    .cost-estimate {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cost-label { font-size: 14px; color: var(--text-secondary); }
+    .cost-label strong { display: block; font-size: 15px; color: var(--text); }
+    .cost-amount {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Actions */
+    .results-actions {
+      display: flex; gap: 10px; justify-content: center;
+      margin-top: 32px; flex-wrap: wrap;
+    }
+    .share-btn {
+      padding: 12px 24px;
+      border: 1.5px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      font-size: 14px; font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--bg-card);
+      font-family: var(--font-body);
+      color: var(--text);
+    }
+    .share-btn:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* CTA banner */
+    .cta-banner {
+      background: var(--bg-dark);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      text-align: center;
+      color: var(--text-inverse);
+      margin-top: 32px;
+    }
+    .cta-banner h3 { font-size: 20px; margin-bottom: 8px; }
+    .cta-banner p { color: rgba(255,255,255,0.6); margin-bottom: 20px; font-size: 14px; }
+    .cta-banner .btn-accent { padding: 12px 24px; }
+
+    .retake-link {
+      text-align: center;
+      margin-top: 24px;
+    }
+    .retake-link a { color: var(--text-muted); font-size: 14px; text-decoration: underline; }
+    .retake-link a:hover { color: var(--text); }
+
+    /* Footer */
+    footer { padding: 40px 0; border-top: 1px solid var(--border); }
+    footer .container { max-width: 1200px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    footer p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--text); }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .step h2 { font-size: 24px; }
+      .results-header h1 { font-size: 26px; }
+      .chips { gap: 6px; }
+      .chip { padding: 6px 12px; font-size: 13px; }
+      .stack-tool { padding: 14px 18px; gap: 12px; }
+      .cost-estimate { flex-direction: column; gap: 12px; text-align: center; }
+      .results-actions { flex-direction: column; align-items: center; }
+      .share-btn { width: 100%; max-width: 280px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <a href="../" class="logo">
+        <div class="logo-mark"><img src="../logo-new-64.png" alt="Fewer Tools"></div>
+        <span class="logo-text">fewertools</span>
+      </a>
+      <a href="../" class="back-link">← Back to Fewer Tools</a>
+    </div>
+  </header>
+
+  <div class="progress-bar" id="progressBar">
+    <div class="container">
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
+      <div class="progress-text">
+        <span id="progressLabel">Step 1 of 3</span>
+        <span id="progressTime">⏱ ~30 seconds</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 1: What are you building? ===== -->
+  <div class="step-wrapper" id="stepWrapper">
+    <div class="container">
+
+      <div class="step active" id="step1">
+        <span class="step-emoji">🚀</span>
+        <h2>What are you building?</h2>
+        <p class="subtitle">Describe your project in a sentence or two. Or pick a quick-start below.</p>
+        <textarea class="build-textarea" id="projectInput" placeholder="e.g. A SaaS app for project management&#10;e.g. A YouTube channel about cooking&#10;e.g. An e-commerce store selling handmade jewelry"></textarea>
+        <div class="chips" id="chipContainer">
+          <span class="chip" data-template="saas">🚀 SaaS App</span>
+          <span class="chip" data-template="youtube">🎬 YouTube Channel</span>
+          <span class="chip" data-template="newsletter">📧 Newsletter</span>
+          <span class="chip" data-template="ecommerce">🛒 E-commerce Store</span>
+          <span class="chip" data-template="mobile">📲 Mobile App</span>
+          <span class="chip" data-template="podcast">🎙️ Podcast</span>
+          <span class="chip" data-template="freelance">💼 Freelance Business</span>
+          <span class="chip" data-template="student">🎓 Student Project</span>
+          <span class="chip" data-template="blog">✍️ Blog</span>
+          <span class="chip" data-template="digital">📦 Digital Products</span>
+        </div>
+        <div class="step-nav">
+          <div></div>
+          <button class="btn btn-primary" id="buildBtn" disabled onclick="goToQuestions()">Build my stack →</button>
+        </div>
+      </div>
+
+      <!-- ===== STEP 2: Questions (one at a time) ===== -->
+      <div class="step" id="step2q1">
+        <span class="step-emoji">📍</span>
+        <h2>What stage are you at?</h2>
+        <p class="subtitle">This helps us pick the right complexity level.</p>
+        <div class="options" data-key="stage">
+          <div class="option" data-value="starting">
+            <span class="option-icon">💡</span>
+            <span class="option-text">Starting<div class="option-desc">Just an idea — haven't built anything yet</div></span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="building">
+            <span class="option-icon">🔨</span>
+            <span class="option-text">Building<div class="option-desc">Actively working on it</div></span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="growing">
+            <span class="option-icon">📈</span>
+            <span class="option-text">Growing<div class="option-desc">Have users or customers already</div></span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="simplifying">
+            <span class="option-icon">✨</span>
+            <span class="option-text">Simplifying<div class="option-desc">Too many tools — need to consolidate</div></span>
+            <span class="option-check">✓</span>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="goBackTo('step1')">← Back</button>
+          <button class="btn btn-primary" id="nextQ1" disabled onclick="goToStep('step2q2')">Continue →</button>
+        </div>
+      </div>
+
+      <div class="step" id="step2q2">
+        <span class="step-emoji">💰</span>
+        <h2>What's your budget?</h2>
+        <p class="subtitle">No judgement — great tools exist at every price.</p>
+        <div class="options" data-key="budget">
+          <div class="option" data-value="free">
+            <span class="option-icon">🆓</span>
+            <span class="option-text">Free only<div class="option-desc">Only free or freemium tools</div></span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="50">
+            <span class="option-icon">🪙</span>
+            <span class="option-text">Under $50/mo<div class="option-desc">Willing to pay for the right tools</div></span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="200">
+            <span class="option-icon">💳</span>
+            <span class="option-text">Under $200/mo<div class="option-desc">Investing seriously in the right stack</div></span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="unlimited">
+            <span class="option-icon">💎</span>
+            <span class="option-text">Money isn't the issue<div class="option-desc">Just give me the best tools</div></span>
+            <span class="option-check">✓</span>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="goBackTo('step2q1')">← Back</button>
+          <button class="btn btn-primary" id="nextQ2" disabled onclick="goToStep('step2q3')">Continue →</button>
+        </div>
+      </div>
+
+      <div class="step" id="step2q3">
+        <span class="step-emoji">🎯</span>
+        <h2>What matters most?</h2>
+        <p class="subtitle">We'll optimise your stack around this priority.</p>
+        <div class="options" data-key="priority">
+          <div class="option" data-value="speed">
+            <span class="option-icon">⚡</span>
+            <span class="option-text">Speed<div class="option-desc">Ship fast — fastest to set up</div></span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="quality">
+            <span class="option-icon">🏆</span>
+            <span class="option-text">Quality<div class="option-desc">Best-in-class tools, regardless</div></span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="simplicity">
+            <span class="option-icon">🧘</span>
+            <span class="option-text">Simplicity<div class="option-desc">Fewest tools possible</div></span>
+            <span class="option-check">✓</span>
+          </div>
+          <div class="option" data-value="cost">
+            <span class="option-icon">💵</span>
+            <span class="option-text">Cost<div class="option-desc">Cheapest that actually works</div></span>
+            <span class="option-check">✓</span>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="goBackTo('step2q2')">← Back</button>
+          <button class="btn btn-accent" id="nextQ3" disabled onclick="showResults()">See my stack 🚀</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== RESULTS ===== -->
+  <div class="results-wrapper" id="resultsWrapper">
+    <div class="container">
+      <div class="results-header">
+        <div class="stack-badge" id="stackBadge">🛠️ Your Stack</div>
+        <h1 id="stackTitle">Your Personalised Stack</h1>
+        <p class="results-subtitle" id="stackSubtitle">Based on your project and preferences, here's exactly what you need.</p>
+      </div>
+
+      <div id="studentSpecial" style="display:none;">
+        <div class="student-special">
+          <span style="font-size:48px;display:block;margin-bottom:12px;">🎓</span>
+          <h3>We built a whole section for students!</h3>
+          <p>Free tools, student perks, and a 60-second quiz tailored to your course.</p>
+          <a href="../students/" class="btn btn-primary">Explore Student Stack →</a>
+        </div>
+      </div>
+
+      <div id="stackContainer"></div>
+
+      <div class="cost-estimate" id="costEstimate">
+        <div class="cost-label"><strong>Estimated monthly cost</strong>Based on your budget preference</div>
+        <div class="cost-amount" id="costAmount">$0/mo</div>
+      </div>
+
+      <div class="results-actions">
+        <button class="share-btn" onclick="saveShare()">🔗 Save & Share</button>
+        <button class="share-btn" onclick="shareTwitter()">𝕏 Share on X</button>
+        <button class="share-btn" onclick="shareWhatsApp()">💬 WhatsApp</button>
+      </div>
+
+      <div class="cta-banner">
+        <h3>Want to see all our stacks?</h3>
+        <p>Curated tool stacks for every stage and every goal.</p>
+        <a href="../stacks/" class="btn btn-accent">Browse stacks →</a>
+      </div>
+
+      <div class="retake-link">
+        <a href="#" onclick="startOver(); return false;">← Start over</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Fewer Tools. Less tools. More building.</p>
+      <div class="footer-links">
+        <a href="../stacks/">Stacks</a>
+        <a href="../tools/">All Tools</a>
+        <a href="../students/">Students</a>
+        <a href="mailto:clinton@fewertools.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+// ===== STATE =====
+const state = {
+  project: '',
+  projectType: '',
+  stage: '',
+  budget: '',
+  priority: ''
+};
+
+// ===== CHIP TEMPLATES =====
+const templates = {
+  saas: "A SaaS web application — I need to build, deploy, and get paying users",
+  youtube: "A YouTube channel — I need to record, edit, optimise, and grow my audience",
+  newsletter: "A newsletter — I need to write, design, send, and grow subscribers",
+  ecommerce: "An e-commerce store — I need to sell products online with payments and shipping",
+  mobile: "A mobile app — I need to build, design, and ship to the App Store and Play Store",
+  podcast: "A podcast — I need to record, edit, host, and distribute episodes",
+  freelance: "A freelance business — I need a portfolio, invoicing, contracts, and project management",
+  student: "A student project — I need tools for studying, research, writing, and revision",
+  blog: "A blog — I need to write, publish, optimise for SEO, and track readers",
+  digital: "Digital products — I need to create, sell, and market courses, templates, or ebooks"
+};
+
+// ===== PROJECT TYPE DETECTION =====
+function detectProjectType(text) {
+  text = text.toLowerCase();
+  const patterns = {
+    saas: /\b(saas|web app|webapp|software|startup|mvp|api|platform|dashboard|crm|erp)\b/,
+    youtube: /\b(youtube|video|channel|vlog|content creator|filming|youtuber|tutorial)\b/,
+    newsletter: /\b(newsletter|email list|substack|subscriber|mailing list|beehiiv)\b/,
+    ecommerce: /\b(ecommerce|e-commerce|shop|store|sell|product|shopify|dropship|retail|merch)\b/,
+    mobile: /\b(mobile app|ios|android|app store|react native|flutter|phone app)\b/,
+    podcast: /\b(podcast|audio show|episodes|interview show|recording)\b/,
+    freelance: /\b(freelanc|client|agency|consult|contract|gig|self.?employ)\b/,
+    student: /\b(student|study|university|college|homework|essay|academic|dissertation|exam)\b/,
+    blog: /\b(blog|writing|article|wordpress|ghost|seo|content marketing)\b/,
+    digital: /\b(digital product|course|ebook|template|gumroad|lemon squeezy|info product|online course|teach)\b/
+  };
+  for (const [type, regex] of Object.entries(patterns)) {
+    if (regex.test(text)) return type;
+  }
+  return 'saas'; // default
+}
+
+// ===== TOOL DATABASE =====
+const TOOLS = {
+  // Dev / SaaS
+  nextjs: { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/000000', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://nextjs.org' },
+  astro: { name: 'Astro', icon: 'https://cdn.simpleicons.org/astro/BC52EE', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://astro.build' },
+  supabase: { name: 'Supabase', icon: 'https://cdn.simpleicons.org/supabase/3FCF8E', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://supabase.com' },
+  neon: { name: 'Neon', icon: 'https://cdn.simpleicons.org/neon/00E699', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://neon.tech' },
+  vercel: { name: 'Vercel', icon: 'https://cdn.simpleicons.org/vercel/000000', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://vercel.com' },
+  stripe: { name: 'Stripe', icon: 'https://cdn.simpleicons.org/stripe/635BFF', price: 'Pay per txn', priceType: 'freemium', monthlyCost: 0, url: 'https://stripe.com' },
+  lemonsqueezy: { name: 'Lemon Squeezy', icon: 'https://www.google.com/s2/favicons?domain=lemonsqueezy.com&sz=128', price: 'Pay per txn', priceType: 'freemium', monthlyCost: 0, url: 'https://lemonsqueezy.com' },
+  clerk: { name: 'Clerk', icon: 'https://www.google.com/s2/favicons?domain=clerk.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://clerk.com' },
+  posthog: { name: 'PostHog', icon: 'https://cdn.simpleicons.org/posthog/1D4AFF', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://posthog.com' },
+  plausible: { name: 'Plausible', icon: 'https://cdn.simpleicons.org/plausibleanalytics/5850EC', price: 'From $9/mo', priceType: 'paid', monthlyCost: 9, url: 'https://plausible.io' },
+  resend: { name: 'Resend', icon: 'https://cdn.simpleicons.org/resend/000000', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://resend.com' },
+  buttondown: { name: 'Buttondown', icon: 'https://www.google.com/s2/favicons?domain=buttondown.email&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://buttondown.email' },
+  linear: { name: 'Linear', icon: 'https://cdn.simpleicons.org/linear/5E6AD2', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://linear.app' },
+  notion: { name: 'Notion', icon: 'https://cdn.simpleicons.org/notion/000000', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://notion.so' },
+  figma: { name: 'Figma', icon: 'https://cdn.simpleicons.org/figma/F24E1E', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://figma.com' },
+  cursor: { name: 'Cursor', icon: 'https://cdn.simpleicons.org/cursor/000000', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://cursor.sh' },
+
+  // YouTube
+  obs: { name: 'OBS Studio', icon: 'https://cdn.simpleicons.org/obsstudio/302E31', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://obsproject.com' },
+  screenflow: { name: 'ScreenFlow', icon: 'https://www.google.com/s2/favicons?domain=telestream.net&sz=128', price: '$169 once', priceType: 'paid', monthlyCost: 0, url: 'https://www.telestream.net/screenflow/' },
+  davinci: { name: 'DaVinci Resolve', icon: 'https://www.google.com/s2/favicons?domain=blackmagicdesign.com&sz=128', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://www.blackmagicdesign.com/products/davinciresolve' },
+  finalcut: { name: 'Final Cut Pro', icon: 'https://www.google.com/s2/favicons?domain=apple.com&sz=128', price: '$299 once', priceType: 'paid', monthlyCost: 0, url: 'https://www.apple.com/final-cut-pro/' },
+  canva: { name: 'Canva', icon: 'https://www.google.com/s2/favicons?domain=canva.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://canva.com' },
+  tubebuddy: { name: 'TubeBuddy', icon: 'https://www.google.com/s2/favicons?domain=tubebuddy.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://tubebuddy.com' },
+  vidiq: { name: 'vidIQ', icon: 'https://www.google.com/s2/favicons?domain=vidiq.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://vidiq.com' },
+  epidemic: { name: 'Epidemic Sound', icon: 'https://www.google.com/s2/favicons?domain=epidemicsound.com&sz=128', price: 'From $13/mo', priceType: 'paid', monthlyCost: 13, url: 'https://epidemicsound.com' },
+
+  // Newsletter
+  beehiiv: { name: 'Beehiiv', icon: 'https://www.google.com/s2/favicons?domain=beehiiv.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://beehiiv.com' },
+  grammarly: { name: 'Grammarly', icon: 'https://cdn.simpleicons.org/grammarly/15C39A', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://grammarly.com' },
+  sparkloop: { name: 'SparkLoop', icon: 'https://www.google.com/s2/favicons?domain=sparkloop.app&sz=128', price: 'From $49/mo', priceType: 'paid', monthlyCost: 49, url: 'https://sparkloop.app' },
+
+  // E-commerce
+  shopify: { name: 'Shopify', icon: 'https://cdn.simpleicons.org/shopify/7AB55C', price: 'From $29/mo', priceType: 'paid', monthlyCost: 29, url: 'https://shopify.com' },
+  gumroad: { name: 'Gumroad', icon: 'https://cdn.simpleicons.org/gumroad/FF90E8', price: 'Pay per txn', priceType: 'freemium', monthlyCost: 0, url: 'https://gumroad.com' },
+  ga4: { name: 'Google Analytics', icon: 'https://cdn.simpleicons.org/googleanalytics/E37400', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://analytics.google.com' },
+  klaviyo: { name: 'Klaviyo', icon: 'https://www.google.com/s2/favicons?domain=klaviyo.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://klaviyo.com' },
+  mailchimp: { name: 'Mailchimp', icon: 'https://cdn.simpleicons.org/mailchimp/FFE01B', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://mailchimp.com' },
+
+  // Mobile
+  expo: { name: 'Expo (React Native)', icon: 'https://cdn.simpleicons.org/expo/000020', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://expo.dev' },
+  onesignal: { name: 'OneSignal', icon: 'https://cdn.simpleicons.org/onesignal/E54B4D', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://onesignal.com' },
+  amplitude: { name: 'Amplitude', icon: 'https://www.google.com/s2/favicons?domain=amplitude.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://amplitude.com' },
+
+  // Podcast
+  riverside: { name: 'Riverside.fm', icon: 'https://www.google.com/s2/favicons?domain=riverside.fm&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://riverside.fm' },
+  zencastr: { name: 'Zencastr', icon: 'https://www.google.com/s2/favicons?domain=zencastr.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://zencastr.com' },
+  descript: { name: 'Descript', icon: 'https://www.google.com/s2/favicons?domain=descript.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://descript.com' },
+  audacity: { name: 'Audacity', icon: 'https://cdn.simpleicons.org/audacity/0000CC', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://audacityteam.org' },
+  spotify4podcasters: { name: 'Spotify for Podcasters', icon: 'https://cdn.simpleicons.org/spotify/1DB954', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://podcasters.spotify.com' },
+  transistor: { name: 'Transistor', icon: 'https://www.google.com/s2/favicons?domain=transistor.fm&sz=128', price: 'From $19/mo', priceType: 'paid', monthlyCost: 19, url: 'https://transistor.fm' },
+  opusclip: { name: 'Opus Clip', icon: 'https://www.google.com/s2/favicons?domain=opus.pro&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://opus.pro' },
+  podpage: { name: 'Podpage', icon: 'https://www.google.com/s2/favicons?domain=podpage.com&sz=128', price: 'From $8/mo', priceType: 'paid', monthlyCost: 8, url: 'https://podpage.com' },
+
+  // Freelance
+  framer: { name: 'Framer', icon: 'https://cdn.simpleicons.org/framer/0055FF', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://framer.com' },
+  typedream: { name: 'Typedream', icon: 'https://www.google.com/s2/favicons?domain=typedream.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://typedream.com' },
+  wave: { name: 'Wave', icon: 'https://www.google.com/s2/favicons?domain=waveapps.com&sz=128', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://waveapps.com' },
+  bonsai: { name: 'Bonsai', icon: 'https://www.google.com/s2/favicons?domain=hellobonsai.com&sz=128', price: 'From $21/mo', priceType: 'paid', monthlyCost: 21, url: 'https://hellobonsai.com' },
+  toggl: { name: 'Toggl', icon: 'https://cdn.simpleicons.org/toggl/E57CD8', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://toggl.com' },
+  slack: { name: 'Slack', icon: 'https://cdn.simpleicons.org/slack/4A154B', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://slack.com' },
+  discord: { name: 'Discord', icon: 'https://cdn.simpleicons.org/discord/5865F2', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://discord.com' },
+
+  // Student
+  notebooklm: { name: 'NotebookLM', icon: 'https://cdn.simpleicons.org/google/4285F4', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://notebooklm.google.com' },
+  perplexity: { name: 'Perplexity', icon: 'https://cdn.simpleicons.org/perplexity/1FB8CD', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://perplexity.ai' },
+  anki: { name: 'Anki', icon: 'https://cdn.simpleicons.org/anki/236BFF', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://apps.ankiweb.net' },
+
+  // Blog
+  ghost: { name: 'Ghost', icon: 'https://cdn.simpleicons.org/ghost/15171A', price: 'From $9/mo', priceType: 'paid', monthlyCost: 9, url: 'https://ghost.org' },
+  iawriter: { name: 'iA Writer', icon: 'https://www.google.com/s2/favicons?domain=ia.net&sz=128', price: '$49 once', priceType: 'paid', monthlyCost: 0, url: 'https://ia.net/writer' },
+  ahrefs: { name: 'Ahrefs', icon: 'https://cdn.simpleicons.org/ahrefs/FF8F00', price: 'From $29/mo', priceType: 'paid', monthlyCost: 29, url: 'https://ahrefs.com' },
+  ubersuggest: { name: 'Ubersuggest', icon: 'https://www.google.com/s2/favicons?domain=ubersuggest.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://ubersuggest.com' },
+  unsplash: { name: 'Unsplash', icon: 'https://cdn.simpleicons.org/unsplash/000000', price: 'Free', priceType: 'free', monthlyCost: 0, url: 'https://unsplash.com' },
+
+  // Digital products
+  convertkit: { name: 'ConvertKit', icon: 'https://www.google.com/s2/favicons?domain=convertkit.com&sz=128', price: 'Freemium', priceType: 'freemium', monthlyCost: 0, url: 'https://convertkit.com' },
+};
+
+// ===== STACK RECOMMENDATION ENGINE =====
+function buildStack() {
+  const { projectType, stage, budget, priority } = state;
+  const isFree = budget === 'free';
+  const isStarting = stage === 'starting';
+  const isGrowing = stage === 'growing';
+  const isSimplifying = stage === 'simplifying';
+  const wantsSpeed = priority === 'speed';
+  const wantsQuality = priority === 'quality';
+  const wantsSimplicity = priority === 'simplicity';
+  const wantsCost = priority === 'cost';
+
+  let categories = [];
+
+  switch (projectType) {
+    case 'saas':
+      categories.push({
+        name: '⚙️ Framework',
+        tool: (isStarting || wantsCost) ? 'astro' : 'nextjs',
+        reason: (isStarting || wantsCost)
+          ? 'Astro — Lightning fast for content sites. Perfect for validating ideas.'
+          : 'Next.js — Full-stack React. API routes, SSR, and the biggest ecosystem.'
+      });
+      categories.push({
+        name: '🗄️ Database',
+        tool: (isGrowing && !isFree) ? 'neon' : 'supabase',
+        reason: (isGrowing && !isFree)
+          ? 'Neon — Serverless Postgres with branching. Scale without ops headaches.'
+          : 'Supabase — Postgres + auth + realtime in one. Skip stitching 3 services together.'
+      });
+      categories.push({
+        name: '☁️ Hosting',
+        tool: 'vercel',
+        reason: 'Vercel — Push to deploy. Preview URLs. Zero config. Just works.'
+      });
+      categories.push({
+        name: '💳 Payments',
+        tool: (isStarting || wantsSpeed) ? 'lemonsqueezy' : 'stripe',
+        reason: (isStarting || wantsSpeed)
+          ? 'Lemon Squeezy — Handles taxes, billing pages, everything. Ship payments in an hour.'
+          : 'Stripe — The gold standard. Flexible APIs for any billing model.'
+      });
+      if (!wantsSimplicity) {
+        categories.push({
+          name: '📊 Analytics',
+          tool: (isStarting || wantsCost) ? 'plausible' : 'posthog',
+          reason: (isStarting || wantsCost)
+            ? 'Plausible — Privacy-first, lightweight. No cookie banners needed.'
+            : 'PostHog — Analytics + session replay + feature flags. One tool, not three.'
+        });
+      }
+      if (!wantsSimplicity && !isFree) {
+        categories.push({
+          name: '📧 Email',
+          tool: 'resend',
+          reason: 'Resend — Modern transactional email. Great DX, generous free tier.'
+        });
+      }
+      categories.push({
+        name: '📋 Project Management',
+        tool: (isGrowing || wantsQuality) ? 'linear' : 'notion',
+        reason: (isGrowing || wantsQuality)
+          ? 'Linear — Fast, opinionated project tracking. Built for shipping.'
+          : 'Notion — Notes, tasks, docs, wiki — all in one. Perfect for solo builders.'
+      });
+      categories.push({
+        name: '🎨 Design',
+        tool: 'figma',
+        reason: 'Figma — Industry standard. Free for individuals. Prototype and hand off.'
+      });
+      if (!wantsSimplicity) {
+        categories.push({
+          name: '🤖 AI / Dev',
+          tool: 'cursor',
+          reason: 'Cursor — AI-first code editor. Write, refactor, and debug with AI baked in.'
+        });
+      }
+      break;
+
+    case 'youtube':
+      categories.push({
+        name: '🎥 Recording',
+        tool: (isFree || wantsCost) ? 'obs' : 'screenflow',
+        reason: (isFree || wantsCost)
+          ? 'OBS Studio — Free, powerful, industry standard for screen recording and streaming.'
+          : 'ScreenFlow — Clean Mac-native recording + editing in one app.'
+      });
+      categories.push({
+        name: '✂️ Editing',
+        tool: (isFree || wantsCost) ? 'davinci' : 'finalcut',
+        reason: (isFree || wantsCost)
+          ? 'DaVinci Resolve — Hollywood-grade editing. Completely free. Color grading is unmatched.'
+          : 'Final Cut Pro — Fast rendering on Mac. Magnetic timeline saves hours.'
+      });
+      categories.push({
+        name: '🖼️ Thumbnails',
+        tool: wantsQuality ? 'figma' : 'canva',
+        reason: wantsQuality
+          ? 'Figma — Pixel-perfect thumbnails. More control than Canva when you need it.'
+          : 'Canva — Drag-and-drop thumbnails in minutes. Templates for everything.'
+      });
+      categories.push({
+        name: '🔍 SEO / Growth',
+        tool: wantsQuality ? 'vidiq' : 'tubebuddy',
+        reason: wantsQuality
+          ? 'vidIQ — Keyword research, competitor tracking, AI title suggestions.'
+          : 'TubeBuddy — A/B test thumbnails, find keywords, track rankings.'
+      });
+      if (!wantsSimplicity) {
+        categories.push({
+          name: '🎵 Music',
+          tool: 'epidemic',
+          reason: 'Epidemic Sound — Copyright-free music and SFX. No claims, ever.'
+        });
+      }
+      categories.push({
+        name: '📝 Scripts & Notes',
+        tool: 'notion',
+        reason: 'Notion — Script templates, content calendar, video ideas all in one workspace.'
+      });
+      break;
+
+    case 'newsletter':
+      categories.push({
+        name: '📧 Platform',
+        tool: (isGrowing || wantsQuality) ? 'beehiiv' : 'buttondown',
+        reason: (isGrowing || wantsQuality)
+          ? 'Beehiiv — Built-in referrals, monetisation, and analytics. The growth machine.'
+          : 'Buttondown — Simple, clean, developer-friendly. Just write and send.'
+      });
+      categories.push({
+        name: '✍️ Writing',
+        tool: 'grammarly',
+        reason: 'Grammarly — Polish every issue. Catches tone, clarity, and grammar.'
+      });
+      categories.push({
+        name: '🎨 Design',
+        tool: 'canva',
+        reason: 'Canva — Headers, social cards, lead magnets. Templates for everything.'
+      });
+      if (isGrowing && !isFree && !wantsSimplicity) {
+        categories.push({
+          name: '📈 Growth',
+          tool: 'sparkloop',
+          reason: 'SparkLoop — Referral system for newsletters. Readers bring more readers.'
+        });
+      }
+      categories.push({
+        name: '📋 Planning',
+        tool: 'notion',
+        reason: 'Notion — Editorial calendar, idea bank, and research notes in one place.'
+      });
+      break;
+
+    case 'ecommerce':
+      categories.push({
+        name: '🏪 Platform',
+        tool: (isStarting && (isFree || wantsCost)) ? 'gumroad' : 'shopify',
+        reason: (isStarting && (isFree || wantsCost))
+          ? 'Gumroad — Sell digital or physical products in minutes. No monthly fee.'
+          : 'Shopify — The e-commerce standard. Inventory, shipping, payments — all handled.'
+      });
+      categories.push({
+        name: '💳 Payments',
+        tool: 'stripe',
+        reason: 'Stripe — Built into most platforms. Reliable, global, trusted.'
+      });
+      categories.push({
+        name: '🎨 Design',
+        tool: 'canva',
+        reason: 'Canva — Product images, social ads, email headers. Fast and professional.'
+      });
+      categories.push({
+        name: '📊 Analytics',
+        tool: (isGrowing || wantsQuality) ? 'posthog' : 'ga4',
+        reason: (isGrowing || wantsQuality)
+          ? 'PostHog — Session recordings + funnels. See exactly where customers drop off.'
+          : 'Google Analytics — Free, powerful, and integrates with everything.'
+      });
+      categories.push({
+        name: '📧 Email Marketing',
+        tool: (isGrowing || wantsQuality) ? 'klaviyo' : 'mailchimp',
+        reason: (isGrowing || wantsQuality)
+          ? 'Klaviyo — Built for e-commerce. Abandoned cart, segments, revenue tracking.'
+          : 'Mailchimp — Free tier, easy setup. Good enough to start.'
+      });
+      break;
+
+    case 'mobile':
+      categories.push({
+        name: '📱 Framework',
+        tool: 'expo',
+        reason: 'Expo (React Native) — One codebase, both platforms. OTA updates. Huge ecosystem.'
+      });
+      categories.push({
+        name: '🗄️ Backend',
+        tool: 'supabase',
+        reason: 'Supabase — Auth, database, storage, realtime. One backend for your whole app.'
+      });
+      categories.push({
+        name: '🔔 Push Notifications',
+        tool: 'onesignal',
+        reason: 'OneSignal — Free tier handles most apps. Segments, scheduling, automation.'
+      });
+      categories.push({
+        name: '📊 Analytics',
+        tool: (isGrowing || wantsQuality) ? 'amplitude' : 'posthog',
+        reason: (isGrowing || wantsQuality)
+          ? 'Amplitude — Product analytics built for mobile. Cohorts, funnels, retention.'
+          : 'PostHog — Session replay for mobile + analytics. One tool for everything.'
+      });
+      categories.push({
+        name: '🎨 Design',
+        tool: 'figma',
+        reason: 'Figma — Design screens, prototype flows, hand off to dev. The standard.'
+      });
+      break;
+
+    case 'podcast':
+      categories.push({
+        name: '🎙️ Recording',
+        tool: (isFree || wantsCost) ? 'zencastr' : 'riverside',
+        reason: (isFree || wantsCost)
+          ? 'Zencastr — Free remote recording. Separate tracks, decent quality.'
+          : 'Riverside.fm — Studio-quality remote recording. Local tracks, video + audio.'
+      });
+      categories.push({
+        name: '✂️ Editing',
+        tool: (isFree || wantsCost) ? 'audacity' : 'descript',
+        reason: (isFree || wantsCost)
+          ? 'Audacity — Free, open source. Does everything you need for audio editing.'
+          : 'Descript — Edit audio by editing text. Remove filler words in one click.'
+      });
+      categories.push({
+        name: '📡 Hosting',
+        tool: (isFree || isStarting) ? 'spotify4podcasters' : 'transistor',
+        reason: (isFree || isStarting)
+          ? 'Spotify for Podcasters — Free hosting, distribution to all platforms.'
+          : 'Transistor — Premium hosting with analytics, multiple shows, private podcasts.'
+      });
+      categories.push({
+        name: '📝 Show Notes',
+        tool: 'notion',
+        reason: 'Notion — Guest research, episode outlines, and show notes. One workspace.'
+      });
+      if (!wantsSimplicity) {
+        categories.push({
+          name: '🌐 Website',
+          tool: (isFree || wantsCost) ? 'typedream' : 'podpage',
+          reason: (isFree || wantsCost)
+            ? 'Typedream — Beautiful no-code site. Free tier works great.'
+            : 'Podpage — Auto-generates a podcast website from your RSS feed.'
+        });
+        categories.push({
+          name: '📈 Growth',
+          tool: 'opusclip',
+          reason: 'Opus Clip — AI turns episodes into viral short clips for social media.'
+        });
+      }
+      break;
+
+    case 'freelance':
+      categories.push({
+        name: '🌐 Portfolio',
+        tool: wantsQuality ? 'framer' : 'typedream',
+        reason: wantsQuality
+          ? 'Framer — Beautiful, interactive portfolio sites. Impress clients instantly.'
+          : 'Typedream — Clean, fast portfolio in minutes. No-code, no fuss.'
+      });
+      categories.push({
+        name: '💳 Invoicing',
+        tool: (isFree || wantsCost) ? 'wave' : 'stripe',
+        reason: (isFree || wantsCost)
+          ? 'Wave — Free invoicing, accounting, and receipts. Built for freelancers.'
+          : 'Stripe — Professional invoices + instant online payments. Clients love it.'
+      });
+      categories.push({
+        name: '📋 Project Management',
+        tool: 'notion',
+        reason: 'Notion — Client projects, task tracking, meeting notes. Your second brain.'
+      });
+      categories.push({
+        name: '💬 Communication',
+        tool: wantsQuality ? 'slack' : 'discord',
+        reason: wantsQuality
+          ? 'Slack — Professional client communication. Channels, threads, integrations.'
+          : 'Discord — Free, flexible. Great for communities and client channels.'
+      });
+      if (!wantsSimplicity && !isFree) {
+        categories.push({
+          name: '📝 Contracts',
+          tool: 'bonsai',
+          reason: 'Bonsai — Contracts, proposals, and invoicing. Built for freelancers.'
+        });
+      }
+      categories.push({
+        name: '⏱️ Time Tracking',
+        tool: 'toggl',
+        reason: 'Toggl — Simple time tracking. One click to start. Free for basics.'
+      });
+      break;
+
+    case 'student':
+      // Special case — handled differently in render
+      categories.push({
+        name: '🔍 Research',
+        tool: 'perplexity',
+        reason: 'Perplexity — AI research with real citations. Better than Google for academic work.'
+      });
+      categories.push({
+        name: '📚 Study Notes',
+        tool: 'notebooklm',
+        reason: 'NotebookLM — Upload notes, get study guides + audio summaries. By Google, free.'
+      });
+      categories.push({
+        name: '✍️ Writing',
+        tool: 'grammarly',
+        reason: 'Grammarly — Polish essays without changing your voice. Free tier is excellent.'
+      });
+      categories.push({
+        name: '📋 Organisation',
+        tool: 'notion',
+        reason: 'Notion — Free for students. Notes, tasks, deadlines, and project management.'
+      });
+      categories.push({
+        name: '🧠 Revision',
+        tool: 'anki',
+        reason: 'Anki — Spaced repetition flashcards. Proven to boost long-term retention.'
+      });
+      break;
+
+    case 'blog':
+      categories.push({
+        name: '📝 Platform',
+        tool: (isGrowing || wantsQuality) ? 'ghost' : 'astro',
+        reason: (isGrowing || wantsQuality)
+          ? 'Ghost — Beautiful publishing platform. Built-in SEO, newsletters, memberships.'
+          : 'Astro + Markdown — Free, fast, developer-friendly. Deploy anywhere.'
+      });
+      categories.push({
+        name: '✍️ Writing',
+        tool: wantsQuality ? 'iawriter' : 'notion',
+        reason: wantsQuality
+          ? 'iA Writer — Distraction-free writing. Markdown, focus mode, beautiful typography.'
+          : 'Notion — Draft, outline, and organise all your content in one place.'
+      });
+      categories.push({
+        name: '🔍 SEO',
+        tool: (isGrowing && !isFree) ? 'ahrefs' : 'ubersuggest',
+        reason: (isGrowing && !isFree)
+          ? 'Ahrefs — Keyword research, backlink tracking, content gap analysis. The gold standard.'
+          : 'Ubersuggest — Free keyword ideas and site audits. Great for getting started.'
+      });
+      categories.push({
+        name: '📊 Analytics',
+        tool: (wantsQuality || isGrowing) ? 'posthog' : 'plausible',
+        reason: (wantsQuality || isGrowing)
+          ? 'PostHog — See which posts convert. Session replay shows how people actually read.'
+          : 'Plausible — Simple, privacy-first. See what matters without the bloat.'
+      });
+      categories.push({
+        name: '🖼️ Images',
+        tool: 'canva',
+        reason: 'Canva — Blog headers, social cards, infographics. Unsplash built right in.'
+      });
+      break;
+
+    case 'digital':
+      categories.push({
+        name: '🏪 Platform',
+        tool: (isGrowing || wantsQuality) ? 'lemonsqueezy' : 'gumroad',
+        reason: (isGrowing || wantsQuality)
+          ? 'Lemon Squeezy — Handles taxes globally. License keys, subscriptions, clean checkout.'
+          : 'Gumroad — Sell in minutes. No monthly fee. Simple and proven.'
+      });
+      categories.push({
+        name: '🎨 Design',
+        tool: wantsQuality ? 'figma' : 'canva',
+        reason: wantsQuality
+          ? 'Figma — Design courses, templates, and product mockups with precision.'
+          : 'Canva — Design product covers, slides, and marketing materials. Fast.'
+      });
+      categories.push({
+        name: '📧 Email',
+        tool: (isGrowing || wantsQuality) ? 'beehiiv' : 'convertkit',
+        reason: (isGrowing || wantsQuality)
+          ? 'Beehiiv — Newsletter + landing pages + referrals. Grow your audience fast.'
+          : 'ConvertKit — Built for creators. Automations, segments, and landing pages.'
+      });
+      categories.push({
+        name: '🌐 Landing Page',
+        tool: wantsQuality ? 'framer' : 'typedream',
+        reason: wantsQuality
+          ? 'Framer — Interactive, animated landing pages. Stand out from template sites.'
+          : 'Typedream — Beautiful landing pages in minutes. No-code, clean design.'
+      });
+      categories.push({
+        name: '💳 Payments',
+        tool: 'stripe',
+        reason: 'Stripe — Integrates with everything. Subscriptions, one-time, pay-what-you-want.'
+      });
+      break;
+  }
+
+  // Apply budget filter — replace paid tools with free alternatives when budget is "free"
+  if (isFree) {
+    categories = categories.filter(cat => {
+      const tool = TOOLS[cat.tool];
+      return tool && (tool.priceType === 'free' || tool.priceType === 'freemium');
+    });
+  }
+
+  return categories;
+}
+
+// ===== STACK NAME GENERATOR =====
+function getStackName(type) {
+  const names = {
+    saas: 'The SaaS Builder Stack',
+    youtube: 'The Creator Toolkit',
+    newsletter: 'The Newsletter Stack',
+    ecommerce: 'The E-commerce Stack',
+    mobile: 'The App Builder Stack',
+    podcast: 'The Podcaster Stack',
+    freelance: 'The Freelancer Stack',
+    student: 'The Student Stack',
+    blog: 'The Blogger Stack',
+    digital: 'The Digital Products Stack'
+  };
+  return names[type] || 'Your Custom Stack';
+}
+
+// ===== CHIP SELECTION =====
+const chips = document.querySelectorAll('.chip');
+const projectInput = document.getElementById('projectInput');
+const buildBtn = document.getElementById('buildBtn');
+
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const key = chip.dataset.template;
+    projectInput.value = templates[key];
+    buildBtn.disabled = false;
+  });
+});
+
+projectInput.addEventListener('input', () => {
+  buildBtn.disabled = projectInput.value.trim().length < 3;
+  chips.forEach(c => c.classList.remove('active'));
+});
+
+// ===== OPTION SELECTION =====
+document.querySelectorAll('.option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    const parent = opt.closest('.options');
+    parent.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    const key = parent.dataset.key;
+    state[key] = opt.dataset.value;
+    // Enable the next button for this question
+    const step = opt.closest('.step');
+    const btn = step.querySelector('.btn-primary, .btn-accent');
+    if (btn) btn.disabled = false;
+  });
+});
+
+// ===== NAVIGATION =====
+function updateProgress(stepNum) {
+  const pct = ((stepNum - 1) / 3) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `Step ${Math.min(stepNum, 3)} of 3`;
+  const times = ['⏱ ~30 seconds', '⏱ ~20 seconds', '⏱ ~10 seconds', '⏱ Almost done!'];
+  document.getElementById('progressTime').textContent = times[Math.min(stepNum - 1, 3)];
+}
+
+function goToQuestions() {
+  state.project = projectInput.value.trim();
+  state.projectType = detectProjectType(state.project);
+  // also check chips
+  const activeChip = document.querySelector('.chip.active');
+  if (activeChip) state.projectType = activeChip.dataset.template;
+
+  document.getElementById('step1').classList.remove('active');
+  document.getElementById('step2q1').classList.add('active');
+  updateProgress(2);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goToStep(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (id === 'step2q2') updateProgress(2);
+  if (id === 'step2q3') updateProgress(3);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goBackTo(id) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (id === 'step1') updateProgress(1);
+  if (id === 'step2q1') updateProgress(2);
+  if (id === 'step2q2') updateProgress(2);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== SHOW RESULTS =====
+function showResults() {
+  document.getElementById('stepWrapper').style.display = 'none';
+  document.getElementById('progressBar').style.display = 'none';
+
+  const stack = buildStack();
+  const stackName = getStackName(state.projectType);
+  const isStudent = state.projectType === 'student';
+
+  document.getElementById('stackBadge').textContent = '🛠️ ' + stackName;
+  document.getElementById('stackTitle').textContent = stackName;
+  document.getElementById('stackSubtitle').textContent = isStudent
+    ? "Here are essential free tools for students — plus we've got a dedicated section for you."
+    : "Based on your project and preferences, here's exactly what you need.";
+
+  // Student special
+  document.getElementById('studentSpecial').style.display = isStudent ? 'block' : 'none';
+
+  // Render stack
+  const container = document.getElementById('stackContainer');
+  let totalCost = 0;
+  let html = '';
+
+  stack.forEach((cat, i) => {
+    const tool = TOOLS[cat.tool];
+    if (!tool) return;
+    totalCost += tool.monthlyCost;
+    const priceClass = tool.priceType === 'free' ? 'price-free' : tool.priceType === 'freemium' ? 'price-freemium' : 'price-paid';
+    html += `
+      <div class="stack-category" style="animation-delay: ${i * 50}ms;">
+        <div class="stack-category-header"><h3>${cat.name}</h3></div>
+        <a href="${tool.url}" target="_blank" rel="noopener" class="stack-tool" style="animation-delay: ${i * 80}ms; text-decoration: none; color: inherit;">
+          <div class="stack-tool-icon"><img src="${tool.icon}" alt="${tool.name}"></div>
+          <div class="stack-tool-info">
+            <div class="stack-tool-name">${tool.name}</div>
+            <div class="stack-tool-reason">${cat.reason}</div>
+          </div>
+          <span class="stack-tool-price ${priceClass}">${tool.price}</span>
+        </a>
+      </div>`;
+  });
+  container.innerHTML = html;
+
+  // Cost estimate
+  const costText = totalCost === 0 ? '$0/mo' : `~$${totalCost}/mo`;
+  document.getElementById('costAmount').textContent = costText;
+
+  // Show results
+  const results = document.getElementById('resultsWrapper');
+  results.classList.add('active');
+  document.getElementById('progressFill').style.width = '100%';
+
+  // Update URL hash
+  updateHash();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== SHAREABLE URL =====
+function updateHash() {
+  const params = new URLSearchParams();
+  params.set('q', state.project.substring(0, 100));
+  params.set('type', state.projectType);
+  params.set('stage', state.stage);
+  params.set('budget', state.budget);
+  params.set('priority', state.priority);
+  history.replaceState(null, '', '#' + params.toString());
+}
+
+function loadFromHash() {
+  const hash = window.location.hash.slice(1);
+  if (!hash) return false;
+  try {
+    const params = new URLSearchParams(hash);
+    const q = params.get('q');
+    const type = params.get('type');
+    const stage = params.get('stage');
+    const budget = params.get('budget');
+    const priority = params.get('priority');
+    if (q && type && stage && budget && priority) {
+      state.project = q;
+      state.projectType = type;
+      state.stage = stage;
+      state.budget = budget;
+      state.priority = priority;
+      return true;
+    }
+  } catch (e) {}
+  return false;
+}
+
+// ===== SHARING =====
+function saveShare() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = event.target;
+    btn.textContent = '✅ Link copied!';
+    setTimeout(() => btn.textContent = '🔗 Save & Share', 2000);
+  });
+}
+
+function shareTwitter() {
+  const name = getStackName(state.projectType);
+  const text = `Just built my personalised tool stack on @fewertools 🛠️\n\n${name} — the exact tools I need, nothing else.\n\nBuild yours in 30 seconds:`;
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+}
+
+function shareWhatsApp() {
+  const name = getStackName(state.projectType);
+  const text = `Check this out — I got a personalised tool stack recommendation for my project 🚀\n\n${name}\n\n${window.location.href}`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+// ===== START OVER =====
+function startOver() {
+  state.project = '';
+  state.projectType = '';
+  state.stage = '';
+  state.budget = '';
+  state.priority = '';
+  projectInput.value = '';
+  buildBtn.disabled = true;
+  chips.forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll('.step .btn-primary, .step .btn-accent').forEach(b => b.disabled = true);
+  buildBtn.disabled = true;
+
+  document.getElementById('resultsWrapper').classList.remove('active');
+  document.getElementById('stepWrapper').style.display = 'block';
+  document.getElementById('progressBar').style.display = 'block';
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step1').classList.add('active');
+  updateProgress(1);
+  history.replaceState(null, '', window.location.pathname);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===== INIT =====
+if (loadFromHash()) {
+  // Jump straight to results
+  showResults();
+} else {
+  updateProgress(1);
+}
+</script>
+</body>
+</html>
