@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="canonical" href="https://fewertools.com/tools/">
-<title>Tools Directory, 210+ Tools Reviewed - Fewer Tools</title>
-<meta name="description" content="210+ tools reviewed with real opinions. Search, filter, and find the right tool for every job.">
+<title>Tools Directory, 230+ Tools Reviewed - Fewer Tools</title>
+<meta name="description" content="230+ tools reviewed with real opinions. Search, filter, and find the right tool for every job.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -154,7 +154,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:40px}
   <div class="container">
     <div class="hero-badge reveal">📂 The Directory</div>
     <h1 class="reveal">Every tool,<br>one honest opinion.</h1>
-    <p class="reveal">No affiliate links. No sponsored placements. Just real takes on 210+ tools, so you can stop researching and start building.</p>
+    <p class="reveal">No affiliate links. No sponsored placements. Just real takes on 230+ tools, so you can stop researching and start building.</p>
     <div class="tool-count reveal">Showing <strong id="visibleCount">0</strong> tools</div>
   </div>
 </section>
@@ -240,7 +240,7 @@ var categories = [
   {id:'finance',name:'Finance & Accounting',emoji:'\u{1F4B8}',color:'#eab308'}
 ];
 
-// ─── Tools Data (172 tools) ───
+// ─── Tools Data (233 tools) ───
 var tools = [
   // AI Assistants (6)
   {n:'Claude',c:'ai-assistants',i:'anthropic',ic:'181818',d:'The one that actually thinks before it speaks. Best for nuanced reasoning and long-form work.',p:'Free',pk:true,u:'https://claude.ai',v:'Recommended',s:'Starting',uw:'Deep reasoning, long documents, coding',av:'You need real-time web search'},
@@ -526,7 +526,42 @@ var tools = [
 
   // AI Image (2)
   {n:'Adobe Firefly',c:'ai-image',i:null,ic:'FF6600',d:"Adobe\'s AI image generator. Trained on licensed content so you can use it commercially without worry.",p:'Freemium',pk:false,u:'https://firefly.adobe.com'},
-  {n:'Galileo AI',c:'ai-image',i:null,ic:'5B4FFF',d:'Generate UI designs from text prompts. Editable Figma files out. Great for rapid prototyping and exploration.',p:'Freemium',pk:false,u:'https://usegalileo.ai'}
+  {n:'Galileo AI',c:'ai-image',i:null,ic:'5B4FFF',d:'Generate UI designs from text prompts. Editable Figma files out. Great for rapid prototyping and exploration.',p:'Freemium',pk:false,u:'https://usegalileo.ai'},
+
+  // Docs & Productivity (7)
+  {n:'Google Docs',c:'docs',i:null,ic:'4285F4',d:'The doc everyone defaults to. Real-time collaboration, clean, free, and it just works. No reason to overthink it.',p:'Free',pk:false,u:'https://docs.google.com'},
+  {n:'Google Sheets',c:'docs',i:null,ic:'0F9D58',d:'Spreadsheets that do more than you think. Formulas, pivot tables, integrations. Most startups run on these longer than they admit.',p:'Free',pk:false,u:'https://sheets.google.com'},
+  {n:'Google Slides',c:'docs',i:null,ic:'F4B400',d:'Clean, collaborative presentations. Not as flashy as Keynote, but free and everyone can edit.',p:'Free',pk:false,u:'https://slides.google.com'},
+  {n:'Google Workspace',c:'docs',i:null,ic:'4285F4',d:'Custom email, Drive, Docs, Sheets under your domain. The boring-but-right business move.',p:'From $6/mo',pk:false,u:'https://workspace.google.com'},
+  {n:'Google Forms',c:'docs',i:null,ic:'7248B9',d:'Quick surveys and forms, zero learning curve. Not pretty, but free and gets responses fast.',p:'Free',pk:false,u:'https://forms.google.com'},
+  {n:'Excel',c:'docs',i:null,ic:'217346',d:'The OG spreadsheet. Power users swear by it: macros, pivot tables, analysis that Sheets still can not touch.',p:'Paid',pk:false,u:'https://microsoft.com/excel'},
+  {n:'Gmail',c:'docs',i:null,ic:'EA4335',d:'Email that 1.8 billion people use. Labels, filters, and integrations with everything. You already know.',p:'Free',pk:false,u:'https://mail.google.com'},
+
+  // Meetings & Scheduling (1)
+  {n:'Google Calendar',c:'meetings',i:null,ic:'4285F4',d:'The default calendar. Syncs with everything, scheduling links, reminders. Just works.',p:'Free',pk:false,u:'https://calendar.google.com'},
+
+  // Marketing & Social (3)
+  {n:'LinkedIn',c:'marketing',i:null,ic:'0077B5',d:'The professional network. Job hunting, networking, thought leadership. Cringe sometimes, but undeniably effective.',p:'Freemium',pk:false,u:'https://linkedin.com'},
+  {n:'Medium',c:'marketing',i:null,ic:'000000',d:'Write once, reach millions. Built-in audience, clean reading experience. Great for thought leadership without building a blog.',p:'Free',pk:false,u:'https://medium.com'},
+  {n:'YouTube',c:'marketing',i:null,ic:'FF0000',d:'The second largest search engine. Video content lives here. Tutorials, vlogs, courses, everything.',p:'Free',pk:false,u:'https://youtube.com'},
+
+  // Design & Portfolios (2)
+  {n:'Dribbble',c:'design',i:null,ic:'EA4C89',d:'The design portfolio platform. Show your work, get inspired, find freelance gigs. Where designers hang out.',p:'Freemium',pk:false,u:'https://dribbble.com'},
+  {n:'Behance',c:'design',i:null,ic:'1769FF',d:'Adobe portfolio platform. More project-focused than Dribbble. Good for case studies and detailed breakdowns.',p:'Free',pk:false,u:'https://behance.net'},
+
+  // Research & Learning (5)
+  {n:'Coursera',c:'research',i:null,ic:'0056D2',d:'University-level courses from Stanford, Google, IBM. Certificates that actually mean something on your resume.',p:'Freemium',pk:false,u:'https://coursera.org'},
+  {n:'freeCodeCamp',c:'research',i:null,ic:'0A0A23',d:'Learn to code for free. Seriously. Full curriculum from HTML to machine learning, with certificates.',p:'Free',pk:false,u:'https://freecodecamp.org'},
+  {n:'Khan Academy',c:'research',i:null,ic:'14BF96',d:'Free education for everything from algebra to AP History. Clean, no-nonsense learning.',p:'Free',pk:false,u:'https://khanacademy.org'},
+  {n:'LeetCode',c:'research',i:null,ic:'FFA116',d:'The coding interview grind. Love it or hate it, this is where you prep for big tech. Thousands of problems, discussion forums.',p:'Freemium',pk:false,u:'https://leetcode.com'},
+  {n:'Pramp',c:'research',i:null,ic:'29B6F6',d:'Free peer-to-peer mock interviews. Practice coding, system design, and behavioural questions with real people.',p:'Free',pk:false,u:'https://pramp.com'},
+
+  // Dev Tools (1)
+  {n:'Node.js',c:'devtools',i:null,ic:'339933',d:'JavaScript on the server. The runtime that powers half the web. If you know JS, you can build backends.',p:'Free',pk:false,u:'https://nodejs.org'},
+
+  // CRM & Job Hunting (2)
+  {n:'Glassdoor',c:'crm',i:null,ic:'0CAA41',d:'Company reviews, salary data, interview questions. Research before you apply, negotiate with data.',p:'Free',pk:false,u:'https://glassdoor.com'},
+  {n:'Upwork',c:'crm',i:null,ic:'14A800',d:'The largest freelance marketplace. Find clients, build a reputation, earn while you learn.',p:'Free',pk:false,u:'https://upwork.com'}
 ];
 
 // ─── Build Category Filter Pills ───
