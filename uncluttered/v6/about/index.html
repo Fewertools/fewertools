@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="djODkIufikulfN-HqVngIFNu3ITlUAIJCu8s1BbVKs4" />
+  <link rel="canonical" href="https://fewertools.com/about/">
+  <title>About - Fewer Tools</title>
+  <meta name="description" content="Meet the team behind Fewer Tools. Learn why we built a tools discovery platform focused on less, not more.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <meta name="theme-color" content="#0D9488">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fewertools.com/about/">
+  <meta property="og:title" content="About - Fewer Tools">
+  <meta property="og:description" content="Meet the team behind Fewer Tools. Learn why we built this.">
+  <meta property="og:image" content="https://fewertools.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #FAFAF8; --bg-alt: #F3F3F0; --bg-dark: #0a0a0a; --bg-card: #FFFFFF;
+      --text: #1a1a1a; --text-secondary: #555; --text-muted: #888; --text-inverse: #FAFAF8;
+      --accent: #0D9488; --accent-hover: #0F766E; --accent-subtle: rgba(13, 148, 136, 0.1);
+      --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.12);
+      --font-display: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif;
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 28px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 600px) { .container { padding: 0 24px; } }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s var(--ease-out); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+
+    /* Header */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(250, 250, 248, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+    header.scrolled { border-bottom-color: var(--border); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-mark { width: 32px; height: 32px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; overflow: hidden; transition: all 0.3s ease; }
+    .logo-text { font-family: "Outfit", sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.5px; color: var(--text); }
+    .logo-mark .icon-line { width: 12px; height: 2.5px; background: var(--accent); border-radius: 2px; animation: iconGlow 2.5s ease-in-out infinite; box-shadow: 0 0 8px rgba(13, 148, 136, 0.5); }
+    @keyframes iconGlow { 0%, 100% { transform: scaleX(1); opacity: 1; } 50% { transform: scaleX(0.6); opacity: 0.8; } }
+    .logo:hover .logo-mark { transform: scale(1.08); }
+    nav { display: flex; align-items: center; gap: 40px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { padding: 8px 16px; background: var(--bg-dark); color: var(--text-inverse) !important; border-radius: var(--radius-sm); }
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; }
+    .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--text); transition: all 0.3s ease; }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      nav { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-card); flex-direction: column; align-items: flex-start; padding: 100px 32px 32px; gap: 0; box-shadow: -4px 0 24px rgba(0,0,0,0.1); transition: right 0.3s var(--ease-out); }
+      nav.open { right: 0; }
+      nav a { padding: 16px 0; width: 100%; border-bottom: 1px solid var(--border); font-size: 16px; }
+      nav .nav-cta { margin-top: 16px; width: 100%; text-align: center; border-bottom: none; }
+    }
+
+    /* Hero */
+    .page-hero { padding: 160px 0 80px; text-align: center; }
+    .page-hero h1 { font-size: clamp(36px, 6vw, 56px); margin-bottom: 16px; }
+    .page-hero p { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+    @media (max-width: 600px) { .page-hero { padding: 120px 0 60px; } }
+
+    /* Story Section */
+    .story-section { padding: 0 0 80px; }
+    .story-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: center; max-width: 1000px; margin: 0 auto; }
+    @media (max-width: 800px) { .story-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    .founder-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      text-align: center;
+    }
+    .founder-avatar {
+      width: 120px;
+      height: 120px;
+      background: var(--bg-dark);
+      color: var(--text-inverse);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 48px;
+      margin: 0 auto 24px;
+    }
+    .founder-card h3 { font-size: 24px; margin-bottom: 4px; }
+    .founder-card .role { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
+    .founder-card p { font-size: 15px; color: var(--text-secondary); margin-bottom: 24px; }
+    .founder-links { display: flex; justify-content: center; gap: 16px; }
+    .founder-links a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--bg-alt);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .founder-links a:hover { background: var(--accent-subtle); color: var(--accent); }
+
+    .story-content h2 { font-size: clamp(28px, 4vw, 36px); margin-bottom: 20px; }
+    .story-content p { color: var(--text-secondary); margin-bottom: 16px; font-size: 16px; }
+
+    /* Values Section */
+    .values-section { padding: 80px 0; background: var(--bg-alt); }
+    .section-header { text-align: center; margin-bottom: 48px; }
+    .section-header h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 12px; }
+    .section-header p { font-size: 17px; color: var(--text-secondary); max-width: 500px; margin: 0 auto; }
+
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; }
+    @media (max-width: 800px) { .values-grid { grid-template-columns: 1fr; } }
+
+    .value-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: all 0.3s var(--ease-out);
+    }
+    .value-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .value-icon { font-size: 32px; margin-bottom: 16px; }
+    .value-card h3 { font-size: 18px; margin-bottom: 8px; }
+    .value-card p { font-size: 14px; color: var(--text-secondary); }
+
+    /* Stats Section */
+    .stats-section { padding: 80px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; max-width: 900px; margin: 0 auto; text-align: center; }
+    @media (max-width: 700px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .stat-item h3 { font-size: clamp(36px, 5vw, 48px); color: var(--accent); margin-bottom: 4px; }
+    .stat-item p { font-size: 14px; color: var(--text-muted); }
+
+    /* CTA Section */
+    .cta-section { padding: 80px 0; background: var(--bg-dark); color: var(--text-inverse); text-align: center; }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 12px; }
+    .cta-section p { font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 32px; }
+    .cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; font-size: 15px; font-weight: 600; border-radius: var(--radius-md); transition: all 0.2s ease; }
+    .btn-primary { background: var(--text-inverse); color: var(--bg-dark); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.2); }
+    .btn-secondary { background: transparent; color: var(--text-inverse); border: 1.5px solid rgba(255,255,255,0.3); }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.6); }
+
+    /* Footer */
+    footer { padding: 64px 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-content p { font-size: 14px; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-separator { color: var(--border-strong); margin: 0 8px; }
+    @media (max-width: 600px) { footer { padding: 40px 0; } .footer-content { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <a href="../" class="logo">
+        <div class="logo-mark"><img src="../logo-new-64.png" alt="Fewer Tools" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"></div>
+        <span class="logo-text">fewertools</span>
+      </a>
+      <nav id="nav">
+        <a href="../stacks/">Stacks</a>
+        <a href="../tools/">Tools</a>
+        <a href="../compare/">Compare</a>
+        <a href="../students/">Students</a>
+        <a href="../jobs/">Jobs</a>
+        <a href="../gems/">Hidden Gems</a>
+        <a href="../blog/">Blog</a>
+        <a href="../build/" class="nav-cta">Find your stack</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="reveal">About Fewer Tools</h1>
+      <p class="reveal">We help builders find the right tools without the overwhelm. Less research, more building.</p>
+    </div>
+  </section>
+
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="founder-card reveal">
+          <div class="founder-avatar">C</div>
+          <h3>Clinton</h3>
+          <p class="role">Founder & Builder</p>
+          <p>Developer, maker, and recovering tool hoarder. I've spent way too much time researching tools and not enough time shipping.</p>
+          <div class="founder-links">
+            <a href="https://x.com/Clinton_feyi" target="_blank" rel="noopener">Twitter/X</a>
+            <a href="../contact/">Contact</a>
+          </div>
+        </div>
+
+        <div class="story-content reveal reveal-delay-1">
+          <h2>Why I Built This</h2>
+          <p>Every "best tools" list I found had 50+ options. Every comparison led to another comparison. I'd spend hours researching the "perfect" tool instead of actually building.</p>
+          <p>Sound familiar?</p>
+          <p>I realized that tool research had become a form of productive procrastination. The more options I explored, the less I shipped.</p>
+          <p>So I built Fewer Tools: <strong>the resource I wished existed</strong>. One opinionated recommendation per category. Clear guidance based on your stage. No endless comparisons or affiliate-driven listicles.</p>
+          <p>The goal isn't to find the "perfect" tool. It's to find a good-enough tool and get back to building.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="values-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>What We Believe</h2>
+        <p>The principles behind every recommendation we make.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-icon">🎯</div>
+          <h3>Opinionated, Not Exhaustive</h3>
+          <p>We pick one winner, not ten options. Decision fatigue is real. We do the research so you don't have to.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-icon">🔬</div>
+          <h3>Merit Over Money</h3>
+          <p>Affiliate links exist, but they never influence what makes the list. We recommend tools we'd actually use ourselves.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-icon">🚀</div>
+          <h3>Stage-Appropriate</h3>
+          <p>A solo founder doesn't need enterprise tools. A scaling startup doesn't need another note app. Right tool, right time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <h3>236+</h3>
+          <p>Tools reviewed</p>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <h3>23</h3>
+          <p>Head-to-head comparisons</p>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <h3>12</h3>
+          <p>Use case guides</p>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <h3>5</h3>
+          <p>Curated stacks</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container reveal">
+      <h2>Ready to simplify?</h2>
+      <p>Find the right stack for your stage. Stop researching. Start building.</p>
+      <div class="cta-buttons">
+        <a href="../build/" class="btn btn-primary">Build Your Stack</a>
+        <a href="../contact/" class="btn btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Fewer Tools. Less tools. More building.</p>
+        <div class="footer-links">
+          <a href="../about/">About</a>
+          <a href="../tools/">Tools</a>
+          <a href="../blog/">Blog</a>
+          <a href="../contact/">Contact</a>
+          <span class="footer-separator">|</span>
+          <a href="../privacy/">Privacy</a>
+          <a href="../terms/">Terms</a>
+          <a href="../affiliate/">Affiliate</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Header scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('nav');
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      nav.classList.remove('open');
+    }));
+  </script>
+  <script src="/_vercel/insights/script.js" defer></script>
+  <script src="/_vercel/speed-insights/script.js" defer></script>
+</body>
+</html>

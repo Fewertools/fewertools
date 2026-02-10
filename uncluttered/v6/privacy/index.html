@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="djODkIufikulfN-HqVngIFNu3ITlUAIJCu8s1BbVKs4" />
-  <link rel="canonical" href="https://fewertools.com/contact/">
-  <title>Contact - Fewer Tools</title>
-  <meta name="description" content="Got a question, suggestion, or partnership idea? Get in touch with the team behind Fewer Tools.">
+  <link rel="canonical" href="https://fewertools.com/privacy/">
+  <title>Privacy Policy - Fewer Tools</title>
+  <meta name="description" content="How Fewer Tools collects, uses, and protects your data. We believe in transparency and minimal data collection.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <meta name="theme-color" content="#0D9488">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://fewertools.com/contact/">
-  <meta property="og:title" content="Contact - Fewer Tools">
-  <meta property="og:description" content="Got a question, suggestion, or partnership idea? Get in touch.">
+  <meta property="og:url" content="https://fewertools.com/privacy/">
+  <meta property="og:title" content="Privacy Policy - Fewer Tools">
+  <meta property="og:description" content="How Fewer Tools collects, uses, and protects your data.">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,9 +32,10 @@
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     }
     html { scroll-behavior: smooth; overflow-x: hidden; }
-    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.6; }
-    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
-    a { color: inherit; text-decoration: none; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
     @media (max-width: 600px) { .container { padding: 0 24px; } }
 
@@ -71,85 +72,29 @@
     /* Hero */
     .page-hero { padding: 160px 0 60px; text-align: center; }
     .page-hero h1 { font-size: clamp(36px, 6vw, 56px); margin-bottom: 16px; }
-    .page-hero p { font-size: 18px; color: var(--text-secondary); max-width: 500px; margin: 0 auto; }
+    .page-hero p { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+    .page-hero .updated { font-size: 14px; color: var(--text-muted); margin-top: 12px; }
     @media (max-width: 600px) { .page-hero { padding: 120px 0 40px; } }
 
-    /* Contact Layout */
-    .contact-section { padding: 0 0 80px; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 900px; margin: 0 auto; }
-    @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; gap: 32px; } }
+    /* Content */
+    .content-section { padding: 0 0 80px; }
+    .content-wrapper { max-width: 720px; margin: 0 auto; }
+    .content-wrapper h2 { font-size: 24px; margin: 48px 0 16px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .content-wrapper h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+    .content-wrapper h3 { font-size: 18px; margin: 32px 0 12px; }
+    .content-wrapper p { color: var(--text-secondary); margin-bottom: 16px; }
+    .content-wrapper ul, .content-wrapper ol { color: var(--text-secondary); margin: 0 0 16px 24px; }
+    .content-wrapper li { margin-bottom: 8px; }
+    .content-wrapper strong { color: var(--text); }
 
-    /* Contact Form */
-    .contact-form { display: flex; flex-direction: column; gap: 20px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group label { font-size: 14px; font-weight: 600; color: var(--text); }
-    .form-group input, .form-group textarea, .form-group select {
-      padding: 14px 16px;
-      font-size: 15px;
-      font-family: var(--font-body);
-      background: var(--bg-card);
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-md);
-      color: var(--text);
-      transition: all 0.2s ease;
-      width: 100%;
-    }
-    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-subtle);
-    }
-    .form-group textarea { resize: vertical; min-height: 140px; }
-    .form-group select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
-
-    .submit-btn {
-      padding: 14px 28px;
-      font-size: 15px;
-      font-weight: 600;
-      font-family: var(--font-body);
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .submit-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
-    .submit-btn:active { transform: translateY(0); }
-
-    .form-success {
-      display: none;
-      padding: 20px;
-      background: #ecfdf5;
-      border: 1px solid rgba(5, 150, 105, 0.2);
-      border-radius: var(--radius-md);
-      text-align: center;
-      color: #059669;
-      font-weight: 500;
-    }
-
-    /* Contact Info */
-    .contact-info { display: flex; flex-direction: column; gap: 32px; }
-    .info-card {
-      padding: 28px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-    }
-    .info-card h3 { font-size: 17px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-    .info-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
-    .info-card a { color: var(--accent); font-weight: 500; transition: color 0.2s; }
-    .info-card a:hover { color: var(--accent-hover); }
-
-    .response-note {
-      padding: 20px;
+    .highlight-box {
       background: var(--accent-subtle);
       border: 1px solid rgba(13, 148, 136, 0.15);
       border-radius: var(--radius-md);
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
+      padding: 20px 24px;
+      margin: 24px 0;
     }
+    .highlight-box p { margin-bottom: 0; }
 
     /* Footer */
     footer { padding: 64px 0; border-top: 1px solid var(--border); }
@@ -174,9 +119,9 @@
         <a href="../stacks/">Stacks</a>
         <a href="../tools/">Tools</a>
         <a href="../compare/">Compare</a>
-        <a href="../students/">Students 🎓</a>
-        <a href="../jobs/">Jobs 💼</a>
-        <a href="../gems/">Hidden Gems 💎</a>
+        <a href="../students/">Students</a>
+        <a href="../jobs/">Jobs</a>
+        <a href="../gems/">Hidden Gems</a>
         <a href="../blog/">Blog</a>
         <a href="../build/" class="nav-cta">Find your stack</a>
       </nav>
@@ -190,65 +135,95 @@
 
   <section class="page-hero">
     <div class="container">
-      <h1 class="reveal">Get in touch</h1>
-      <p class="reveal">Question, suggestion, or just want to say hi? We'd love to hear from you.</p>
+      <h1 class="reveal">Privacy Policy</h1>
+      <p class="reveal">We believe in minimal data collection. Here's exactly what we collect and why.</p>
+      <p class="updated reveal">Last updated: February 2026</p>
     </div>
   </section>
 
-  <section class="contact-section">
+  <section class="content-section">
     <div class="container">
-      <div class="contact-grid">
-        <div class="reveal">
-          <form class="contact-form" id="contactForm" action="https://formspree.io/f/meelozjr" method="POST">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" required>
-            </div>
-            <div class="form-group">
-              <label for="topic">What's this about?</label>
-              <select id="topic" name="topic">
-                <option value="general">General question</option>
-                <option value="suggestion">Tool suggestion</option>
-                <option value="correction">Something's wrong on the site</option>
-                <option value="partnership">Partnership / collaboration</option>
-                <option value="other">Something else</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="What's on your mind?" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send message</button>
-          </form>
-          <div class="form-success" id="formSuccess">
-            ✓ Message sent! We'll get back to you soon.
-          </div>
+      <div class="content-wrapper reveal">
+
+        <div class="highlight-box">
+          <p><strong>The short version:</strong> We collect minimal data, don't sell anything to third parties, and respect your privacy. If you just browse the site, we collect basic analytics. If you subscribe to our newsletter, we store your email.</p>
         </div>
 
-        <div class="contact-info reveal">
-          <div class="info-card">
-            <h3>📧 Email directly</h3>
-            <p>Prefer email? Reach us at <a href="mailto:clinton@fewertools.com">clinton@fewertools.com</a></p>
-          </div>
+        <h2>Who We Are</h2>
+        <p>Fewer Tools (fewertools.com) is a tools discovery platform that helps builders, students, and creators find the right software for their needs. We're operated by Clinton, based in [Location].</p>
+        <p>For any privacy-related questions, contact us at <a href="mailto:clinton@fewertools.com">clinton@fewertools.com</a>.</p>
 
-          <div class="info-card">
-            <h3>🐦 Twitter / X</h3>
-            <p>DMs are open. Follow us at <a href="https://x.com/Clinton_feyi" target="_blank" rel="noopener">@Clinton_feyi</a></p>
-          </div>
+        <h2>What We Collect</h2>
 
-          <div class="info-card">
-            <h3>💡 Suggest a tool</h3>
-            <p>Know a tool we should feature? Use the form or email us with the tool name, what it does, and why it stands out.</p>
-          </div>
+        <h3>Analytics Data</h3>
+        <p>We use Vercel Analytics and Speed Insights to understand how visitors use our site. This includes:</p>
+        <ul>
+          <li>Pages visited and time spent</li>
+          <li>Referring websites</li>
+          <li>Browser type and device</li>
+          <li>Country-level location (not precise)</li>
+        </ul>
+        <p>This data is aggregated and anonymized. We cannot identify individual users from analytics.</p>
 
-          <div class="response-note">
-            We read every message. Most replies come within 24-48 hours. If it's about a broken link or incorrect info, we'll fix it even faster.
-          </div>
-        </div>
+        <h3>Newsletter Subscription</h3>
+        <p>If you subscribe to our newsletter (powered by Beehiiv), we collect:</p>
+        <ul>
+          <li>Your email address</li>
+          <li>Subscription date and source</li>
+          <li>Email open and click activity</li>
+        </ul>
+        <p>You can unsubscribe at any time using the link in any email.</p>
+
+        <h3>Contact Form</h3>
+        <p>If you use our contact form (powered by Formspree), we receive:</p>
+        <ul>
+          <li>Your name and email</li>
+          <li>The message you send</li>
+        </ul>
+        <p>We use this only to respond to your inquiry.</p>
+
+        <h2>What We Don't Collect</h2>
+        <ul>
+          <li>We don't use cookies for tracking or advertising</li>
+          <li>We don't collect payment information (we don't sell anything directly)</li>
+          <li>We don't track you across other websites</li>
+          <li>We don't build profiles about you</li>
+        </ul>
+
+        <h2>Third-Party Services</h2>
+        <p>We use these services that may process your data:</p>
+        <ul>
+          <li><strong>Vercel</strong> - Hosting and analytics (<a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>)</li>
+          <li><strong>Beehiiv</strong> - Newsletter platform (<a href="https://www.beehiiv.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>)</li>
+          <li><strong>Formspree</strong> - Contact forms (<a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>)</li>
+          <li><strong>Google Fonts</strong> - Typography (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>)</li>
+        </ul>
+
+        <h2>Affiliate Links</h2>
+        <p>Some links on our site are affiliate links. When you click them and make a purchase, we may earn a commission at no extra cost to you. The affiliate programs we participate in may use cookies to track referrals. See our <a href="../affiliate/">Affiliate Disclosure</a> for details.</p>
+
+        <h2>Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li><strong>Access</strong> - Request a copy of data we have about you</li>
+          <li><strong>Deletion</strong> - Request we delete your data</li>
+          <li><strong>Correction</strong> - Request we update incorrect data</li>
+          <li><strong>Unsubscribe</strong> - Opt out of our newsletter anytime</li>
+        </ul>
+        <p>To exercise these rights, email <a href="mailto:clinton@fewertools.com">clinton@fewertools.com</a>.</p>
+
+        <h2>Data Security</h2>
+        <p>We use industry-standard security measures to protect your data. Our site is served over HTTPS, and our third-party providers maintain their own security practices.</p>
+
+        <h2>Children's Privacy</h2>
+        <p>Our site is not directed at children under 13. We do not knowingly collect data from children.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this policy from time to time. Significant changes will be noted on this page with an updated date.</p>
+
+        <h2>Questions?</h2>
+        <p>If you have any questions about this privacy policy, please <a href="../contact/">contact us</a>.</p>
+
       </div>
     </div>
   </section>
@@ -256,7 +231,7 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p>© 2026 Fewer Tools. Less tools. More building.</p>
+        <p>&copy; 2026 Fewer Tools. Less tools. More building.</p>
         <div class="footer-links">
           <a href="../about/">About</a>
           <a href="../tools/">Tools</a>
@@ -295,26 +270,6 @@
       menuToggle.classList.remove('active');
       nav.classList.remove('open');
     }));
-
-    // Form handling - mailto-based (no backend needed)
-    const form = document.getElementById('contactForm');
-    const success = document.getElementById('formSuccess');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = form.name.value;
-      const email = form.email.value;
-      const topic = form.topic.options[form.topic.selectedIndex].text;
-      const message = form.message.value;
-      const subject = 'Fewer Tools - ' + topic;
-      const body = 'From: ' + name + ' (' + email + ')\nTopic: ' + topic + '\n\n' + message;
-      window.location.href = 'mailto:clinton@fewertools.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      // Show success after redirect
-      setTimeout(() => {
-        form.style.display = 'none';
-        success.style.display = 'block';
-        success.textContent = '✓ Your email client should have opened. If not, email us directly at clinton@fewertools.com';
-      }, 500);
-    });
   </script>
   <script src="/_vercel/insights/script.js" defer></script>
   <script src="/_vercel/speed-insights/script.js" defer></script>

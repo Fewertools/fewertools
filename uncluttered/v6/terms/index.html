@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="djODkIufikulfN-HqVngIFNu3ITlUAIJCu8s1BbVKs4" />
-  <link rel="canonical" href="https://fewertools.com/contact/">
-  <title>Contact - Fewer Tools</title>
-  <meta name="description" content="Got a question, suggestion, or partnership idea? Get in touch with the team behind Fewer Tools.">
+  <link rel="canonical" href="https://fewertools.com/terms/">
+  <title>Terms of Service - Fewer Tools</title>
+  <meta name="description" content="Terms and conditions for using Fewer Tools. Simple, fair, and easy to understand.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <meta name="theme-color" content="#0D9488">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://fewertools.com/contact/">
-  <meta property="og:title" content="Contact - Fewer Tools">
-  <meta property="og:description" content="Got a question, suggestion, or partnership idea? Get in touch.">
+  <meta property="og:url" content="https://fewertools.com/terms/">
+  <meta property="og:title" content="Terms of Service - Fewer Tools">
+  <meta property="og:description" content="Terms and conditions for using Fewer Tools.">
   <meta property="og:image" content="https://fewertools.com/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,9 +32,10 @@
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     }
     html { scroll-behavior: smooth; overflow-x: hidden; }
-    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.6; }
-    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
-    a { color: inherit; text-decoration: none; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
     @media (max-width: 600px) { .container { padding: 0 24px; } }
 
@@ -71,85 +72,29 @@
     /* Hero */
     .page-hero { padding: 160px 0 60px; text-align: center; }
     .page-hero h1 { font-size: clamp(36px, 6vw, 56px); margin-bottom: 16px; }
-    .page-hero p { font-size: 18px; color: var(--text-secondary); max-width: 500px; margin: 0 auto; }
+    .page-hero p { font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+    .page-hero .updated { font-size: 14px; color: var(--text-muted); margin-top: 12px; }
     @media (max-width: 600px) { .page-hero { padding: 120px 0 40px; } }
 
-    /* Contact Layout */
-    .contact-section { padding: 0 0 80px; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 900px; margin: 0 auto; }
-    @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; gap: 32px; } }
+    /* Content */
+    .content-section { padding: 0 0 80px; }
+    .content-wrapper { max-width: 720px; margin: 0 auto; }
+    .content-wrapper h2 { font-size: 24px; margin: 48px 0 16px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .content-wrapper h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+    .content-wrapper h3 { font-size: 18px; margin: 32px 0 12px; }
+    .content-wrapper p { color: var(--text-secondary); margin-bottom: 16px; }
+    .content-wrapper ul, .content-wrapper ol { color: var(--text-secondary); margin: 0 0 16px 24px; }
+    .content-wrapper li { margin-bottom: 8px; }
+    .content-wrapper strong { color: var(--text); }
 
-    /* Contact Form */
-    .contact-form { display: flex; flex-direction: column; gap: 20px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group label { font-size: 14px; font-weight: 600; color: var(--text); }
-    .form-group input, .form-group textarea, .form-group select {
-      padding: 14px 16px;
-      font-size: 15px;
-      font-family: var(--font-body);
-      background: var(--bg-card);
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-md);
-      color: var(--text);
-      transition: all 0.2s ease;
-      width: 100%;
-    }
-    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-subtle);
-    }
-    .form-group textarea { resize: vertical; min-height: 140px; }
-    .form-group select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
-
-    .submit-btn {
-      padding: 14px 28px;
-      font-size: 15px;
-      font-weight: 600;
-      font-family: var(--font-body);
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .submit-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
-    .submit-btn:active { transform: translateY(0); }
-
-    .form-success {
-      display: none;
-      padding: 20px;
-      background: #ecfdf5;
-      border: 1px solid rgba(5, 150, 105, 0.2);
-      border-radius: var(--radius-md);
-      text-align: center;
-      color: #059669;
-      font-weight: 500;
-    }
-
-    /* Contact Info */
-    .contact-info { display: flex; flex-direction: column; gap: 32px; }
-    .info-card {
-      padding: 28px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-    }
-    .info-card h3 { font-size: 17px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-    .info-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
-    .info-card a { color: var(--accent); font-weight: 500; transition: color 0.2s; }
-    .info-card a:hover { color: var(--accent-hover); }
-
-    .response-note {
-      padding: 20px;
+    .highlight-box {
       background: var(--accent-subtle);
       border: 1px solid rgba(13, 148, 136, 0.15);
       border-radius: var(--radius-md);
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
+      padding: 20px 24px;
+      margin: 24px 0;
     }
+    .highlight-box p { margin-bottom: 0; }
 
     /* Footer */
     footer { padding: 64px 0; border-top: 1px solid var(--border); }
@@ -174,9 +119,9 @@
         <a href="../stacks/">Stacks</a>
         <a href="../tools/">Tools</a>
         <a href="../compare/">Compare</a>
-        <a href="../students/">Students 🎓</a>
-        <a href="../jobs/">Jobs 💼</a>
-        <a href="../gems/">Hidden Gems 💎</a>
+        <a href="../students/">Students</a>
+        <a href="../jobs/">Jobs</a>
+        <a href="../gems/">Hidden Gems</a>
         <a href="../blog/">Blog</a>
         <a href="../build/" class="nav-cta">Find your stack</a>
       </nav>
@@ -190,65 +135,109 @@
 
   <section class="page-hero">
     <div class="container">
-      <h1 class="reveal">Get in touch</h1>
-      <p class="reveal">Question, suggestion, or just want to say hi? We'd love to hear from you.</p>
+      <h1 class="reveal">Terms of Service</h1>
+      <p class="reveal">The rules of the road. We've kept them simple and fair.</p>
+      <p class="updated reveal">Last updated: February 2026</p>
     </div>
   </section>
 
-  <section class="contact-section">
+  <section class="content-section">
     <div class="container">
-      <div class="contact-grid">
-        <div class="reveal">
-          <form class="contact-form" id="contactForm" action="https://formspree.io/f/meelozjr" method="POST">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" required>
-            </div>
-            <div class="form-group">
-              <label for="topic">What's this about?</label>
-              <select id="topic" name="topic">
-                <option value="general">General question</option>
-                <option value="suggestion">Tool suggestion</option>
-                <option value="correction">Something's wrong on the site</option>
-                <option value="partnership">Partnership / collaboration</option>
-                <option value="other">Something else</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="What's on your mind?" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send message</button>
-          </form>
-          <div class="form-success" id="formSuccess">
-            ✓ Message sent! We'll get back to you soon.
-          </div>
+      <div class="content-wrapper reveal">
+
+        <div class="highlight-box">
+          <p><strong>The short version:</strong> Use our site responsibly, don't copy our content without permission, and understand that our tool recommendations are opinions, not guarantees. We may use affiliate links that earn us commissions.</p>
         </div>
 
-        <div class="contact-info reveal">
-          <div class="info-card">
-            <h3>📧 Email directly</h3>
-            <p>Prefer email? Reach us at <a href="mailto:clinton@fewertools.com">clinton@fewertools.com</a></p>
-          </div>
+        <h2>Agreement to Terms</h2>
+        <p>By accessing or using Fewer Tools (fewertools.com), you agree to be bound by these Terms of Service. If you disagree with any part of these terms, you may not access our website.</p>
 
-          <div class="info-card">
-            <h3>🐦 Twitter / X</h3>
-            <p>DMs are open. Follow us at <a href="https://x.com/Clinton_feyi" target="_blank" rel="noopener">@Clinton_feyi</a></p>
-          </div>
+        <h2>What We Provide</h2>
+        <p>Fewer Tools is an informational website that provides:</p>
+        <ul>
+          <li>Tool recommendations and comparisons</li>
+          <li>Curated software stacks for different use cases</li>
+          <li>Educational content about software and productivity</li>
+          <li>Links to third-party tools and services</li>
+        </ul>
 
-          <div class="info-card">
-            <h3>💡 Suggest a tool</h3>
-            <p>Know a tool we should feature? Use the form or email us with the tool name, what it does, and why it stands out.</p>
-          </div>
+        <h2>Disclaimer of Warranties</h2>
+        <p>Our content is provided "as is" without warranties of any kind. Specifically:</p>
+        <ul>
+          <li><strong>Opinions, not guarantees:</strong> Our recommendations are based on research and experience, but they're opinions. What works for us may not work for you.</li>
+          <li><strong>Information accuracy:</strong> We strive for accuracy, but tool features, pricing, and availability change. Always verify current information on the tool's official website.</li>
+          <li><strong>Third-party tools:</strong> We don't control or endorse the tools we recommend. Any issues with those tools are between you and their providers.</li>
+          <li><strong>No professional advice:</strong> Our content is not professional, legal, financial, or technical advice. Consult appropriate professionals for specific situations.</li>
+        </ul>
 
-          <div class="response-note">
-            We read every message. Most replies come within 24-48 hours. If it's about a broken link or incorrect info, we'll fix it even faster.
-          </div>
-        </div>
+        <h2>Affiliate Links & Compensation</h2>
+        <p>Some links on our site are affiliate links. This means:</p>
+        <ul>
+          <li>We may earn a commission if you purchase through our links</li>
+          <li>This doesn't affect the price you pay</li>
+          <li>Affiliate relationships don't influence our recommendations - we only recommend tools we genuinely believe in</li>
+        </ul>
+        <p>See our <a href="../affiliate/">Affiliate Disclosure</a> for complete details.</p>
+
+        <h2>Intellectual Property</h2>
+        <p>The content on Fewer Tools is protected by copyright:</p>
+        <ul>
+          <li><strong>Our content:</strong> Text, graphics, logos, and overall design are owned by Fewer Tools. You may not reproduce, distribute, or create derivative works without permission.</li>
+          <li><strong>Fair use:</strong> You may quote brief excerpts for reviews, commentary, or educational purposes with proper attribution and a link back.</li>
+          <li><strong>Tool logos/icons:</strong> Tool logos and trademarks belong to their respective owners. We use them for identification purposes only.</li>
+        </ul>
+
+        <h2>User Conduct</h2>
+        <p>When using our site, you agree not to:</p>
+        <ul>
+          <li>Attempt to access restricted areas or systems</li>
+          <li>Use automated tools to scrape content at scale</li>
+          <li>Submit false information through our contact forms</li>
+          <li>Use our site for any unlawful purpose</li>
+          <li>Interfere with the site's operation or other users' access</li>
+        </ul>
+
+        <h2>Newsletter & Communications</h2>
+        <p>If you subscribe to our newsletter:</p>
+        <ul>
+          <li>You consent to receive emails from us</li>
+          <li>You can unsubscribe at any time via the link in any email</li>
+          <li>We won't share your email with third parties for marketing</li>
+        </ul>
+
+        <h2>Third-Party Links</h2>
+        <p>Our site contains links to external websites. We're not responsible for:</p>
+        <ul>
+          <li>The content, accuracy, or practices of linked sites</li>
+          <li>Any transactions you conduct with third parties</li>
+          <li>Privacy practices of other websites</li>
+        </ul>
+        <p>We encourage you to review the terms and privacy policies of any site you visit.</p>
+
+        <h2>Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, Fewer Tools and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from:</p>
+        <ul>
+          <li>Your use of or inability to use our site</li>
+          <li>Any tools or services you choose based on our content</li>
+          <li>Unauthorized access to your data or transmissions</li>
+          <li>Any errors or omissions in our content</li>
+        </ul>
+
+        <h2>Indemnification</h2>
+        <p>You agree to indemnify and hold harmless Fewer Tools from any claims, damages, or expenses arising from your violation of these terms or your use of our site.</p>
+
+        <h2>Changes to Terms</h2>
+        <p>We may update these terms from time to time. We'll note significant changes on this page with an updated date. Continued use of the site after changes constitutes acceptance of the new terms.</p>
+
+        <h2>Governing Law</h2>
+        <p>These terms are governed by applicable law. Any disputes will be resolved in the appropriate jurisdiction.</p>
+
+        <h2>Severability</h2>
+        <p>If any provision of these terms is found to be unenforceable, the remaining provisions will continue in effect.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about these terms? <a href="../contact/">Contact us</a> or email <a href="mailto:clinton@fewertools.com">clinton@fewertools.com</a>.</p>
+
       </div>
     </div>
   </section>
@@ -256,7 +245,7 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p>© 2026 Fewer Tools. Less tools. More building.</p>
+        <p>&copy; 2026 Fewer Tools. Less tools. More building.</p>
         <div class="footer-links">
           <a href="../about/">About</a>
           <a href="../tools/">Tools</a>
@@ -295,26 +284,6 @@
       menuToggle.classList.remove('active');
       nav.classList.remove('open');
     }));
-
-    // Form handling - mailto-based (no backend needed)
-    const form = document.getElementById('contactForm');
-    const success = document.getElementById('formSuccess');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = form.name.value;
-      const email = form.email.value;
-      const topic = form.topic.options[form.topic.selectedIndex].text;
-      const message = form.message.value;
-      const subject = 'Fewer Tools - ' + topic;
-      const body = 'From: ' + name + ' (' + email + ')\nTopic: ' + topic + '\n\n' + message;
-      window.location.href = 'mailto:clinton@fewertools.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      // Show success after redirect
-      setTimeout(() => {
-        form.style.display = 'none';
-        success.style.display = 'block';
-        success.textContent = '✓ Your email client should have opened. If not, email us directly at clinton@fewertools.com';
-      }, 500);
-    });
   </script>
   <script src="/_vercel/insights/script.js" defer></script>
   <script src="/_vercel/speed-insights/script.js" defer></script>
