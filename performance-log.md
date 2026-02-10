@@ -1,5 +1,55 @@
 # Performance Log - @Unserious_boy
 
+## 2026-02-09 (Monday 8PM - PRIME TIME)
+
+### Status: ✅ ALL POSTS LIVE
+
+**Trending Topics:**
+- Nigerian billionaires' names in Afrobeats lyrics (10K posts)
+- Jeff Forex Ferrari SF90 crash in Lagos - ₦1.5B car (29K posts) 🔥🔥🔥
+- #ElectoralReform trending
+- Valentine's Day 5 days away
+- Egungun of Lagos interviewing Jeff Forex about the crash
+
+**Main Tweet:**
+> Valentine is in 5 days and some of you can't even afford to crash a Corolla, let alone a Ferrari. Jeff Forex crashed N1.5 billion and said "I don't care about the car anymore." Meanwhile you're calculating if you can afford Chicken Republic for two 😭
+
+🔗 https://x.com/i/status/2020951282023006627
+
+**Strategy:** Combined two trending topics (Jeff Forex Ferrari crash + Valentine's approaching) into one relatable tweet. The wealth contrast + Valentine's shame angle should drive quote tweets and replies.
+
+**Replies Posted (5):**
+
+1. **@CryptoUrch** - Double crash story (Ferrari + trading account blowup)
+   - Reply: "Crashed the Ferrari AND blew the trading account?? This man speedrunning financial destruction. At least be consistent — crash one thing at a time 😭"
+   - 🔗 https://x.com/i/status/2020951331091906873
+
+2. **@99Pluz** - Jeff Forex interview clip ($200K repair estimate)
+   - Reply: "\"The last person who drove the car forgot to turn on traction control\" bro just say you were doing 180 in Lagos traffic. We won't judge. Okay we will judge. 😂"
+   - 🔗 https://x.com/i/status/2020951338281205765
+
+3. **@boy_director (TG Omori)** - "Jesus is Love. Happy Sunday 💐"
+   - Reply: "TG posting Jesus is Love on a Sunday like he didn't make Asake look like he was fighting demons in every video 😂 Repentance arc loading"
+   - 🔗 https://x.com/i/status/2020951344165822651
+
+4. **@forexbloggerayo** - Jeff Forex "I don't care about the car" interview
+   - Reply: "\"I don't care about the car anymore\" is crazy talk when the car is worth more than most people's lifetime earnings. Forex money hits different wallahi 💀"
+   - 🔗 https://x.com/i/status/2020951379301498952
+
+5. **@nigeriantribune** - "5 fun events for singles in Lagos and Abuja"
+   - Reply: "\"Fun events for singles\" as if what singles need on Valentine's Day is to be surrounded by other singles pretending they're not sad 😭"
+   - 🔗 https://x.com/i/status/2020951384900632764
+
+**Strategy Notes:**
+- Riding the Jeff Forex wave HARD — biggest trending topic on Nigerian Twitter tonight (29K posts)
+- 4/5 replies are on Ferrari crash content = high visibility, active conversations
+- TG Omori reply keeps the relationship with that account warm
+- Nigerian Tribune reply taps the Valentine's angle for variety
+- All replies are sharp, funny, and add to the conversation (not generic)
+- Evening prime time (9 PM WAT) ✅
+
+---
+
 ## 2026-02-04 (Wednesday 8PM)
 
 ### Status: ✅ POSTING RESTORED

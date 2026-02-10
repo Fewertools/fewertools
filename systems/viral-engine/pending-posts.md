@@ -142,3 +142,37 @@ https://x.com/DavidoPolice/status/2020550111437173066
 **Error:** Authorization 226 — Twitter flagged as automated + 403
 **Account:** @Unserious_boy
 **Action needed:** ⚠️ AUTH STILL BLOCKED — 8th total failure since Feb 2. The bird CLI is effectively unusable for this account. **Clinton must either refresh tokens from browser or post manually.**
+
+---
+
+## 🔥 2026-02-09 23:00 (UK) — NIGHTLY REFRESH: Priority Posts for Feb 10
+
+### ⚠️ POST THESE FIRST WHEN AUTH IS RESTORED (recovery sequence — account dormant 5 days)
+
+**SLOT 1 — Morning QT: Bad Bunny / Duolingo spike**
+```
+Bad Bunny performed in Spanish and now Americans are panic-downloading Duolingo at 2am 😭
+```
+*QT any tweet about the Duolingo 35% Spanish learner spike after Super Bowl halftime. Global audience, funny, non-political.*
+
+**SLOT 2 — Morning QT: 2Baba/Wizkid beef (42K posts, STILL #1 Nigerian trending)**
+```
+Wizkid telling someone to make peace with their family is CRAZY work 😭
+```
+*QT target: https://x.com/DavidoPolice/status/2020550111437173066 (8K likes, 713 RTs)*
+
+**SLOT 3 — Midday QT: $1M Ferrari crash Lagos (30K posts)**
+```
+Imagine crashing a billion naira car and your only injury is to your ego 😭
+```
+*QT a video tweet of the SF90 crash in Lagos.*
+
+**SLOT 4 — Evening Standalone (ONLY after QTs land):**
+```
+4 days to Valentine's and your plan is still "God will provide"
+```
+
+**SLOT 5 — Late Night Backup:**
+```
+Bad Bunny did a whole show in Spanish and said "God bless America" at the end. The audacity is generational 😂
+```

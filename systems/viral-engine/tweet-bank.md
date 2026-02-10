@@ -5,83 +5,89 @@
 
 ---
 
-## 🎯 KEY LEARNINGS APPLIED (updated 2026-02-04)
+## 🎯 KEY LEARNINGS APPLIED (updated 2026-02-10)
 
 - **SHORT WINS:** Keep under 150 characters
 - **One joke per tweet** — don't stack
 - **Self-deprecating comparisons** — "[Achievement] while I'm still [relatable failure]"
-- **Save Nigerian references for Nigerian trending topics**
-- **⚠️ POST-DORMANCY:** QTs first, standalones later. See framework v1.5
+- **Save Nigerian references for Nigerian trending topics** ← BUT Nigerian topics ARE trending right now
+- **⚠️ POST-DORMANCY (6+ DAYS):** QTs MANDATORY for first 3-5 posts. See framework v1.5
 - **No generic observations** — needs emotional spike (humor, outrage, relatability)
 - **Engage trending topics** — don't create in a vacuum
+- **Davido tax** — anything Davido-adjacent = guaranteed Nigerian reach
+- **"Fear women/men"** — peak engagement trigger pre-Valentine's
+- **Valentine's DESPERATION phase** — gift/plan anxiety content peaks NOW (Feb 10-13)
 
 ---
 
-## 🆕 Today's Fresh (2026-02-05)
+## 🆕 Today's Fresh (2026-02-10)
 
-### ⚠️ STILL IN RECOVERY MODE — Account cold. QTs FIRST to rebuild algo presence.
+### ⚠️ CRITICAL: ACCOUNT DORMANT 6+ DAYS. QTs MANDATORY for first 3-5 posts. Recovery protocol in effect.
 
-### MORNING SLOT (8-10 AM UK / 8-10 AM WAT)
+### PRIORITY 1 — MORNING (8-10 AM UK / 8-10 AM WAT) — Feb 10
 
-**1. 🔥🔥🔥 QT: Elon Musk "money can't buy happiness" (HIGHEST PRIORITY — 172K likes)**
-Find tweet: https://x.com/elonmusk/status/2019212107020136611
-QT with:
+**1. 🔥🔥🔥 QT: Davido bodyguard vs nanny video (HIGHEST PRIORITY — Nigerian Twitter on FIRE)**
+Find viral video tweet about bodyguard pushing Imade's nanny away, QT with:
 ```
-Bro let me try being sad with $800 billion first then I'll let you know 😭
+Bodyguard switched from "get out the way" to "sorry ma" in 0.3 seconds 😭
 ```
-*Pattern: Billionaire Irony QT (NEW) | Length: 72 chars ✅ | Format: QT (recovery)*
-*WHY: 172K likes = MASSIVE borrowed audience. Self-deprecating broke humor. Perfect for recovery.*
+*Pattern: Observation + specific detail | Length: 66 chars ✅ | Format: QT (recovery + Nigerian audience)*
+*WHY: Davido content is GUARANTEED reach on Nigerian Twitter. Funny, wholesome, video-driven. Perfect recovery tweet.*
 
-**2. 🔥 QT: Ronaldo turns 41 birthday (trending, just broke at midnight)**
-Find tweet: https://x.com/PopBase/status/2019274787500224910 (or any big Ronaldo birthday post)
-QT with:
+**2. 🔥🔥 QT: Davido & Burna Boy hug on stage (UNITY content = both fanbases engage)**
+Find @badboyozzy video of the hug at Matthew Tonlagha's party, QT with:
 ```
-41 and still outrunning 25 year olds. My knees hurt from sitting too long.
+Burna Boy collecting mic to sing a Davido song is the plot twist nobody predicted 😭
 ```
-*Pattern: Self-deprecating comparison | Length: 73 chars ✅ | Format: QT (recovery)*
+*Pattern: Rivalry Truce Moment (NEW) | Length: 82 chars ✅ | Format: QT (recovery)*
+*WHY: Both Davido AND Burna fanbases will engage. Unexpected unity > beef content. Growing fast.*
 
-### MIDDAY SLOT (12-2 PM UK / 12-2 PM WAT)
+### PRIORITY 2 — MIDDAY (12-2 PM UK / 12-2 PM WAT)
 
-**3. 🔥 QT: Kai Cenat Makoko school / Lagos visit (Nigerian trending)**
-Find a Kai Cenat Makoko video tweet (plenty are circulating), QT with:
+**3. 🔥 QT: Mr Eazi gray hair / "fear women" (10K posts, still GROWING)**
+Find the before/after wedding comparison tweet, QT with:
 ```
-$5 million school while your fave still owing the caterer from last year's birthday party
+Marriage not even reach 2 years and bro is auditioning for a grandfather role 😭
 ```
-*Pattern: Celebrity comparison | Length: 89 chars ✅ | Format: QT (recovery/Nigerian audience)*
+*Pattern: Celebrity Marriage Evidence (NEW) | Length: 77 chars ✅ | Format: QT*
+*WHY: "Fear women" content + Valentine's proximity = explosive combination. 10K posts and still growing.*
 
-### EVENING SLOT (8-10 PM UK / 8-10 PM WAT — Nigerian peak)
+**4. 🔥 QT: Discord biometric face scan (TECH OUTRAGE — massive engagement)**
+Find the @Pirat_Nation tweet about Discord requiring face scan, QT with:
+```
+Discord went from "what game are you playing" to "scan your face" real quick 😭
+```
+*Pattern: Escalating contrast | Length: 78 chars ✅ | Format: QT*
+*WHY: Everyone uses Discord. Privacy outrage = guaranteed engagement. Bridges gaming and tech audiences.*
 
-**4. Standalone Valentine's (ONLY if morning QTs got engagement):**
-```
-9 days to Valentine's and your plan is "we'll see"
-```
-*Pattern: Countdown + shade | Length: 51 chars ✅*
+### PRIORITY 3 — EVENING (8-10 PM UK / 8-10 PM WAT) — Valentine's content
 
-**5. Standalone Valentine's BACKUP:**
+**5. Standalone (ONLY if at least 2 earlier QTs got engagement):**
 ```
-Dem don rebrand Valentine's as Spend Money On Your Girlfriend Day and we're supposed to be fine with it 😭
+4 days to Valentine's and your plan is still "God will provide" 😭
 ```
-*Pattern: Pidgin observation (inspired by @Bams_Jnr's 2.8K viral tweet) | Length: 105 chars | Format: Standalone*
+*Pattern: Countdown + shade | Length: 66 chars ✅ | Format: Standalone*
+*WHY: Valentine's DESPERATION phase. Every man with no plan feels personally attacked. Every woman will tag someone.*
 
-### BACKUP QTs (deploy if above topics die):
+### BACKUP QTs:
 
-**Elon Musk BACKUP (if first QT doesn't land):**
+**MrBeast puzzle BACKUP:**
 ```
-$800 billion and still posting sad quotes at 1AM. Money really can't fix everything 💀
+MrBeast put $1M on the line and the whole internet still can't solve it. We're cooked.
 ```
-*Pattern: Observation | Length: 86 chars ✅ | Format: QT*
+*Pattern: Self-deprecating collective | Length: 87 chars ✅ | Format: QT on @yourboydeluxe tweet*
 
-**Kai Cenat BACKUP:**
+**Valentine's BACKUP standalone:**
 ```
-Kai Cenat doing more for Makoko than the local government. Let that sink in.
+Valentine's is in 4 days and some of you are still hoping for a miracle relationship 😂
 ```
-*Pattern: Hypocrisy callout (light) | Length: 76 chars ✅ | Format: QT*
+*Pattern: Direct shade | Length: 86 chars ✅ | Format: Standalone*
 
-**Ronaldo BACKUP:**
+**Davido-Imade wholesome BACKUP:**
 ```
-Ronaldo at 41 still has better abs than me at my peak. My peak was 2019 and it lasted one summer.
+Davido celebrating his daughter's school win in a Lamborghini is the most Davido thing ever 😂
 ```
-*Pattern: Self-deprecating comparison | Length: 97 chars ✅ | Format: QT*
+*Pattern: Celebrity observation | Length: 93 chars ✅ | Format: Standalone (Nigerian audience)*
 
 ---
 
@@ -285,7 +291,11 @@ The way NEPA takes light is personal at this point
 - ~~Cubana Chief Priest House of Reps QT~~ (prev day's fresh, topic died)
 - ~~Endrick goal QT~~ (prev day's fresh, topic died)
 - ~~Ronaldo mental health day QT~~ (prev day's fresh, replaced with birthday angle)
+- ~~Elon "money can't buy happiness" QT~~ (topic stale, 4 days old)
+- ~~Ronaldo 41 birthday QT~~ (birthday was Feb 5, stale)
+- ~~Kai Cenat Makoko QT~~ (moved to pending-posts, topic cooling)
+- ~~"9 days to Valentine's" countdown~~ (date passed)
 
 ---
 
-*Refreshed: 2026-02-05 06:00 UTC | Next refresh: 2026-02-05 23:00 UTC*
+*Refreshed: 2026-02-10 06:00 UTC | Next refresh: 2026-02-10 23:00 UTC*

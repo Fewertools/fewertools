@@ -29,7 +29,9 @@
 ---
 
 ## Used Tweets
-*(Move tweets here after posting)*
+
+- [x] "Valentine is in 5 days and some of you can't even afford to crash a Corolla, let alone a Ferrari..." (2026-02-09, adapted from bank + trending Jeff Forex topic)
+- [x] "Valentine is 10 days away and y'all still have more energy for Wizkid vs Davido..." (2026-02-04)
 
 ---
 
