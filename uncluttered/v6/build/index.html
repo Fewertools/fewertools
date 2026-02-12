@@ -1830,26 +1830,92 @@ async function submitEmail() {
 // ===== SHARING =====
 function updateHash() {
   const params = new URLSearchParams();
-  params.set('q', state.project.substring(0, 100));
-  params.set('type', state.projectType);
-  params.set('stage', state.stage);
-  params.set('budget', state.budget);
-  params.set('priority', state.priority);
+  params.set('p', state.persona || 'builder');
+
+  if ((state.persona || 'builder') === 'student') {
+    params.set('subject', state.subject);
+    params.set('struggle', state.struggle);
+    params.set('style', state.style);
+    params.set('year', state.year);
+    params.set('studentBudget', state.studentBudget);
+    params.set('device', state.device);
+  } else if (state.persona === 'jobs') {
+    params.set('role', state.role);
+    params.set('experience', state.experience);
+    params.set('goal', state.goal);
+    params.set('jobBudget', state.jobBudget);
+  } else {
+    // builder
+    params.set('q', state.project.substring(0, 100));
+    params.set('type', state.projectType);
+    params.set('stage', state.stage);
+    params.set('budget', state.budget);
+    params.set('priority', state.priority);
+  }
+
   history.replaceState(null, '', '#' + params.toString());
 }
 
 function loadFromHash() {
   const hash = window.location.hash.slice(1);
-  if (!hash) return false;
+  if (!hash) return null;
   try {
     const params = new URLSearchParams(hash);
-    const q = params.get('q'); const type = params.get('type'); const stage = params.get('stage'); const budget = params.get('budget'); const priority = params.get('priority');
+    const p = params.get('p') || 'builder';
+
+    if (p === 'student') {
+      const subject = params.get('subject');
+      const struggle = params.get('struggle');
+      const style = params.get('style');
+      const year = params.get('year');
+      const studentBudget = params.get('studentBudget');
+      const device = params.get('device');
+      if (subject && struggle && style && year && studentBudget && device) {
+        state.persona = 'student';
+        state.subject = subject;
+        state.struggle = struggle;
+        state.style = style;
+        state.year = year;
+        state.studentBudget = studentBudget;
+        state.device = device;
+        return 'student';
+      }
+      return null;
+    }
+
+    if (p === 'jobs') {
+      const role = params.get('role');
+      const experience = params.get('experience');
+      const goal = params.get('goal');
+      const jobBudget = params.get('jobBudget');
+      if (role && experience && goal && jobBudget) {
+        state.persona = 'jobs';
+        state.role = role;
+        state.experience = experience;
+        state.goal = goal;
+        state.jobBudget = jobBudget;
+        return 'jobs';
+      }
+      return null;
+    }
+
+    // builder
+    const q = params.get('q');
+    const type = params.get('type');
+    const stage = params.get('stage');
+    const budget = params.get('budget');
+    const priority = params.get('priority');
     if (q && type && stage && budget && priority) {
-      state.persona = 'builder'; state.project = q; state.projectType = type; state.stage = stage; state.budget = budget; state.priority = priority;
-      return true;
+      state.persona = 'builder';
+      state.project = q;
+      state.projectType = type;
+      state.stage = stage;
+      state.budget = budget;
+      state.priority = priority;
+      return 'builder';
     }
   } catch (e) {}
-  return false;
+  return null;
 }
 
 function saveShare() {
@@ -1925,7 +1991,12 @@ function checkUrlParams() {
 
 
 // ===== INIT =====
-if (loadFromHash()) {
+const loadedPersona = loadFromHash();
+if (loadedPersona === 'student') {
+  showStudentResults();
+} else if (loadedPersona === 'jobs') {
+  showJobResults();
+} else if (loadedPersona === 'builder') {
   showBuilderResults();
 } else if (!checkUrlParams()) {
   updateProgress('stepPersona');
