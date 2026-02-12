@@ -215,6 +215,15 @@
     .footer-links a { font-size: 14px; color: var(--text-muted); transition: color 0.2s; }
     .footer-links a:hover { color: var(--text); }
     .footer-separator { color: var(--border-strong); margin: 0 8px; }
+  
+
+    /* Footer mobile fix */
+    @media (max-width: 768px) {
+      .footer-content { flex-direction: column; gap: 16px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 10px 16px; }
+      .footer-separator { display: none; }
+    }
+
   </style>
 </head>
 <body>

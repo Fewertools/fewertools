@@ -173,6 +173,15 @@
     .footer-links a:hover { color: var(--text); }
     .footer-separator { color: var(--border-strong); margin: 0 8px; }
     @media (max-width: 600px) { footer { padding: 40px 0; } .footer-content { flex-direction: column; text-align: center; } }
+  
+
+    /* Footer mobile fix */
+    @media (max-width: 768px) {
+      .footer-content { flex-direction: column; gap: 16px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 10px 16px; }
+      .footer-separator { display: none; }
+    }
+
   </style>
 </head>
 <body>
@@ -191,7 +200,7 @@
         <a href="../jobs/">Jobs</a>
         <a href="../gems/">Hidden Gems</a>
         <a href="../blog/">Blog</a>
-        <a href="../build/" class="nav-cta">Find your stack</a>
+        <a href="../services/" class="nav-cta">Hire me</a>
       </nav>
       <button class="menu-toggle" id="menuToggle" aria-label="Menu">
         <span></span>
@@ -300,6 +309,7 @@
         <p>&copy; 2026 Fewer Tools. Less tools. More building.</p>
         <div class="footer-links">
           <a href="../about/">About</a>
+          <a href="../services/">Services</a>
           <a href="../tools/">Tools</a>
           <a href="../blog/">Blog</a>
           <a href="../contact/">Contact</a>
