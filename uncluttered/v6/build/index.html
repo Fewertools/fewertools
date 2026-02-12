@@ -1784,19 +1784,30 @@ async function submitEmail() {
   if (btn) { btn.textContent = 'Saving...'; btn.disabled = true; }
 
   try {
-    const resp = await fetch('/api/subscribe', {
+    // 1) Subscribe to Beehiiv (best-effort; does not block email send)
+    try {
+      await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          company, // honeypot
+          utm_source: 'fewertools',
+          utm_medium: 'quiz',
+          utm_campaign: `student_quiz_${state.subject || 'unknown'}_${state.year || 'unknown'}`
+        })
+      });
+    } catch {}
+
+    // 2) Send transactional email with their exact stack URL (required)
+    const url = window.location.href;
+    const sendResp = await fetch('/api/send-stack', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        company, // honeypot
-        utm_source: 'fewertools',
-        utm_medium: 'quiz',
-        utm_campaign: `student_quiz_${state.subject || 'unknown'}_${state.year || 'unknown'}`
-      })
+      body: JSON.stringify({ email, company, url })
     });
-    const data = await resp.json().catch(() => ({}));
-    if (!resp.ok || !data.ok) throw new Error('subscribe_failed');
+    const sendData = await sendResp.json().catch(() => ({}));
+    if (!sendResp.ok || !sendData.ok) throw new Error('send_failed');
 
     const signups = JSON.parse(localStorage.getItem('fewertools_signups') || '[]');
     if (!signups.includes(email)) { signups.push(email); localStorage.setItem('fewertools_signups', JSON.stringify(signups)); }
