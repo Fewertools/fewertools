@@ -1720,6 +1720,7 @@ function showStudentResults() {
   document.getElementById('costAmount').textContent = '$0/mo';
   document.getElementById('resultsWrapper').classList.add('active');
   document.getElementById('progressFill').style.width = '100%';
+  updateHash();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1768,6 +1769,7 @@ function showJobResults() {
   document.getElementById('costAmount').textContent = totalCost === 0 ? '$0/mo' : `~$${totalCost}/mo`;
   document.getElementById('resultsWrapper').classList.add('active');
   document.getElementById('progressFill').style.width = '100%';
+  updateHash();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1800,7 +1802,9 @@ async function submitEmail() {
     } catch {}
 
     // 2) Send transactional email with their exact stack URL (required)
-    const url = window.location.href;
+    // Ensure hash params are present so the link re-opens the saved stack.
+    try { updateHash(); } catch {}
+    const url = window.location.origin + window.location.pathname + (window.location.hash || '');
     const sendResp = await fetch('/api/send-stack', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
