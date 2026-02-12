@@ -279,6 +279,35 @@
       .persona-card .persona-title { font-size: 16px; }
       .email-form { flex-direction: column; }
     }
+  
+    /* Mobile nav patch */
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; flex-direction: column; gap: 5px; }
+    .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--text); transition: all .3s ease; }
+    .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      header nav {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: rgba(250, 250, 248, 0.98);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 24px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        transform: translateY(-130%);
+        transition: transform .25s ease;
+      }
+      header nav.open { transform: translateY(0); }
+      header nav a { display: block !important; }
+      header nav .nav-cta { display: inline-flex !important; width: fit-content; }
+    }
+
   </style>
 </head>
 <body>
@@ -1854,5 +1883,26 @@ if (loadFromHash()) {
   updateProgress('stepPersona');
 }
 </script>
+
+<script>
+(function(){
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.querySelector('header nav');
+  if (!toggle || !nav) return;
+  toggle.addEventListener('click', function(){
+    const isOpen = nav.classList.toggle('open');
+    toggle.classList.toggle('active', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    toggle.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }));
+})();
+</script>
+
 </body>
 </html>
