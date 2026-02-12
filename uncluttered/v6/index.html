@@ -821,7 +821,9 @@
           <div class="nl-benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Zero spam</span></div>
         </div>
         <form class="nl-form" id="newsletterForm">
-          <input type="email" id="newsletterEmail" placeholder="you@example.com" required>
+          <input type="email" id="newsletterEmail" placeholder="you@example.com" autocomplete="email" required>
+          <!-- Honeypot: hidden field to catch bots -->
+          <input type="text" id="newsletterCompany" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true">
           <button type="submit">Subscribe</button>
         </form>
         <div class="nl-success" id="newsletterSuccess"><strong>You're in!</strong> We'll keep you posted on new additions.</div>
@@ -933,19 +935,36 @@
     nlForm.addEventListener('submit', async e => {
       e.preventDefault();
       const email = document.getElementById('newsletterEmail').value.trim();
+      const company = (document.getElementById('newsletterCompany')?.value || '').trim();
       if (!email) return;
-      const btn = nlForm.querySelector('button'); btn.textContent = 'Subscribing...'; btn.disabled = true;
+      const btn = nlForm.querySelector('button');
+      const original = btn.textContent;
+      btn.textContent = 'Subscribing...';
+      btn.disabled = true;
       try {
-        const PUB = 'ffe242b4-6337-4480-859c-00fceff08744';
-        await fetch(`https://api.beehiiv.com/v2/publications/${PUB}/subscriptions`, {
-          method:'POST', headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({email, utm_source:'fewertools', utm_medium:'website', utm_campaign:'homepage_signup'})
-        }).catch(()=>{});
-        const s = JSON.parse(localStorage.getItem('fewertools_signups')||'[]');
+        const resp = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            company, // honeypot
+            utm_source: 'fewertools',
+            utm_medium: 'website',
+            utm_campaign: 'homepage_signup'
+          })
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok || !data.ok) throw new Error('subscribe_failed');
+
+        const s = JSON.parse(localStorage.getItem('fewertools_signups') || '[]');
         if (!s.includes(email)) { s.push(email); localStorage.setItem('fewertools_signups', JSON.stringify(s)); }
         nlForm.classList.add('hidden');
         document.getElementById('newsletterSuccess').classList.add('show');
-      } catch { btn.textContent = 'Try again'; btn.disabled = false; setTimeout(() => { btn.textContent = 'Subscribe' }, 2000); }
+      } catch {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+        setTimeout(() => { btn.textContent = original; }, 2000);
+      }
     });
   </script>
   <script>

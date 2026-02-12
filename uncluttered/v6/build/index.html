@@ -752,7 +752,9 @@
           <h3>Save your stack + get weekly tips</h3>
           <p>We'll send your personalised stack and one useful tool recommendation every week. No spam.</p>
           <div class="email-form" id="emailForm">
-            <input type="email" class="email-input" id="emailInput" placeholder="your@university.ac.uk">
+            <input type="email" class="email-input" id="emailInput" placeholder="your@university.ac.uk" autocomplete="email">
+            <!-- Honeypot -->
+            <input type="text" id="emailCompanyInput" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true">
             <button class="email-submit" onclick="submitEmail()">Save my stack →</button>
           </div>
           <div class="email-success" id="emailSuccess">✅ Saved! Check your inbox for your stack.</div>
@@ -1772,19 +1774,41 @@ function showJobResults() {
 
 // ===== EMAIL =====
 async function submitEmail() {
-  const email = document.getElementById('emailInput').value;
-  if (!email || !email.includes('@')) { document.getElementById('emailInput').style.borderColor = '#EF4444'; return; }
-  const BEEHIIV_PUB_ID = 'ffe242b4-6337-4480-859c-00fceff08744';
+  const emailEl = document.getElementById('emailInput');
+  const email = (emailEl?.value || '').trim();
+  const company = (document.getElementById('emailCompanyInput')?.value || '').trim();
+  if (!email || !email.includes('@')) { if (emailEl) emailEl.style.borderColor = '#EF4444'; return; }
+
+  const btn = document.querySelector('#emailForm .email-submit');
+  const original = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = 'Saving...'; btn.disabled = true; }
+
   try {
-    await fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, utm_source: 'fewertools', utm_medium: 'quiz', utm_campaign: `student_quiz_${state.subject || 'unknown'}_${state.year || 'unknown'}` })
+    const resp = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        company, // honeypot
+        utm_source: 'fewertools',
+        utm_medium: 'quiz',
+        utm_campaign: `student_quiz_${state.subject || 'unknown'}_${state.year || 'unknown'}`
+      })
     });
-  } catch(e) {}
-  const signups = JSON.parse(localStorage.getItem('fewertools_signups') || '[]');
-  if (!signups.includes(email)) { signups.push(email); localStorage.setItem('fewertools_signups', JSON.stringify(signups)); }
-  document.getElementById('emailForm').style.display = 'none';
-  document.getElementById('emailSuccess').style.display = 'block';
+    const data = await resp.json().catch(() => ({}));
+    if (!resp.ok || !data.ok) throw new Error('subscribe_failed');
+
+    const signups = JSON.parse(localStorage.getItem('fewertools_signups') || '[]');
+    if (!signups.includes(email)) { signups.push(email); localStorage.setItem('fewertools_signups', JSON.stringify(signups)); }
+    document.getElementById('emailForm').style.display = 'none';
+    document.getElementById('emailSuccess').style.display = 'block';
+  } catch (e) {
+    if (btn) {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+      setTimeout(() => { btn.textContent = original; }, 2000);
+    }
+  }
 }
 
 

@@ -447,10 +447,14 @@
       <div class="newsletter-card reveal">
         <h2>Stay in the loop</h2>
         <p>Get notified when we add new tools, publish comparisons, or update our stacks. No spam, just signal.</p>
-        <form class="newsletter-form" action="#" method="POST">
-          <input type="email" placeholder="you@example.com" aria-label="Email address" required>
+        <form class="newsletter-form" id="blogNewsletterForm" action="#" method="POST">
+          <input type="email" id="blogNewsletterEmail" placeholder="you@example.com" aria-label="Email address" autocomplete="email" required>
+          <!-- Honeypot -->
+          <input type="text" id="blogNewsletterCompany" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true">
           <button type="submit">Subscribe</button>
         </form>
+        <div id="blogNewsletterSuccess" style="display:none; margin-top:12px; color: rgba(255,255,255,0.85); font-size: 14px;">You're in. Check your inbox.</div>
+        <div id="blogNewsletterError" style="display:none; margin-top:12px; color: rgba(255,255,255,0.75); font-size: 14px;">Couldn’t subscribe. Try again.</div>
       </div>
     </div>
   </section>
@@ -497,6 +501,52 @@
       menuToggle.classList.remove('active');
       nav.classList.remove('open');
     }));
+
+    // Newsletter
+    const blogNlForm = document.getElementById('blogNewsletterForm');
+    if (blogNlForm) {
+      blogNlForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('blogNewsletterEmail').value.trim();
+        const company = (document.getElementById('blogNewsletterCompany')?.value || '').trim();
+        if (!email) return;
+
+        const btn = blogNlForm.querySelector('button');
+        const original = btn.textContent;
+        btn.textContent = 'Subscribing...';
+        btn.disabled = true;
+
+        const okEl = document.getElementById('blogNewsletterSuccess');
+        const errEl = document.getElementById('blogNewsletterError');
+        if (okEl) okEl.style.display = 'none';
+        if (errEl) errEl.style.display = 'none';
+
+        try {
+          const resp = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email,
+              company, // honeypot
+              utm_source: 'fewertools',
+              utm_medium: 'website',
+              utm_campaign: 'blog_signup'
+            })
+          });
+          const data = await resp.json().catch(() => ({}));
+          if (!resp.ok || !data.ok) throw new Error('subscribe_failed');
+
+          btn.textContent = 'Subscribed';
+          if (okEl) okEl.style.display = 'block';
+          blogNlForm.reset();
+        } catch {
+          if (errEl) errEl.style.display = 'block';
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+          setTimeout(() => { btn.textContent = original; }, 2000);
+        }
+      });
+    }
 
     // Filter tags
     const filterTags = document.querySelectorAll('.filter-tag');

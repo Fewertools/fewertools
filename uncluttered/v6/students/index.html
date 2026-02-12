@@ -1714,7 +1714,9 @@
       <h2 class="reveal" style="margin-bottom: var(--space-sm);">Get smarter tools, weekly 📬</h2>
       <p class="reveal" style="color: var(--text-secondary); margin-bottom: var(--space-xl); font-size: 17px;">One email. Five tools worth knowing. Sent every Tuesday. Free forever.</p>
       <form class="reveal" id="studentNewsletterForm" style="display: flex; gap: 10px; max-width: 480px; margin: 0 auto;" onsubmit="subscribeNewsletter(event)">
-        <input type="email" id="studentEmailInput" placeholder="your@university.ac.uk" required style="flex:1; padding: 14px 18px; border: 2px solid var(--border-strong); border-radius: var(--radius-md); font-size: 15px; font-family: var(--font-body); outline: none; background: var(--bg-card); transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border-strong)'">
+        <input type="email" id="studentEmailInput" placeholder="your@university.ac.uk" autocomplete="email" required style="flex:1; padding: 14px 18px; border: 2px solid var(--border-strong); border-radius: var(--radius-md); font-size: 15px; font-family: var(--font-body); outline: none; background: var(--bg-card); transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border-strong)'">
+        <!-- Honeypot -->
+        <input type="text" id="studentCompanyInput" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true">
         <button type="submit" class="btn btn-primary" style="white-space: nowrap; padding: 14px 24px;">Subscribe →</button>
       </form>
       <div id="studentNewsletterSuccess" style="display:none; color: var(--accent); font-weight: 600; font-size: 15px; margin-top: 16px;">✅ You're in! Check your inbox.</div>
@@ -1757,25 +1759,35 @@
     async function subscribeNewsletter(e) {
       e.preventDefault();
       const email = document.getElementById('studentEmailInput').value.trim();
+      const company = (document.getElementById('studentCompanyInput')?.value || '').trim();
       if (!email) return;
       const btn = e.target.querySelector('button');
+      const original = btn.textContent;
       btn.textContent = 'Subscribing...';
       btn.disabled = true;
       try {
-        // TODO: Replace ffe242b4-6337-4480-859c-00fceff08744 with Beehiiv pub ID
-        const BEEHIIV_PUB_ID = 'ffe242b4-6337-4480-859c-00fceff08744';
-        await fetch(`https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`, {
+        const resp = await fetch('/api/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, utm_source: 'fewertools', utm_medium: 'website', utm_campaign: 'student_stack_signup' })
-        }).catch(() => {});
+          body: JSON.stringify({
+            email,
+            company, // honeypot
+            utm_source: 'fewertools',
+            utm_medium: 'website',
+            utm_campaign: 'student_stack_signup'
+          })
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok || !data.ok) throw new Error('subscribe_failed');
+
         const signups = JSON.parse(localStorage.getItem('fewertools_signups') || '[]');
         if (!signups.includes(email)) { signups.push(email); localStorage.setItem('fewertools_signups', JSON.stringify(signups)); }
         document.getElementById('studentNewsletterForm').style.display = 'none';
         document.getElementById('studentNewsletterSuccess').style.display = 'block';
-      } catch (err) {
+      } catch {
         btn.textContent = 'Try again';
         btn.disabled = false;
+        setTimeout(() => { btn.textContent = original; }, 2000);
       }
     }
 
