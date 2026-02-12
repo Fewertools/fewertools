@@ -74,7 +74,16 @@ module.exports = async (req, res) => {
   const from = process.env.EMAIL_FROM;
   const replyTo = process.env.EMAIL_REPLY_TO || from;
 
-  if (!apiKey || !from) return send(res, 500, { ok: false, error: 'missing_server_config' });
+  if (!apiKey || !from) {
+    return send(res, 500, {
+      ok: false,
+      error: 'missing_server_config',
+      missing: [
+        !apiKey ? 'RESEND_API_KEY' : null,
+        !from ? 'EMAIL_FROM' : null,
+      ].filter(Boolean),
+    });
+  }
 
   const subject = 'Your Fewertools stack (saved)';
   const html = `

@@ -60,7 +60,14 @@ module.exports = async (req, res) => {
   const apiKey = process.env.BEEHIIV_API_KEY;
   const pubId = process.env.BEEHIIV_PUBLICATION_ID;
   if (!apiKey || !pubId) {
-    return send(res, 500, { ok: false, error: 'missing_server_config' });
+    return send(res, 500, {
+      ok: false,
+      error: 'missing_server_config',
+      missing: [
+        !apiKey ? 'BEEHIIV_API_KEY' : null,
+        !pubId ? 'BEEHIIV_PUBLICATION_ID' : null,
+      ].filter(Boolean),
+    });
   }
 
   try {
