@@ -914,16 +914,46 @@
     ];
     const heroSearch = document.getElementById('heroSearch');
     const searchResults = document.getElementById('searchResults');
+    // Tools index (lightweight list of tool names)
+    let toolsIndex = null;
+    let toolsIndexLoading = false;
+
+    async function ensureToolsIndex() {
+      if (toolsIndex || toolsIndexLoading) return;
+      toolsIndexLoading = true;
+      try {
+        const r = await fetch('./assets/tools-index.json', { cache: 'force-cache' });
+        const data = await r.json();
+        if (Array.isArray(data)) toolsIndex = data;
+      } catch {}
+      toolsIndexLoading = false;
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
     function renderHeroSearch() {
       const qRaw = heroSearch.value.trim();
       const q = qRaw.toLowerCase();
       if (q.length < 2) { searchResults.classList.remove('active'); return; }
 
+      // Kick off tools index load on first real query
+      ensureToolsIndex().then(() => {
+        // Re-render once toolsIndex arrives (only if query unchanged)
+        if (heroSearch.value.trim() === qRaw) renderHeroSearch();
+      });
+
       const mUC = useCases.filter(u => u.title.toLowerCase().includes(q) || u.keywords.some(k => k.includes(q) || q.includes(k))).slice(0, 5);
       const mS = stacks.filter(s => s.title.toLowerCase().includes(q) || s.keywords.some(k => k.includes(q) || q.includes(k))).slice(0, 3);
+      const mT = toolsIndex
+        ? toolsIndex
+            .filter(t => (t.n || '').toLowerCase().includes(q))
+            .slice(0, 6)
+        : [];
 
-      if (!mUC.length && !mS.length) {
-        const safeQ = qRaw.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      if (!mUC.length && !mS.length && !mT.length) {
+        const safeQ = escapeHtml(qRaw);
         searchResults.innerHTML = `
           <div style="padding:18px 18px 8px; text-align:center; color:var(--text-muted); font-size:14px;">No matches for <strong style="color:var(--text); font-weight:600;">${safeQ}</strong></div>
           <div class="search-results-footer" onclick="location.href='./tools/?q=${encodeURIComponent(qRaw)}'">Search tools for “${safeQ}” →</div>
@@ -934,19 +964,30 @@
       }
 
       let h = '';
+
+      if (mT.length) {
+        h += '<div class="search-result-section">Tools</div>';
+        mT.forEach(t => {
+          const name = escapeHtml(t.n || '');
+          h += `<div class="search-result-item" onclick="location.href='./tools/?q=${encodeURIComponent(t.n || '')}'"><div class="search-result-icon">🔧</div><div class="search-result-info"><div class="search-result-title">${name}</div><div class="search-result-desc">Search in tools directory</div></div><span class="search-result-badge">Tool</span></div>`;
+        });
+      }
+
       if (mUC.length) {
         h += '<div class="search-result-section">Use Cases</div>';
         mUC.forEach(u => {
           h += `<div class="search-result-item" onclick="location.href='${u.href}'"><div class="search-result-icon">${u.icon}</div><div class="search-result-info"><div class="search-result-title">${u.title}</div><div class="search-result-desc">${u.desc}</div></div><span class="search-result-badge">Use Case</span></div>`;
         });
       }
+
       if (mS.length) {
         h += '<div class="search-result-section">Stacks</div>';
         mS.forEach(s => {
           h += `<div class="search-result-item" onclick="location.href='${s.href}'"><div class="search-result-icon">${s.icon}</div><div class="search-result-info"><div class="search-result-title">${s.title}</div><div class="search-result-desc">${s.desc}</div></div><span class="search-result-badge">Stack</span></div>`;
         });
       }
-      h += `<div class="search-results-footer" onclick="location.href='./tools/?q=${encodeURIComponent(qRaw)}'">Search tools for “${qRaw.replace(/</g,'&lt;').replace(/>/g,'&gt;')}” →</div>`;
+
+      h += `<div class="search-results-footer" onclick="location.href='./tools/?q=${encodeURIComponent(qRaw)}'">Search tools for “${escapeHtml(qRaw)}” →</div>`;
       h += '<div class="search-results-footer" onclick="location.href=\'./use-cases/\'">Browse all use cases →</div>';
       searchResults.innerHTML = h;
       searchResults.classList.add('active');
